@@ -1,0 +1,165 @@
+/*======// Sidebar Collapsed //=======*/
+.datainputsidebar {
+    height: 100%;
+    width: 0px;
+    top: 0%;
+    bottom: 20%;
+    position: fixed;
+    z-index: 9999;
+    right: 0px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    backdrop-filter: blur(3px);
+    background: rgba(10, 10, 10, .65);
+    /* background-image: linear-gradient(120deg, #fd7e1424, #007bff75); */
+    box-shadow: 0 8px 32px rgb(2 4 24);
+  }
+.right_sidebar_header{
+    padding-left: 10px;
+    border-bottom: 1px solid silver;
+}
+.right_sidebar_header button{
+    border:none;
+    outline: none;
+    padding: 8px 20px;
+    background: none;
+    color:#fff;
+    font-size: 18px;
+}
+.right_sidebar_header span{
+    font-size: 18px;
+    color: #fff;
+    margin-left: 10px;
+}
+.right_sidebar_body{
+    padding: 15px 0px 0 30px;
+}
+.right_sidebar_body input[type=text]{
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid silver;
+    width: 100%;
+}
+.right_sidebar_body input[type=text]:focus{
+    outline: none;
+    border: 1px solid #007bff;
+}
+.right_sidebar_body input[type=submit]{
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.dropdwon_select{
+    width: 100% !important;
+    padding: 7px 2px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+
+}
+
+.dropdwon_select:focus{
+    border: 1px solid #007bff;
+    outline:none
+}
+.description_1{
+    overflow: hidden ; 
+    display: -webkit-box ;
+    -webkit-box-orient: vertical ;
+    -webkit-line-clamp: 1;
+}
+.description_2{
+    overflow: hidden ; 
+    display: -webkit-box ;
+    -webkit-box-orient: vertical ;
+    -webkit-line-clamp: 2;
+}
+.description_3{
+    overflow: hidden ; 
+    display: -webkit-box ;
+    -webkit-box-orient: vertical ;
+    -webkit-line-clamp: 3;
+}
+/*===========*/
+
+
+
+.scrollbar{
+    overflow-y: scroll;
+    height: 100%;
+}
+.scrollbar:hover{
+    height: 100%;
+}
+.scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #fff;
+}
+.scrollbar::-webkit-scrollbar
+{
+	width: 2px;
+}
+.scrollbar::-webkit-scrollbar-thumb
+{
+    /* -webkit-box-shadow: inset 0 0 6px rgba(255, 6, 6, 0.548); */
+	background-color: #34AD54;
+}
+.brand-logo h2{
+    font-size: 50px;
+    margin-bottom: 0px !important;
+}
+.btn-icon-add{
+    border-left: 1px solid white;
+    margin: 0px 0px 0px 8px;
+    padding: 8px 8px 8px 0px;
+}
+
+
+
+/*================// Copy CSS //================*/
+table.dataTable.no-footer {
+    border-bottom: 1px solid #eee !important;
+    border-top: 1px solid #eee;
+}
+table.dataTable thead th {
+    padding: 10px 20px !important;
+    border-bottom: 1px solid #eeee !important;
+}
+table.dataTable tbody td {
+    padding: 10px 15px !important;
+}
+.dataTables_wrapper input[type="search"], .dataTables_wrapper input[type="text"], .dataTables_wrapper select {
+    border: none !important;
+    border-bottom: 1px solid #34ad54 !important;
+}  
+.nav-header .logo-abbr {
+    min-width: 0px !important;
+    max-width: 40px; 
+}
+.form-control .btn {
+    height: 100%;
+    padding: 8px 20px !important;
+}
+.form-group {
+    margin-bottom: 0.7rem !important;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+    /* z-index: 1 !important; */
+}
+.dataTables_wrapper input[type="search"], .dataTables_wrapper input[type="text"], .dataTables_wrapper select {
+    border: 1px solid #e2e2e2;
+    padding: 0rem 0rem !important;
+    color: #715d5d;
+    border-radius: 0px !important;
+}
+
+.table th, .table td {
+    padding: 5px 10px !important;
+}
+.card-body {
+    padding: 20px !important;
+}

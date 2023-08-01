@@ -1,0 +1,5 @@
+[05-Apr-2023 11:34:14 UTC] PHP Warning:  require(/home/puneclub/public_html/puneclub/vendor/autoload.php): Failed to open stream: No such file or directory in /home/puneclub/public_html/index.php on line 34
+[05-Apr-2023 11:34:14 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/puneclub/public_html/puneclub/vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/puneclub/public_html/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/puneclub/public_html/index.php on line 34
