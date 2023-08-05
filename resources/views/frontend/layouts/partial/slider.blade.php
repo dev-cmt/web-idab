@@ -1,42 +1,61 @@
-    <!-- Slider Start -->
-    <div class="container-fluid position-relative p-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{{asset('public/images')}}/slider/slider-1.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h6 class="text-white slider_fontSize animated zoomIn">Every semester break you visited the Sinhgad fort. Can you still remember the name?</h6>
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url({{asset('public/frontend')}}/img/building-interior.jpg);">
+                    <div class="carousel-container">
+                        <div class="intro-wrapper">
+                            <div>
+                            <div class="intro-logo">
+                                <img src="{{asset('public/frontend')}}/img/logo.png" alt="">
+                            </div>
+                            <div class="intro-cover">
+                                <h1 class="intro-title">Content Revel on Page Scroll</h1>
+                            </div>
+                            <div class="intro-text">
+                                <span class="animate__animated animate__fadeInUp"><h4>THE SOCIETY</h4></span>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{{asset('public/images')}}/slider/slider-2.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h6 class="text-white slider_fontSize animated zoomIn">You can’t use up creativity. The more you use, the more you have.</h6>
+                {{-- <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url({{asset('public/frontend')}}/img/slide/slide-1.jpg);">
+                    <div class="carousel-container">
+                        <div class="carousel-content">
+                            <h2 class="animate__animated animate__fadeInDown">Grow Your Business</h2>
+                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
+                                aliquid. Sequi
+                                ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut.
+                                Similique ea
+                                voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore
+                                modi architecto.</p>
+                            <div>
+                                <a href="#about"
+                                    class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
+                                    More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{{asset('public/images')}}/slider/slider-3.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h6 class="text-white slider_fontSize animated zoomIn" >People listen to the story but you got to witness this story by watching Ajanta Elora cave</h6>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
+
+                <div id="particles-js"></div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
         </div>
     </div>
-    <!-- Slider End -->
+</section><!-- End Hero -->

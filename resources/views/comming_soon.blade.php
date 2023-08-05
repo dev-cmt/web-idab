@@ -71,7 +71,7 @@
 					<div class="content-slide">
 
 						<div class="container">
-							<a href="{{ url()->previous() }}"><img src="{{asset('public/backend')}}/images/logo.png" class="brand-logo text-intro opacity-0" alt=""></a>
+							<a href="{{ url()->previous() }}"><img src="{{asset('public/images')}}/logo.png" class="brand-logo text-intro opacity-0" alt=""></a>
 						
 							<h1 class="text-intro opacity-0"> {{Route::currentRouteName() == 'member.not_approved' ? 'Your request is pending for approval': 'Coming Soon' }} </h1>
 						

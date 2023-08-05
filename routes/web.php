@@ -5,7 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\Admin\FrontViewController;
+use App\Http\Controllers\FrontViewController;
 use App\Http\Controllers\Admin\BackViewController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -27,24 +27,57 @@ use App\Http\Controllers\Admin\ContactController;
 |
 */
 
+
+//___________________________________// START \\______________________________________________//
 Route::get('/', [FrontViewController::class, 'welcome'])->name('/');
 
-Route::get('/comming_soon', function () {
-    return view('comming_soon');
-});
+/**______________________________________________________________________________________________
+ * View Pages => ALL
+ * ______________________________________________________________________________________________
+ */
+Route::get('comming_soon', [FrontViewController::class, 'welcome'])->name('comming_soon');
 
+//______________ ABOUT US
+
+//______________ COMMITTEE
+
+//______________ MEMBERS
+
+//______________ EVENTS
+
+//______________ CONTACT US
+Route::get('comming_soon', [FrontViewController::class, 'contact'])->name('page.contact');
+
+
+
+Route::get('/about', function (){return view('frontend.pages.about');})->name('page.about');
+Route::get('/contact/show', function (){return view('frontend.pages.contact');})->name('contact');
+Route::get('/member/lose', function (){return view('frontend.pages.member_lose');})->name('page.member_lose');
+Route::get('/gallery/video', function (){return view('frontend.pages.gallery_video');})->name('page.gallery_video');
+
+
+
+/**______________________________________________________________________________________________
+ * Login Check => Dashboard
+ * ______________________________________________________________________________________________
+ */
 Route::middleware([ 'auth:sanctum','verified','member', config('jetstream.auth_session')])->group(function () {
     Route::get('/dashboard', [BackViewController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 });
 
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Profile Setting
 |--------------------------------------------------------------------------
 */
-
 Route::get('member_prifile/details/{id}', [ProfileController::class, 'profile_show'])->name('profile_show');
 Route::put('member_prifile/other_info/{id}/update', [ProfileController::class, 'infoOtherUpdate'])->name('info_other.update');
 Route::post('member_prifile/change-password/{id}', [ProfileController::class, 'changePassword'])->name('change.password');
@@ -59,10 +92,6 @@ Route::put('/password/{user}', [ProfileController::class, 'password'])->name('pr
 Route::get('/information/edit', [ProfileController::class, 'information_edit'])->name('information.edit');
 
 
-Route::get('/about', function (){return view('frontend.pages.about');})->name('page.about');
-Route::get('/contact/show', function (){return view('frontend.pages.contact');})->name('page.contact');
-Route::get('/member/lose', function (){return view('frontend.pages.member_lose');})->name('page.member_lose');
-Route::get('/gallery/video', function (){return view('frontend.pages.gallery_video');})->name('page.gallery_video');
 
 /*______________________ Gallery __________________*/
 Route::group(['middleware' => ['auth']], function(){

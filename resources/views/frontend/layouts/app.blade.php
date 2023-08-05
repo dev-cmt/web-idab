@@ -9,34 +9,32 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/backend')}}/images/favicon.png">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicons -->
+    <link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
+    <link href="{{asset('public/frontend')}}/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{asset('public/frontend')}}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="{{asset('public/frontend')}}/lib/animate/animate.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{asset('public/frontend')}}/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="{{asset('public/frontend')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('public/frontend')}}/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{asset('public/frontend')}}/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        
+    <!-- Owl Carousel -->
+    <link href="{{asset('public/frontend')}}/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="{{asset('public/frontend')}}/vendor/owl-carousel/owl.theme.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('public/frontend')}}/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
+    <!-- Template Main CSS File -->
     <link href="{{asset('public/frontend')}}/css/style.css" rel="stylesheet">
+    <link href="{{asset('public/frontend')}}/css/intro-effect.css" rel="stylesheet">
     <link href="{{asset('public/frontend')}}/css/custom.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     @yield('style')
 </head>
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
-    </div>
     <!-- Spinner End -->
     @include('frontend.layouts.partial.header')
     @include('frontend.layouts.partial.banner')
@@ -44,19 +42,91 @@
     @yield('content')
     @include('frontend.layouts.partial.footer')
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    
+    <!-- Vendor JS Files -->
+    <script src="{{asset('public/frontend')}}/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="{{asset('public/frontend')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('public/frontend')}}/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="{{asset('public/frontend')}}/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="{{asset('public/frontend')}}/vendor/owl-carousel/owl.carousel.js"></script>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('public/frontend')}}/lib/wow/wow.min.js"></script>
-    <script src="{{asset('public/frontend')}}/lib/easing/easing.min.js"></script>
-    <script src="{{asset('public/frontend')}}/lib/waypoints/waypoints.min.js"></script>
-    <script src="{{asset('public/frontend')}}/lib/counterup/counterup.min.js"></script>
-    {{-- <script src="{{asset('public/frontend')}}/lib/owlcarousel/owl.carousel.min.js"></script> --}}
-
-    <!-- Template Javascript -->
+    <!-- Template Main JS File -->
+    <script src="{{asset('public/frontend')}}/js/jquery-1.9.1.min.js"></script> 
+    <script src="{{asset('public/frontend')}}/js/particles.js"></script>
+    <script src="{{asset('public/frontend')}}/js/particles-config.js"></script>
+    <script src="{{asset('public/frontend')}}/js/gsap.min.js"></script>
+    <script src="{{asset('public/frontend')}}/js/ScrollTrigger.min.js"></script>
     <script src="{{asset('public/frontend')}}/js/main.js"></script>
+
+    <script>
+        // Initialize GSAP - ScrollTrigger
+        const reveal = gsap.utils.toArray('.reveal');
+        reveal.forEach((text, i) => {
+            ScrollTrigger.create({
+                trigger:text,
+                toggleClass:'active',
+                // start: "top 90%",
+                // end: "top 10%",
+            })
+        })
+        // Initialize owl - Slider
+        $(document).ready(function() {
+            $("#owl-upcoming-events").owlCarousel({
+                navigation: false,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                autoPlay : 3000,
+            });
+
+        });
+        $(document).ready(function () {
+            $("#owl-team-member").owlCarousel({
+                items: 4
+            });
+            $('.link').on('click', function (event) {
+                var $this = $(this);
+                if ($this.hasClass('clicked')) {
+                    $this.removeAttr('style').removeClass('clicked');
+                } else {
+                    $this.css('background', '#7fc242').addClass('clicked');
+                }
+            });
+        });
+        $(document).ready(function() {
+            $("#owl-clients").owlCarousel({
+                items: 5,
+                navigation: false,
+            });
+
+            $('.link').on('click', function (event) {
+                var $this = $(this);
+                if ($this.hasClass('clicked')) {
+                    $this.removeAttr('style').removeClass('clicked');
+                } else {
+                    $this.css('background', '#7fc242').addClass('clicked');
+                }
+            });
+
+        });
+    </script>
+    
+    <script>
+        // Function to add the class with the left show animation after a delay
+        function showLeftAnimation() {
+            const introCover = document.querySelector('.intro-cover');
+            const introTitle = document.querySelector('.intro-title');
+            const introText = document.querySelector('.intro-text');
+            introCover.classList.add('active');
+            introTitle.classList.add('active');
+            introText.classList.add('active');
+        }
+        // Wait for 5 seconds (5000 milliseconds) before triggering the animation
+        setTimeout(showLeftAnimation, 1000);
+    </script>
+
     @yield('script')
 </body>
 </html>

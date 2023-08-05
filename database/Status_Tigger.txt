@@ -1,2 +1,0 @@
-UPDATE users set is_admin=0 
-WHERE users.id=NEW.user_id
