@@ -6,10 +6,10 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Models\Admin\InfoPersonal;
-use App\Models\Admin\InfoAcademic;
-use App\Models\Admin\InfoFamily;
-use App\Models\Admin\InfoOther;
+use App\Models\Member\InfoPersonal;
+use App\Models\Member\InfoAcademic;
+use App\Models\Member\InfoFamily;
+use App\Models\Member\InfoOther;
 use App\Models\User;
 
 class RolePermissionSeeder extends Seeder
@@ -22,40 +22,19 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         $super_admin = User::create([
-            'name'=>'Pune Club',
-            'batch'=>'55',
+            'name'=>'IDAB',
             'contact_number'=>'01909302126',
-            'email_verified_at' => '2000-01-01',
+            'email_verified_at' => '2002-01-01',
             'email'=>'admin@gmail.com',
             'status' => '1',
             'is_admin' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/admin.jpg',
         ]);
-        InfoPersonal::create([
-            'address'=>'Shariatpur',
-            'city'=>'Dhaka',
-            'number_child'=>'0',
-            'marrital_status'=>'0',
-            'user_id'=>'1',
-        ]);
-        InfoAcademic::create([
-            'collage'=>'Pune College',
-            'subject'=>'Computer Science',
-            'degree'=>'2',
-            'passing_year'=>'1995',
-            'passing_year'=>'1995',
-            'user_id'=>'1',
-        ]);
-        InfoOther::create([
-            'designation'=>'Super Admin',
-            'company_name'=>'Icon Information Systems Ltd.',
-            'user_id'=>'1',
-        ]);
+        
 
         $admin = User::create([
             'name'=>'Member',
-            'batch'=>'55',
             'contact_number'=>'01909302126',
             'email'=>'member@gmail.com',
             'email_verified_at' => '2000-01-01',
@@ -63,26 +42,6 @@ class RolePermissionSeeder extends Seeder
             'is_admin' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/member.jpg',
-        ]);
-        InfoPersonal::create([
-            'address'=>'Shariatpur',
-            'city'=>'Dhaka',
-            'number_child'=>'0',
-            'marrital_status'=>'0',
-            'user_id'=>'2',
-        ]);
-        InfoAcademic::create([
-            'collage'=>'Pune College',
-            'subject'=>'Computer Science',
-            'degree'=>'2',
-            'passing_year'=>'1995',
-            'passing_year'=>'1995',
-            'user_id'=>'2',
-        ]);
-        InfoOther::create([
-            'designation'=>'Admin',
-            'company_name'=>'Icon Information Systems Ltd.',
-            'user_id'=>'2',
         ]);
 
         /*__________________________________________________________ */

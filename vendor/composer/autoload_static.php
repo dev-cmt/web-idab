@@ -369,8 +369,8 @@ class ComposerStaticInit3c7e22066e9a9b2b17830c6b11a78693
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -599,12 +599,12 @@ class ComposerStaticInit3c7e22066e9a9b2b17830c6b11a78693
         'App\\Http\\Controllers\\Admin\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ContactController.php',
         'App\\Http\\Controllers\\Admin\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EventController.php',
         'App\\Http\\Controllers\\Admin\\EventPaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EventPaymentController.php',
-        'App\\Http\\Controllers\\Admin\\FrontViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FrontViewController.php',
         'App\\Http\\Controllers\\Admin\\GalleryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GalleryController.php',
         'App\\Http\\Controllers\\Admin\\LoseMemberController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LoseMemberController.php',
         'App\\Http\\Controllers\\Admin\\MemberController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MemberController.php',
         'App\\Http\\Controllers\\Admin\\SubscriptionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SubscriptionController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FrontViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontViewController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -634,6 +634,11 @@ class ComposerStaticInit3c7e22066e9a9b2b17830c6b11a78693
         'App\\Models\\Admin\\Subscription' => __DIR__ . '/../..' . '/app/Models/Admin/Subscription.php',
         'App\\Models\\Admin\\SubscriptionSetup' => __DIR__ . '/../..' . '/app/Models/Admin/SubscriptionSetup.php',
         'App\\Models\\Admin\\SubscriptionsHistory' => __DIR__ . '/../..' . '/app/Models/Admin/SubscriptionsHistory.php',
+        'App\\Models\\Member\\InfoCompany' => __DIR__ . '/../..' . '/app/Models/Member/InfoCompany.php',
+        'App\\Models\\Member\\InfoDocument' => __DIR__ . '/../..' . '/app/Models/Member/InfoDocument.php',
+        'App\\Models\\Member\\InfoStudent' => __DIR__ . '/../..' . '/app/Models/Member/InfoStudent.php',
+        'App\\Models\\Member\\MastDegree' => __DIR__ . '/../..' . '/app/Models/Member/MastDegree.php',
+        'App\\Models\\Member\\MemberType' => __DIR__ . '/../..' . '/app/Models/Member/MemberType.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

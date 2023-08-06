@@ -66,9 +66,18 @@ Route::middleware([ 'auth:sanctum','verified','member', config('jetstream.auth_s
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 });
+Route::get('/member-register/create', [MemberController::class,'create'])->name('member_register.create');
+Route::get('/member-register/store', [MemberController::class,'create'])->name('member_register.store');
 
 
-
+/*___________ Member Register Information __________*/
+Route::group(['middleware' => ['auth']], function(){
+    // Route::resource('/member_register', MemberController::class);
+    Route::patch('/member/update/{id}', [MemberController::class,'approved'])->name('member.approved');
+    Route::get('/member/not/approved', [MemberController::class,'not_approved'])->name('member.not_approved');
+    
+    Route::get('/member/details/{id}', [MemberController::class,'fv_member_details'])->name('page.member_details');
+});
 
 
 
@@ -112,14 +121,7 @@ Route::get('/download/{id}', [GalleryController::class, 'downloadFile'])->name('
 Route::get('/dowloads', [GalleryController::class, 'dowloads']);
 
 
-/*___________ Member Register Information __________*/
-Route::group(['middleware' => ['auth']], function(){
-    Route::resource('/member_register', MemberController::class);
-    Route::patch('/member/update/{id}', [MemberController::class,'approved'])->name('member.approved');
-    Route::get('/member/not/approved', [MemberController::class,'not_approved'])->name('member.not_approved');
-    
-    Route::get('/member/details/{id}', [MemberController::class,'fv_member_details'])->name('page.member_details');
-});
+
 //---Website View
 Route::get('/advisor', [MemberController::class,'fv_adviser'])->name('fv.advisor');
 Route::get('/ecommittee', [MemberController::class,'fv_executive_committee'])->name('fv.executive_committee');

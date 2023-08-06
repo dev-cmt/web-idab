@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('batch');
             $table->string('contact_number');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -24,13 +23,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path')->nullable();
-            $table->boolean('status')->default(false);
-            $table->boolean('is_admin')->default(false);
-
-            $table->boolean('cm_adviser')->default(false);
-            $table->boolean('cm_ecommittee')->default(false);
-            $table->boolean('cm_welfare')->default(false);
-            $table->boolean('pune_member')->default(false);
+            $table->tinyInteger('status')->default(false);
+            $table->tinyInteger('is_admin')->default(false);
             $table->timestamps();
         });
     }

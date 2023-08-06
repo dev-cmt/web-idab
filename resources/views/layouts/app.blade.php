@@ -7,8 +7,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/backend')}}/images/favicon.png">
+    <!-- Favicons -->
+    <link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
+    
     <!-- Datatable -->
     <link href="{{asset('public/backend')}}/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Sweetalert & Toaster-->
