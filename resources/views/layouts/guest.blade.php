@@ -10,31 +10,21 @@
 	<!-- Favicons -->
 	<link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
 	<link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
-	
-</head>
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="{{asset('public/extra-pages/login')}}/main.css">
-    {{-- <link rel="stylesheet" href="{{asset('public/extra-pages/login')}}/style.css"> --}}
+    <link rel="stylesheet" href="{{asset('public/extra-pages/login')}}/style.css">
 </head>
-
-<body  style="background-image: url('{{asset('public/extra-pages/login')}}/background-bubble.jpg');">
-
+<body>
     
     {{ $slot }}
-
 
     <script>
         /* show and hide the password */
         const reg_eyes = document.querySelectorAll(".eye");
-
         reg_eyes.forEach((eye) => {
             eye.addEventListener("click", () => {
                 const pass_field = eye.previousElementSibling.previousElementSibling;
@@ -49,6 +39,6 @@
         });
 
     </script>
+    
 </body>
-
 </html>

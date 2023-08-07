@@ -3,7 +3,7 @@
 :root {
   --primary-color: #ff0000;
   --primary-color-hover: #d10000;
-  --input-height: 55px;
+  --input-height: 50px;
 }
 
 *,
@@ -27,7 +27,7 @@
     Global Styles
 
 ******************/
-h1 {
+.login-form h1 {
   font-weight: 300;
   color: #343434;
   margin: 0.5rem 0;
@@ -41,12 +41,7 @@ a:hover {
   text-decoration: underline;
 }
 
-
-.justify-between {
-  justify-content: space-between;
-}
-
-input[type="checkbox"] {
+.login-form input[type="checkbox"] {
   margin-right: 1rem;
   transform: scale(1.5);
 }
@@ -56,30 +51,30 @@ input[type="checkbox"] {
     Registration Form
 
 ******************/
-.registration-form {
-  width: 600px;
+.login-form {
+  width: 550px;
   background: #fff;
   border: 1px solid var(--primary-color);
   box-shadow: 0 0px 12px var(--primary-color);
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 14px;
 }
 
-.registration-form .header{
+.login-form .header{
   padding: 10px 20px;
 }
-.registration-form .logo{
+.login-form .logo{
   height: 100px;
   background: rgb(228, 228, 228);
   width: 100%;
 }
-.registration-form .logo img{
+.login-form .logo img{
   height: 100%;
   padding: 10px;
 }
 
 
-.registration-form .body {
+.login-form .body {
   padding: 2rem 1rem;
 }
 
@@ -105,6 +100,96 @@ input[type="checkbox"] {
   padding: 0 1rem;
   background-color: #fff;
 }
+.bar_personal {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_personal::before {
+  content: "Personal Information";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+.bar_academic {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_academic::before {
+  content: "Academic Details";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+.bar_business {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_business::before {
+  content: "Business Information";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+.bar_job {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_job::before {
+  content: "Job Information";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+.bar_student {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_student::before {
+  content: "Student Information";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+.bar_document {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_document::before {
+  content: "Document";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
 
 /*****************  
 
@@ -127,7 +212,7 @@ input[type="checkbox"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0 1.5rem;
-  font-size: 1.25rem;
+  font-size: 16px;
   outline: none;
 }
 
@@ -186,9 +271,9 @@ input[type="checkbox"] {
   width: 100%;
   background-color: var(--primary-color);
   border-radius: 0;
-  padding: 10px 0px;
+  padding: 4px 0px;
   color: #fff;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
 }
 .btn-register:hover{
@@ -203,7 +288,222 @@ responsive design
 ******************/
 
 @media screen and (max-width: 768px) {
-  .registration-form {
+  .login-form {
     width: 340px;
   }
+}
+
+/* ==========================================================================
+   #Register From
+   ========================================================================== */
+   .wrapper {
+    margin: 0 auto;
+  }
+  
+  .wrapper--w960 {
+    max-width: 960px;
+  }
+  
+  .wrapper--w900 {
+    max-width: 900px;
+  }
+  
+  .wrapper--w790 {
+    max-width: 790px;
+  }
+  
+  .wrapper--w780 {
+    max-width: 780px;
+  }
+  
+  .wrapper--w680 {
+    max-width: 680px;
+  }
+  
+/* ==========================================================================
+   #TITLE
+   ========================================================================== */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 767px) {
+  .title {
+    padding: 0 15px;
+  }
+}
+
+/* ==========================================================================
+   #CARD
+   ========================================================================== */
+.card {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.card-6 {
+  background: transparent;
+}
+
+.card-6 .card-heading {
+  background: transparent;
+}
+
+.card-6 .card-body {
+  background: #fff;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  border-bottom: none;
+  padding: 30px 40px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+}
+
+.card-6 .card-body:before {
+  bottom: 100%;
+  left: 75px;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #fff;
+  border-width: 10px;
+}
+
+.card-6 .card-footer {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 50px 55px;
+}
+
+@media (max-width: 767px) {
+  .card-6 .card-footer {
+    padding: 50px 30px;
+  }
+}
+
+/* ==========================================
+   From 
+   ======================================== */
+.form-control {
+  padding: 5px 10px !important;
+  font-size: 16px !important;
+  border-radius: 0 !important;
+}
+
+.form-label {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+#btn-submit{
+  border: none;
+  border-radius: 0;
+  padding: 10px 20px;
+}
+
+/*__________ DOCUMENT______________*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+.frame {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 400px;
+	margin-top: -200px;
+	margin-left: -200px;
+	border-radius: 2px;
+	box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	background: linear-gradient(to top right, darkmagenta 0%, hotpink 100%);
+	color: #333;
+	font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+
+.upload-file-cover {
+  width: 100%;
+  height: 260px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 8px rgb(255 0 0 / 28%);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+
+.upload-file-title {
+	width: 100%;
+	height: 35px;
+	border-bottom: 1px solid #666;
+	text-align: center;
+}
+
+.upload-file-title h1 {
+	font-size: 16px;
+	font-weight: 700;
+	color: #666;
+}
+
+.dropzone {
+	width: 100px;
+	height: 80px;
+	border: 1px dashed #999;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.upload-icon {
+	margin: 25px 2px 2px 2px;
+}
+
+.upload-input {
+	position: relative;
+	top: -62px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.btn-upload {
+	display: block;
+	width: 140px;
+	height: 40px;
+	background: darkmagenta;
+	color: #fff;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: 0 3px 0 0 hotpink;
+	transition: all 0.3s ease-in-out;
+	font-size: 14px;
+}
+
+.btn-upload:hover {
+	background: rebeccapurple;
+	box-shadow: 0 3px 0 0 deeppink;
 }

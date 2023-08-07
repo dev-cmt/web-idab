@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('present_address')->nullable();
             $table->text('parmanent_address')->nullable();
             $table->string('nid_no')->nullable();
+            $table->integer('blood_group')->nullable();
             $table->integer('marrital_status')->nullable();
             $table->string('spouse')->nullable();
             $table->date('spouse_dob')->nullable();
