@@ -20,7 +20,7 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="input-group">
-                    <input type="password" name="" id="password" class="input-elem" placeholder=" " required  autocomplete="current-password"/>
+                    <input type="password" name="password" id="password" class="input-elem" placeholder=" " required  autocomplete="current-password"/>
                     <label for="password">Password</label>
                     <i class="fas fa-eye-slash eye"></i>
                 </div>
@@ -34,7 +34,6 @@
             </form>
         </div>
     </div>
-        
         
     </x-guest-layout>
     

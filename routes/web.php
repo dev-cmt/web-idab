@@ -6,7 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\FrontViewController;
-use App\Http\Controllers\Admin\BackViewController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CommitteeController;
@@ -62,12 +61,15 @@ Route::get('/gallery/video', function (){return view('frontend.pages.gallery_vid
  * ______________________________________________________________________________________________
  */
 Route::middleware([ 'auth:sanctum','verified','member', config('jetstream.auth_session')])->group(function () {
-    Route::get('/dashboard', [BackViewController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 });
+Route::get('/member-register/index', [MemberController::class,'create'])->name('member_register.index');
 Route::get('/member-register/create', [MemberController::class,'create'])->name('member_register.create');
-Route::get('/member-register/store', [MemberController::class,'create'])->name('member_register.store');
+Route::post('/member-register/store', [MemberController::class,'store'])->name('member_register.store');
+Route::get('/member-register/payment', [MemberController::class,'payment'])->name('member_register.payment')->middleware('verified');
+
 
 
 /*___________ Member Register Information __________*/

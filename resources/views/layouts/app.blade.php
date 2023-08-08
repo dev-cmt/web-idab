@@ -29,8 +29,6 @@
     
     <!-- Jquery -->
     <script src="{{asset('public/backend')}}/js/jquery-3.5.1.min.js"></script>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 

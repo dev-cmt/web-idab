@@ -9,7 +9,7 @@ use App\Models\Admin\LoseMember;
 use App\Models\Admin\Event;
 use DB;
 
-class BackViewController extends Controller
+class AdminController extends Controller
 {
     public function dashboard()
     {

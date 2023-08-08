@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('info_personals', function (Blueprint $table) {
             $table->id();
+            $table->string('contact_number')->nullable();
+            $table->string('nid_no')->nullable();
             $table->date('dob')->nullable();
-            $table->integer('gender')->default(false);
+            $table->string('father_name')->nullable();
+            $table->string('mother_name')->nullable();
             $table->text('present_address')->nullable();
             $table->text('parmanent_address')->nullable();
-            $table->string('nid_no')->nullable();
+            $table->integer('gender')->default(false);
             $table->integer('blood_group')->nullable();
             $table->integer('marrital_status')->nullable();
             $table->string('spouse')->nullable();

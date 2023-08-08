@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('trade_licence')->nullable();
             $table->string('tin_certificate')->nullable();
             $table->string('nid_photo_copy')->nullable();
+            $table->string('passport_photo')->nullable();
             $table->string('edu_certificate')->nullable();
+            $table->string('experience_certificate')->nullable();
             $table->string('stu_id_copy')->nullable();
             $table->string('recoment_letter')->nullable();
             

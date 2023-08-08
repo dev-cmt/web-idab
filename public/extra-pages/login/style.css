@@ -52,7 +52,7 @@ a:hover {
 
 ******************/
 .login-form {
-  width: 550px;
+  width: 500px;
   background: #fff;
   border: 1px solid var(--primary-color);
   box-shadow: 0 0px 12px var(--primary-color);
@@ -99,6 +99,21 @@ a:hover {
   transform: translate(-50%, -53%);
   padding: 0 1rem;
   background-color: #fff;
+}
+.bar_account {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 0;
+  border-top: 1px solid #ff0000;
+}
+.bar_account::before {
+  content: "Welcome";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  padding: 0 1rem;
+  background-color: #fff;
+  font-weight: 700;
+  text-align: center;
 }
 .bar_personal {
   position: relative;
@@ -280,6 +295,13 @@ a:hover {
   width: 100%;
   background-color: var(--primary-color-hover);
   color: #fff;
+}
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  color: var(--bs-btn-disabled-color);
+  pointer-events: none;
+  background-color: #ccc !important;
+  border-color: var(--bs-btn-disabled-border-color);
+  opacity: var(--bs-btn-disabled-opacity);
 }
 /*****************  
 
@@ -507,3 +529,6 @@ responsive design
 	background: rebeccapurple;
 	box-shadow: 0 3px 0 0 deeppink;
 }
+
+
+/*_________________  ____________________*/

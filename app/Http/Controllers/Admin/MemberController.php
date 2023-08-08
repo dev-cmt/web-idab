@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Models\Admin\InfoAcademic;
 use App\Models\Admin\InfoFamily;
@@ -43,7 +45,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('frontend.pages.member_register');
+        return view('frontend.pages.register_form');
     }
 
     /**
@@ -52,96 +54,38 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+
+    public function store(Request $request)
     {
-        $validated=$request -> validate([
-            'name'=> 'required',
-            'dob'=> 'required',
-            'designation'=> 'required',
-            'collage'=> 'required',
-            'profile_photo_path'=> 'required|image|mimes:jpg,png,jpeg,gif,svg'
+        $validated = $request->validate([
+            'name' => 'required', // Add name validation
+            'email' => 'required|unique:users,email|max:255',
+            'password' => 'required|confirmed|min:8',
+            'member_type_id' => 'required',
+            'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
         ]);
 
-        if($request->hasFile('profile_photo_path')) {
-            //get filename with extension
-            $filenamewithextension = $request->file('profile_photo_path')->getClientOriginalName();
-            //get filename without extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-     
-            //get file extension
-            $extension = $request->file('profile_photo_path')->getClientOriginalExtension();
-            //filename to store
-            $filenametostore = $filename.'_'.time().'.'.$extension;
-     
-            //Upload File
-            $request->file('profile_photo_path')->move('public/images/profile/', $filenametostore); //--Upload Location
-            // $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
-     
-            //Resize image here
-            $thumbnailpath = public_path('images/profile/'.$filenametostore); //--Get File Location
-            // $thumbnailpath = public_path('storage/images/profile/'.$filenametostore);
-            
-            $data = Image::make($thumbnailpath)->resize(1200, 850, function($constraint) {
-                $constraint->aspectRatio();
-            }); 
-            $data->save($thumbnailpath);
-        }
+        $filenametostore = 'null';
 
-        //-------User ORM
-        $users = User::findorfail(Auth::user()->id);
-        $users->update([
+        $user = User::create([
             'name' => $request->name,
-            'batch' => $request->batch,
-            'contact_number' => $request->contact_number,
-            'is_admin' => 1,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'status' => $request->status,
             'profile_photo_path' => $filenametostore,
+            'member_type_id' => $request->member_type_id,
+    
+            'status' => '0',
+            'is_admin' => '0',
         ]);
+    
+        // Send email verification link to the user
+        $user->sendEmailVerificationNotification();
 
-        //-------Information ORM
-        $information= new InfoPersonal();
-        $information->dob=$request->dob;
-        $information->gender=$request->gender;
-        $information->address=$request->address;
-        $information->city=$request->city;
-        $information->marrital_status=$request->marrital_status;
-        $information->spouse=$request->spouse;
-        $information->birth_day=$request->birth_day;
-        $information->number_child=$request->number_child;
-        $information->em_name=$request->em_name;
-        $information->em_phone=$request->em_phone;
-        $information->em_rleation=$request->em_rleation;
-        $information->user_id=Auth::user()->id;
-        $information->save();
+        // Log in the created user
+        Auth::login($user);
 
-        //-------Academic ORM
-        $infoAcademic= new InfoAcademic();
-        $infoAcademic->collage=$request->collage;
-        $infoAcademic->subject=$request->subject;
-        $infoAcademic->degree=$request->degree;
-        $infoAcademic->passing_year=$request->passing_year;
-        $infoAcademic->user_id=Auth::user()->id;
-        $infoAcademic->save();
-
-        //-------Family ORM
-        if($request->number_child){
-            foreach ($request->moreFields as $value) {
-                $infoFamily= new InfoFamily();
-                $infoFamily->child_name=$value['child_name'];
-                $infoFamily->child_dob=$value['child_dob'];
-                $infoFamily->child_gender=$value['child_gender'];
-                $infoFamily->user_id=Auth::user()->id;
-                $infoFamily->save();
-            }
-        }
-        //-------InfoOther ORM
-        $infoOther= new InfoOther();
-        $infoOther->designation=$request->designation;
-        $infoOther->company_name=$request->company_name;
-        $infoOther->user_id=Auth::user()->id;
-        $infoOther->save();
-
-        return redirect()->route('member.not_approved');
-
+        return redirect()->route('member_register.payment');
     }
 
     /**
@@ -150,9 +94,9 @@ class MemberController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Gallery $post)
+    public function payment()
     {
-        //
+        return view('frontend.pages.register_payment');
     }
 
     /**

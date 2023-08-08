@@ -47,7 +47,7 @@
                 <li><a class="nav-link scrollto " href="#portfolio">Events</a></li>
                 <li><a class="nav-link scrollto" href="{{Route('page.contact')}}">Contact</a></li>
                 @guest
-                    <li><a class="getstarted scrollto" href="{{Route('register')}}">Become A Member</a></li>
+                    <li><a class="getstarted scrollto" href="{{Route('member_register.create')}}">Become A Member</a></li>
                 @endguest
                 @auth
                 <li class="dropdown"><a href="#" class="getstarted scrollto"><span>{{Auth::user()->name}}</span><i class="bi bi-chevron-down"></i></a>

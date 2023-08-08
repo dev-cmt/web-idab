@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\Member;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,16 +10,12 @@ class InfoAcademic extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'collage',
+        'institute',
+        'mast_degree_id',
         'subject',
-        'degree',
         'passing_year',
-
-        'user_id',
+        'other_qualification',
+        'status',
+        'member_id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
 }

@@ -23,25 +23,24 @@ class RolePermissionSeeder extends Seeder
     {
         $super_admin = User::create([
             'name'=>'IDAB',
-            'contact_number'=>'01909302126',
             'email_verified_at' => '2002-01-01',
             'email'=>'admin@gmail.com',
             'status' => '1',
             'is_admin' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/admin.jpg',
+            'member_type_id'=> '1',
         ]);
         
-
         $admin = User::create([
             'name'=>'Member',
-            'contact_number'=>'01909302126',
             'email'=>'member@gmail.com',
             'email_verified_at' => '2000-01-01',
             'status' => '1',
             'is_admin' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/member.jpg',
+            'member_type_id'=> '1',
         ]);
 
         /*__________________________________________________________ */
