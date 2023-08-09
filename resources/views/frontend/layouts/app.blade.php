@@ -50,7 +50,7 @@
     <script src="{{asset('public/frontend')}}/vendor/owl-carousel/owl.carousel.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('public/frontend')}}/js/jquery-1.9.1.min.js"></script> 
+    <script src="{{asset('public/frontend')}}/js/jquery-3.6.0.min.js"></script> 
     <script src="{{asset('public/frontend')}}/js/particles.js"></script>
     <script src="{{asset('public/frontend')}}/js/particles-config.js"></script>
     <script src="{{asset('public/frontend')}}/js/gsap.min.js"></script>

@@ -39,7 +39,7 @@
                     @if (session()->has('success'))
                         <strong class="text-success">{{session()->get('success')}}</strong>
                     @endif
-                    <form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data"  class="php-email-form"> 
+                    <form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">

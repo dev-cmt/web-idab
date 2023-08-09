@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\FrontViewController;
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CommitteeController;
@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\LoseMemberController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\EventPaymentController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Member\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,7 @@ Route::get('/', [FrontViewController::class, 'welcome'])->name('/');
  * View Pages => ALL
  * ______________________________________________________________________________________________
  */
-Route::get('comming_soon', [FrontViewController::class, 'welcome'])->name('comming_soon');
-
+Route::get('comming/soon', [FrontViewController::class, 'welcome'])->name('comming_soon');
 //______________ ABOUT US
 
 //______________ COMMITTEE
@@ -45,14 +45,8 @@ Route::get('comming_soon', [FrontViewController::class, 'welcome'])->name('commi
 //______________ EVENTS
 
 //______________ CONTACT US
-Route::get('comming_soon', [FrontViewController::class, 'contact'])->name('page.contact');
+Route::get('pages/contact', [FrontViewController::class, 'contact'])->name('page.contact');
 
-
-
-Route::get('/about', function (){return view('frontend.pages.about');})->name('page.about');
-Route::get('/contact/show', function (){return view('frontend.pages.contact');})->name('contact');
-Route::get('/member/lose', function (){return view('frontend.pages.member_lose');})->name('page.member_lose');
-Route::get('/gallery/video', function (){return view('frontend.pages.gallery_video');})->name('page.gallery_video');
 
 
 
@@ -65,21 +59,59 @@ Route::middleware([ 'auth:sanctum','verified','member', config('jetstream.auth_s
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 });
+
+/* Apply Membership */
 Route::get('/member-register/index', [MemberController::class,'create'])->name('member_register.index');
 Route::get('/member-register/create', [MemberController::class,'create'])->name('member_register.create');
 Route::post('/member-register/store', [MemberController::class,'store'])->name('member_register.store');
-Route::get('/member-register/payment', [MemberController::class,'payment'])->name('member_register.payment')->middleware('verified');
 
+/* Membership check */
+Route::group(['middleware' => ['verified']], function () {
+    Route::get('/register-payment/create', [PaymentController::class, 'register_create'])->name('register-payment.create');
+    Route::post('/register-payment/store', [PaymentController::class, 'register_store'])->name('register-payment.store');
+});
 
-
-/*___________ Member Register Information __________*/
+/* Member Register Information */
 Route::group(['middleware' => ['auth']], function(){
-    // Route::resource('/member_register', MemberController::class);
-    Route::patch('/member/update/{id}', [MemberController::class,'approved'])->name('member.approved');
     Route::get('/member/not/approved', [MemberController::class,'not_approved'])->name('member.not_approved');
-    
+    Route::patch('/member/{id}/approved', [MemberController::class,'approved'])->name('member.approved');
     Route::get('/member/details/{id}', [MemberController::class,'fv_member_details'])->name('page.member_details');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/about', function (){return view('frontend.pages.about');})->name('page.about');
+Route::get('/contact/show', function (){return view('frontend.pages.contact');})->name('contact');
+Route::get('/member/lose', function (){return view('frontend.pages.member_lose');})->name('page.member_lose');
+Route::get('/gallery/video', function (){return view('frontend.pages.gallery_video');})->name('page.gallery_video');
 
 
 

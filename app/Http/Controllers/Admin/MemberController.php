@@ -85,19 +85,9 @@ class MemberController extends Controller
         // Log in the created user
         Auth::login($user);
 
-        return redirect()->route('member_register.payment');
+        return redirect()->route('register-payment.create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function payment()
-    {
-        return view('frontend.pages.register_payment');
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -154,37 +144,11 @@ class MemberController extends Controller
         return redirect()->route('gallery.index')->with($notification);
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-         $posts=Gallery::findOrFail($id);
-
-         if (File::exists("cover/".$posts->cover)) {
-             File::delete("cover/".$posts->cover);
-         }
-         $images=Image::where("gallery_id",$posts->id)->get();
-         foreach($images as $image){
-         if (File::exists("images/".$image->image)) {
-            File::delete("images/".$image->image);
-        }
-         }
-         $posts->delete();
-         return back();
-    }
     /*__________________________________________________________________________________ */
     /*__________________________________________________________________________________ */
     public function approved($id){
-        
         $approve = User::findorfail($id);
         $approve->status = 1;
-        $approve->pune_member = 1;
-        // $approve->profile_photo_path = 'fix/member.jpg';
         $approve->save();
 
         $approve->assignRole('Member');

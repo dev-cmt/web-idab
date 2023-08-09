@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('member_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->decimal('registration_fee', 10, 2)->nullable();
+            $table->decimal('monthly_fee', 10, 2)->nullable();
+            $table->decimal('annual_fee', 10, 2)->nullable();
             $table->text('description')->nullable();
             
             $table->tinyInteger('status')->default(false);

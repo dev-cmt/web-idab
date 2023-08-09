@@ -15,10 +15,9 @@ use App\Models\Admin\InfoFamily;
 use App\Models\Admin\InfoAcademic;
 use App\Models\Admin\InfoPersonal;
 use App\Models\Admin\InfoOther;
-use App\Models\Admin\Committee;
 use App\Models\Admin\EventPayment;
 use App\Models\Admin\EventRegister;
-use App\Models\Admin\Gallery;
+use App\Models\Member\MemberType;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,6 +42,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'is_admin',
     ];
+
+    public function memberType()
+    {
+        return $this->belongsTo(MemberType::class, 'member_type_id');
+    }
+
+
+
+
+
+
 
     public function infoPersonal()
     {
