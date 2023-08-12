@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
-use App\Models\Admin\InfoAcademic;
-use App\Models\Admin\InfoFamily;
-use App\Models\Admin\InfoPersonal;
-use App\Models\Admin\InfoOther;
+use App\Models\Member\InfoPersonal;
+use App\Models\Member\InfoAcademic;
+use App\Models\Member\InfoCompany;
+use App\Models\Member\InfoStudent;
+use App\Models\Member\InfoDocument;
 use App\Models\User;
 use Image;
 use Auth;
@@ -58,31 +59,132 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required', // Add name validation
+            'name' => 'required',
             'email' => 'required|unique:users,email|max:255',
             'password' => 'required|confirmed|min:8',
             'member_type_id' => 'required',
             'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
         ]);
 
-        $filenametostore = 'null';
+        /*__________________/ USER CREATE \_________________*/
+        if($request->hasFile('profile_photo_path')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('profile_photo_path')->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+     
+            //get file extension
+            $extension = $request->file('profile_photo_path')->getClientOriginalExtension();
+            //filename to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+     
+            //Upload File
+            $request->file('profile_photo_path')->move('public/images/profile/', $filenametostore); //--Upload Location
+            // $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
+     
+            //Resize image here
+            $thumbnailpath = public_path('images/profile/'.$filenametostore); //--Get File Location
+            // $thumbnailpath = public_path('storage/images/profile/'.$filenametostore);
+            
+            $data = Image::make($thumbnailpath)->resize(1200, 850, function($constraint) {
+                $constraint->aspectRatio();
+            }); 
+            $data->save($thumbnailpath);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'status' => $request->status,
-            'profile_photo_path' => $filenametostore,
-            'member_type_id' => $request->member_type_id,
-    
-            'status' => '0',
-            'is_admin' => '0',
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'status' => $request->status,
+                'profile_photo_path' => $filenametostore,
+                'member_type_id' => $request->member_type_id,
+                'status' => 1,
+                'is_admin' => 1,
+            ]);
+        }
+
+
+        /*__________________/ InfoPersonal \_________________*/
+        $infoPersonal =new InfoPersonal([
+            'contact_number'=> $request->contact_number,
+            'nid_no'=> $request->nid_no,
+            'dob'=> $request->dob,
+            'father_name'=> $request->father_name,
+            'mother_name'=> $request->mother_name,
+            'present_address'=> $request->present_address,
+            'parmanent_address'=> $request->parmanent_address,
+            'gender'=> $request->gender,
+            'blood_group'=> $request->blood_group,
+            'marrital_status'=> $request->marrital_status,
+            'spouse'=> $request->spouse,
+            'spouse_dob'=> $request->spouse_dob,
+            'number_child'=> $request->number_child,
+            'em_name'=> $request->em_name,
+            'em_phone'=> $request->em_phone,
+            'em_rleation'=> $request->em_rleation,
+            'status'=> 1,
+            'member_id'=> $user->id,
         ]);
-    
-        // Send email verification link to the user
-        $user->sendEmailVerificationNotification();
+        $infoPersonal->save();
+        
+        /*______________________/ InfoAcademic \___________________*/
+        $infoAcademic =new InfoAcademic([
+            'institute' => $request->institute,
+            'mast_degree_id' => $request->mast_degree_id,
+            'subject' => $request->subject,
+            'passing_year' => $request->passing_year,
+            'other_qualification' => $request->other_qualification,
+            'status' => 1,
+            'member_id' => $user->id,
+        ]);
+        $infoAcademic->save();
+        
+        /*______________________/ InfoCompany \___________________*/
+        $infoCompany =new InfoCompany([
+            'company_name' => $request->company_name,
+            'company_email' => $request->company_email,
+            'company_phone' => $request->company_phone,
+            'designation' => $request->designation,
+            'address' => $request->address,
+            'web_url' => $request->web_url,
+            'is_job' => 1,
+            'is_business' => 0,
+            'status' => 1,
+            'member_id' => $user->id,
+        ]);
+        $infoCompany->save();
 
-        // Log in the created user
+        /*______________________/ InfoStudent \___________________*/
+        $infoStudent =new InfoStudent([
+            'student_institute' => $request->student_institute,
+            'semester' => $request->semester,
+            'head_faculty_name' => $request->head_faculty_name,
+            'head_faculty_number' => $request->head_faculty_number,
+            'status' => 1,
+            'member_id' => $user->id,
+        ]);
+        $infoStudent->save();
+
+        /*______________________/ InfoDocument \___________________*/
+        $infoDocument =new InfoDocument([
+            'trade_licence' => $request->trade_licence,
+            'tin_certificate' => $request->tin_certificate,
+            'nid_photo_copy' => $request->nid_photo_copy,
+            'passport_photo' => $request->passport_photo,
+            'edu_certificate' => $request->edu_certificate,
+            'experience_certificate' => $request->experience_certificate,
+            'stu_id_copy' => $request->stu_id_copy,
+            'recoment_letter' => $request->recoment_letter,
+            'status' => 1,
+            'member_id' => $user->id,
+        ]);
+        $infoDocument->save();
+        
+
+
+        /*_________________/ Send email verification \_________________*/
+        $user->sendEmailVerificationNotification();
+        /*_________________/ Log in the created user \_________________*/
         Auth::login($user);
 
         return redirect()->route('register-payment.create');

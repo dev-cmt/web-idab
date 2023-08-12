@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Admin\SubscriptionSetup;
-use App\Models\Member\MemberType;
+use App\Models\Master\MemberType;
+use App\Models\Master\MastDegree;
 use App\Models\Payment\PaymentMethods;
 
 class ImportSeeder extends Seeder
@@ -98,6 +99,40 @@ class ImportSeeder extends Seeder
         ]);
         PaymentMethods::create([
             'name'=>'Card',
+        ]);
+        /**___________________________________________________
+         * Payment Methods
+         * ___________________________________________________
+         */
+        MastDegree::create([
+            'name'=>'SSC',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastDegree::create([
+            'name'=>'HSC',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastDegree::create([
+            'name'=>'12th Stander',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastDegree::create([
+            'name'=>'Graduation',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastDegree::create([
+            'name'=>'Ph.D',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
         ]);
     }
 }

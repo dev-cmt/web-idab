@@ -1,5 +1,13 @@
 <x-guest-layout>
-    <div class="content-wrapper py-4" style="background-image: url('{{asset('public/extra-pages/login')}}/background-bubble.jpg');">
+
+    <div class="content-wrapper py-4" style="background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-attachment: fixed;">
+        <!-- STAR ANIMATION -->
+        <div class="bg-animation">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+            <div id='stars4'></div>
+        </div><!-- / STAR ANIMATION -->
         <div class="login-form">
             <div class="logo">
                 <a href="{{route('/')}}"><img src="{{asset('public/images')}}/logo.png" alt=""></a>

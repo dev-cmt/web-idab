@@ -18,8 +18,6 @@ return new class extends Migration
             $table->text('about_me')->nullable();
             $table->string('nick_name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('designation')->nullable();
-            $table->string('company_name')->nullable();
 
             $table->string('cover_photo')->nullable();
             $table->string('favorite')->nullable();
