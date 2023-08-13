@@ -22,7 +22,7 @@ class MemberMiddleware
                 return redirect()->route('register-payment.create');
             }else{
                 if (Auth::user()->is_admin == '1' && Auth::user()->status == '0') {
-                    return redirect()->route('member.not_approved');
+                    return redirect()->route('member-approve.padding');
                 }else{
                     return $next($request);
                 }

@@ -21,10 +21,11 @@ return new class extends Migration
             $table->decimal('annual_fee', 10, 2)->nullable();
             $table->text('description')->nullable();
             
-            $table->tinyInteger('status')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->tinyInteger('status')->default(false);
+            $table->tinyInteger('is_delete')->default(false);
         });
     }
 

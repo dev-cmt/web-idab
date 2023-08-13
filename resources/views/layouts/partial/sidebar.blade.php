@@ -23,11 +23,11 @@
                     <span class="nav-text">Member</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">Member Approve</a></li>
+                    <li><a href="{{Route('member-approve.index')}}">Member Approve</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Member List</a>
                         <ul aria-expanded="false">
                             @foreach ($memberType as $item)
-                                <li><a href="#">{{$item->name}} </a></li>
+                                <li><a href="{{Route('member.index', $item->id )}}">{{$item->name}} </a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -35,7 +35,7 @@
                         <ul aria-expanded="false">
                             @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
                                 <li><a href="{{Route('memebr-type.index')}}">Add Member Types</a></li>
-                                <li><a href="#">Add Qualification</a></li>
+                                <li><a href="{{Route('memebr-qualification.index')}}">Add Qualification</a></li>
                             @endcanany
                         </ul>
                     </li>
@@ -48,21 +48,12 @@
                 <ul aria-expanded="false">
                     <li><a href="{{ Route('event_registation_list')}}">Annual Fee</a></li>
                     <li><a href="{{ Route('event_registation_list')}}">Event Register</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Money Receive</a>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Payment History</a>
                         <ul aria-expanded="false">
                             @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
                             <li><a href="#">Annual Fee</a></li>
                             <li><a href="#">Event Fee</a></li>
-                            <li><a href="#">Registation Fee</a></li>
-                            @endcanany
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Payment Setting</a>
-                        <ul aria-expanded="false">
-                            @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
-                            <li><a href="#">Annual Fee</a></li>
-                            <li><a href="#">Event Fee</a></li>
-                            <li><a href="#">Registation Fee</a></li>
+                            <li><a href="{{Route('transaction-registation.index')}}">Registation Fee</a></li>
                             @endcanany
                         </ul>
                     </li>
@@ -125,7 +116,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approve</a>
                         <ul aria-expanded="false">
                             @canany('Approve Member')
-                                <li><a href="{{ route('member_register.index') }}">Member Approve</a></li>
+                                <li><a href="{{ route('member-approve.index') }}">Member Approve</a></li>
                             @endcanany
                             @canany('Approve Member')
                                 <li><a href="{{ Route('subscription_approve_list')}}">Subscription Fees</a></li>

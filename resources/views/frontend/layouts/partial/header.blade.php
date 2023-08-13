@@ -52,14 +52,14 @@
                 @auth
                 <li class="dropdown"><a href="#" class="getstarted scrollto"><span>{{Auth::user()->name}}</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        @if (Auth::user()->status)
+                        @if (Auth::user()->is_admin == "1" && Auth::user()->status == "1")
                             <li><a href="{{ Route('profile_show', auth()->user()->id )}}">Profile</a></li>
                         @endif
-                        @if (Auth::user()->is_admin=="0" && Auth::user()->status=="0")
-                            <li><a href="{{ Route('member_register.create') }}">Fill Up Information</a></li>
+                        @if (Auth::user()->is_admin == "0" && Auth::user()->status == "0")
+                            <li><a href="{{ Route('register-payment.create') }}">Payment Fee</a></li>
                         @endif
-                        @if (Auth::user()->is_admin=="1" && Auth::user()->status=="0")
-                            <li><a href="{{ Route('member.not_approved') }}">Waiting Approval</a></li>
+                        @if (Auth::user()->is_admin == "1" && Auth::user()->status == "0")
+                            <li><a href="{{ Route('member-approve.padding') }}">Waiting Approval</a></li>
                         @endif
                         
                         <form method="POST" action="{{ Route('logout') }}">

@@ -17,6 +17,7 @@ class MemberType extends Model
         'description',
         'status',
         'user_id',
+        'is_delete',
     ];
     public function user()
     {

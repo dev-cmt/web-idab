@@ -31,6 +31,10 @@ class RolePermissionSeeder extends Seeder
             'profile_photo_path'=>'fix/admin.jpg',
             'member_type_id'=> '1',
         ]);
+        InfoPersonal::create([
+            'contact_number'=>'01909302126',
+            'member_id'=> $super_admin->id,
+        ]);
         
         $admin = User::create([
             'name'=>'Member',
@@ -41,6 +45,10 @@ class RolePermissionSeeder extends Seeder
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/member.jpg',
             'member_type_id'=> '1',
+        ]);
+        InfoPersonal::create([
+            'contact_number'=>'01909302126',
+            'member_id'=> $admin->id,
         ]);
 
         /*__________________________________________________________ */

@@ -11,7 +11,7 @@ use App\Models\Master\MemberType;
 class MemberTypeController extends Controller
 {
     public function index() {
-        $data = MemberType::where('status', 1)->orderBy('name', 'desc')->get();
+        $data = MemberType::where('is_delete', 0)->orderBy('name', 'desc')->get();
         return view('layouts.pages.master.member-type', compact('data'));
     }
     public function store(Request $request)
@@ -35,7 +35,7 @@ class MemberTypeController extends Controller
         $data->monthly_fee = $request->monthly_fee;
         $data->annual_fee = $request->annual_fee;
         $data->description = $request->description;
-        $data->status = 1;
+        $data->status = $request->status;
         $data->user_id = Auth::user()->id;
         $data->save();
         
@@ -47,7 +47,16 @@ class MemberTypeController extends Controller
     }
     public function edit(Request $request)
     {
-        $data = MemberType::where('status', 1)->where('id', $request->id)->first();
+        $data = MemberType::where('is_delete', 0)->where('id', $request->id)->first();
+        // Return message
+        return response()->json(['data' => $data], 200);
+    }
+    public function delete(Request $request)
+    {
+        $data = MemberType::findOrFail($request->id);
+        $data->is_delete = 1;
+        $data->save();
+        
         // Return message
         return response()->json(['data' => $data], 200);
     }

@@ -11,13 +11,11 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-use App\Models\Admin\InfoFamily;
-use App\Models\Admin\InfoAcademic;
-use App\Models\Admin\InfoPersonal;
-use App\Models\Admin\InfoOther;
-use App\Models\Admin\EventPayment;
-use App\Models\Admin\EventRegister;
-use App\Models\Member\MemberType;
+use App\Models\Member\InfoPersonal;
+use App\Models\Member\InfoAcademic;
+use App\Models\Member\InfoFamily;
+use App\Models\Member\InfoOther;
+use App\Models\Master\MemberType;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,27 +39,29 @@ class User extends Authenticatable implements MustVerifyEmail
         'member_type_id',
         'status',
         'is_admin',
+        'is_approve',
     ];
 
     public function memberType()
     {
         return $this->belongsTo(MemberType::class, 'member_type_id');
     }
-
-
-
-
-
-
-
     public function infoPersonal()
     {
-        return $this->hasOne(InfoPersonal::class);
+        return $this->hasOne(InfoPersonal::class, 'member_id');
     }
-    public function infoFamily()
+
+    // Define the relationship to the parent user
+    public function parentUser()
     {
-        return $this->hasMany(InfoFamily::class);
+        return $this->belongsTo(User::class, 'is_approve');
     }
+
+
+
+
+
+
     public function infoAcademic()
     {
         return $this->hasOne(InfoAcademic::class);

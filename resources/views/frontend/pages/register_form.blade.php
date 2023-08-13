@@ -330,17 +330,17 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="row">
-                                <label for="mast_degree_id" class="form-label col-md-5">Qualification</label>
+                                <label for="mast_qualification_id" class="form-label col-md-5">Qualification
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="col-md-7">
-                                    <select name="mast_degree_id" id="mast_degree_id" class="form-control form-select @error('mast_degree_id') is-invalid @enderror">                                        <option disabled selected>Please select</option>
-                                        <option value="1">SSC</option>
-                                        <option value="2">HSC</option>
-                                        <option value="3">12th Stander</option>
-                                        <option value="4">Graduation</option>
-                                        <option value="5">Masters</option>
-                                        <option value="6">Ph.D</option>
+                                    <select name="mast_qualification_id" id="mast_qualification_id" class="form-control form-select @error('mast_qualification_id') is-invalid @enderror">
+                                        <option disabled selected>Please select</option>
+                                        @foreach ($qualification as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>                                                    
-                                    @error('mast_degree_id')
+                                    @error('mast_qualification_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

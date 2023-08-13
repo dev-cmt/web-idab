@@ -8,7 +8,7 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
 	<!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/backend')}}/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/images')}}/favicon.png">
 	<link rel="stylesheet" href="{{asset('public/extra-pages/comming-soon')}}/css/style-minimal-flat.css">
 	<script src="{{asset('public/extra-pages/comming-soon')}}/js/modernizr.custom.js"></script>
 </head>
@@ -31,7 +31,7 @@
 			<div class="col-xs-12 col-sm-6 col-lg-6 info-bar-left">
 
 				{{-- <p>Grand Opening in <span id="countdown"></span> </p> --}}
-				<a href="{{url('/')}}"><img data-wow-delay="0.9s" src="{{asset('public/frontend/images')}}/pune_logo.png" style="max-width: 135px;"></a>
+				<a href="{{url('/')}}"><img data-wow-delay="0.9s" src="{{asset('public/images')}}/logo.png" style="max-width: 80px;"></a>
 
 			</div>
 
@@ -45,12 +45,12 @@
 					<a href="#" target="_blank">YOUTUBE</a>
 				</p> -->
 
-				<p class="social-icon">
-					<a href="#" style="color:#34AD54" target="_blank"><i class="fa fa-twitter"></i></a>
-					<a href="#" style="color:#34AD54" target="_blank"><i class="fa fa-facebook"></i></a>
-					<a href="#" style="color:#34AD54" target="_blank"><i class="fa fa-youtube"></i></a>
-					<a href="#" style="color:#34AD54" target="_blank"><i class="fa fa-dribbble"></i></a>
-					<a href="#" style="color:#34AD54" target="_blank"><i class="fa fa-linkedin"></i></a>
+				<p class="social-icon" style="margin: 18px">
+					<a href="#" style="color:#ff0000" target="_blank"><i class="fa fa-twitter"></i></a>
+					<a href="#" style="color:#ff0000" target="_blank"><i class="fa fa-facebook"></i></a>
+					<a href="#" style="color:#ff0000" target="_blank"><i class="fa fa-youtube"></i></a>
+					<a href="#" style="color:#ff0000" target="_blank"><i class="fa fa-dribbble"></i></a>
+					<a href="#" style="color:#ff0000" target="_blank"><i class="fa fa-linkedin"></i></a>
 				</p>
 
 			</div>
@@ -73,12 +73,12 @@
 						<div class="container">
 							<a href="{{ url()->previous() }}"><img src="{{asset('public/images')}}/logo.png" class="brand-logo text-intro opacity-0" alt=""></a>
 						
-							<h1 class="text-intro opacity-0"> {{Route::currentRouteName() == 'member.not_approved' ? 'Your request is pending for approval': 'Coming Soon' }} </h1>
+							<h1 class="text-intro opacity-0"> {{Route::currentRouteName() == 'member-approve.padding' ? 'Your request is pending for approval': 'Coming Soon' }} </h1>
 						
 							<p class="text-intro opacity-0">It may take up to 36 hours</p>
 
 							{{-- <a data-dialog="somedialog" class="action-btn trigger text-intro opacity-0">Click Me !</a> --}}
-							<a href="{{url('/')}}" data-dialog="somedialog" style="background:#34AD54;border:1px solid #34AD54;"  class="action-btn text-intro opacity-0">Click to home !</a>
+							<a href="{{url('/')}}" data-dialog="somedialog" style="background:#ff0000;border:1px solid #ff0000;"  class="action-btn text-intro opacity-0">Click to home !</a>
 						</div>
 					</div>
 				</div>

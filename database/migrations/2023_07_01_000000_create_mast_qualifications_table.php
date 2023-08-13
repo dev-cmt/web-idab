@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mast_degrees', function (Blueprint $table) {
+        Schema::create('mast_qualifications', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             
-            $table->tinyInteger('status')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->tinyInteger('status')->default(false);
+            $table->tinyInteger('is_delete')->default(false);
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mast_degrees');
+        Schema::dropIfExists('mast_qualifications');
     }
 };

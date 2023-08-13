@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use App\Models\Member\InfoPersonal;
 use App\Models\Member\InfoAcademic;
@@ -14,8 +15,6 @@ use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoDocument;
 use App\Models\User;
 use Image;
-use Auth;
-use DB;
 
 class MemberController extends Controller
 {
@@ -24,19 +23,11 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        // $data = User::with('infoPersonal', 'infoFamily', 'infoAcademic')->where('users.is_admin','=','1')->where('users.status','=','0')->get();
+        $data = User::where('member_type_id', $id)->get();
 
-        $data = DB::table('users')
-        ->where('users.is_admin','=','1')
-        ->where('users.status','=','0')
-        ->join('info_personals', 'info_personals.user_id', '=', 'users.id')
-        ->join('info_academics', 'info_academics.user_id', '=', 'users.id')
-        ->select('users.name','users.id','users.batch','users.contact_number','info_personals.marrital_status','info_personals.gender','info_academics.collage')
-        ->get();
-
-        return view('layouts.pages.member_list',compact('data'));
+        return view('layouts.pages.member.index',compact('data'));
     }
 
     /**
@@ -64,6 +55,8 @@ class MemberController extends Controller
             'password' => 'required|confirmed|min:8',
             'member_type_id' => 'required',
             'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
+            
+            'mast_qualification_id' => 'required',
         ]);
 
         /*__________________/ USER CREATE \_________________*/
@@ -130,7 +123,7 @@ class MemberController extends Controller
         /*______________________/ InfoAcademic \___________________*/
         $infoAcademic =new InfoAcademic([
             'institute' => $request->institute,
-            'mast_degree_id' => $request->mast_degree_id,
+            'mast_qualification_id' => $request->mast_qualification_id,
             'subject' => $request->subject,
             'passing_year' => $request->passing_year,
             'other_qualification' => $request->other_qualification,
@@ -210,7 +203,7 @@ class MemberController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
      $post=Gallery::findOrFail($id);
      if($request->hasFile("cover")){
@@ -248,17 +241,30 @@ class MemberController extends Controller
     }
     /*__________________________________________________________________________________ */
     /*__________________________________________________________________________________ */
-    public function approved($id){
+    public function approveIndex(){
+        $data = User::where('is_admin', 1)->where('status', 0)->get();
+        $record = User::where('is_admin', 1)->where('status', 1)->get();
+        return view('layouts.pages.member.approve', compact('data','record'));
+    }
+    public function approveUpdate($id){
         $approve = User::findorfail($id);
         $approve->status = 1;
+        $approve->is_approve = Auth::user()->id;
         $approve->save();
-
         $approve->assignRole('Member');
         return back();
     }
-    public function not_approved()
+    public function approveCancel($id){
+        $approve = User::findorfail($id);
+        $approve->status = 2;
+        $approve->is_approve = Auth::user()->id;
+        $approve->save();
+        $approve->assignRole('Member');
+        return back();
+    }
+    public function approvePadding()
     {
-        return view('comming_soon');
+        return view('waiting');
     }
     /*__________________________________________________________________________________ */
     /*__________________________________________________________________________________ */

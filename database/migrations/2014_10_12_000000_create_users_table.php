@@ -25,6 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('member_type_id');
             $table->tinyInteger('status')->default(false);
             $table->tinyInteger('is_admin')->default(false);
+            $table->tinyInteger('is_approve')->nullable();
             $table->timestamps();
         });
     }

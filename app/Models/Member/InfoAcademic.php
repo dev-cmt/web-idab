@@ -11,7 +11,7 @@ class InfoAcademic extends Model
     use HasFactory;
     protected $fillable=[
         'institute',
-        'mast_degree_id',
+        'mast_qualification_id',
         'subject',
         'passing_year',
         'other_qualification',

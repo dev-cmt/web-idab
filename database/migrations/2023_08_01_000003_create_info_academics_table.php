@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('info_academics', function (Blueprint $table) {
             $table->id();
             $table->string('institute')->nullable();
-            $table->unsignedBigInteger('mast_degree_id');
-            $table->foreign('mast_degree_id')->references('id')->on('mast_degrees')->onDelete('cascade');
+            $table->unsignedBigInteger('mast_qualification_id');
+            $table->foreign('mast_qualification_id')->references('id')->on('mast_qualifications')->onDelete('cascade');
             $table->string('subject')->nullable();
             $table->integer('passing_year')->nullable();
             $table->text('other_qualification')->nullable();

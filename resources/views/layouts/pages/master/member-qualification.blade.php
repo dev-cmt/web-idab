@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Member Type List</h4>
+                    <h4 class="card-title">Qualification List</h4>
                     <button id="open_modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Add New</button>
                 </div>
 
@@ -17,7 +17,7 @@
                                 <th>Create Date</th>
                                 <th>Creator Name</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th class="text-right">Action</th>
                             </tr>
                             </thead>
                             <tbody id="data-tbody">
@@ -38,10 +38,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="d-flex">
+                                        <div class="d-flex justify-content-end">
                                             <button id="data-show" data-id="{{ $row->id }}" data-check="1" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></button>
                                             <button id="data-show" data-id="{{ $row->id }}" data-check="2" class="btn btn-info shadow btn-xs sharp mr-1"><i class="fa fa-folder-open"></i></button>
-                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            <button id="data-delete" data-id="{{ $row->id }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -62,7 +62,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
-                <form class="form-valide" data-action="{{ route('memebr-type.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
+                <form class="form-valide" data-action="{{ route('memebr-qualification.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                     @csrf
                     <input type="hidden" name="id" id="set_id">
                     <div class="modal-body py-2">
@@ -74,6 +74,17 @@
                                     </label>
                                     <div class="col-md-8">
                                         <input type="text" name="name" id="name" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="status" class="col-md-4 col-form-label">Status</label>
+                                    <div class="col-md-8">
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +124,7 @@
         $('#name').prop("disabled", false);
         $('#description').prop("disabled", false);
 
-        $(".modal-title").html('Add New Member Type');
+        $(".modal-title").html('Add New Qualification');
         $("#exampleModalCenter").modal('show');
     });
     /*=======//Save Data //=========*/
@@ -142,14 +153,18 @@
                     row += '<td>' + formatDate(response.data.created_at) + '</td>';
                     row += '<td>' + response.creator_name + '</td>';
                     row += '<td>';
-                    if (response.data.status === 0)
+                    if (response.data.status == 0) {
                         row += '<span class="badge light badge-danger"><i class="fa fa-circle text-danger mr-1"></i>Inactive</span>';
-                    else if (response.data.status === 1)
+                    } else if (response.data.status == 1) {
                         row += '<span class="badge light badge-success"><i class="fa fa-circle text-success mr-1"></i>Active</span>';
+                    } else {
+                        row += '<span class="badge light badge-secondary"><i class="fa fa-circle text-secondary mr-1"></i>Unknown</span>';
+                    }
                     row += '</td>';
-                    row += '<td class="d-flex">';
-                    row += '<button type="button" class="btn btn-sm btn-success p-1 px-2 mr-1 edit_data" data-id="' + response.data.id + '"><i class="fa fa-pencil"></i>Edit</button>';
-                    row += '<button type="button" class="btn btn-sm btn-info p-1 px-2 view_data" data-id="' + response.data.id + '"><i class="fa fa-folder-open"></i>View</button>';
+                    row += '<td class="d-flex justify-content-end">';
+                    row += '<button id="data-show" data-id="' + response.data.id + '" data-check="1" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></button>';
+                    row += '<button id="data-show" data-id="' + response.data.id + '" data-check="2" class="btn btn-info shadow btn-xs sharp mr-1"><i class="fa fa-folder-open"></i></button>';
+                    row += '<button id="data-delete" data-id="' + response.data.id + '" class="btn btn-danger shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></button>';
                     row += '</td>';
                     row += '</tr>';
 
@@ -187,24 +202,31 @@
         var id = $(this).data('id');
         var check = $(this).data('check');
         $.ajax({
-            url:'{{ route('memebr-type.edit')}}',
+            url:'{{ route('memebr-qualification.edit')}}',
             method:'GET',
             dataType:"JSON",
             data:{id:id},
             success:function(response){
                 if(check == 1){ //Edit
-                    $(".modal-title").html('Edit Member Type');
+                    $(".modal-title").html('Edit Qualification');
+                    $(".submit_btn").show();
 
                     $("#set_id").val(response.data.id);
                     $("#name").val(response.data.name);
                     $("#description").val(response.data.description);
-                    $(".submit_btn").show();
+                     
+                    $("#status").empty();
+                    var status = $("#status");
+                    var row = '<option value="1" ' + (response.data.status == 1 ? 'selected' : '') + '>Active</option>';
+                    row += '<option value="0" ' + (response.data.status == 0 ? 'selected' : '') + '>Inactive</option>';
+                    status.append(row);
+
 
                     $('#set_id').prop("disabled", false);
                     $('#name').prop("disabled", false);
                     $('#description').prop("disabled", false);
                 }else if(check == 2){ //View
-                    $(".modal-title").html('View Member Type');
+                    $(".modal-title").html('View Qualification');
 
                     $("#set_id").val(response.data.id);
                     $("#name").val(response.data.name);
@@ -233,15 +255,7 @@
     });
 
     /*========//Delete Data//========*/
-    $(document).ready(function(){
-        $.ajaxSetup({
-            headers:{
-                'x-csrf-token' : $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    });
-    $("body").on('click','#delete_data',function(){
-        var id = $(this).data('id');
+    $(document).on('click', '#data-delete', function(){
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this data!",
@@ -252,29 +266,18 @@
         .then((willDelete) => {
             if (willDelete) {
                 // Place your delete code here
+                var id = $(this).data('id');
                 $.ajax({
-                    url: "{{ url('inv_purchase/destroy')}}" + '/' + id,
-                    method: 'DELETE',
-                    type: 'DELETE',
-                    success: function(response) {
-                        toastr.success("Record deleted successfully!");
-                        $("#row_todo_" + id).remove();
-                        $('#table-body').closest('tr').remove();
-                        updateSubtotal(0);
-
-                        var countTrData = parseInt($('#items-table tbody tr .countTdData').length);
-                        if(countTrData < 1 ){
-                            $(".bd-example-modal-lg").modal('hide');
-                            deleteMasterData();
-                        }
+                    url:'{{ route('memebr-qualification.delete')}}',
+                    method:'GET',
+                    dataType:"JSON",
+                    data:{'id':id},
+                    success:function(data){
+                        swal("Success Message Title", "Well done, you pressed a button", "success");
+                        $('[data-id="' + id + '"]').closest('tr').hide();
                     },
-                    error: function(response) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'An error occurred.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
+                    error:function(){
+                        swal("Error!", "There are no details available for this item.", "error");
                     }
                 });
             } else {
@@ -284,25 +287,6 @@
                 });
             }
         });
-        
     });
-    function deleteMasterData(){
-        var id = $('#set_id').val();
-        $.ajax({
-            url:'{{ route('page.contact')}}',
-            method:'GET',
-            dataType:"JSON",
-            data:{'id':id},
-            success:function(response){
-                swal("Your data save successfully", "Well done, you pressed a button", "success")
-                    .then(function() {
-                        location.reload();
-                    });
-            },
-            error:function(){
-                alert('Fail');
-            }
-        });
-    }
 
 </script>
