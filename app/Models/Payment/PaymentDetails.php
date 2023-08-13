@@ -16,6 +16,7 @@ class PaymentDetails extends Model
         'transaction_number',
         'transaction_id',
         'for_reasons',
+        'reason_id',
         'transfer_number',
         'message',
         'payment_method_id',

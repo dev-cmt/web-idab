@@ -34,6 +34,7 @@ class PaymentController extends Controller
         $paymentDetails->transaction_number = $request->transaction_number; // (payment gateway's transaction number)
         $paymentDetails->transaction_id = $transaction->id;
         $paymentDetails->for_reasons = 1; // Register => 1, Event => 2
+        $paymentDetails->reason_id = 1; // Register => 1, Event => 2
         $paymentDetails->transfer_number = $request->transfer_number;
         $paymentDetails->message = $request->message;
         $paymentDetails->payment_method_id = $request->payment_method_id;

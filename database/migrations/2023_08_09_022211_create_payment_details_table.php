@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('payment_number')->nullable(); // (bKash number, Rocket number, Card last 4 digits)
             $table->string('transaction_number')->nullable(); // (payment gateway's transaction number)
             $table->tinyInteger('for_reasons')->default(false); // (register, event)
+            $table->integer('reason_id')->nullable();
             $table->string('transfer_number')->nullable(); // (Your Number)
             $table->text('message')->nullable(); // (Your Number)
 

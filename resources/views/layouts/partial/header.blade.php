@@ -3,12 +3,12 @@
         ***********************************-->
         <div class="nav-header">
 					<a href="{{url('/')}}" class="brand-logo">
-					<span class="logo-abbr" width="40" height="40">
-							<img src="{{asset('public/backend')}}/images/favicon.png" width="40" height="40" alt="">
+					<span class="logo-abbr" width="80" height="25">
+							<img src="{{asset('public/backend')}}/images/favicon.png" width="50" height="25" alt="">
 					</span>
-          			<span class="brand-title ml-2" width="80" height="50">
+          			<span class="brand-title ml-4" width="120" height="35">
 						{{-- <h2>con</h2> --}}
-						<img src="{{asset('public/backend')}}/images/logo_name.png" width="90" height="30" alt="">
+						<img src="{{asset('public/backend')}}/images/logo_name.png" width="120" height="35" alt="">
 					</span>
             </a>
 

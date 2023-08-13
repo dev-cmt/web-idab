@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontViewController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Master\MemberTypeController;
+
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\SubscriptionController;
@@ -65,7 +68,7 @@ Route::get('/member-register/index', [MemberController::class,'create'])->name('
 Route::get('/member-register/create', [MemberController::class,'create'])->name('member_register.create');
 Route::post('/member-register/store', [MemberController::class,'store'])->name('member_register.store');
 
-/* Membership check */
+/* Payment check */
 Route::group(['middleware' => ['verified']], function () {
     Route::get('/register-payment/create', [PaymentController::class, 'register_create'])->name('register-payment.create');
     Route::post('/register-payment/store', [PaymentController::class, 'register_store'])->name('register-payment.store');
@@ -80,8 +83,21 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 
-
-
+Route::group(['middleware' => ['auth']], function(){
+    /**______________________________________________________________________________________________
+     * MASTER => SETTING
+     * ______________________________________________________________________________________________
+     */
+    //-- Member
+    Route::get('master/memebr-type/index',[MemberTypeController::class,'index'])->name('memebr-type.index');
+    Route::post('master/memebr-type/store', [MemberTypeController::class, 'store'])->name('memebr-type.store');
+    Route::get('master/memebr-type/edit', [MemberTypeController::class, 'edit'])->name('memebr-type.edit');
+    //-- Transaction
+    Route::get('master/transaction-annual/index',[TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
+    Route::get('master/transaction-registation/index',[TransactionController::class,'indexRegistation'])->name('transaction-registation.index');
+    Route::get('master/transaction-event/index',[TransactionController::class,'indexEvent'])->name('transaction-event.index');
+    
+});
 
 
 

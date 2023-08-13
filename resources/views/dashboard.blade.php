@@ -10,7 +10,7 @@
                             </span>
                             <div class="media-body text-white text-right">
                                 <p class="mb-1">Adviser</p>
-                                <h3 class="text-white">{{$cm_adviser}}</h3>
+                                {{-- <h3 class="text-white">{{$cm_adviser}}</h3> --}}
                             </div>
                         </div>
                     </a>
@@ -27,7 +27,7 @@
                             </span>
                             <div class="media-body text-white text-right">
                                 <p class="mb-1">Executive Committee</p>
-                                <h3 class="text-white">{{$cm_ecommittee}}</h3>
+                                {{-- <h3 class="text-white">{{$cm_ecommittee}}</h3> --}}
                             </div>
                         </div>
                     </a>
@@ -44,7 +44,7 @@
                             </span>
                             <div class="media-body text-white text-right">
                                 <p class="mb-1">Pune Welfare Trust</p>
-                                <h3 class="text-white">{{$cm_welfare}}</h3>
+                                {{-- <h3 class="text-white">{{$cm_welfare}}</h3> --}}
                             </div>
                         </div>
                     </a>
@@ -78,7 +78,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Lost Member</p>
-                            <h3 class="text-white">{{count($lose_member)}}</h3>
+                            {{-- <h3 class="text-white">{{count($lose_member)}}</h3> --}}
                             <div class="progress mb-2 bg-secondary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 10%"></div>
                             </div>
@@ -116,7 +116,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Pending Approve</p>
-                            <h3 class="text-white">{{$approve}}</h3>
+                            {{-- <h3 class="text-white">{{$approve}}</h3> --}}
                             <div class="progress mb-2 bg-secondary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 20%"></div>
                             </div>
