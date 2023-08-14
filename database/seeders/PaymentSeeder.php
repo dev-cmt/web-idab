@@ -1,0 +1,62 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\Admin\SubscriptionSetup;
+use App\Models\Master\MastQualification;
+use App\Models\Payment\PaymentMethods;
+use App\Models\Payment\PaymentReasons;
+
+class PaymentSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        SubscriptionSetup::create([
+            'monthly_fee'=>'500',
+            'sub_start_date'=>'2023-01-01',
+        ]);
+        /**___________________________________________________
+         * Payment Reasons
+         * ___________________________________________________
+         */
+        PaymentReasons::create([
+            'name'=>'Membership',
+            'user_id'=>'1',
+        ]);
+        PaymentReasons::create([
+            'name'=>'Event',
+            'user_id'=>'1',
+        ]);
+        PaymentReasons::create([
+            'name'=>'Annual',
+            'user_id'=>'1',
+        ]);
+        /**___________________________________________________
+         * Payment Methods
+         * ___________________________________________________
+         */
+        PaymentMethods::create([
+            'name'=>'bKash',
+        ]);
+        PaymentMethods::create([
+            'name'=>'Rocket',
+        ]);
+        PaymentMethods::create([
+            'name'=>'Nagad',
+        ]);
+        PaymentMethods::create([
+            'name'=>'Upay',
+        ]);
+        PaymentMethods::create([
+            'name'=>'Card',
+        ]);
+        
+    }
+}

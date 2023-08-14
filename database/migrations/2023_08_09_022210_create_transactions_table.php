@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', 10, 2)->nullable(); // Using decimal for monetary values
-            $table->tinyInteger('transaction_type')->default(false); // $table->enum('transaction_type', ['deposit', 'withdraw', 'purchase']);
+            $table->tinyInteger('transaction_type')->default(true); // $table->enum('transaction_type', ['deposit', 'withdraw', 'purchase']);
             $table->integer('transaction_id')->nullable(); // Payment gateway's transaction ID
             $table->tinyInteger('status')->default(false); //['pending', 'completed', 'failed']
 

@@ -4,10 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Admin\SubscriptionSetup;
 use App\Models\Master\MemberType;
 use App\Models\Master\MastQualification;
-use App\Models\Payment\PaymentMethods;
 
 class ImportSeeder extends Seeder
 {
@@ -18,10 +16,6 @@ class ImportSeeder extends Seeder
      */
     public function run()
     {
-        SubscriptionSetup::create([
-            'monthly_fee'=>'500',
-            'sub_start_date'=>'2023-01-01',
-        ]);
         
         /**___________________________________________________
          * Member Type
@@ -80,28 +74,9 @@ class ImportSeeder extends Seeder
             'description'=>'DR - 6',
             'status'=> 1,
             'user_id'=> 1,
-        ]); 
-        /**___________________________________________________
-         * Payment Methods
-         * ___________________________________________________
-         */
-        PaymentMethods::create([
-            'name'=>'bKash',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Rocket',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Nagad',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Upay',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Card',
         ]);
         /**___________________________________________________
-         * Payment Methods
+         * Qualification
          * ___________________________________________________
          */
         MastQualification::create([
@@ -133,6 +108,7 @@ class ImportSeeder extends Seeder
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,
-        ]);
+        ]); 
+        
     }
 }

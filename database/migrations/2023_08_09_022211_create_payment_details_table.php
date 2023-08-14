@@ -19,10 +19,10 @@ return new class extends Migration
             $table->decimal('paid_amount', 10, 2)->nullable(); // Using decimal for monetary values
             $table->string('payment_number')->nullable(); // (bKash number, Rocket number, Card last 4 digits)
             $table->string('transaction_number')->nullable(); // (payment gateway's transaction number)
-            $table->tinyInteger('for_reasons')->default(false); // (register, event)
-            $table->integer('reason_id')->nullable();
+            $table->unsignedBigInteger('payment_reason_id')->nullable(); // (register, event)
+            $table->integer('mast_reason_id')->nullable();
             $table->string('transfer_number')->nullable(); // (Your Number)
-            $table->text('message')->nullable(); // (Your Number)
+            $table->text('message')->nullable();
 
             $table->unsignedBigInteger('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');

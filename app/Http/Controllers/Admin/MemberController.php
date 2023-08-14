@@ -13,6 +13,8 @@ use App\Models\Member\InfoAcademic;
 use App\Models\Member\InfoCompany;
 use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoDocument;
+use App\Models\Master\MastQualification;
+use App\Models\Master\MemberType;
 use App\Models\User;
 use Image;
 
@@ -26,7 +28,6 @@ class MemberController extends Controller
     public function index($id)
     {
         $data = User::where('member_type_id', $id)->get();
-
         return view('layouts.pages.member.index',compact('data'));
     }
 
@@ -37,7 +38,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('frontend.pages.register_form');
+        $memberType = MemberType::where('is_delete', 0)->where('status', 1)->get();
+        $qualification = MastQualification::where('is_delete', 0)->where('status', 1)->get();
+        return view('frontend.pages.register_form', compact('memberType','qualification'));
     }
 
     /**

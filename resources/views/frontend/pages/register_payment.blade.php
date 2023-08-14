@@ -31,9 +31,9 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Details</h4>
+                    <div class="card" style="border-radius: 0">
+                        <div class="card-header pt-4">
+                            <h4 class="card-title">Memeber Details</h4>
                         </div>
                         <div class="card-body">
                             <div class="bootstrap-media">
@@ -52,10 +52,18 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6 col-5">
-                                        <h5 class="f-w-500">Batch <span class="pull-right">:</span>
+                                        <h5 class="f-w-500">Email <span class="pull-right">:</span>
                                         </h5>
                                     </div>
-                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->batch}}</span>
+                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->email}}</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-sm-6 col-5">
+                                        <h5 class="f-w-500">Member Type <span class="pull-right">:</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->memberType->name}}</span>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
@@ -63,29 +71,14 @@
                                         <h5 class="f-w-500">Location <span class="pull-right">:</span>
                                         </h5>
                                     </div>
-                                    <div class="col-sm-6 col-7"><span></span>
-                                    </div>
+                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->infoPersonal->parmanent_address}}</span></div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6 col-5">
                                         <h5 class="f-w-500">Joining Date <span class="pull-right">:</span>
                                         </h5>
                                     </div>
-                                    <div class="col-sm-6 col-7"><span>{{date("j F, Y", strtotime(Auth::user()->created_at))}}</span>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-sm-6 col-5">
-                                        <h5 class="f-w-500">Member Ledger <span class="pull-right">:</span>
-                                        </h5>
-                                    </div>
-                                    <div class="col-sm-6 col-7">
-                                        {{-- @if ($total_due > 0)
-                                            <span class="text-danger">৳ {{$total_due}}</span>
-                                        @else
-                                            <span class="text-primary">৳ {{-$total_due}} ( Advance ) </span>
-                                        @endif --}}
-                                    </div>
+                                    <div class="col-sm-6 col-7"><span>{{date("j F, Y", strtotime(Auth::user()->created_at))}}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +88,7 @@
                     @if (session()->has('success'))
                         <strong class="text-success">{{session()->get('success')}}</strong>
                     @endif
-                    <form action="{{route('register-payment.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
+                    <form action="{{route('registation-payment.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
                         @csrf
                         <div class="row g-3">
                             <div class="d-flex justify-content-center" style="border-bottom: 1px dashed #ff0000;">
@@ -176,7 +169,7 @@
                                 </div>
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control py-3 @error('message') is-invalid @enderror" name="message" value="{{old('message')}}" rows="3" placeholder="Enter your message here..."></textarea>
+                                    <textarea class="form-control py-3 @error('message') is-invalid @enderror" name="message" value="{{old('message')}}" rows="2" placeholder="Enter your message here..."></textarea>
                                 </div>
                             </div>
                             <div class="row">

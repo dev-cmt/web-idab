@@ -19,7 +19,7 @@ class MemberMiddleware
     {
         if (Auth::check()) {
             if (Auth::user()->is_admin == '0' && Auth::user()->status == '0') {
-                return redirect()->route('register-payment.create');
+                return redirect()->route('registation-payment.create');
             }else{
                 if (Auth::user()->is_admin == '1' && Auth::user()->status == '0') {
                     return redirect()->route('member-approve.padding');

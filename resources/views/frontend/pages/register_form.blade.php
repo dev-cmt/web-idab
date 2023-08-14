@@ -122,12 +122,9 @@
                                 <div class="col-md-7">
                                     <select class="form-control form-select @error('member_type_id') is-invalid @enderror" name="member_type_id" id="member_type_id">
                                         <option disabled selected>Please select</option>
-                                        <option value="1" {{old('member_type_id')==1 ? 'selected' : ''}}>Student member</option>
-                                        <option value="2" {{old('member_type_id')==2 ? 'selected' : ''}}>Candidate member</option>
-                                        <option value="3" {{old('member_type_id')==3 ? 'selected' : ''}}>Professional member</option>
-                                        <option value="4" {{old('member_type_id')==4 ? 'selected' : ''}}>Associate member</option>
-                                        <option value="5" {{old('member_type_id')==5 ? 'selected' : ''}}>Trade member</option>
-                                        <option value="6" {{old('member_type_id')==6 ? 'selected' : ''}}>Corporate member</option>
+                                        @foreach ($memberType as $item)
+                                        <option value="{{$item->id}}" {{old('member_type_id')== $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                                        @endforeach
                                     </select>                                                    
                                     @error('member_type_id')
                                     <span class="invalid-feedback" role="alert">
@@ -149,14 +146,13 @@
                                 </div>
                                 <label for="imageUpload">
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('{{asset('public/images')}}/saving.avif');"></div>
+                                        <div id="imagePreview" style="background-image: url('{{asset('public/images')}}/pages/user.png');"></div>
                                     </div>
                                 </label>
                             </div>
 
                         </div>
                     </div>
-                    <input type="submit" value="SUBMIT" class="btn btn-success">
                     <!--__________________  Personal __________________-->
                     <div id="personal" class="row" style="display: none">
                         <div class="bar_personal"></div>

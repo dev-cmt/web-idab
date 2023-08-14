@@ -50,8 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(InfoPersonal::class, 'member_id');
     }
-
-    // Define the relationship to the parent user
     public function parentUser()
     {
         return $this->belongsTo(User::class, 'is_approve');
