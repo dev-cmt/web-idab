@@ -24,9 +24,10 @@
                             <tbody id="data-tbody">
                                 @foreach ($data as $key=> $row)
                                 <tr id="row_table_{{ $row->id}}">
-                                    <td>{{$row->number}}</td>
-                                    <td>{{$row->paymentMethods->name}}</td>
-                                    <td>{{$row->user->name ?? 'null'}}</td>
+                                    <td>{{ $row->number }}</td>
+                                    <td>{{ $row->paymentReason->name }}</td>
+                                    <td>{{ $row->paymentMethod->name }}</td>
+                                    <td>{{ $row->user->name }}</td>
                                     <td>{{date("j F, Y", strtotime($row->created_at))}}</td>
                                     <td>@if($row->status == 0)
                                         <span class="badge light badge-danger">
@@ -182,10 +183,11 @@
                     
                     // Create a row to insert into the table
                     var row = '<tr id="row_table_' + response.data.id + '">';
-                    row += '<td>' + response.data.name + '</td>';
-                    row += '<td>' + response.data.description + '</td>';
+                    row += '<td>' + response.data.number + '</td>';
+                    row += '<td>' + response.paymentReason + '</td>';
+                    row += '<td>' + response.paymentMethod + '</td>';
+                    row += '<td>' + response.user + '</td>';
                     row += '<td>' + formatDate(response.data.created_at) + '</td>';
-                    row += '<td>' + response.creator_name + '</td>';
                     row += '<td>';
                     if (response.data.status == 0) {
                         row += '<span class="badge light badge-danger"><i class="fa fa-circle text-danger mr-1"></i>Inactive</span>';
@@ -236,34 +238,54 @@
         var id = $(this).data('id');
         var check = $(this).data('check');
         $.ajax({
-            url:'{{ route('memebr-type.edit')}}',
+            url:'{{ route('transaction-payment-number.edit')}}',
             method:'GET',
             dataType:"JSON",
             data:{id:id},
             success:function(response){
                 if(check == 1){ //Edit
-                    $(".modal-title").html('Edit Member Type');
+                    $(".modal-title").html('Edit Payment Number Type');
                     $(".submit_btn").show();
 
                     $("#set_id").val(response.data.id);
-                    $("#registration_fee").val(response.data.registration_fee);
-                    $("#monthly_fee").val(response.data.monthly_fee);
-                    $("#annual_fee").val(response.data.annual_fee);
-                    $("#name").val(response.data.name);
+                    $("#number").val(response.data.number);
                     $("#description").val(response.data.description);
-                     
+
+
+                    //-- Get Payment Reasons
+                    var payment_reasons = response.reasons; // Use the correct variable name
+                    var payment_reason_dr = $('#payment_reason_id');
+                    payment_reason_dr.empty();
+                    payment_reason_dr.append('<option value="">Select a Payment Reason</option>'); // Update the text
+
+                    $.each(payment_reasons, function(index, option) { // Use the correct variable name
+                        var selected = (option.id == data.payment_reason_id) ? 'selected' : '';
+                        payment_reason_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
+                    });
+
+                    //-- Get Payment Method
+                    var payment_methods = response.methods; // Use the correct variable name
+                    var payment_method_dr = $('#payment_method_id');
+                    payment_method_dr.empty();
+                    payment_method_dr.append('<option value="">Select a Payment Method</option>'); // Update the text
+
+                    // $.each(payment_methods, function(index, option) { // Use the correct variable name
+                    //     var selected = (option.id == data.payment_method_id) ? 'selected' : '';
+                    //     payment_method_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
+                    // });
+
+                    //--Status
                     $("#status").empty();
                     var status = $("#status");
                     var row = '<option value="1" ' + (response.data.status == 1 ? 'selected' : '') + '>Active</option>';
                     row += '<option value="0" ' + (response.data.status == 0 ? 'selected' : '') + '>Inactive</option>';
                     status.append(row);
 
-
                     $('#set_id').prop("disabled", false);
                     $('#name').prop("disabled", false);
                     $('#description').prop("disabled", false);
                 }else if(check == 2){ //View
-                    $(".modal-title").html('View Member Type');
+                    $(".modal-title").html('View Payment Number Type');
 
                     $("#set_id").val(response.data.id);
                     $("#name").val(response.data.name);

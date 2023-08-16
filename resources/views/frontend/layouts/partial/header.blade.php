@@ -56,7 +56,7 @@
                             <li><a href="{{ Route('profile_show', auth()->user()->id )}}">Profile</a></li>
                         @endif
                         @if (Auth::user()->is_admin == "0" && Auth::user()->status == "0")
-                            <li><a href="{{ Route('register-payment.create') }}">Payment Fee</a></li>
+                            <li><a href="{{ Route('registation-payment.create') }}">Payment Fee</a></li>
                         @endif
                         @if (Auth::user()->is_admin == "1" && Auth::user()->status == "0")
                             <li><a href="{{ Route('member-approve.padding') }}">Waiting Approval</a></li>

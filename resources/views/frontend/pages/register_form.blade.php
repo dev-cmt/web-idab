@@ -51,9 +51,9 @@
 </style>
 <x-guest-layout>
     
-    <div class="bg-dark p-4" style="min-height: 100%; background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+    <div class="bg-dark p-4" style="min-height:100%; background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; overflow:hidden;">
         <!-- STAR ANIMATION -->
-        <div class="bg-animation">
+        <div class="bg-animations">
             <div id='stars'></div>
             <div id='stars2'></div>
             <div id='stars3'></div>
@@ -64,7 +64,7 @@
                 <div class="card-heading">
                     <h2 class="title">Apply For Membership</h2>
                 </div>
-                <form method="POST" action="{{ route('member_register.store') }}" class="card-body" enctype="multipart/form-data">
+                <form class="card-body" data-action="{{ route('member_register.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                     @csrf
                     <div class="d-flex justify-content-center mb-4">
                         <a href="{{route('/')}}"><img src="{{asset('public/images')}}/logo.png" alt="" width="150"></a>
@@ -120,7 +120,7 @@
                             <div class="row">
                                 <label for="formFile" class="form-label col-md-5">Member Type <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
-                                    <select class="form-control form-select @error('member_type_id') is-invalid @enderror" name="member_type_id" id="member_type_id">
+                                    <select class="form-control form-select @error('member_type_id') is-invalid @enderror" name="member_type_id" id="member_type_id" required>
                                         <option disabled selected>Please select</option>
                                         @foreach ($memberType as $item)
                                         <option value="{{$item->id}}" {{old('member_type_id')== $item->id ? 'selected' : ''}}>{{$item->name}}</option>
@@ -158,7 +158,9 @@
                         <div class="bar_personal"></div>
                         <div class="col-md-6 mb-2">
                             <div class="row">
-                                <label for="contact_number" class="form-label col-md-5">Phone Number</label>
+                                <label for="contact_number" class="form-label col-md-5">Phone Number
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="col-md-7">
                                     <input type="text" name="contact_number" id="contact_number"class="form-control @error('contact_number') is-invalid @enderror" value="{{old('contact_number')}}">
                                     @error('contact_number')
@@ -661,149 +663,235 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        $(document).ready(function() {
-            $("#document").hide();
-            $("#member_type_id").change(function() {
-                var selectedOption = $(this).val();
-                // Hide all sections
-                $("#business, #bar_job, #student").hide();
+ 
+    @push('script')   
+        <script>
+            $(document).ready(function() {
+                $("#document").hide();
+                $("#member_type_id").change(function() {
+                    var selectedOption = $(this).val();
+                    // Hide all sections
+                    $("#business, #bar_job, #student").hide();
 
-                // Show the corresponding section based on the selected option
-                if (selectedOption === "1") { //Student
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").show();
-                    $("#business_job").hide();
-                    $("#bar_business").hide();
-                    $("#bar_job").hide();
+                    // Show the corresponding section based on the selected option
+                    if (selectedOption === "1") { //Student
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").show();
+                        $("#business_job").hide();
+                        $("#bar_business").hide();
+                        $("#bar_job").hide();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").show();
-                    $("#student_id").show();
-                    $("#recomendation_letter").show();
-                    $("#trade_lisence").hide();
-                    $("#experience_certificate").hide();
-                    $("#tin_certificate").hide();
-                    $("#nid_photo").hide();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").show();
+                        $("#recomendation_letter").show();
+                        $("#trade_lisence").hide();
+                        $("#experience_certificate").hide();
+                        $("#tin_certificate").hide();
+                        $("#nid_photo").hide();
 
-                    $("#btn-submit").prop("disabled", false);
-                } else if (selectedOption === "2") {//Candidate
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").hide();
-                    $("#business_job").show();
-                    $("#bar_business").hide();
-                    $("#bar_job").show();
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "2") {//Candidate
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").hide();
+                        $("#bar_job").show();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").show();
-                    $("#student_id").hide();
-                    $("#recomendation_letter").hide();
-                    $("#experience_certificate").hide();
-                    $("#trade_lisence").show();
-                    $("#tin_certificate").show();
-                    $("#nid_photo").show();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").hide();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
 
-                    $("#btn-submit").prop("disabled", false);
-                } else if (selectedOption === "3") { // Professional
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").hide();
-                    $("#business_job").show();
-                    $("#bar_business").hide();
-                    $("#bar_job").show();
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "3") { // Professional
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").hide();
+                        $("#bar_job").show();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").show();
-                    $("#student_id").hide();
-                    $("#recomendation_letter").hide();
-                    $("#experience_certificate").show();
-                    $("#trade_lisence").show();
-                    $("#tin_certificate").show();
-                    $("#nid_photo").show();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").show();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
 
-                    $("#btn-submit").prop("disabled", false);
-                } else if (selectedOption === "4") {// Associate
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").hide();
-                    $("#business_job").show();
-                    $("#bar_business").show();
-                    $("#bar_job").hide();
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "4") {// Associate
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").show();
+                        $("#bar_job").hide();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").show();
-                    $("#student_id").hide();
-                    $("#recomendation_letter").hide();
-                    $("#experience_certificate").show();
-                    $("#trade_lisence").show();
-                    $("#tin_certificate").show();
-                    $("#nid_photo").show();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").show();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
 
-                    $("#btn-submit").prop("disabled", false);
-                } else if (selectedOption === "5") {// Trade
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").hide();
-                    $("#business_job").show();
-                    $("#bar_business").show();
-                    $("#bar_job").hide();
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "5") {// Trade
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").show();
+                        $("#bar_job").hide();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").hide();
-                    $("#student_id").hide();
-                    $("#recomendation_letter").hide();
-                    $("#experience_certificate").hide();
-                    $("#trade_lisence").show();
-                    $("#tin_certificate").show();
-                    $("#nid_photo").show();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").hide();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").hide();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
 
-                    $("#btn-submit").prop("disabled", false);
-                } else if (selectedOption === "6") {// Corporate LEFT
-                    $("#personal").show();
-                    $("#academic").show();
-                    $("#student").hide();
-                    $("#business_job").show();
-                    $("#bar_business").show();
-                    $("#bar_job").hide();
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "6") {// Corporate LEFT
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").show();
+                        $("#bar_job").hide();
 
-                    $("#document").show();
-                    $("#passport_photo").hide();
-                    $("#educational_certificates").show();
-                    $("#student_id").hide();
-                    $("#trade_lisence").show();
-                    $("#experience_certificate").show();
-                    $("#tin_certificate").show();
-                    $("#nid_photo").hide();
-                    $("#recomendation_letter").hide();
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#trade_lisence").show();
+                        $("#experience_certificate").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").hide();
+                        $("#recomendation_letter").hide();
 
-                    $("#btn-submit").prop("disabled", false);
-                }
+                        $("#btn-submit").prop("disabled", false);
+                    }
+                });
             });
-        });
-    </script>
-    <!--Image Profile-->
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                    $('#imagePreview').hide();
-                    $('#imagePreview').fadeIn(650);
+        </script>
+        <!--Image Profile-->
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview').hide();
+                        $('#imagePreview').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
-                reader.readAsDataURL(input.files[0]);
             }
-        }
-        $("#imageUpload").change(function() {
-            readURL(this);
-        });
-    </script>
+            $("#imageUpload").change(function() {
+                readURL(this);
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $("#preloader").hide();
+                var form = '#add-user-form';
+                $(form).on('submit', function(event) {
+                    event.preventDefault();
+                    var url = $(this).attr('data-action');
+                    
+                    // Show loading indicator
+                    $("#preloader").show();
+                    $.ajax({
+                        url: url,
+                        method: 'POST',
+                        data: new FormData(this),
+                        dataType: 'JSON',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(response) {                            
+                            $("#preloader").hide();
+                            // Show success message using SweetAlert2
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Data saved successfully.',
+                            }).then((result) => {
+                                // Redirect to the registration payment page
+                                if (result.isConfirmed) {
+                                    window.location.href = '{{ route("registation-payment.create") }}';
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            // Hide loading indicator
+                            $("#preloader").hide();
+                            if (xhr.responseJSON && xhr.responseJSON.error) {
+                                var errorMessage = xhr.responseJSON.message;
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    html:  errorMessage,
+                                    text: 'All input values are not null or empty.',
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred. Please try again later.',
+                                });
+                            }
+                            // Validaton
+                            var errors = xhr.responseJSON.errors;
+                            var errorHtml = '';
+                            $.each(errors, function(field, messages) {
+                                $.each(messages, function(key, value) {
+                                    errorHtml += '<li style="color:red">' + value + '</li>';
+                                });
+                            });
+        
+                            // Display error message using Swal or your preferred method
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                html: '<ul>' + errorHtml + '</ul>',
+                                text: 'All input values are not null or empty.',
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
+
+
+    <div id='preloader' style="background-color: #252525cc;">
+        <div id='loader'>
+            <span class='loader'>
+                <span class='loader-inner'></span>
+            </span>
+        </div>
+    </div>
+
+
+
+
 </x-guest-layout>

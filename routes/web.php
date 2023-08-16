@@ -112,11 +112,24 @@ Route::group(['middleware' => ['auth']], function(){
     //-- MASTER SETTING =>> PAYMENT NUMBER
     Route::get('master/transaction-payment/number/index',[TransactionController::class,'indexPaymentNumber'])->name('transaction-payment-number.index');
     Route::post('master/transaction-payment/number/store',[TransactionController::class,'storePaymentNumber'])->name('transaction-payment-number.store');
+    Route::get('master/transaction-payment/number/edit',[TransactionController::class,'editPaymentNumber'])->name('transaction-payment-number.edit');
+    Route::get('master/transaction-payment/number/delete',[TransactionController::class,'deletePaymentNumber'])->name('transaction-payment-number.delete');
 });
 
 
 
-
+// Route::get('/download/{userId}/{filename}', 'FileController@download')->name('file.download');
+// use Illuminate\Support\Facades\Storage;
+// public function download($userId, $filename)
+// {
+//     $filePath = "document/member/{$userId}/{$filename}";
+//     if (Storage::exists($filePath)) {
+//         return Storage::download($filePath);
+//     } else {
+//         return response()->json(['message' => 'File not found.'], 404);
+//     }
+// }
+// <a href="{{ route('file.download', ['userId' => $userId, 'filename' => $infoDocument->trade_licence]) }}">Download Trade Licence</a>
 
 
 

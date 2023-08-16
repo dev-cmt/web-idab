@@ -25,12 +25,13 @@ class PaymentNumber extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function paymentMethod()
-    {
-        return $this->belongsTo(PaymentMethods::class, 'payment_method_id');
-    }
+
     public function paymentReason()
     {
         return $this->belongsTo(PaymentReasons::class, 'payment_reason_id');
+    }
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethods::class, 'payment_method_id');
     }
 }

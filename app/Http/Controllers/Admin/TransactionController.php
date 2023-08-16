@@ -54,11 +54,12 @@ class TransactionController extends Controller
     
     
     /**_________________________________________________________________________________________
-     * PAYMENT NUMBER
+     * PAYMENT NUMBER => MASTER
      * _________________________________________________________________________________________
      */
     public function indexPaymentNumber() {
-        $data = PaymentNumber::where('status', 1)->get();
+        $data = PaymentNumber::get();
+        
         $payment_reasons = PaymentReasons::get();
         $payment_methods = PaymentMethods::get();
         return view('layouts.pages.transaction.payment-number-index', compact('data', 'payment_reasons', 'payment_methods'));
@@ -88,14 +89,23 @@ class TransactionController extends Controller
         // Return message
         return response()->json([
             'data' => $data,
-            'creator_name' => Auth::user()->name,
+            'user' => $data->user->name,
+            'paymentReason' => $data->paymentReason->name,
+            'paymentMethod' => $data->paymentMethod->name,
         ], 200);
     }
     public function editPaymentNumber(Request $request)
     {
-        $data = MemberType::where('is_delete', 0)->where('id', $request->id)->first();
+        $data = PaymentNumber::where('id', $request->id)->first();
+        
+        $payment_reasons = PaymentReasons::get();
+        $payment_methods = PaymentMethods::get();
         // Return message
-        return response()->json(['data' => $data], 200);
+        return response()->json([
+            'data' => $data,
+            'reasons' => $payment_reasons,
+            'methods' => $payment_methods,
+        ], 200);
     }
     public function deletePaymentNumber(Request $request)
     {

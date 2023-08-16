@@ -38,7 +38,7 @@
     </style>
 
 <x-guest-layout>
-    <div class="content-wrapper py-4" style="background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-attachment: fixed;">
+    <div class="content-wrapper py-4" style="background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-attachment: fixed; overflow:hidden">
         <!-- STAR ANIMATION -->
         <div class="bg-animation">
             <div id='stars'></div>

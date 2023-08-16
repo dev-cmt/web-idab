@@ -120,7 +120,6 @@
     <!-- Start Toaster & Sweetalert -->
     <script src="{{asset('public/backend')}}/vendor/toaster/js/toastr.min.js"></script>
     <script src="{{asset('public/backend')}}/vendor/toaster/js/sweetalert.min.js"></script>
-    <script src="{{asset('public/backend')}}/js/tabledit.min.js"></script>
 
     <script>
         @if(Session::has('messege') || Session::has('info_update') )
