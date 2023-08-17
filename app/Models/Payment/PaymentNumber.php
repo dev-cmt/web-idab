@@ -15,6 +15,7 @@ class PaymentNumber extends Model
     protected $fillable = [
         'number',
         'payment_reason_id',
+        'ref_reason_id',
         'payment_method_id',
         'user_id',
         'status',

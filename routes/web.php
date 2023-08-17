@@ -114,6 +114,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('master/transaction-payment/number/store',[TransactionController::class,'storePaymentNumber'])->name('transaction-payment-number.store');
     Route::get('master/transaction-payment/number/edit',[TransactionController::class,'editPaymentNumber'])->name('transaction-payment-number.edit');
     Route::get('master/transaction-payment/number/delete',[TransactionController::class,'deletePaymentNumber'])->name('transaction-payment-number.delete');
+    Route::get('get/payment-number',[TransactionController::class,'getPaymentNumber'])->name('get-payment-number');
 });
 
 

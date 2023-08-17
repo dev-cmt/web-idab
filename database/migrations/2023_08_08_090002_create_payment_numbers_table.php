@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('number')->nullable();
             $table->unsignedBigInteger('payment_reason_id');
             $table->foreign('payment_reason_id')->references('id')->on('payment_reasons')->onDelete('cascade');
+            $table->integer('ref_reason_id')->nullable();
             $table->unsignedBigInteger('payment_method_id');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

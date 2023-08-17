@@ -27,7 +27,9 @@ return new class extends Migration
             $table->integer('child_bellow')->nullable();
             $table->text('description')->nullable();
             $table->string('location')->nullable();
-            $table->integer('status')->nullable();
+            $table->tinyInteger('status')->default(false);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

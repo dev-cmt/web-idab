@@ -43,20 +43,21 @@
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-003-diamond"></i>
-                    <span class="nav-text">Transactions</span>
+                    <span class="nav-text">My Transactions</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ Route('event_registation_list')}}">Annual Fee</a></li>
-                    <li><a href="{{ Route('event_registation_list')}}">Event Register</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Payment History</a>
-                        <ul aria-expanded="false">
-                            @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
-                            <li><a href="#">Annual Fee Details</a></li>
-                            <li><a href="#">Event Fee Details</a></li>
-                            <li><a href="{{Route('transaction-registation.index')}}">Registation Fee Details</a></li>
-                            @endcanany
-                        </ul>
-                    </li>
+                    <li><a href="{{ Route('event_registation_list')}}">Event Fee</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-003-diamond"></i>
+                    <span class="nav-text">Payment History</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="#">Annual Fee Details</a></li>
+                    <li><a href="#">Event Fee Details</a></li>
+                    <li><a href="{{Route('transaction-registation.index')}}">Registation Fee Details</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
                             @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')

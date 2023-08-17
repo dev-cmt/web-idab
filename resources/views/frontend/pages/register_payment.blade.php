@@ -90,21 +90,29 @@
                     @endif
                     <form action="{{route('registation-payment.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
                         @csrf
+                        <input type="hidden" name="payment_reason_id" value="1">
+                        <input type="hidden" name="ref_reason_id">
                         <div class="row g-3">
                             <div class="d-flex justify-content-center" style="border-bottom: 1px dashed #ff0000;">
                                 <div>
-                                    <input type="radio" name="payment_method_id" id="cash" class="input-hidden" value="0"/>
-                                    <label for="cash"><img src="{{asset('public/images')}}/cash.png" alt="Payment Chash" style="transform: scale(1);"/></label>
-                                
                                     <input type="radio" name="payment_method_id" id="bKash" class="input-hidden" value="1"/>
-                                    <label for="bKash"><img src="{{asset('public/images')}}/bKash.png" alt="Payment bKash" /></label>
+                                    <label for="bKash"><img src="{{asset('public/images')}}/payment/bKash.png" alt="Payment bKash" /></label>
                                 
-                                    <input type="radio" name="payment_method_id" id="nagad" class="input-hidden" value="2"/>
-                                    <label for="nagad"><img src="{{asset('public/images')}}/nagad.png" alt="Payment nagad" /></label>
+                                    <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="2"/>
+                                    <label for="roket"><img src="{{asset('public/images')}}/payment/roket.png" alt="Payment roket" /></label>
                                 
-                                    <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="3"/>
-                                    <label for="roket"><img src="{{asset('public/images')}}/roket.png" alt="Payment roket" /></label>
+                                    <input type="radio" name="payment_method_id" id="nagad" class="input-hidden" value="3"/>
+                                    <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label>
                                     
+                                    <input type="radio" name="payment_method_id" id="upay" class="input-hidden" value="4"/>
+                                    <label for="upay"><img src="{{asset('public/images')}}/payment/upay.png" alt="Payment upay"/></label>
+
+                                    <input type="radio" name="payment_method_id" id="card" class="input-hidden" value="5"/>
+                                    <label for="card"><img src="{{asset('public/images')}}/payment/credit-card.png" alt="Payment Card"/></label>
+
+                                    <input type="radio" name="payment_method_id" id="cash" class="input-hidden" value="6"/>
+                                    <label for="cashless"><img src="{{asset('public/images')}}/payment/cashless-payment.png" alt="Payment Cashless"/></label>
+
                                     @error('payment_method_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -114,34 +122,23 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-6 mt-2">
-                                    <label class="form-label">Payment Number</label>
-                                    <div class="0 box" style="display: block">
-                                        <input type="text" class="form-control @error('payment_number') is-invalid @enderror" name="payment_number" value="{{old('payment_number')}}" placeholder="Cash Payment" @disabled(true)>
-                                    </div>
-                                    <div class="1 2 3 box">
-                                        <select name="payment_number" class="form-control form-select  @error('payment_number') is-invalid @enderror" style="height: 40px;">
-                                            <option value="01909302126" class="1 box">01909302126</option>
-                                            <option value="01922437143" class="1 box">01922437143</option>
-                                            <option value="01995275933" class="1 box">01995275933</option>
-                                            <option value="01922437143" class="2 box">01922437143</option>
-                                            <option value="01995275933" class="2 box">01995275933</option>
-                                            <option value="01922437143" class="3 box">01922437143</option>
-                                            <option value="01995275933" class="3 box">01995275933</option>
-                                            {{-- @foreach ($bkash as $row)
-                                                <option value="{{$row->pay_number}}" class="1 box">{{$row->pay_number}}</option>
-                                            @endforeach
-                                            @foreach ($nagad as $row)
-                                                <option value="{{$row->pay_number}}" class="2 box">{{$row->pay_number}}</option>
-                                            @endforeach
-                                            @foreach ($rocket as $row)
-                                                <option value="{{$row->pay_number}}" class="2 box">{{$row->pay_number}}</option>
-                                            @endforeach --}}
-                                        </select>
-                                    </div>
+                                    <label class="form-label">Payment Number 
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="payment_number" id="payment_number" class="form-control form-select  @error('payment_number') is-invalid @enderror" style="height: 40px;">
+                                        <option selected disabled>Not Found</option>
+                                    </select>
+                                    @error('payment_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 mt-2">
-                                    <label class="form-label">Transaction Number</label>
-                                    <input type="text" name="transaction_number" class="form-control" value="{{old('transaction_number')}}" placeholder="xxxxxxxxxxxx">
+                                    <label class="form-label">Transaction Number
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" name="transaction_number" class="form-control @error('transaction_number') is-invalid @enderror" value="{{old('transaction_number')}}" placeholder="XXXXXXXXX">
                                     @error('transaction_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -149,8 +146,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mt-2">
-                                    <label class="form-label">Transfer Number</label>
-                                    <input type="text" name="transfer_number" class="form-control" placeholder="01X-XXXX-XXXX" value="{{old('transfer_number') }}">
+                                    <label class="form-label">Transfer Number
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" name="transfer_number" class="form-control @error('transfer_number') is-invalid @enderror" placeholder="01X-XXXX-XXXX" value="{{old('transfer_number') }}">
                                     @error('transfer_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -169,7 +168,7 @@
                                 </div>
                                 <div class="col-md-12 mt-2">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control py-3 @error('message') is-invalid @enderror" name="message" value="{{old('message')}}" rows="2" placeholder="Enter your message here..."></textarea>
+                                    <textarea class="form-control py-3" name="message" value="{{old('message')}}" rows="2" placeholder="Enter your message here..."></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -188,19 +187,41 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('input[type="radio"]').click(function(){
-                var inputValue = $(this).attr("value");
-                var targetBox = $("." + inputValue);
-                $(".box").not(targetBox).hide();
-                $(targetBox).show();
+        //======Get Item Group All Data
+        $(document).on('click', 'input[type="radio"]', function() {
+            var methodId = $(this).attr("value");
+            $.ajax({
+                url: '{{ route('get-payment-number')}}', // Make sure the route is correct
+                method: 'GET',
+                dataType: "json",
+                data: {'method_id': methodId},
+                success: function(response) {
+                    //--Get Customer Type Data
+                    var datas = response.data;
+                    var payment_number_dr = $('#payment_number');
+                    payment_number_dr.empty();
+                    payment_number_dr.append('<option disabled selected>--Select--</option>');
+                    $.each(datas, function(index, option) {
+                        payment_number_dr.append('<option value="' + option.number + '">' + option.number + '</option>');
+                    });
+                },
+                error: function() {
+                    alert('Fail');
+                }
             });
         });
-        function multiply() {
-            let monthNo = parseFloat(document.getElementById('month_no').value);
-            let baseAmount = parseFloat(document.getElementById('duo_amount').value);
-            let total = monthNo * baseAmount;
-            document.getElementById('TOTAL').value = total.toFixed(2);
-        }
+
+
+
+
+
+        // $(document).ready(function(){
+        //     $('input[type="radio"]').click(function(){
+        //         var inputValue = $(this).attr("value");
+        //         var targetBox = $("." + inputValue);
+        //         $(".box").not(targetBox).hide();
+        //         $(targetBox).show();
+        //     });
+        // });
     </script>
 @endsection

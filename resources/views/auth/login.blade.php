@@ -37,7 +37,8 @@
                 </div>
                 <button type="submit" class="btn btn-register">Login</button>
                 <div class="py-3">Don't have account?
-                    <a href="{{ route('register') }}" class="text-success">Signup in Now</a>
+                    {{-- <a href="{{ route('register') }}" class="text-success">Signup in Now</a> --}}
+                    <a href="{{ route('member_register.create') }}" class="text-success">Signup in Now</a>
                 </div>
             </form>
         </div>

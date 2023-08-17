@@ -73,7 +73,13 @@
 						<div class="container">
 							<a href="{{ url()->previous() }}"><img src="{{asset('public/images')}}/logo.png" class="brand-logo text-intro opacity-0" alt=""></a>
 						
-							<h1 class="text-intro opacity-0"> {{Route::currentRouteName() == 'member-approve.padding' ? 'Your request is pending for approval': 'Coming Soon' }} </h1>
+							<h1 class="text-intro opacity-0"> 
+								@if (Route::currentRouteName() == 'member-approve.padding')
+									<span style="font-size: 32px;">Your request is pending for approval</span>
+								@else
+									Coming Soon
+								@endif
+							</h1>
 						
 							<p class="text-intro opacity-0">It may take up to 36 hours</p>
 

@@ -23,6 +23,7 @@ class Event extends Model
         'driver',
         'description',
         'location',
+        'user_id',
         'status',
     ];
 

@@ -75,7 +75,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="payment_method_id" id="payment_method_id" class="form-control">
+                                        <select name="payment_method_id" id="payment_method_id" class="form-control dropdwon_select">
                                             <option disabled selected>--Select--</option>
                                             @foreach ($payment_methods as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -100,10 +100,25 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="payment_reason_id" id="payment_reason_id" class="form-control">
+                                        <select name="payment_reason_id" id="payment_reason_id" class="form-control dropdwon_select">
                                             <option disabled selected>--Select--</option>
                                             @foreach ($payment_reasons as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" id="showReason" style="display: none">
+                                <div class="form-group row">
+                                    <label for="ref_reason_id" class="col-md-4 col-form-label">Event Title
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="ref_reason_id" id="ref_reason_id" class="form-control dropdwon_select">
+                                            <option disabled selected>--Select--</option>
+                                            @foreach ($ref_reason as $item)
+                                                <option value="{{$item->id}}">{{$item->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -113,18 +128,10 @@
                                 <div class="form-group row">
                                     <label for="status" class="col-md-4 col-form-label">Status</label>
                                     <div class="col-md-8">
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="status" id="status" class="form-control dropdwon_select">
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <label for="remarks" class="col-md-4 col-form-label">Description</label>
-                                    <div class="col-md-8">
-                                        <textarea name="description" id="description" rows="2" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div> 
@@ -140,34 +147,53 @@
         </div>
     </div>
 
-
 </x-app-layout>
 
 
 <script type="text/javascript">
     /*=======//Show Modal//=========*/
+    var paymentReason = $('#payment_reason_id').html();
+    var paymentMethod = $('#payment_method_id').html();
+    var refReason = $('#ref_reason_id').html();
+    var status = $('#status').html();
+
     $(document).on('click','#open_modal',function(){
         $("#set_id").val('');
-        $("#registration_fee").val('');
-        $("#monthly_fee").val('');
-        $("#annual_fee").val('');
-        $("#name").val('');
-        $("#description").val('');
-        $(".submit_btn").show();
-
+        $("#number").val('');
+        $("#payment_reason_id").val('');
+        $("#payment_method_id").val('');
+        $("#ref_reason_id").val('');
+        $("#status").val('');
+        
         $('#set_id').prop("disabled", false);
-        $('#name').prop("disabled", false);
-        $('#description').prop("disabled", false);
+        $('#number').prop("disabled", false);
+        $('#payment_reason_id').html(paymentReason);
+        $('#payment_method_id').html(paymentMethod);
+        $('#ref_reason_id').html(refReason);
+        $('#status').html(status);
 
         $(".modal-title").html('Add New Member Type');
+        $(".submit_btn").show();
         $("#exampleModalCenter").modal('show');
+
+        //--Dropdwon Search Fix
+        newRow.find('.dropdwon_select').each(function () {
+            $(this).select2({
+                dropdownParent: $(this).parent()
+            });
+        });
+        // Show preloader
+        $("#loading").hide();
     });
+    
     /*=======//Save Data //=========*/
     $(document).ready(function(){
         var form = '#add-user-form';
         $(form).on('submit', function(event){
             event.preventDefault();
             var url = $(this).attr('data-action');
+            // Show preloader
+            $("#loading").show();
             $.ajax({
                 url: url,
                 method: 'POST',
@@ -180,7 +206,8 @@
                 {
                     swal("Success Message Title", "Well done, you pressed a button", "success");
                     $("#exampleModalCenter").modal('hide');
-                    
+                    $("#loading").hide();
+
                     // Create a row to insert into the table
                     var row = '<tr id="row_table_' + response.data.id + '">';
                     row += '<td>' + response.data.number + '</td>';
@@ -217,6 +244,8 @@
                     $.each(errors, function(key, value) {
                         errorHtml += '<li style="color:red">' + value + '</li>';
                     });
+                    // Show preloader
+                    $("#loading").hide();
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
@@ -237,6 +266,8 @@
     $(document).on('click', '#data-show', function(){
         var id = $(this).data('id');
         var check = $(this).data('check');
+        // Show preloader
+        $("#loading").show();
         $.ajax({
             url:'{{ route('transaction-payment-number.edit')}}',
             method:'GET',
@@ -244,35 +275,50 @@
             data:{id:id},
             success:function(response){
                 if(check == 1){ //Edit
-                    $(".modal-title").html('Edit Payment Number Type');
+                    // Show loading indicator
+                    $(".modal-title").html('Edit Payment Number');
                     $(".submit_btn").show();
 
                     $("#set_id").val(response.data.id);
                     $("#number").val(response.data.number);
-                    $("#description").val(response.data.description);
 
+                    //-- Get Payment Method
+                    var payment_methods = response.methods; // Correct variable name
+                    var payment_method_dr = $('#payment_method_id');
+                    payment_method_dr.empty();
+                    payment_method_dr.append('<option value="">--Select--</option>');
 
+                    $.each(payment_methods, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.payment_method_id) ? 'selected' : '';
+                        payment_method_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
+                    });
+                    
                     //-- Get Payment Reasons
-                    var payment_reasons = response.reasons; // Use the correct variable name
+                    var payment_reasons = response.reasons; // Correct variable name
                     var payment_reason_dr = $('#payment_reason_id');
                     payment_reason_dr.empty();
-                    payment_reason_dr.append('<option value="">Select a Payment Reason</option>'); // Update the text
+                    payment_reason_dr.append('<option value="">--Select--</option>');
 
-                    $.each(payment_reasons, function(index, option) { // Use the correct variable name
-                        var selected = (option.id == data.payment_reason_id) ? 'selected' : '';
+                    $.each(payment_reasons, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.payment_reason_id) ? 'selected' : '';
                         payment_reason_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
                     });
 
-                    //-- Get Payment Method
-                    var payment_methods = response.methods; // Use the correct variable name
-                    var payment_method_dr = $('#payment_method_id');
-                    payment_method_dr.empty();
-                    payment_method_dr.append('<option value="">Select a Payment Method</option>'); // Update the text
+                    //-- Get Ref Reasons
+                    var ref_reasons = response.ref_reason;
+                    var ref_reasons_dr = $('#ref_reason_id');
+                    ref_reasons_dr.empty();
+                    ref_reasons_dr.append('<option value="">--Select--</option>');
 
-                    // $.each(payment_methods, function(index, option) { // Use the correct variable name
-                    //     var selected = (option.id == data.payment_method_id) ? 'selected' : '';
-                    //     payment_method_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
-                    // });
+                    $.each(ref_reasons, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.ref_reason_id) ? 'selected' : '';
+                        ref_reasons_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.title + '</option>');
+                    });
+
+                    var paymentReasonID = $('#payment_reason_id').val();
+                    if(paymentReasonID == 2 ){ //Event
+                        $('#showReason').show();
+                    }
 
                     //--Status
                     $("#status").empty();
@@ -282,19 +328,69 @@
                     status.append(row);
 
                     $('#set_id').prop("disabled", false);
-                    $('#name').prop("disabled", false);
-                    $('#description').prop("disabled", false);
+                    $('#number').prop("disabled", false);
+                    $('#payment_reason_id').prop("disabled", false);
+                    $('#payment_method_id').prop("disabled", false);
+                    $('#ref_reason_id').prop("disabled", false);
+                    $('#status').prop("disabled", false);
                 }else if(check == 2){ //View
-                    $(".modal-title").html('View Payment Number Type');
-
-                    $("#set_id").val(response.data.id);
-                    $("#name").val(response.data.name);
-                    $("#description").val(response.data.description);
+                    $(".modal-title").html('View Payment Number');
                     $(".submit_btn").hide();
 
+                    $("#set_id").val(response.data.id);
+                    $("#number").val(response.data.number);
+
+                    //-- Get Payment Reasons
+                    var payment_reasons = response.reasons; // Correct variable name
+                    var payment_reason_dr = $('#payment_reason_id');
+                    payment_reason_dr.empty();
+                    payment_reason_dr.append('<option value="">--Select--</option>');
+
+                    $.each(payment_reasons, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.payment_reason_id) ? 'selected' : '';
+                        payment_reason_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
+                    });
+
+                    //-- Get Ref Reasons
+                    var ref_reasons = response.ref_reason;
+                    var ref_reasons_dr = $('#ref_reason_id');
+                    ref_reasons_dr.empty();
+                    ref_reasons_dr.append('<option value="">--Select--</option>');
+
+                    $.each(ref_reasons, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.payment_reason_id) ? 'selected' : '';
+                        ref_reasons_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.title + '</option>');
+                    });
+
+                    var paymentReasonID = $('#payment_reason_id').val();
+                    if(paymentReasonID == 2 ){ //Event
+                        $('#showReason').show();
+                    }
+
+                    //-- Get Payment Method
+                    var payment_methods = response.methods; // Correct variable name
+                    var payment_method_dr = $('#payment_method_id');
+                    payment_method_dr.empty();
+                    payment_method_dr.append('<option value="">--Select--</option>');
+
+                    $.each(payment_methods, function(index, option) { // Correct variable name
+                        var selected = (option.id == response.data.payment_method_id) ? 'selected' : '';
+                        payment_method_dr.append('<option value="' + option.id + '" ' + selected + '>' + option.name + '</option>');
+                    });
+
+                    //--Status
+                    $("#status").empty();
+                    var status = $("#status");
+                    var row = '<option value="1" ' + (response.data.status == 1 ? 'selected' : '') + '>Active</option>';
+                    row += '<option value="0" ' + (response.data.status == 0 ? 'selected' : '') + '>Inactive</option>';
+                    status.append(row);
+
                     $('#set_id').prop("disabled", true);
-                    $('#name').prop("disabled", true);
-                    $('#description').prop("disabled", true);
+                    $('#number').prop("disabled", true);
+                    $('#payment_reason_id').prop("disabled", true);
+                    $('#payment_method_id').prop("disabled", true);
+                    $('#ref_reason_id').prop("disabled", true);
+                    $('#status').prop("disabled", true);
                 }else{
                     swal({
                         title: "No Data Found",
@@ -306,6 +402,14 @@
                 }
                 
                 $("#exampleModalCenter").modal('show');
+                // Show preloader
+                $("#loading").hide();
+                //--Dropdwon Search Fix
+                newRow.find('.dropdwon_select').each(function () {
+                    $(this).select2({
+                        dropdownParent: $(this).parent()
+                    });
+                });
             },
             error: function(xhr, status, error) {
                 swal("Error!", "There are no details available for this item.", "error");
@@ -313,7 +417,7 @@
         });
     });
 
-    /*========//Delete Data//========*/
+    /*========// Delete Data //========*/
     $(document).on('click', '#data-delete', function(){
         swal({
             title: "Are you sure?",
@@ -347,5 +451,15 @@
             }
         });
     });
-
+    //=======// Show Event //=======*/
+    $(document).on('change','#payment_reason_id',function(){
+        var paymentReasonID = $('#payment_reason_id').val();
+        if(paymentReasonID == 2 ){ //Event
+            $('#showReason').show();
+        }else{
+            $('#showReason').hide();
+            $("#ref_reason_id").val('');
+            $('#ref_reason_id').html(refReason);
+        }
+    });
 </script>

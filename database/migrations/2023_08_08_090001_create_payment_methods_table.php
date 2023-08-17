@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('name'); //('bKash', 'Rocket', 'Nagad', 'Upay', 'Card')
+            $table->string('image_path')->nullable();
+            $table->tinyInteger('status')->default(false);
             $table->timestamps();
         });
     }

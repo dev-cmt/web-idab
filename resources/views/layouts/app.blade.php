@@ -42,6 +42,7 @@
             <div class="sk-child sk-bounce3"></div>
         </div>
     </div>
+
     <!--*******************
         Preloader end
     ********************-->
@@ -86,12 +87,12 @@
     <!--**********************************
         Main wrapper end
     ***********************************-->
+    {{-- <div id="loading" style="display: none; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); color: white; position: fixed; top: 0; left: 0; display: flex; justify-content: center; align-items: center; z-index: 99999;">Loading...</div> --}}
 
+    
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    {{-- @include('layouts.partial.modal') --}}
     <!-- Required vendors -->
     <script src="{{asset('public/backend')}}/vendor/global/global.min.js"></script>
 	<script src="{{asset('public/backend')}}/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
@@ -168,7 +169,24 @@
             
     </script>
     <!-- End Toaster & Sweetalert -->
+    <script>
+        $(document).ready(function() {
+          $('.dropdwon_select').each(function () {
+            $(this).select2({
+              dropdownParent: $(this).parent()
+            });
+          });
+        });
+    </script>
 
+    
     @stack('script')
+    <div id='loading' style="background-color:#252525cc;display:none">
+        <div id='loading-loader'>
+            <span class='loading-loader'>
+                <span class='loading-inner'></span>
+            </span>
+        </div>
+    </div>
 </body>
 </html>
