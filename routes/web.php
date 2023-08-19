@@ -75,20 +75,44 @@ Route::group(['middleware' => ['verified']], function () {
 });
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Profile Setting
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('member-prifile/details/{id}', [ProfileController::class, 'profile_show'])->name('profile_show');
+    Route::put('member-prifile/other_info/{id}/update', [ProfileController::class, 'infoOtherUpdate'])->name('info_other.update');
+    Route::post('member-prifile/change-password/{id}', [ProfileController::class, 'changePassword'])->name('change.password');
+    Route::get('info_member/edit/{id}', [ProfileController::class, 'member_edit'])->name('info_member.edit');
+    Route::post('info_member/update/{id}', [ProfileController::class, 'member_update'])->name('info_member.update');
+    Route::delete('info_member/family_info/destroy/{id}', [ProfileController::class, 'info_family_destroy'])->name('info_family.destroy');
+
+    Route::put('/information/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/password/{user}', [ProfileController::class, 'password'])->name('profile.password');
+    Route::get('/information/edit', [ProfileController::class, 'information_edit'])->name('information.edit');
+});
+
+
+
+
 Route::group(['middleware' => ['auth']], function(){
     /**______________________________________________________________________________________________
      * MEMBER => MENU
      * ______________________________________________________________________________________________
      */
     Route::get('member/{id}/index', [MemberController::class,'index'])->name('member.index');
-    Route::get('member/{id}/edit', [MemberController::class,'edit'])->name('member.edit');
-    Route::get('member/{id}/show', [MemberController::class,'show'])->name('member.show');
-    Route::PATCH('member/{id}/update', [MemberController::class,'update'])->name('member.update');
+    // Route::get('member/{id}/edit', [MemberController::class,'edit'])->name('member.edit');
+    // Route::get('member/{id}/show', [MemberController::class,'show'])->name('member.show');
+    // Route::PATCH('member/{id}/update', [MemberController::class,'update'])->name('member.update');
     //-- MEMBER APPROVE
-    Route::get('member/approve/index', [MemberController::class,'approveIndex'])->name('member-approve.index');
-    Route::get('member/approve/padding', [MemberController::class, 'approvePadding'])->name('member-approve.padding');
-    Route::PATCH('member/approve/{id}/update', [MemberController::class, 'approveUpdate'])->name('member-approve.update');
-    Route::PATCH('member/approve/{id}/cancel', [MemberController::class, 'approveCancel'])->name('member-approve.cancel');
+    Route::get('member-approve/index', [MemberController::class,'approveIndex'])->name('members-approve.index');
+    Route::get('member-approve/padding', [MemberController::class, 'approvePadding'])->name('member-approve.padding');
+    Route::PATCH('member-approve/{id}/update', [MemberController::class, 'approveUpdate'])->name('member-approve.update');
+    Route::PATCH('member-approve/{id}/cancel', [MemberController::class, 'approveCancel'])->name('member-approve.cancel');
     
     //-- MASTER SETTING =>> Member
     Route::get('master/memebr-type/index',[MemberTypeController::class,'index'])->name('memebr-type.index');
@@ -116,6 +140,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('master/transaction-payment/number/delete',[TransactionController::class,'deletePaymentNumber'])->name('transaction-payment-number.delete');
     Route::get('get/payment-number',[TransactionController::class,'getPaymentNumber'])->name('get-payment-number');
 });
+
+
+
+
+
 
 
 
@@ -159,25 +188,6 @@ Route::get('/member/lose', function (){return view('frontend.pages.member_lose')
 Route::get('/gallery/video', function (){return view('frontend.pages.gallery_video');})->name('page.gallery_video');
 
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Profile Setting
-|--------------------------------------------------------------------------
-*/
-Route::get('member_prifile/details/{id}', [ProfileController::class, 'profile_show'])->name('profile_show');
-Route::put('member_prifile/other_info/{id}/update', [ProfileController::class, 'infoOtherUpdate'])->name('info_other.update');
-Route::post('member_prifile/change-password/{id}', [ProfileController::class, 'changePassword'])->name('change.password');
-Route::get('info_member/edit/{id}', [ProfileController::class, 'member_edit'])->name('info_member.edit');
-Route::post('info_member/update/{id}', [ProfileController::class, 'member_update'])->name('info_member.update');
-Route::delete('info_member/family_info/destroy/{id}', [ProfileController::class, 'info_family_destroy'])->name('info_family.destroy');
-
-
-
-Route::put('/information/{user}', [ProfileController::class, 'update'])->name('profile.update');
-Route::put('/password/{user}', [ProfileController::class, 'password'])->name('profile.password');
-Route::get('/information/edit', [ProfileController::class, 'information_edit'])->name('information.edit');
 
 
 

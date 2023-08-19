@@ -34,7 +34,12 @@
 <body>
     <!-- Spinner End -->
     @include('frontend.layouts.partial.header')
-    @include('frontend.layouts.partial.banner')
+    
+    @if (Route::currentRouteName() == '/')
+        @include('frontend.layouts.partial.slider')
+    @else
+        @include('frontend.layouts.partial.banner')
+    @endif
 
     @yield('content')
     @include('frontend.layouts.partial.footer')
@@ -42,6 +47,7 @@
     
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
+    <script src="{{asset('public/frontend')}}/js/jquery-3.6.0.min.js"></script> 
     <!-- Vendor JS Files -->
     <script src="{{asset('public/frontend')}}/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="{{asset('public/frontend')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -50,7 +56,6 @@
     <script src="{{asset('public/frontend')}}/vendor/owl-carousel/owl.carousel.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('public/frontend')}}/js/jquery-3.6.0.min.js"></script> 
     <script src="{{asset('public/frontend')}}/js/particles.js"></script>
     <script src="{{asset('public/frontend')}}/js/particles-config.js"></script>
     <script src="{{asset('public/frontend')}}/js/gsap.min.js"></script>

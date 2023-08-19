@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('child_name')->nullable();
             $table->date('child_dob')->nullable();
             $table->integer('child_gender')->nullable();
-            $table->timestamps();
             
+            $table->tinyInteger('status')->default(false);
             $table->unsignedBigInteger('member_id');
             $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

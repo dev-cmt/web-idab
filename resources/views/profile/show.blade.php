@@ -1,36 +1,53 @@
-
 <x-app-layout>
     <style>
-        .table thead th {
-            text-transform: capitalize ;
+        /*__________________Image Profile______________________*/
+        .avatar-upload {
+            position: relative;
+            max-width: 240px;
+            margin: 10px auto;
         }
-        .avatar-upload .avatar-preview {
-            border-radius: 0%;
-            width: 200px;
-            height: 200px;
+        .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 5px;
+        z-index: 1;
+        top: 10px;
         }
-        .avatar-upload .avatar-preview > div{
-            border-radius: 0%;
-        }
-        .profile_submit{
-            width: 200px;
-            margin: 5px auto;
-        }
-        .profile_submit button{
-            display: flex;
-            width: 100%;
-            justify-content: center;
+        .avatar-upload .avatar-edit input {
+        display: none;
         }
         .avatar-upload .avatar-edit input + label {
-            border-radius: 0%;
-            width: 200px;
-            position: absolute;
-            top: 156px;
-            left: -177px;
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 0%;
+        background: #ff0000;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+        padding: 7px 9px;
+        color: #fff;
         }
         .avatar-upload .avatar-edit input + label:hover {
-            background: #f98f73;
-            border-color: #d6d6d6;
+        background: #c00000;
+        }
+        .avatar-upload .avatar-preview {
+            width: 240px;
+            height: 240px;
+            position: relative;
+            border-radius: 0%;
+            border: 6px solid #ff0000;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+        .avatar-upload .avatar-preview > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 0%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     </style>
     <div class="row">
@@ -56,11 +73,10 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link {{Session::has('info_update') ? '' : 'active'}}">Employee Information</a></li>
+                                <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link {{Session::has('info_update') ? '' : 'active'}}">Member Information</a></li>
                                 <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link {{Session::has('info_update') ? 'active' : ''}}">Other Information</a></li>
                                 <li class="nav-item"><a href="#profile-settings" data-toggle="tab" class="nav-link {{Session::has('messege') || $errors->any() ? 'active' : ''}}">Setting</a></li>
                             </ul>
-                            
 
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade {{Session::has('messege') || Session::has('info_update') || $errors->any() ? '' : 'active show'}}">
@@ -91,6 +107,24 @@
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Contact Number <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->contact_number }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">NID No.<span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->nid_no }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Gender <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7"><span>{{$infoPersonal->gender == '0'? 'Male': 'Female'}}</span></div>
@@ -109,9 +143,55 @@
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Location <span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Blood Group <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->address}},
+                                                <div class="col-sm-6 col-7">
+                                                    @if ($infoPersonal->blood_group == 1)
+                                                    <span>A Positive (A+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 2)
+                                                    <span>A Negative (A-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 3)
+                                                    <span>B Positive (B+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 4)
+                                                    <span>B Negative (B-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 5)
+                                                    <span>AB Positive (AB+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 6)
+                                                    <span>AB Negative (AB-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 7)
+                                                    <span>O Positive (0+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 8)
+                                                    <span>O Negative (0-)</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Marrital Status <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7">
+                                                    @if ($infoPersonal->marrital_status == 0)
+                                                    <span>Unmarried</span>
+                                                    @elseif ($infoPersonal->marrital_status == 1)
+                                                    <span>Married</span>
+                                                    @elseif ($infoPersonal->marrital_status == 2)
+                                                    <span>Divorce</span>
+                                                    @elseif ($infoPersonal->marrital_status == 3)
+                                                    <span>Widowed</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Present Address <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->present_address}},
                                                     {{$infoPersonal->city}}</span></div>
                                             </div>
                                         </div>
@@ -119,16 +199,41 @@
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">College Name <span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Parmanent Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->collage}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->parmanent_address}},
+                                                    {{$infoPersonal->city}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--=====// Academic Information//=====-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h6 class="text-primary my-3">Academic Information</h6>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Institute Name <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->institute }}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Subject <span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Qualification<span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->mastQualification->name}}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Subject  <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7"><span>{{$infoAcademic->subject}}</span></div>
                                             </div>
@@ -137,66 +242,127 @@
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Degree <span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Passing Year<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7">
-                                                    <span>
-                                                        @if ($infoAcademic->degree == '0') No Degree
-                                                        @elseif ($infoAcademic->degree == '1') 12th Stander
-                                                        @elseif ($infoAcademic->degree == '2') Graduation
-                                                        @elseif ($infoAcademic->degree == '3') Masters
-                                                        @elseif ($infoAcademic->degree == '4') Ph.D
-                                                        @endif
-                                                    </span>
-                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->passing_year}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Passing Year <span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Other Qualification<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7">
-                                                    <span>{{$infoAcademic->passing_year}}</span>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->other_qualification}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--=====// Company Information//=====-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h6 class="text-primary my-3">Company Information</h6>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Company Name <span class="pull-right">:</span></h6>
                                                 </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_name }}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Marrital Status<span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Designation <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7">
-                                                    <span>
-                                                        @if ($infoPersonal->marrital_status=='0')Unmarried
-                                                        @elseif ($infoPersonal->marrital_status=='1')Married
-                                                        @elseif ($infoPersonal->marrital_status=='2')Divorce
-                                                        @elseif ($infoPersonal->marrital_status=='3')Widowed
-                                                        @endif
-                                                    </span>
-                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->designation }}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
-                                        @if ($infoPersonal->marrital_status != '0')
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
-                                                    <h6 class="f-w-500">Number Of Child<span class="pull-right">:</span></h6>
+                                                    <h6 class="f-w-500">Company Email <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7">
-                                                    <span>{{$infoPersonal->number_child}} Person</span>
-                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_email }}</span></div>
                                             </div>
                                         </div>
-                                        @endif
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Company Phone <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_phone }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Address <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->address }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Web Site Url<span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span><a href="{{$infoCompany->web_url }}">{{$infoCompany->web_url }}</a></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--=====// Student Information//=====-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h6 class="text-primary my-3">Student Information</h6>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Institute Name<span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->student_institute }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Semester <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->semester }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Head Faculty Name <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_name }}</span></div>
+                                            </div>
+                                        </div>
+                                        <!--Item-->
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-6 col-5">
+                                                    <h6 class="f-w-500">Head Faculty Number <span class="pull-right">:</span></h6>
+                                                </div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_number }}</span></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!--Child Details-->
                                     <div class="row">
                                         <div class="col-md-12">
-                                            @if (count($infoFamily))
+                                            @if (!is_null($infoChildDetails) && is_countable($infoChildDetails) && count($infoChildDetails) > 0)
                                             <div class="table-responsive mt-2">
                                                 <table class="table header-border table-hover verticle-middle">
                                                     <thead>
@@ -208,7 +374,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($infoFamily as $key=> $row)
+                                                        @foreach ($infoChildDetails as $key=> $row)
                                                         <tr>
                                                             <th>{{++$key}}</th>
                                                             <td>{{$row->child_name}}</td>
@@ -374,12 +540,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-lg-5 col-form-label">Employee Name
-                                                        <span class="text-danger">*</span>
-                                                    </label>
+                                                    <label class="col-lg-5 col-form-label">Member ID</label>
                                                     <div class="col-lg-7">
-                                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="" value="{{$user->name }}">                                     
-                                                        @error('name')
+                                                        <input type="text" class="form-control @error('member_code') is-invalid @enderror" name="name" placeholder="" value="{{$user->member_code }}" disabled>                                     
+                                                        @error('member_code')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -387,12 +551,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-lg-5 col-form-label">Contact Number
+                                                    <label class="col-lg-5 col-form-label">Member Name
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="col-lg-7">
-                                                        <input type="text" class="form-control @error('contact_number') is-invalid @enderror" name="contact_number" placeholder="" value="{{$user->contact_number }}">                                     
-                                                        @error('contact_number')
+                                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="" value="{{$user->name }}">                                     
+                                                        @error('name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -428,22 +592,21 @@
                                             </div>
                                             <div class="col-xl-5 col-sm-12 ">
                                                 <div class="skip-email text-center">
-                                                    <div class="avatar-upload" style="margin:5px auto">
+                                                    <div class="avatar-upload">
                                                         <div class="avatar-edit">
-                                                            <input type='file' class="@error('profile_photo_path') is-invalid @enderror form-control" name="profile_photo_path" id="imageUpload" accept=".png, .jpg, .jpeg" value="{{$user->profile_photo_path}}"/>
-                                                            <label for="imageUpload"><i class="fa fa-camera profile_save_btn"></i></label>
+                                                            <input type='file' name="profile_photo_path" class="@error('profile_photo_path') is-invalid @enderror form-control" id="imageUpload" accept=".png,.jpg,.jpeg,.gif,.svg" value="{{old('profile_photo_path')}}"/>                                    <label for="imageUpload"><i class="fa fa-camera"></i></label>
                                                             @error('profile_photo_path')
-                                                                <span class="invalid-feedback" role="alert" style="">
+                                                                <span class="invalid-feedback" role="alert" style="position: absolute;top: 195px;left: -180px;width: 300px;">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
-                                                        <label for="imageUpload" class="avatar-preview">
-                                                            <div id="imagePreview" style="background-image: url('{{asset('public/images')}}/profile/{{ $user->profile_photo_path }}');"></div>
+                                                        <label for="imageUpload">
+                                                            <div class="avatar-preview">
+                                                                <div id="imagePreview" style="background-image: url('{{asset('public/images')}}/profile/{{ $user->profile_photo_path }}');"></div>
+                                                            </div>
                                                         </label>
-                                                    </div>
-                                                    <div class="profile_submit">
-                                                        <button class="btn btn-primary">Save</button>
+                                                        <button type="submit" class="btn btn-primary d-flex" style="width:100%;justify-content: center;">Save</button>
                                                     </div>
                                                 </div>
                                             </div>

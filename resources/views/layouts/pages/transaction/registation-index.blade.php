@@ -13,11 +13,11 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Member Type</th>
-                                <th>Approve By</th>
+                                <th>Payment Number</th>
+                                <th>Transaction Number</th>
+                                <th>Payment Method</th>
+                                <th>Payment Date</th>
+                                <th>Paid Amount</th>
                                 <th class="text-right">Status</th>
                             </tr>
                             </thead>
@@ -25,16 +25,12 @@
                                 @foreach ($data as $key=> $row)
                                 <tr>
                                     <td>{{++$key}}</td>
-                                    <td>{{$row->payment_date}}</td>
-                                    <td>{{$row->paid_amount}}</td>
                                     <td>{{$row->payment_number}}</td>
                                     <td>{{$row->transaction_number}}</td>
                                     <td>{{$row->transfer_number}}</td>
-                                    <td>{{$row->transfer_number}}</td>
                                     <td>{{$row->payment_method_id}}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-secondary p-1 px-2">{{$row->parentUser->name ?? 'null'}}</i></button>
-                                    </td>
+                                    <td>{{$row->payment_date}}</td>
+                                    <td>{{$row->paid_amount}}</td>
                                     <td class="text-right">@if($row->status == 1)
                                         <span class="badge light badge-success">
                                             <i class="fa fa-circle text-success mr-1"></i> Approve

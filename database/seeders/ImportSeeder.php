@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Master\MemberType;
 use App\Models\Master\MastQualification;
+use App\Models\Member\InfoAcademic;
 
 class ImportSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class ImportSeeder extends Seeder
          * ___________________________________________________
          */
         MemberType::create([
-            'name'=>'Student member',
+            'name'=>'Student Member',
             'registration_fee'=> 1000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 0.00,
@@ -31,7 +32,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Candidate member',
+            'name'=>'Candidate Member',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -40,7 +41,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Professional member',
+            'name'=>'Professional Member',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -49,7 +50,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Associate member',
+            'name'=>'Associate Member',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -58,7 +59,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Trade member',
+            'name'=>'Trade Member',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 10000.00,
@@ -67,7 +68,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Corporate member',
+            'name'=>'Corporate Member',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -109,6 +110,21 @@ class ImportSeeder extends Seeder
             'status' => 1,
             'user_id' => 1,
         ]); 
+        /**
+         * ---------------------------
+         * 
+         * ---------------------------
+         */
+         InfoAcademic::create([
+            'mast_qualification_id'=>'1',
+            'status'=>'1',
+            'member_id'=> 1,
+        ]);
+         InfoAcademic::create([
+            'mast_qualification_id'=>'1',
+            'status'=>'1',
+            'member_id'=> 2,
+        ]);
         
     }
 }

@@ -6,10 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Models\Member\InfoPersonal;
-use App\Models\Member\InfoAcademic;
-use App\Models\Member\InfoFamily;
-use App\Models\Member\InfoOther;
 use App\Models\User;
 
 class RolePermissionSeeder extends Seeder
@@ -21,36 +17,6 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        $super_admin = User::create([
-            'name'=>'IDAB',
-            'email_verified_at' => '2002-01-01',
-            'email'=>'admin@gmail.com',
-            'status' => '1',
-            'is_admin' => '1',
-            'password'=>bcrypt('password'),
-            'profile_photo_path'=>'fix/admin.jpg',
-            'member_type_id'=> '1',
-        ]);
-        InfoPersonal::create([
-            'contact_number'=>'01909302126',
-            'member_id'=> $super_admin->id,
-        ]);
-        
-        $admin = User::create([
-            'name'=>'Member',
-            'email'=>'member@gmail.com',
-            'email_verified_at' => '2000-01-01',
-            'status' => '1',
-            'is_admin' => '1',
-            'password'=>bcrypt('password'),
-            'profile_photo_path'=>'fix/member.jpg',
-            'member_type_id'=> '1',
-        ]);
-        InfoPersonal::create([
-            'contact_number'=>'01909302126',
-            'member_id'=> $admin->id,
-        ]);
-
         /*__________________________________________________________ */
         /*__________________________________________________________ */
 
@@ -60,21 +26,14 @@ class RolePermissionSeeder extends Seeder
 
         $permissions = [
             /*_____Menu Access_____*/
-            ['name' => 'Setting access'],
-            ['name' => 'Pages access'],
-            
+            ['name' => 'Pages'],
+            ['name' => 'Setting'],
+
             //-----Gallery Access
             ['name' => 'Gallery access'],
             ['name' => 'Gallery create'],
             ['name' => 'Gallery edit'],
             ['name' => 'Gallery delete'],
-
-            //-----Member Access
-            ['name' => 'Member access'],
-            ['name' => 'Approve Member'],
-            ['name' => 'Member create'],
-            ['name' => 'Member edit'],
-            ['name' => 'Member delete'],
             
             //-----User Access
             ['name' => 'User access'],
@@ -87,17 +46,41 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Role create'],
             ['name' => 'Role edit'],
             ['name' => 'Role delete'],
+
+            /*_____ WEB Access _____*/
+            ['name' => 'Super-Admin'],
+            ['name' => 'Admin'],
+            ['name' => 'Guest'],
+            
+            ['name' => 'Create'],
+            ['name' => 'Edit'],
+            ['name' => 'Delete'],
+
+            //-----Member Access
+            ['name' => 'Member'],
+            ['name' => 'Student Member'],
+            ['name' => 'Candidate Member'],
+            ['name' => 'Professional Member'],
+            ['name' => 'Associate Member'],
+            ['name' => 'Trade Member'],
+            ['name' => 'Corporate Member'],
+
         ];
 
         foreach ($permissions as $item) {
             Permission::create($item);
         }
+        
+        $super_admin = User::findOrFail(1);
+        $admin = User::findOrFail(2);
 
         $super_admin->assignRole($super_admin_role);
         $admin->assignRole($admin_role);
 
-        $super_admin_role->givePermissionTo(Permission::all());
-        $admin_role->givePermissionTo('Gallery access');
+        // Give permissions to roles
+        $permissions = Permission::all(); // Get all permissions
 
+        $super_admin_role->syncPermissions($permissions);
+        $admin_role->givePermissionTo('Gallery access');
     }
 }

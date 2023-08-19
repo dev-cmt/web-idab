@@ -4,6 +4,7 @@ namespace App\Models\Member;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Master\MastQualification;
 use App\Models\User;
 
 class InfoAcademic extends Model
@@ -18,4 +19,9 @@ class InfoAcademic extends Model
         'status',
         'member_id',
     ];
+
+    public function mastQualification()
+    {
+        return $this->belongsTo(MastQualification::class);
+    }
 }

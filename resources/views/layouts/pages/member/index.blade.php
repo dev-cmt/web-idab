@@ -3,8 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Member List List</h4>
-                    <button id="open_modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Add New</button>
+                    <h4 class="card-title">{{$memberType}} List</h4>
                 </div>
 
                 <div class="card-body">
@@ -18,13 +17,13 @@
                                 <th>Phone Number</th>
                                 <th>Member Type</th>
                                 <th>Approve By</th>
-                                <th class="text-right">Status</th>
+                                <th class="text-right">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $key=> $row)
                                 <tr>
-                                    <td>{{++$key}}</td>
+                                    <td><img class="img-fluid" src="{{asset('public')}}/images/profile/{{ $row->profile_photo_path }}" width="40" height="40" alt=""></td>
                                     <td>{{$row->name}}</td>
                                     <td>{{$row->email}}</td>
                                     <td>{{ $row->infoPersonal->contact_number ?? 'null' }}</td>
@@ -32,15 +31,10 @@
                                     <td>
                                         <button class="btn btn-sm btn-secondary p-1 px-2">{{$row->parentUser->name ?? 'null'}}</i></button>
                                     </td>
-                                    <td class="text-right">@if($row->status == 1)
-                                        <span class="badge light badge-success">
-                                            <i class="fa fa-circle text-success mr-1"></i> Approve
-                                        </span>
-                                        @elseif($row->status == 2)
-                                        <span class="badge light badge-danger">
-                                            <i class="fa fa-circle text-danger mr-1"></i> Canceled
-                                        </span>
-                                        @endif
+                                    <td class="text-right">
+                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a>
+                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

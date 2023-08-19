@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Intervention\Image\Facades\Image;
+use App\Models\Member\InfoPersonal;
+use App\Models\Member\InfoChildDetails;
+use App\Models\Member\InfoAcademic;
+use App\Models\Member\InfoCompany;
+use App\Models\Member\InfoStudent;
+use App\Models\Member\InfoOther;
+use App\Models\Member\InfoDocument;
+use App\Models\Master\MemberType;
 use App\Models\User;
-use App\Models\Admin\InfoFamily;
-use App\Models\Admin\InfoOther;
 
 class ProfileController extends Controller
 {
@@ -24,11 +30,14 @@ class ProfileController extends Controller
     function profile_show($id){
         $user = User::findOrFail($id);
         $infoPersonal = $user->infoPersonal;
-        $infoFamily = $user->infoFamily;
+        $infoChildDetails = $user->infoChildDetails;
         $infoAcademic = $user->infoAcademic;
+        $infoCompany = $user->infoCompany;
+        $infoStudent = $user->infoStudent;
         $infoOther = $user->infoOther;
+        $infoDocument = $user->infoDocument;
 
-        return view('profile.show', compact('user','infoPersonal','infoFamily','infoAcademic','infoOther'));
+        return view('profile.show', compact('user','infoPersonal','infoChildDetails','infoAcademic','infoCompany','infoStudent','infoOther','infoDocument'));
     }
     public function infoOtherUpdate(Request $request, InfoOther $id)
     {
@@ -97,7 +106,6 @@ class ProfileController extends Controller
 
             if (Hash::check($request->current_password, $user->password)) {
                 $user->name = $request->name;
-                $user->contact_number = $request->contact_number;
                 $user->password = Hash::make($request->password);
                 $user->save();
 
@@ -110,7 +118,6 @@ class ProfileController extends Controller
             }
         } else {
             $user->name = $request->name;
-            $user->contact_number = $request->contact_number;
             $user->save();
 
             $notification = array('messege' => 'User update successfully!', 'alert-type' => 'update');

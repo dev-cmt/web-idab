@@ -13,6 +13,7 @@ use App\Models\Payment\Transaction;
 use App\Models\Payment\PaymentDetails;
 use App\Models\Payment\PaymentNumber;
 use App\Models\Payment\Cards;
+use App\Models\User;
 
 class TransactionController extends Controller
 {
@@ -31,6 +32,9 @@ class TransactionController extends Controller
             'transaction_number'=> 'required',
             'transfer_number'=> 'required',
         ]);
+        $approve = User::findorfail(Auth::user()->id);
+        $approve->is_admin = 1;
+        $approve->save();
         
         $transaction = new Transaction();
         $transaction->amount = $request->amount;

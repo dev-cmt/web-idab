@@ -19,18 +19,22 @@
             </li>
 
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-077-menu-1"></i>
+                    <i class="flaticon-381-user-9"></i>
                     <span class="nav-text">Member</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{Route('member-approve.index')}}">Member Approve</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Member List</a>
+                    @foreach ($memberType as $item)
+                        <li><a href="{{Route('member.index', $item->id )}}">{{$item->name}} </a></li>
+                    @endforeach
+                    @canany('Super-Admin')
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Member Approve</a>
                         <ul aria-expanded="false">
-                            @foreach ($memberType as $item)
-                                <li><a href="{{Route('member.index', $item->id )}}">{{$item->name}} </a></li>
-                            @endforeach
+                            <li><a href="{{Route('members-approve.index')}}">Member Approve</a></li>
                         </ul>
                     </li>
+                    @endcanany
+                    
+                    @canany('Data setting')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
                             @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
@@ -39,6 +43,7 @@
                             @endcanany
                         </ul>
                     </li>
+                    @endcanany
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -50,72 +55,55 @@
                     <li><a href="{{ Route('event_registation_list')}}">Event Fee</a></li>
                 </ul>
             </li>
+
+            @canany('Super-Admin')
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-003-diamond"></i>
+                <i class="flaticon-381-database"></i>
                     <span class="nav-text">Payment History</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="#">Annual Fee Details</a></li>
                     <li><a href="#">Event Fee Details</a></li>
                     <li><a href="{{Route('transaction-registation.index')}}">Registation Fee Details</a></li>
+                    @canany('Data setting')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
-                            @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
+                            @canany('Payment add','Payment edit','Payment delete')
                             <li><a href="{{Route('transaction-payment-number.index')}}">Setup Payment Number</a></li>
+                            @endcanany
                             <li><a href="#">Setup Annual Fee</a></li>
                             <li><a href="#">Setup Registation Fee</a></li>
-                            @endcanany
                         </ul>
                     </li>
+                    @endcanany
                 </ul>
             </li>
+            @endcanany
 
-
-
+            @canany('Super-Admin')
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-077-menu-1"></i>
                     <span class="nav-text">App</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ Route('profile.show', Auth::user()->id) }}">Profile</a></li>
-                    @canany('Setting access')
+                    @canany('Super-Admin')
                     <li><a href="{{route('contact.index')}}">Contact Us</a></li>
-                    @endcanany
-                </ul>
-            </li>
-            
-            <li><a href="{{ Route('layouts.gallery_image')}}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-063-picture"></i>
-                    <span class="nav-text">Gallery</span>
-                </a>
-            </li>
-
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-003-diamond"></i>
-                <span class="nav-text">Transactions</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ Route('event_registation_list')}}">Event Registation</a></li>
-                </ul>
-            </li>
-            
-            @canany('Member access')
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-053-heart"></i>
-                    <span class="nav-text">Member</span>
-                </a>
-                <ul aria-expanded="false">
-                    @canany('Role access','Role add','Role edit','Role delete')
-                        <li><a href="{{ route('bv.advisor') }}">Adviser</a></li>
-                        <li><a href="{{ route('bv.executive_committee') }}">Executive Committee</a></li>
-                        <li><a href="{{ route('bv.welfare') }}">Pune Welfare Trust</a></li>
-                        <li><a href="{{ route('bv.member_list') }}">Pune Member</a></li>
                     @endcanany
                 </ul>
             </li>
             @endcanany
 
-            @canany('Setting access')
+
+            @canany('Super-Admin')
+            <li><a href="{{ Route('layouts.gallery_image')}}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-063-picture"></i>
+                    <span class="nav-text">Gallery</span>
+                </a>
+            </li>
+            @endcanany
+
+            @canany('Super-Admin')
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-settings-2"></i>
                     <span class="nav-text">Setting</span>
@@ -126,7 +114,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approve</a>
                         <ul aria-expanded="false">
                             @canany('Approve Member')
-                                <li><a href="{{ route('member-approve.index') }}">Member Approve</a></li>
+                                <li><a href="{{ route('member-approve-index') }}">Member Approve</a></li>
                             @endcanany
                             @canany('Approve Member')
                                 <li><a href="{{ Route('subscription_approve_list')}}">Subscription Fees</a></li>
@@ -170,19 +158,15 @@
             </li>
             @endcanany
             
-            {{-- @canany('Setting access') --}}
+            @canany('Super-Admin')
             <li>
                 <a href="{{ route('subscription.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-147-medal"></i><span class="nav-text">Subscription</span>
                 </a>
             </li>
-            {{-- @endcanany --}}
+            @endcanany
 
         </ul>
-        <div class="copyright">
-            <p><strong>Pune Club</strong><!-- © 2023 All Rights Reserved--></p>
-            <p class="fs-12">Made with <span class="heart"></span> by <a href="http://www.iconisl.com/"><img src="{{asset('public/frontend')}}/images/icon.png" alt="Icon Information Systems Ltd." style="width:30px;"></a></p>
-        </div>
     </div>
     <!--**********************************
                 Sidebar end

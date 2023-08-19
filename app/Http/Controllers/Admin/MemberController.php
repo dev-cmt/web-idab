@@ -14,6 +14,7 @@ use App\Models\Member\InfoAcademic;
 use App\Models\Member\InfoCompany;
 use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoDocument;
+use App\Models\Member\InfoOther;
 use App\Models\Master\MastQualification;
 use App\Models\Master\MemberType;
 use App\Models\User;
@@ -29,7 +30,8 @@ class MemberController extends Controller
     public function index($id)
     {
         $data = User::where('member_type_id', $id)->get();
-        return view('layouts.pages.member.index',compact('data'));
+        $memberType = MemberType::where('id', $id)->first()->name;
+        return view('layouts.pages.member.index',compact('data', 'memberType'));
     }
 
     /**
@@ -192,6 +194,12 @@ class MemberController extends Controller
             ]);
             $infoStudent->save();
 
+            /*______________________/ InfoOther \___________________*/
+            $infoOther = new InfoOther([
+                'status' => 1,
+                'member_id' => $userId,
+            ]);
+            $infoOther->save();
             /*______________________/ InfoDocument \___________________*/
             $userId = $user->id;
             // Function to handle file upload and directory creation
@@ -251,7 +259,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-       $posts=Gallery::findOrFail($id);
+        $posts=Gallery::findOrFail($id);
         return view('layouts.pages.gallery.edit')->with('posts',$posts);
     }
 
@@ -264,38 +272,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-     $post=Gallery::findOrFail($id);
-     if($request->hasFile("cover")){
-         if (File::exists("cover/".$post->cover)) {
-             File::delete("cover/".$post->cover);
-         }
-         $file=$request->file("cover");
-         $post->cover=time()."_".$file->getClientOriginalName();
-         $file->move(\public_path("/cover"),$post->cover);
-         $request['cover']=$post->cover;
-     }
-
-        $post->update([
-            "title" =>$request->title,
-            "description"=>$request->description,
-            "date"=>$request->date,
-            "cover"=>$post->cover,
-            "public"=>$request->public,
-        ]);
-
-        if($request->hasFile("images")){
-            $files=$request->file("images");
-            foreach($files as $file){
-                $imageName=time().'_'.$file->getClientOriginalName();
-                $request["gallery_id"]=$id;
-                $request["image"]=$imageName;
-                $file->move(\public_path("images"),$imageName);
-                Image::create($request->all());
-
-            }
-        }
-        $notification=array('messege'=>'Category save successfully!','alert-type'=>'success');
-        return redirect()->route('gallery.index')->with($notification);
+     
 
     }
     /*__________________________________________________________________________________ */

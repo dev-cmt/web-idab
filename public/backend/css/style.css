@@ -20463,10 +20463,10 @@ svg text {
   color: #fff; }
 [data-theme-version="light"] .input-success .form-control,
 [data-theme-version="dark"] .input-success .form-control {
-  border-color: #68CF29; }
+  border-color: #ff0000; }
 [data-theme-version="light"] .input-success .input-group-text,
 [data-theme-version="dark"] .input-success .input-group-text {
-  background-color: #68CF29;
+  background-color: #ff0000;
   color: #fff; }
 [data-theme-version="light"] .input-warning .form-control,
 [data-theme-version="dark"] .input-warning .form-control {

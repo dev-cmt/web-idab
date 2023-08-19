@@ -12,9 +12,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 use App\Models\Member\InfoPersonal;
+use App\Models\Member\InfoChildDetails;
 use App\Models\Member\InfoAcademic;
-use App\Models\Member\InfoFamily;
+use App\Models\Member\InfoCompany;
+use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoOther;
+use App\Models\Member\InfoDocument;
 use App\Models\Master\MemberType;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -47,39 +50,37 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(MemberType::class, 'member_type_id');
     }
-    public function infoPersonal()
-    {
-        return $this->hasOne(InfoPersonal::class, 'member_id');
-    }
     public function parentUser()
     {
         return $this->belongsTo(User::class, 'is_approve');
     }
-
-
-
-
-
-
+    public function infoPersonal()
+    {
+        return $this->hasOne(InfoPersonal::class, 'member_id');
+    }
+    public function infoChildDetails()
+    {
+        return $this->hasOne(InfoChildDetails::class, 'member_id');
+    }
     public function infoAcademic()
     {
-        return $this->hasOne(InfoAcademic::class);
+        return $this->hasOne(InfoAcademic::class, 'member_id');
+    }
+    public function infoCompany()
+    {
+        return $this->hasOne(InfoCompany::class, 'member_id');
+    }
+    public function infoStudent()
+    {
+        return $this->hasOne(InfoStudent::class, 'member_id');
+    }
+    public function infoDocument()
+    {
+        return $this->hasOne(InfoDocument::class, 'member_id');
     }
     public function infoOther()
     {
-        return $this->hasOne(InfoOther::class);
-    }
-    public function eventPayment()
-    {
-        return $this->hasMany(EventPayment::class);
-    }
-    public function eventRegister()
-    {
-        return $this->hasMany(EventRegister::class);
-    }
-    public function gallery()
-    {
-        return $this->hasMany(Gallery::class);
+        return $this->hasOne(InfoOther::class, 'member_id');
     }
     
 
