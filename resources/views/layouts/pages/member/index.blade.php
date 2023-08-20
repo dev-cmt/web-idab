@@ -16,8 +16,12 @@
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Member Type</th>
+                                @canany('Super-Admin')
                                 <th>Approve By</th>
+                                @endcanany
+                                @canany('Edit', 'View', 'Delete')
                                 <th class="text-right">Action</th>
+                                @endcanany
                             </tr>
                             </thead>
                             <tbody>
@@ -28,14 +32,24 @@
                                     <td>{{$row->email}}</td>
                                     <td>{{ $row->infoPersonal->contact_number ?? 'null' }}</td>
                                     <td>{{$row->memberType->name ?? 'null'}}</td>
+                                    @canany('Super-Admin')
                                     <td>
                                         <button class="btn btn-sm btn-secondary p-1 px-2">{{$row->parentUser->name ?? 'null'}}</i></button>
                                     </td>
+                                    @endcanany
+                                    @canany('Super-Admin')
                                     <td class="text-right">
-                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a>
-                                        <a href="{{ route('users.edit', $row->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></a>
+                                        {{-- @canany('Edit') --}}
+                                        <a href="{{ route('info_member.edit', $row->id) }}" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                        {{-- @endcanany --}}
+                                        {{-- @canany('View') --}}
+                                        <a href="{{ route('profile_show', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a>
+                                        {{-- @endcanany --}}
+                                        @canany('Delete')
+                                        {{-- <a href="{{ route('users.edit', $row->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></a> --}}
+                                        @endcanany
                                     </td>
+                                    @endcanany
                                 </tr>
                                 @endforeach
                             </tbody>

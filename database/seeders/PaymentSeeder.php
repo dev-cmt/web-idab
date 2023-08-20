@@ -68,8 +68,8 @@ class PaymentSeeder extends Seeder
             'status'=>'1',
         ]);
         PaymentMethods::create([
-            'name'=>'Cash',
-            'image_path'=>'Cash.png',
+            'name'=>'City-Bank',
+            'image_path'=>'city-bank.png',
             'status'=>'1',
         ]);
         

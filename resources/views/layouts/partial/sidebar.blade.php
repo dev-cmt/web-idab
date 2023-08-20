@@ -34,7 +34,7 @@
                     </li>
                     @endcanany
                     
-                    @canany('Data setting')
+                    @canany('Admin')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
                             @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
@@ -65,12 +65,12 @@
                     <li><a href="#">Annual Fee Details</a></li>
                     <li><a href="#">Event Fee Details</a></li>
                     <li><a href="{{Route('transaction-registation.index')}}">Registation Fee Details</a></li>
-                    @canany('Data setting')
+                    @canany('Admin')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
-                            @canany('Payment add','Payment edit','Payment delete')
+                            {{-- @canany('Payment add','Payment edit','Payment delete') --}}
                             <li><a href="{{Route('transaction-payment-number.index')}}">Setup Payment Number</a></li>
-                            @endcanany
+                            {{-- @endcanany --}}
                             <li><a href="#">Setup Annual Fee</a></li>
                             <li><a href="#">Setup Registation Fee</a></li>
                         </ul>
@@ -167,7 +167,12 @@
             @endcanany
 
         </ul>
+        <div class="copyright py-4 my-4">
+            {{-- <p><strong>Pune Club</strong><!-- © 2023 All Rights Reserved--></p>
+            <p class="fs-12">Made with <span class="heart"></span> by <a href="http://www.iconisl.com/"><img src="{{asset('public/frontend')}}/images/icon.png" alt="Icon Information Systems Ltd." style="width:30px;"></a></p> --}}
+        </div>
     </div>
+
     <!--**********************************
                 Sidebar end
     ***********************************-->

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use App\Models\Admin\Event;
 use App\Models\Payment\PaymentReasons;
 use App\Models\Payment\PaymentMethods;
@@ -18,8 +19,9 @@ use App\Models\User;
 class TransactionController extends Controller
 {
     public function indexRegistation() {
-        $data = PaymentDetails::get();
-        return view('layouts.pages.transaction.registation-index', compact('data'));
+        $data = PaymentDetails::where('status', 0)->get();
+        $record = PaymentDetails::whereIn('status', [1,2])->get();
+        return view('layouts.pages.transaction.registation-index', compact('data', 'record'));
     }
     public function createRegistation()
     {
@@ -45,6 +47,7 @@ class TransactionController extends Controller
         $transaction->user_id = Auth::user()->id;
         $transaction->save();
 
+
         $paymentDetails = new PaymentDetails();
         $paymentDetails->payment_date = now()->format('Y-m-d');
         $paymentDetails->paid_amount = $request->amount;
@@ -54,14 +57,48 @@ class TransactionController extends Controller
         $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2
         $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register => 1, Event => 2
         $paymentDetails->transfer_number = $request->transfer_number;
+        $paymentDetails->slip = uploadFile($request, 'slip', 'bank-info', Auth::user()->id);
         $paymentDetails->message = $request->message;
         $paymentDetails->payment_method_id = $request->payment_method_id;
-        $paymentDetails->user_id = Auth::user()->id;
+        $paymentDetails->member_id = Auth::user()->id;
+        $paymentDetails->status = 0;
         $paymentDetails->save();
+
+        function uploadFile($request, $fieldName, $subfolder, $userId) {
+            if ($request->hasFile($fieldName)) {
+                $uploadedFile = $request->file($fieldName);
+                $extension = $uploadedFile->getClientOriginalExtension();
+                $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
+
+                $folderPath = public_path("document/member/{$userId}/{$subfolder}");
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0777, true);
+                }
+                $uploadedFile->move($folderPath, $filenameToStore);
+                return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
+            }
+            return null;
+        }//End
 
         return redirect()->route('member-approve.padding');
     }
     
+    public function approveRegistationApprove($id) {
+        $data = PaymentDetails::findOrFail($id);
+        $data->status = 1;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function approveRegistationCancel($id) {
+        $data = PaymentDetails::findOrFail($id);
+        $data->status = 2;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        return redirect()->back();
+    }
     
     
     /**_________________________________________________________________________________________

@@ -315,7 +315,9 @@
                         <div class="bar_academic"></div>
                         <div class="col-md-6 mb-2">
                             <div class="row">
-                                <label for="institute" class="form-label col-md-5">University/ Institute</label>
+                                <label for="institute" class="form-label col-md-5">University/ Institute
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="col-md-7">
                                     <input type="text" name="institute" id="institute" class="form-control @error('institute') is-invalid @enderror" value="{{old('institute')}}">
                                     @error('institute')

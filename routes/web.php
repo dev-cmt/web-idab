@@ -45,7 +45,7 @@ Route::get('comming/soon', [FrontViewController::class, 'welcome'])->name('commi
 //______________ COMMITTEE
 
 //______________ MEMBERS
-
+Route::get('pages/{id}/member', [FrontViewController::class, 'member'])->name('page.member');
 //______________ EVENTS
 
 //______________ CONTACT US
@@ -84,19 +84,12 @@ Route::group(['middleware' => ['verified']], function () {
 */
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('member-prifile/details/{id}', [ProfileController::class, 'profile_show'])->name('profile_show');
+    Route::get('member-prifile/{id}/show', [ProfileController::class, 'profile_show'])->name('profile_show');
     Route::put('member-prifile/other_info/{id}/update', [ProfileController::class, 'infoOtherUpdate'])->name('info_other.update');
     Route::post('member-prifile/change-password/{id}', [ProfileController::class, 'changePassword'])->name('change.password');
     Route::get('info_member/edit/{id}', [ProfileController::class, 'member_edit'])->name('info_member.edit');
     Route::post('info_member/update/{id}', [ProfileController::class, 'member_update'])->name('info_member.update');
-    Route::delete('info_member/family_info/destroy/{id}', [ProfileController::class, 'info_family_destroy'])->name('info_family.destroy');
-
-    Route::put('/information/{user}', [ProfileController::class, 'update'])->name('profile.update');
-    Route::put('/password/{user}', [ProfileController::class, 'password'])->name('profile.password');
-    Route::get('/information/edit', [ProfileController::class, 'information_edit'])->name('information.edit');
 });
-
-
 
 
 Route::group(['middleware' => ['auth']], function(){
@@ -131,6 +124,9 @@ Route::group(['middleware' => ['auth']], function(){
      */
     //-- TRANSACTION HISTORY
     Route::get('master/transaction-registation/index',[TransactionController::class,'indexRegistation'])->name('transaction-registation.index');
+    Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApprove'])->name('transaction-registation.approve');
+    Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
+
     Route::get('master/transaction-annual/index',[TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
     Route::get('master/transaction-event/index',[TransactionController::class,'indexEvent'])->name('transaction-event.index');
     //-- MASTER SETTING =>> PAYMENT NUMBER

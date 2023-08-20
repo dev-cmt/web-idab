@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Image;
 use App\Models\Admin\Gallery;
 use App\Models\Admin\Event;
-use App\Models\Admin\LoseMember;
+use App\Models\Master\MemberType;
+use App\Models\User;
 use DB;
 
 class FrontViewController extends Controller
@@ -35,9 +36,12 @@ class FrontViewController extends Controller
      * Members Menu Pages
      * ________________________________________________________________________________________
      */
-    public function index3()
+    public function member($id)
     {
-        return view('comming_soon');
+        $data = User::where('member_type_id', $id)->where('status', 1)->get();
+        $membersType = MemberType::where('id', $id)->first()->name;
+
+        return view('frontend.pages.member',compact('data', 'membersType'));
     }
     /**________________________________________________________________________________________
      * Events Menu Pages

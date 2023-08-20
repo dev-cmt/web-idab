@@ -76,7 +76,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="https://iconisl.com" target="_blank">iconisl.com</a> 2021</p>
+                <p>Copyright © Designed &amp; Developed by <a href="https://iconisl.com" target="_blank">iconisl.com</a> 2023</p>
             </div>
         </div>
         <!--**********************************

@@ -23,89 +23,83 @@
                                     <span class="accordion__header--indicator"></span>
                                 </div>
                                 <div id="rounded-stylish_collapseZero" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                    <!--__________________  Personal __________________-->
                                     <div class="row pb-0 accordion__body--text">
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Your Full Name</label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="" value="{{$user->name}}" disabled/>
-                                                    @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Email</label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="" value="{{$user->email}}" disabled/>
-                                                    @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Company Name
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="contact_number" class="form-label col-md-5">Phone Number
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="company_name" id="company_name" class="form-control @error('company_name') is-invalid @enderror" placeholder="" value="{{$infoOther->company_name}}"/>
-                                                    @error('company_name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="contact_number" id="contact_number"class="form-control @error('contact_number') is-invalid @enderror" value="{{ $infoPersonal->contact_number }}">
+                                                    @error('contact_number')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Designation
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="designation" id="designation" class="form-control @error('designation') is-invalid @enderror" placeholder="" value="{{$infoOther->designation}}"/>
-                                                    @error('designation')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="nid_no" class="form-label col-md-5">NID No.</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="nid_no" id="nid_no"class="form-control @error('nid_no') is-invalid @enderror" value="{{ $infoPersonal->nid_no }}">
+                                                    @error('nid_no')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Date Of Birth
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="date" name="dob" id="dob" class="form-control @error('dob') is-invalid @enderror" placeholder="" value="{{$infoPersonal->dob}}"/>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="formFile" class="form-label col-md-5">Father's Name</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="father_name" id="father_name"class="form-control @error('father_name') is-invalid @enderror" value="{{ $infoPersonal->father_name }}">
+                                                    @error('father_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="mother_name" class="form-label col-md-5">Mother's Name</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="mother_name" id="mother_name"class="form-control @error('mother_name') is-invalid @enderror" value="{{ $infoPersonal->mother_name }}">
+                                                    @error('mother_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="dob" class="form-label col-md-5">Date Of Birth</label>
+                                                <div class="col-md-7">
+                                                    <input type="date" name="dob" id="formFile"class="form-control @error('dob') is-invalid @enderror" value="{{ $infoPersonal->dob }}">
                                                     @error('dob')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Gender
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <select name="gender" class="form-control default-select @error('gender') is-invalid @enderror">
-                                                        <option value="0" {{ $infoPersonal->gender == '0' ? 'selected' : '' }}>Male</option>
-                                                        <option value="1" {{ $infoPersonal->gender == '1' ? 'selected' : '' }}>Female</option>
-                                                        <option value="2" {{ $infoPersonal->gender == '2' ? 'selected' : '' }}>Non-binary</option>
-                                                    </select>                                                    
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="gender" class="form-label col-md-5">Gender</label>
+                                                <div class="col-md-7">
+                                                    <select name="gender" id="gender" class="form-control form-select @error('gender') is-invalid @enderror">
+                                                        <option value="1" {{ $infoPersonal->gender == '1' ? 'selected' : '' }}>Male</option>
+                                                        <option value="2" {{ $infoPersonal->gender == '2' ? 'selected' : '' }}>Female</option>
+                                                    </select>
                                                     @error('gender')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -114,48 +108,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Your Address
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" placeholder="" value="{{$infoPersonal->address}}"/>
-                                                    @error('address')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">City
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror" placeholder="" value="{{$infoPersonal->city}}"/>
-                                                    @error('city')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Marrital Status
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <select name="marrital_status" class="form-control default-select @error('marrital_status') is-invalid @enderror">
-                                                        <option value="0" {{ $infoPersonal->marrital_status == '0' ? 'selected' : '' }}>Unmarried</option>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="marrital_status" class="form-label col-md-5">Marrital Status</label>
+                                                <div class="col-md-7">
+                                                    <select name="marrital_status" class="form-control form-select  @error('marrital_status') is-invalid @enderror">
+                                                        <option value="0" selected>Unmarried</option>
                                                         <option value="1" {{ $infoPersonal->marrital_status == '1' ? 'selected' : '' }}>Married</option>
                                                         <option value="2" {{ $infoPersonal->marrital_status == '2' ? 'selected' : '' }}>Divorce</option>
                                                         <option value="3" {{ $infoPersonal->marrital_status == '3' ? 'selected' : '' }}>Widowed</option>
-                                                    </select>                                                    
+                                                    </select>
                                                     @error('marrital_status')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -164,14 +126,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Number Of Child
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="number_child" id="number_child" class="form-control @error('number_child') is-invalid @enderror" placeholder="" value="{{$infoPersonal->number_child}}"/>
-                                                    @error('number_child')
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="blood_group" class="form-label col-md-5">Blood Group</label>
+                                                <div class="col-md-7">
+                                                    <select name="blood_group" id="blood_group" class="form-control form-select @error('blood_group') is-invalid @enderror">
+                                                        <option value="" selected>Select</option>
+                                                        <option value="1" {{ $infoPersonal->blood_group == '1' ? 'selected' : '' }}>A Positive (A+)</option>
+                                                        <option value="2" {{ $infoPersonal->blood_group == '2' ? 'selected' : '' }}>A Negative (A-)</option>
+                                                        <option value="3" {{ $infoPersonal->blood_group == '3' ? 'selected' : '' }}>B Positive (B+)</option>
+                                                        <option value="4" {{ $infoPersonal->blood_group == '4' ? 'selected' : '' }}>B Negative (B-)</option>
+                                                        <option value="5" {{ $infoPersonal->blood_group == '5' ? 'selected' : '' }}>AB Positive (AB+)</option>
+                                                        <option value="6" {{ $infoPersonal->blood_group == '6' ? 'selected' : '' }}>AB Negative (AB-)</option>
+                                                        <option value="7" {{ $infoPersonal->blood_group == '7' ? 'selected' : '' }}>O Positive (0+)</option>
+                                                        <option value="8" {{ $infoPersonal->blood_group == '8' ? 'selected' : '' }}>O Negative (0-)</option>
+                                                    </select>
+                                                    @error('blood_group')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -179,14 +149,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Spouse Name
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="spouse" id="spouse" class="form-control @error('spouse') is-invalid @enderror" placeholder="" value="{{$infoPersonal->spouse}}"/>
-                                                    @error('spouse')
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="present_address" class="form-label col-md-5">Present Address</label>
+                                                <div class="col-md-7">
+                                                    <textarea name="present_address" id="present_address" class="form-control @error('present_address') is-invalid @enderror" rows="2">{{$infoPersonal->present_address}}</textarea>
+                                                    @error('present_address')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -194,14 +162,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Spouse DOB
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-8">
-                                                    <input type="date" name="birth_day" id="birth_day" class="form-control @error('birth_day') is-invalid @enderror" placeholder="" value="{{$infoPersonal->birth_day}}"/>
-                                                    @error('birth_day')
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="formFile" class="form-label col-md-5">Permanent Address</label>
+                                                <div class="col-md-7">
+                                                    <textarea name="parmanent_address" id="parmanent_address" class="form-control @error('parmanent_address') is-invalid @enderror" rows="2">{{$infoPersonal->parmanent_address}}</textarea>
+                                                    @error('parmanent_address')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -216,77 +182,49 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                
                                     </div>
                                 </div>
                             </div>
-                            <!-- Step 2 input fields {Family Information}-->
+                            <!-- Step 2 input fields {Academic Information}-->
                             <div class="accordion__item">
                                 <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseTwo" aria-expanded="false">
-                                    <span class="accordion__header--icon"></span>
-                                    <span class="accordion__header--text">Family Information (Child)</span>
-                                    <span class="accordion__header--indicator"></span>
-                                </div>
-                                <div id="rounded-stylish_collapseTwo" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
-                                    <div class="pb-0 accordion__body--text">
-                                        @foreach ($infoFamily as $index => $item)
-                                        <div class="row mb-2" id="row_data_{{ $item['id'] }}">
-                                            <div class="col-md-4">
-                                                <label>Name</label>
-                                                <input type="hidden" name="editFields[{{ $index }}][id]" class="form-control" value="{{ $item['id'] }}"/>
-                                                <input type="text" name="editFields[{{ $index }}][child_name]" class="form-control" value="{{ $item['child_name'] }}"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>Date Of Birth</label>
-                                                <input type="date" name="editFields[{{ $index }}][child_dob]" class="form-control" value="{{ $item['child_dob'] }}"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>Gender</label>
-                                                <select name="editFields[{{ $index }}][child_gender]" class="form-control default-select">
-                                                    <option value="0" {{ $item['child_gender'] == '0' ? 'selected' : '' }}>Male</option>
-                                                    <option value="1" {{ $item['child_gender'] == '1' ? 'selected' : '' }}>Female</option>
-                                                    <option value="2" {{ $item['child_gender'] == '2' ? 'selected' : '' }}>Non-binary</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2 text-right">
-                                                <label>Action</label>
-                                                <div>
-                                                    <button type="button" id="delete_data" data-id="{{ $item['id'] }}" class="btn btn-danger">Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-
-                                        <div id="dynamicAddRemoveWrapper"></div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <div class="d-flex justify-content-end">
-                                                        <button type="button" id="add-btn" class="btn btn-secondary mr-2"><i class="fa fa-plus pr-2"></i>Add More</button>
-                                                        <button type="submit" class="btn btn-primary" id="familySubmit">Update</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Step 3 input fields {Academic Information}-->
-                            <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseThree" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Academic Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseThree" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseTwo" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                    <!--__________________  Academic __________________-->
                                     <div class="row pb-0 accordion__body--text">
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">College Name</label>
-                                                <div class="col-lg-8">
-                                                    <input type="test" name="collage" id="collage" class="form-control @error('collage') is-invalid @enderror" placeholder="" value="{{$infoAcademic->collage}}"/>
-                                                    @error('collage')
+                                        <div class="bar_academic"></div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="institute" class="form-label col-md-5">University/ Institute
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="institute" id="institute" class="form-control @error('institute') is-invalid @enderror" value="{{$infoAcademic->institute}}">
+                                                    @error('institute')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="mast_qualification_id" class="form-label col-md-5">Qualification
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <select name="mast_qualification_id" id="mast_qualification_id" class="form-control form-select @error('mast_qualification_id') is-invalid @enderror">
+                                                        <option disabled selected>Please select</option>
+                                                        @foreach ($qualification as $item)
+                                                            <option value="{{$item->id}}" {{ $infoAcademic->mast_qualification_id == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
+                                                        @endforeach
+                                                    </select>                                                    
+                                                    @error('mast_qualification_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -294,37 +232,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Batch No.</label>
-                                                <div class="col-lg-8">
-                                                    <input type="test" name="batch" id="batch" class="form-control @error('batch') is-invalid @enderror" placeholder="" value="{{$user->batch}}"/>
-                                                    @error('batch')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Passing Year</label>
-                                                <div class="col-lg-8">
-                                                    <input type="test" name="passing_year" id="passing_year" class="form-control @error('passing_year') is-invalid @enderror" placeholder="" value="{{$infoAcademic->passing_year}}"/>
-                                                    @error('passing_year')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Subject</label>
-                                                <div class="col-lg-8">
-                                                    <input type="test" name="subject" id="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="" value="{{$infoAcademic->subject}}"/>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="subject" class="form-label col-md-5">Subject</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="subject" id="subject" class="form-control @error('subject') is-invalid @enderror" value="{{$infoAcademic->subject}}">
                                                     @error('subject')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -333,18 +245,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group row">
-                                                <label class="col-lg-4 col-form-label">Degree</label>
-                                                <div class="col-lg-8">
-                                                    <select name="degree" class="@error('degree') is-invalid @enderror form-control default-select">
-                                                        <option value="0" {{ $infoAcademic->degree == 0 ? 'selected' : '' }}>--Select--</option>
-                                                        <option value="1" {{ $infoAcademic->degree == 1 ? 'selected' : '' }}>12th Standard</option>
-                                                        <option value="2" {{ $infoAcademic->degree == 2 ? 'selected' : '' }}>Graduation</option>
-                                                        <option value="3" {{ $infoAcademic->degree == 3 ? 'selected' : '' }}>Masters</option>
-                                                        <option value="4" {{ $infoAcademic->degree == 4 ? 'selected' : '' }}>Ph.D</option>
-                                                    </select>                               
-                                                    @error('degree')
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="passing_year" class="form-label col-md-5">Passing Year</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="passing_year" id="passing_year" class="form-control @error('passing_year') is-invalid @enderror" value="{{$infoAcademic->passing_year}}">
+                                                    @error('passing_year')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -352,25 +258,215 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <label for="other_qualification" class="form-label col-md-5">Other Qualification</label>
+                                                <div class="col-md-7">
+                                                    <textarea name="other_qualification" id="other_qualification" class="form-control @error('other_qualification') is-invalid @enderror" rows="1">{{$infoAcademic->other_qualification}}</textarea>
+                                                    @error('other_qualification')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="d-flex justify-content-end">
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <!-- Step 3 input fields {Business Information}-->
+                            @if ($infoCompany->company_name || $infoCompany->designation)
+                            <div class="accordion__item">
+                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseThree" aria-expanded="false">
+                                    <span class="accordion__header--icon"></span>
+                                    <span class="accordion__header--text">Business Information</span>
+                                    <span class="accordion__header--indicator"></span>
+                                </div>
+                                <div id="rounded-stylish_collapseThree" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                    <!--__________________  Business __________________-->
+                                    <div class="row accordion__body--text">
+                                        <div class="bar_business" id="bar_business" style="display: none;"></div>                            
+                                        <div class="bar_job" id="bar_job" style="display: none;"></div>                            
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="company_name" class="form-label col-md-5">Company Name</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="company_name" id="company_name"class="form-control @error('company_name') is-invalid @enderror" value="{{$infoCompany->company_name }}">
+                                                    @error('company_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="designation" class="form-label col-md-5">Designation</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="designation" id="designation"class="form-control @error('designation') is-invalid @enderror" value="{{$infoCompany->designation }}">
+                                                    @error('designation')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="company_email" class="form-label col-md-5">Company Email</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="company_email" id="company_email"class="form-control @error('company_email') is-invalid @enderror" value="{{$infoCompany->company_email }}">
+                                                    @error('company_email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="company_phone" class="form-label col-md-5">Company Phone</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="company_phone" id="company_phone"class="form-control @error('company_phone') is-invalid @enderror" value="{{$infoCompany->company_phone }}">
+                                                    @error('company_phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="address" class="form-label col-md-5">Company Address</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{$infoCompany->address }}">
+                                                    @error('address')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="web_url" class="form-label col-md-5">Company Website</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="web_url" id="web_url"class="form-control @error('web_url') is-invalid @enderror" value="{{$infoCompany->web_url }}">
+                                                    @error('web_url')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="form-group">
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @endif
+                            <!-- Step 4 input fields {Student Information}-->
+                            @if ($infoStudent->student_institute || $infoStudent->semester)
+                            <div class="accordion__item">
+                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFour" aria-expanded="false">
+                                    <span class="accordion__header--icon"></span>
+                                    <span class="accordion__header--text">Student Information</span>
+                                    <span class="accordion__header--indicator"></span>
+                                </div>
+                                <div id="rounded-stylish_collapseFour" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                    <!--__________________ Student  __________________-->
+                                    <div class="row accordion__body--text">
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="student_institute" class="form-label col-md-5">University/ Institute</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="student_institute" id="institute"class="form-control @error('student_institute') is-invalid @enderror" value="{{$infoStudent->student_institute }}">
+                                                    @error('student_institute')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="formFile" class="form-label col-md-5">Semester</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="semester" id="semester"class="form-control @error('semester') is-invalid @enderror" value="{{$infoStudent->semester }}">
+                                                    @error('semester')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="head_faculty_name" class="form-label col-md-5">Head Faculty Name</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="head_faculty_name" id="head_faculty_name" class="form-control @error('head_faculty_name') is-invalid @enderror" value="{{$infoStudent->head_faculty_name }}">
+                                                    @error('head_faculty_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="row">
+                                                <label for="formFile" class="form-label col-md-5">Head Faculty Number</label>
+                                                <div class="col-md-7">
+                                                    <input type="text" name="head_faculty_number" id="head_faculty_number" class="form-control @error('head_faculty_number') is-invalid @enderror" value="{{$infoStudent->head_faculty_number }}">
+                                                    @error('head_faculty_number')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Step 4 input fields {Other Information}-->
+                            @endif
+                            <!-- Step 5 input fields {Other Information}-->
                             <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFour" aria-expanded="false">
+                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFive" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Other Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseFour" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseFive" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
                                     <div class="row pb-0 accordion__body--text">
                                         <div class="col-lg-12">
                                             <div class="form-group row">

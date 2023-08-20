@@ -23,13 +23,16 @@ return new class extends Migration
             $table->integer('ref_reason_id')->nullable();
             $table->string('transfer_number')->nullable(); // (Your Number)
             $table->text('message')->nullable();
+            $table->string('slip')->nullable();
 
             $table->unsignedBigInteger('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->unsignedBigInteger('payment_method_id');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('member_id');
+            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->tinyInteger('status')->default(false); //['pending', 'completed', 'failed']
             $table->timestamps();
         });
     }

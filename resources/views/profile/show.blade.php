@@ -191,8 +191,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Present Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->present_address}},
-                                                    {{$infoPersonal->city}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->present_address}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -201,8 +200,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Parmanent Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->parmanent_address}},
-                                                    {{$infoPersonal->city}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->parmanent_address}}</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -257,6 +255,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if ($infoCompany->company_name || $infoCompany->designation)
                                     <!--=====// Company Information//=====-->
                                     <div class="row">
                                         <div class="col-md-12">
@@ -317,6 +316,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                    @if ($infoStudent->student_institute || $infoStudent->semester)
                                     <!--=====// Student Information//=====-->
                                     <div class="row">
                                         <div class="col-md-12">
@@ -359,6 +360,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     <!--Child Details-->
                                     <div class="row">
                                         <div class="col-md-12">

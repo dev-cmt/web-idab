@@ -30,7 +30,8 @@ class InfoOther extends Model
         'wechat_url',
         'discord_url',
 
-        'user_id',
+        'status',
+        'member_id',
     ];
 
     public function user()

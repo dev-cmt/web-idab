@@ -28,6 +28,10 @@ class Controller extends BaseController
                 // Retrieve member types
                 $this->memberType = MemberType::get();
                 view()->share('memberType', $this->memberType);
+            }else{
+                // Retrieve member types
+                $this->memberType = MemberType::get();
+                view()->share('memberType', $this->memberType);
             }
             
             return $next($request);

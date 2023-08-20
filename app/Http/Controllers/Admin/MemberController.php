@@ -17,6 +17,7 @@ use App\Models\Member\InfoDocument;
 use App\Models\Member\InfoOther;
 use App\Models\Master\MastQualification;
 use App\Models\Master\MemberType;
+use App\Models\Payment\PaymentDetails;
 use App\Models\User;
 use Image;
 
@@ -29,7 +30,7 @@ class MemberController extends Controller
      */
     public function index($id)
     {
-        $data = User::where('member_type_id', $id)->get();
+        $data = User::where('member_type_id', $id)->where('status', 1)->get();
         $memberType = MemberType::where('id', $id)->first()->name;
         return view('layouts.pages.member.index',compact('data', 'memberType'));
     }
@@ -64,6 +65,7 @@ class MemberController extends Controller
                 'member_type_id' => 'required',
                 'contact_number' => 'required',
                 'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
+                'institute' => 'required',
                 'mast_qualification_id' => 'required',
 
                 'trade_licence' => 'max:10240',
@@ -197,12 +199,11 @@ class MemberController extends Controller
             /*______________________/ InfoOther \___________________*/
             $infoOther = new InfoOther([
                 'status' => 1,
-                'member_id' => $userId,
+                'member_id' => $user->id,
             ]);
             $infoOther->save();
             /*______________________/ InfoDocument \___________________*/
             $userId = $user->id;
-            // Function to handle file upload and directory creation
             function uploadFile($request, $fieldName, $subfolder, $userId) {
                 if ($request->hasFile($fieldName)) {
                     $uploadedFile = $request->file($fieldName);
@@ -219,7 +220,7 @@ class MemberController extends Controller
                     return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
                 }
                 
-                return null; // No file uploaded
+                return null;
             }
             $infoDocument = new InfoDocument([
                 'trade_licence' => uploadFile($request, 'trade_licence', 'trade', $userId),
@@ -259,8 +260,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        $posts=Gallery::findOrFail($id);
-        return view('layouts.pages.gallery.edit')->with('posts',$posts);
+        
     }
 
     /**
@@ -272,14 +272,19 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
 
     }
     /*__________________________________________________________________________________ */
     /*__________________________________________________________________________________ */
     public function approveIndex(){
-        $data = User::where('is_admin', 1)->where('status', 0)->get();
-        $record = User::where('is_admin', 1)->where('status', 1)->get();
+        $data = PaymentDetails::where('is_admin', 1)->where('users.status', 0)
+        ->join('users', 'users.id', 'payment_details.member_id')
+        ->join('info_personals', 'info_personals.member_id', 'users.id') // Adding the join to InfoPersonal
+        ->join('payment_methods', 'payment_methods.id', 'payment_details.payment_method_id')
+        ->select('users.*','info_personals.contact_number','payment_methods.name as methods_name', 'payment_details.status as is_payment')
+        ->get();
+
+        $record = User::where('is_admin', 1)->whereIn('status', [1,2])->get();
         return view('layouts.pages.member.approve', compact('data','record'));
     }
     public function approveUpdate($id){

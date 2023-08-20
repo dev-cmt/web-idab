@@ -104,14 +104,8 @@
                                     <input type="radio" name="payment_method_id" id="nagad" class="input-hidden" value="3"/>
                                     <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label>
                                     
-                                    <input type="radio" name="payment_method_id" id="upay" class="input-hidden" value="4"/>
-                                    <label for="upay"><img src="{{asset('public/images')}}/payment/upay.png" alt="Payment upay"/></label>
-
-                                    <input type="radio" name="payment_method_id" id="card" class="input-hidden" value="5"/>
-                                    <label for="card"><img src="{{asset('public/images')}}/payment/credit-card.png" alt="Payment Card"/></label>
-
-                                    <input type="radio" name="payment_method_id" id="cash" class="input-hidden" value="6"/>
-                                    <label for="cashless"><img src="{{asset('public/images')}}/payment/cashless-payment.png" alt="Payment Cashless"/></label>
+                                    <input type="radio" name="payment_method_id" id="city-bank" class="input-hidden" value="6"/>
+                                    <label for="city-bank"><img src="{{asset('public/images')}}/payment/city-bank.jpg" alt="Payment upay"/></label>
 
                                     @error('payment_method_id')
                                     <span class="invalid-feedback" role="alert">
@@ -120,7 +114,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2" id="payment-method">
                                 <div class="col-md-6 mt-2">
                                     <label class="form-label">Payment Number 
                                         <span class="text-danger">*</span>
@@ -171,6 +165,44 @@
                                     <textarea class="form-control py-3" name="message" value="{{old('message')}}" rows="2" placeholder="Enter your message here..."></textarea>
                                 </div>
                             </div>
+                            <div class="row mt-2" id="bank-info" style="display: none">
+                                <div class="col-md-6 mt-2">
+                                    <label class="form-label">Bank Number 
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="payment_number" id="payment_number" class="form-control form-select  @error('payment_number') is-invalid @enderror" style="height: 40px;">
+                                        <option selected disabled>Not Found</option>
+                                    </select>
+                                    @error('payment_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <label class="form-label">Amount</label>
+                                    <input type="text" id="amount" class="form-control" value="{{auth::user()->memberType->registration_fee}}" disabled>
+                                    <input type="hidden" name="amount" value="{{auth::user()->memberType->registration_fee}}">
+                                    @error('amount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <label class="form-label">Bank Slip</label>
+                                    <input type="file" id="slip" name="slip" class="form-control" value="{{old('slip')}}">
+                                    @error('amount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control py-3" name="message" value="{{old('message')}}" rows="2" placeholder="Enter your message here..."></textarea>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-10 mt-2">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -209,6 +241,13 @@
                     alert('Fail');
                 }
             });
+            if(methodId == 6){
+                $('#payment-method').hide();
+                $('#bank-info').show();
+            }else{
+                $('#payment-method').show();
+                $('#bank-info').hide();
+            }
         });
 
 

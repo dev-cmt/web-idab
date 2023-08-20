@@ -37,11 +37,9 @@
                 </li>
                 <li class="dropdown"><a href="#"><span>Members</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Student member</a></li>
-                        <li><a href="#">Candidate member</a></li>
-                        <li><a href="#">Professional member</a></li>
-                        <li><a href="#">Associate member</a></li>
-                        <li><a href="#">Corporate member</a></li>
+                        @foreach ($memberType as $item)
+                            <li><a href="{{Route('page.member', $item->id )}}">{{$item->name}} </a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto " href="#portfolio">Events</a></li>

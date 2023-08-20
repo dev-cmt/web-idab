@@ -18,6 +18,7 @@ use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoOther;
 use App\Models\Member\InfoDocument;
 use App\Models\Master\MemberType;
+use App\Models\Master\MastQualification;
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -132,71 +133,72 @@ class ProfileController extends Controller
     function member_edit($id){
         $user = User::findOrFail($id);
         $infoPersonal = $user->infoPersonal;
-        $infoFamily = $user->infoFamily;
+        $infoChildDetails = $user->infoChildDetails;
         $infoAcademic = $user->infoAcademic;
+        $infoCompany = $user->infoCompany;
+        $infoStudent = $user->infoStudent;
         $infoOther = $user->infoOther;
+        $infoDocument = $user->infoDocument;
 
-        return view('profile.edit', compact('user','infoPersonal','infoFamily','infoAcademic','infoOther'));
+        $qualification = MastQualification::where('is_delete', 0)->where('status', 1)->get();
+        return view('profile.edit', compact('user','infoPersonal','infoChildDetails','infoAcademic','infoCompany','infoStudent','infoOther','infoDocument', 'qualification'));
     }
     function member_update(Request $request, $id){
         //--User
         $user = User::findOrFail($id);
 
-        //--Info Personal
+        /*__________________/ InfoPersonal \_________________*/
         $infoPersonal = $user->infoPersonal;
+        $infoPersonal->contact_number = $request->contact_number;
+        $infoPersonal->nid_no = $request->nid_no;
         $infoPersonal->dob = $request->dob;
+        $infoPersonal->father_name = $request->father_name;
+        $infoPersonal->mother_name = $request->mother_name;
+        $infoPersonal->present_address = $request->present_address;
+        $infoPersonal->parmanent_address = $request->parmanent_address;
         $infoPersonal->gender = $request->gender;
-        $infoPersonal->address = $request->address;
-        $infoPersonal->city = $request->city;
+        $infoPersonal->blood_group = $request->blood_group;
         $infoPersonal->marrital_status = $request->marrital_status;
         $infoPersonal->spouse = $request->spouse;
-        $infoPersonal->birth_day = $request->birth_day;
+        $infoPersonal->spouse_dob = $request->spouse_dob;
         $infoPersonal->number_child = $request->number_child;
         $infoPersonal->em_name = $request->em_name;
         $infoPersonal->em_phone = $request->em_phone;
         $infoPersonal->em_rleation = $request->em_rleation;
-        $infoPersonal->user_id = Auth::user()->id;
         $infoPersonal->save();
-
-
-        //--Info Family
-        if($request->editFields){
-            foreach ($request->editFields as $value) {
-                $infoFamily = InfoFamily::findOrFail($value['id']);
-                $infoFamily->child_name= $value['child_name'];
-                $infoFamily->child_dob=$value['child_dob'];
-                $infoFamily->child_gender=$value['child_gender'];
-                $infoFamily->user_id=Auth::user()->id;
-                $infoFamily->save();
-            }
-        }
-        if($request->moreFields){
-            foreach ($request->moreFields as $value) {
-                // $infoFamily = $user->infoFamily;
-                $infoFamily = new InfoFamily();
-                $infoFamily->child_name = $value['child_name'];
-                $infoFamily->child_dob = $value['child_dob'];
-                $infoFamily->child_gender = $value['child_gender'];
-                $infoFamily->user_id = Auth::user()->id;
-                $infoFamily->save();
-            }    
-        }
-        //--Info Academic
+        
+        /*______________________/ InfoAcademic \___________________*/
         $infoAcademic = $user->infoAcademic;
-        $infoAcademic->collage = $request->collage;
+        $infoAcademic->institute = $request->institute;
+        $infoAcademic->mast_qualification_id = $request->mast_qualification_id;
         $infoAcademic->subject = $request->subject;
         $infoAcademic->passing_year = $request->passing_year;
-        $infoAcademic->degree = $request->degree;
-        $infoAcademic->user_id = Auth::user()->id;
+        $infoAcademic->other_qualification = $request->other_qualification;
         $infoAcademic->save();
+        
+        /*______________________/ InfoCompany \___________________*/
+        $infoCompany = $user->infoCompany;
+        $infoCompany->company_name = $request->company_name;
+        $infoCompany->company_email = $request->company_email;
+        $infoCompany->company_phone = $request->company_phone;
+        $infoCompany->designation = $request->designation;
+        $infoCompany->address = $request->address;
+        $infoCompany->web_url = $request->web_url;
+        $infoCompany->save();
+
+        /*______________________/ InfoStudent \___________________*/
+        $infoStudent = $user->infoStudent;
+        $infoStudent->student_institute = $request->student_institute;
+        $infoStudent->semester = $request->semester;
+        $infoStudent->head_faculty_name = $request->head_faculty_name;
+        $infoStudent->head_faculty_number = $request->head_faculty_number;
+        $infoStudent->save();
 
         //--Info Other
         $infoOther = $user->infoOther;
         $infoOther->about_me = $request->about_me;
         $infoOther->nick_name = $request->nick_name;
         $infoOther->phone_number = $request->phone_number;
-        $infoOther->designation = $request->designation;
-        $infoOther->company_name = $request->company_name;
         $infoOther->cover_photo = $request->cover_photo;
         $infoOther->favorite = $request->favorite;
         $infoOther->facebook_url = $request->facebook_url;
@@ -210,60 +212,9 @@ class ProfileController extends Controller
         $infoOther->tiktok_url = $request->tiktok_url;
         $infoOther->wechat_url = $request->wechat_url;
         $infoOther->discord_url = $request->discord_url;
-        $infoOther->user_id  = Auth::user()->id;
         $infoOther->save();
 
-        // return response()->json(['infoOther' => $infoOther]);
-        $notification = array('messege' => 'Update successfully!', 'alert-type' => 'update');
+        $notification = array('messege' => 'information_edit successfully!', 'alert-type' => 'update');
         return redirect()->back()->with($notification);
     }
-
-
-    public function info_family_destroy($id){
-        $data=InfoFamily::find($id);
-        $data->delete();
-        return response()->json('success');
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function profile($id)
-    {
-        $user = User::findOrFail($id);
-        $infoPersonal = $user->infoPersonal;
-        $infoFamily = $user->infoFamily;
-        $infoAcademic = $user->infoAcademic;
-        $infoOther = $user->infoOther;
-
-        return view('profile.show', compact('user','infoPersonal','infoFamily','infoAcademic','infoOther'));
-    }
-    public function update(Request $request, User $user)
-    {
-        $user->update([
-            'name' => $request->name,
-            'batch' => $request->batch,
-            'contact_number' => $request->contact_number,
-            'email' => $request->email,
-        ]);
-
-        // if($request->has('password')){
-        //     $user->update(['password' => bcrypt('password')]);
-        // }
-
-        $notification=array('messege'=>'User data updated!','alert-type'=>'success');
-        return back()->with($notification);
-    }
-    /*________________________________________ */
-    
-    
 }
