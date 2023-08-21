@@ -210,7 +210,6 @@ class GalleryController extends Controller
             }
         }
 
-
         $notification=array('messege'=>'Gallery update successfully!','alert-type'=>'success');
         return redirect()->route('gallery.index')->with($notification);
 
@@ -259,16 +258,7 @@ class GalleryController extends Controller
      * ________________________________________________________________________________
      */
 
-    public function fv_gallery_image()
-    {
-        $posts=Gallery::where('public','=','1')->with('user')->get();
-        return view('frontend.pages.gallery_album',compact('posts'));
-    }
-    public function fv_gallery_show($id)
-    {
-        $posts=Gallery::findOrFail($id);
-        return view('frontend.pages.gallery_image')->with('posts',$posts);
-    }
+    
     public function bv_gallery_image()
     {
         $posts=Gallery::all();
@@ -284,7 +274,7 @@ class GalleryController extends Controller
     function downloadFile($id){
         $images=GalleryImages::findOrFail($id);
 
-        $filepath = public_path("images/gallery/img".$images->image);
+        $filepath = public_path("images/gallery/img/".$images->image);
         return Response::download($filepath);
     }
     public function dowloads(){

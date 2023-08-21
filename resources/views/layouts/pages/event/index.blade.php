@@ -32,7 +32,7 @@
                                     <td>{{ $row->caption}}</td>
                                     <td>{{ $row->event_date}}</td>
                                     <td>{{ $row->location}}</td>
-                                    <td><a href="{{ route('event_payment.create', $row->id) }}" class="btn btn-success btn-xs">Assign</a></td>
+                                    <td><a href="{{ route('transaction-payment-number.index') }}" class="btn btn-success btn-xs">Assign</a></td>
                                     <td>
                                         @if($row->status==1)
                                             <span class="badge light badge-success"><i class="fa fa-circle text-success mr-1"></i>Active</span>

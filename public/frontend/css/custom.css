@@ -266,12 +266,12 @@
     border-top: 5px solid #ffff;
 }
 #header .logo {
-    padding: 10px 25px !important;
+    /* padding: 10px 25px !important; */
     line-height: 0 !important;
     background: #ffff;
 }
 #header .logo img {
-    max-height: 56px !important;
+    max-height: 75px !important;
 }
 .navbar>ul>li>a:before {
     height: 5px !important;

@@ -8,6 +8,7 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use App\Models\Member\InfoPersonal;
 use App\Models\Member\InfoAcademic;
@@ -19,7 +20,8 @@ use App\Models\Master\MastQualification;
 use App\Models\Master\MemberType;
 use App\Models\Payment\PaymentDetails;
 use App\Models\User;
-use Image;
+use App\Mail\MemberApproved;
+use Illuminate\Support\Facades\Mail;
 
 class MemberController extends Controller
 {
@@ -72,7 +74,7 @@ class MemberController extends Controller
                 'tin_certificate' => 'max:10240',
                 'nid_photo_copy' => 'max:10240',
                 'passport_photo' => 'max:10240',
-                'edu_certificate' => 'max:10240',
+                'edu_certificate' => 'required|max:10240',
                 'experience_certificate' => 'max:10240',
                 'stu_id_copy' => 'max:10240',
                 'recoment_letter' => 'max:10240',
@@ -85,6 +87,7 @@ class MemberController extends Controller
                 'tin_certificate.max' => 'Tin certificate not be greater than 10MB.',
                 'nid_photo_copy.max' => 'NID photo not be greater than 10MB.',
                 'passport_photo.max' => 'Passport photo not be greater than 10MB.',
+                'edu_certificate.required' => 'The EDU. Certificate field is required.',
                 'edu_certificate.max' => 'EDU. certificate not be greater than 10MB.',
                 'experience_certificate.max' => 'Experience certificate not be greater than 10MB.',
                 'stu_id_copy.max' => 'STU. id not be greater than 10MB.',
@@ -288,12 +291,20 @@ class MemberController extends Controller
         return view('layouts.pages.member.approve', compact('data','record'));
     }
     public function approveUpdate($id){
-        $approve = User::findorfail($id);
-        $approve->status = 1;
-        $approve->is_approve = Auth::user()->id;
-        $approve->save();
-        $approve->assignRole('Member');
-        return back();
+        $user = User::findorfail($id);
+        $user->status = 1;
+        $user->is_approve = Auth::user()->id;
+        $user->save();
+        $user->assignRole('Member');
+        
+        $mailData =[
+            'title' => 'Now Your Are Member Of IDAB',
+            'body' => 'This Is body',
+        ];
+        Mail::to($user->email)->send(new MemberApproved($mailData));
+
+        $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
+        return redirect()->back()->with($notification);
     }
     public function approveCancel($id){
         $approve = User::findorfail($id);

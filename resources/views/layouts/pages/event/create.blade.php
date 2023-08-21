@@ -16,24 +16,11 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-name">Title
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" id="val-title" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Enter name.." value="{{old('title')}}">                                     
-                                            @error('title')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label class="col-lg-4 col-form-label">Self fee
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('self') is-invalid @enderror" name="self" placeholder="Enter self fee.." value="{{old('self')}}">                                     
+                                            <input type="number" class="form-control @error('self') is-invalid @enderror" name="self" placeholder="" value="{{old('self')}}">                                     
                                             @error('self')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -42,11 +29,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Spouse Fee
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Spouse Fee </label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('price') is-invalid @enderror" name="spouse" placeholder="Enter spouse fee.." value="{{old('spouse')}}">                                     
+                                            <input type="number" class="form-control @error('price') is-invalid @enderror" name="spouse" placeholder="" value="{{old('spouse')}}">                                     
                                             @error('spouse')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -55,11 +40,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Child (Above 12 Year)
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Child (Above 12 Year)</label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('child_above') is-invalid @enderror" name="child_above" placeholder="Child Fee (Above 12 Year).." value="{{old('child_above')}}">                                     
+                                            <input type="number" class="form-control @error('child_above') is-invalid @enderror" name="child_above" placeholder="" value="{{old('child_above')}}">                                     
                                             @error('child')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,11 +51,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Child (Bellow 12 Year)
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Child (Bellow 12 Year)</label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('child_bellow') is-invalid @enderror" name="child_bellow" placeholder="Child Fee (Bellow 12 Year)" value="{{old('child_bellow')}}">                                     
+                                            <input type="number" class="form-control @error('child_bellow') is-invalid @enderror" name="child_bellow" placeholder="" value="{{old('child_bellow')}}">                                     
                                             @error('child')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -81,11 +62,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Guest Fee
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Guest Fee</label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('guest') is-invalid @enderror" name="guest" placeholder="Enter guest fee.." value="{{old('guest')}}">                                     
+                                            <input type="number" class="form-control @error('guest') is-invalid @enderror" name="guest" placeholder="" value="{{old('guest')}}">                                     
                                             @error('guest')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -94,80 +73,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Driver Fee
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Driver Fee</label>
                                         <div class="col-lg-6">
-                                            <input type="number" class="form-control @error('driver') is-invalid @enderror" name="driver" placeholder="Enter driver fee.." value="{{old('driver')}}">                                     
+                                            <input type="number" class="form-control @error('driver') is-invalid @enderror" name="driver" placeholder="" value="{{old('driver')}}">                                     
                                             @error('driver')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Caption
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" placeholder="Enter caption.." value="{{old('caption')}}">                                     
-                                            @error('caption')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Image
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Enter image .." value="{{old('image')}}">
-                                            @error('image')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Event Date
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="date" class="form-control @error('event_date') is-invalid @enderror" name="event_date" placeholder="Enter event date.." value="{{old('event_date')}}">                                     
-                                            @error('event_date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Location
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Enter location.." value="{{old('location')}}">                                     
-                                            @error('location')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Description
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <textarea class="form-control @error('description') is-invalid @enderror" id="val-suggestions" name="description" rows="5" placeholder="What would you like to see?">{{old('description')}}</textarea>                                  
-                                            @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -185,6 +94,79 @@
                                                 <input class="form-check-input" type="radio" value="0" name="status">
                                                 <label class="form-check-label">Inactive</label>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="val-name">Title
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" id="val-title" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="" value="{{old('title')}}">                                     
+                                            @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label">Caption</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control @error('caption') is-invalid @enderror" name="caption" placeholder="" value="{{old('caption')}}">                                     
+                                            @error('caption')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label">Image
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="" value="{{old('image')}}">
+                                            @error('image')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label">Event Date</label>
+                                        <div class="col-lg-6">
+                                            <input type="date" class="form-control @error('event_date') is-invalid @enderror" name="event_date" placeholder="" value="{{old('event_date')}}">                                     
+                                            @error('event_date')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label">Location</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="" value="{{old('location')}}">                                     
+                                            @error('location')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label">Description</label>
+                                        <div class="col-lg-6">
+                                            <textarea class="form-control @error('description') is-invalid @enderror" id="val-suggestions" name="description" rows="2" placeholder="What would you like to see?">{{old('description')}}</textarea>                                  
+                                            @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">

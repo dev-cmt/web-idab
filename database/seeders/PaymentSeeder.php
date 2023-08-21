@@ -63,13 +63,13 @@ class PaymentSeeder extends Seeder
             'status'=>'1',
         ]);
         PaymentMethods::create([
-            'name'=>'Card',
-            'image_path'=>'Card.png',
+            'name'=>'City-Bank',
+            'image_path'=>'city-bank.png',
             'status'=>'1',
         ]);
         PaymentMethods::create([
-            'name'=>'City-Bank',
-            'image_path'=>'city-bank.png',
+            'name'=>'Card',
+            'image_path'=>'Card.png',
             'status'=>'1',
         ]);
         

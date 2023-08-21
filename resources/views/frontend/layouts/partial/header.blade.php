@@ -5,12 +5,12 @@
 
         <!-- <h1 class="logo"><a href="index.html">Groovin</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.html" class="logo"><img src="{{asset('public/frontend')}}/img/logo.png" alt="" class="img-fluid"></a>
+        <a href="{{url('/')}}" class="logo"><img src="{{asset('public/frontend')}}/img/logo.png" alt="" class="img-fluid"></a>
 
         
         <nav id="navbar" class="navbar mb-0">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == '/') ? 'active' : '' }}" href="{{Route('/')}}">Home</a></li>
                 <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Why IDAB?</a></li>
@@ -38,12 +38,13 @@
                 <li class="dropdown"><a href="#"><span>Members</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         @foreach ($memberType as $item)
-                            <li><a href="{{Route('page.member', $item->id )}}">{{$item->name}} </a></li>
+                            <li><a href="{{Route('page.member', $item->id )}}" >{{$item->name}} </a></li>
                         @endforeach
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto " href="#portfolio">Events</a></li>
-                <li><a class="nav-link scrollto" href="{{Route('page.contact')}}">Contact</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallary</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.events') ? 'active' : '' }}" href="{{Route('page.events')}}">Events</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact') ? 'active' : '' }}" href="{{Route('page.contact')}}">Contact</a></li>
                 @guest
                     <li><a class="getstarted scrollto" href="{{Route('member_register.create')}}">Become A Member</a></li>
                 @endguest

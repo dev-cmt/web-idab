@@ -82,24 +82,15 @@
 
             @canany('Super-Admin')
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-077-menu-1"></i>
-                    <span class="nav-text">App</span>
+                    <i class="flaticon-381-pad"></i>
+                    <span class="nav-text">Post</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ Route('profile.show', Auth::user()->id) }}">Profile</a></li>
-                    @canany('Super-Admin')
-                    <li><a href="{{route('contact.index')}}">Contact Us</a></li>
+                    @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
+                        <li><a href="{{ Route('gallery.index')}}">Photo Gallery</a></li>
                     @endcanany
+                    <li><a href="{{route('event.index')}}">Manage Events</a></li>
                 </ul>
-            </li>
-            @endcanany
-
-
-            @canany('Super-Admin')
-            <li><a href="{{ Route('layouts.gallery_image')}}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-063-picture"></i>
-                    <span class="nav-text">Gallery</span>
-                </a>
             </li>
             @endcanany
 
@@ -109,21 +100,8 @@
                     <span class="nav-text">Setting</span>
                 </a>
                 <ul aria-expanded="false">
-
-                    @canany('User access','User add','User edit','User delete')
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approve</a>
-                        <ul aria-expanded="false">
-                            @canany('Approve Member')
-                                <li><a href="{{ route('member-approve-index') }}">Member Approve</a></li>
-                            @endcanany
-                            @canany('Approve Member')
-                                <li><a href="{{ Route('subscription_approve_list')}}">Subscription Fees</a></li>
-                            @endcanany
-                            @canany('Approve Member')
-                                <li><a href="{{ Route('event_approve_list')}}">Event Fees</a></li>
-                            @endcanany
-                        </ul>
-                    </li>
+                    @canany('Role access','Role add','Role edit','Role delete')
+                    <li><a href="{{route('contact.index')}}">Contact Us</a></li>
                     @endcanany
 
                     @canany('Role access','Role add','Role edit','Role delete')
@@ -134,26 +112,6 @@
                     <li><a href="{{ Route('users.index')}}">User</a></li>
                     @endcanany
                     
-                </ul>
-            </li>
-            @endcanany
-
-            @canany('Pages access')
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-049-copy"></i>
-                    <span class="nav-text">Pages</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Gallery</a>
-                        <ul aria-expanded="false">
-                            @canany('Gallery access','Gallery add','Gallery edit','Gallery delete')
-                                <li><a href="{{ Route('gallery.index')}}">Photo Gallery</a></li>
-                            @endcanany
-                            <!--<li><a href="page-error-403.html">Video Gallery</a></li>-->
-                        </ul>
-                    </li>
-                    <li><a href="{{route('lose_member.index')}}">Lost Member</a></li>
-                    <li><a href="{{route('event.index')}}">Manage Events</a></li>
                 </ul>
             </li>
             @endcanany

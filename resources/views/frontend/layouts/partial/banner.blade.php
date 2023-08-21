@@ -7,7 +7,7 @@
 
                     <a href="{{route('/')}}" class="h5 text-white">Home</a>
                     <i class="far fa-circle text-white px-2"></i>
-                    <a href="{{route('page.about')}}" class="h5 text-white">About</a>
+                    <a href="{{route('/')}}" class="h5 text-white">About</a>
                 </div>
             </div>
         </div>

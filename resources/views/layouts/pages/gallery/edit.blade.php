@@ -34,7 +34,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="file" id="val-cover" class="form-control @error('cover') is-invalid @enderror" name="cover" placeholder="Enter a date name.." value="{{$posts->cover}}">
+                                            <input type="file" id="cover-photo" class="form-control @error('cover') is-invalid @enderror" name="cover" placeholder="Enter a date name.." value="{{$posts->cover}}">
                                             @error('cover')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -43,11 +43,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label">Description
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label">Description</label>
                                         <div class="col-lg-6">
-                                            <textarea class="form-control " id="val-suggestions" name="description" rows="5" placeholder="What would you like to see?">{{$posts->description}}</textarea>                                    
+                                            <textarea class="form-control " id="val-suggestions" name="description" rows="3" placeholder="What would you like to see?">{{$posts->description}}</textarea>                                    
                                             @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -84,9 +82,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-drive_url">Drive Url
-                                            <span class="text-danger">*</span>
-                                        </label>
+                                        <label class="col-lg-4 col-form-label" for="val-drive_url">Drive Url</label>
                                         <div class="col-lg-6">
                                             <input type="text" id="val-drive_url" class="form-control @error('drive_url') is-invalid @enderror" name="drive_url" placeholder="https://example.com" value="{{$posts->drive_url}}">                          
                                             @error('drive_url')
@@ -113,32 +109,43 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Update Images</h4>
+                </div>
                 <div class="card-body">
-                    <p>Cover:</p>
-                    <form action="{{route('gallery.deletecover',$posts->id)}}" method="post">
-                        <button class="btn text-danger">X</button>
-                        @csrf
-                        @method('delete')
-                    </form>
-                    <div class="row">
-                        <div class="col-xl-3">
-                            <img class="img-fluid" src="{{asset('public/images/gallery')}}/{{ $posts->cover}}" style="width:100%; height:150px" alt="">
+                    <div class="row mb-4">
+                        <div class="col-xl-4">
+                            <div style="margin: 10px; border:3px solid red">
+                                <form action="{{route('gallery.deletecover', $posts->id)}}" method="post" >
+                                    <button class="btn btn-primary btn-sm text-center" style="border-radius:0;position: absolute;right: 28px"><i class="flaticon-381-trash-1"></i></button>
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                                <img class="img-fluid" src="{{asset('public/images/gallery')}}/{{ $posts->cover}}" style="width:100%; height:80%; object-fit: cover;" alt="">
+                            </div>
                         </div>
                     </div>
-                    <br>
 
                     @if (count($posts->images)>0)
                     <p>Images:</p>
                     <div class="row">
                         @foreach ($posts->images as $img)
                             <div class="col-xl-3">
-                                <form action="{{route('gallery.deleteimage', $img->id)}}" method="post">
-                                    <button class="btn text-danger">X</button>
-                                    @csrf
-                                    @method('delete')
-                                </form>
-                                <img class="img-fluid" src="{{asset('public/images/gallery')}}/img/{{ $img->image}}" style="width:100%; height:150px" alt="">
-                                <a href="{{route('gallery.download', $img ->id)}}" class="btn btn-primary btn-sm d-flex justify-content-center" style="border-radius:0;">Download</a>
+                                <div style="margin: 10px; border:3px solid red">
+                                    <form action="{{route('gallery.deleteimage', $img->id)}}" method="post" >
+                                        <button class="btn btn-primary btn-sm text-center" style="border-radius:0;position: absolute;"><i class="flaticon-381-trash-1"></i></button>
+                                        @csrf
+                                        @method('delete')
+                                    </form>
+                                    <img class="img-fluid" src="{{asset('public/images/gallery')}}/img/{{ $img->image}}" style="width:100%; height:80%;object-fit: cover;" alt="">
+                                    <a href="{{route('gallery.download', $img ->id)}}" class="btn btn-secondary btn-sm text-center" style="border-radius:0; width:100%">Download</a>
+                                </div>
                             </div>
                         @endforeach
                     </div>

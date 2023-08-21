@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Admin\Event;
 use App\Models\Admin\EventRegister;
 use App\Models\Admin\EventPayment;
 use App\Models\User;
 use Image;
-use Auth;
 
 class EventController extends Controller
 {
@@ -29,6 +29,8 @@ class EventController extends Controller
     {
         $validated=$request -> validate([
             'title'=> 'required',
+            'caption'=> 'required',
+            'self'=> 'required',
             'image'=> 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);
 
@@ -71,6 +73,7 @@ class EventController extends Controller
             $data->description=$request->description;
             $data->location=$request->location;
             $data->status=$request->status;
+            $data->user_id= Auth::user()->id;
             $data->image=$filenametostore;
             $data->save();
         }
@@ -229,18 +232,5 @@ class EventController extends Controller
         $events->save();
 
         return back();
-    }
-    /*______________________________________________________________________*/
-    /*_____________________________ VIEW ___________________________________*/
-    public function fv_event()
-    {
-        $events =Event::all();
-        return view('frontend.pages.events',compact('events'));
-    }
-    public function fv_event_show($id)
-    {
-        $events =Event::latest()->orderByDesc('id')->take(10)->orderBy('id')->get();
-        $data =Event::findOrFail($id);
-        return view('frontend.pages.events_details',compact('events','data'));
     }
 }

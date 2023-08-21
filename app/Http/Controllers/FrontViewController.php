@@ -44,12 +44,33 @@ class FrontViewController extends Controller
         return view('frontend.pages.member',compact('data', 'membersType'));
     }
     /**________________________________________________________________________________________
+     * Gallery Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function galleryImage()
+    {
+        $posts=Gallery::where('public','=','1')->with('user')->get();
+        return view('frontend.pages.gallery_album',compact('posts'));
+    }
+    public function galleryShow($id)
+    {
+        $posts=Gallery::findOrFail($id);
+        return view('frontend.pages.gallery_image')->with('posts',$posts);
+    }
+    /**________________________________________________________________________________________
      * Events Menu Pages
      * ________________________________________________________________________________________
      */
-    public function index4()
+    public function events()
     {
-        return view('comming_soon');
+        $events =Event::all();
+        return view('frontend.pages.events',compact('events'));
+    }
+    public function eventShow($id)
+    {
+        $events =Event::latest()->orderByDesc('id')->take(10)->orderBy('id')->get();
+        $data =Event::findOrFail($id);
+        return view('frontend.pages.events_details',compact('events','data'));
     }
     /**________________________________________________________________________________________
      * Contact Menu Pages

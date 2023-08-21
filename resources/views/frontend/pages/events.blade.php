@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Events')
 @section('content')
     <!-- Blog Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -21,7 +22,7 @@
                                     </div>
                                     <h4 class="mb-3">{{$row->title}}</h4>
                                     <p class="description_1">{{$row->description}}</p>
-                                    <a class="text-uppercase text-success" href="{{route('page.events_details', $row->id)}}">Read More <i class="bi bi-arrow-right"></i></a>
+                                    <a class="text-uppercase text-success" href="{{route('page.events-details', $row->id)}}">Read More <i class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

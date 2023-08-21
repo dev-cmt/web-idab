@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Gallery Details')
 @section('style')
     <!-- Gallery -->
     <link rel="stylesheet" href="{{asset('public/libs')}}/css/customs_gallery.css">

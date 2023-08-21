@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', 'Gallery')
 @section('content')
 <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -11,7 +12,7 @@
                 @foreach ($posts as $key=> $row )
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                     <div class="team-item bg-light rounded overflow-hidden">
-                        <a href="{{route('page.gallery_show', $row ->id)}}">
+                        <a href="{{route('page.gallery-show', $row ->id)}}">
                             <div class="text-center p-2">
                                 <h4 class="text-primary pt-3">{{$row->title}}</h4>
                             </div>

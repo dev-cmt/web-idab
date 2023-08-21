@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -15,13 +16,16 @@ use App\Models\Payment\PaymentDetails;
 use App\Models\Payment\PaymentNumber;
 use App\Models\Payment\Cards;
 use App\Models\User;
+use App\Mail\MemberApproved;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
     public function indexRegistation() {
-        $data = PaymentDetails::where('status', 0)->get();
+        $data = PaymentDetails::where('status', 0)->where('payment_method_id','!=', 5)->get();
+        $bank = PaymentDetails::where('status', 0)->where('payment_method_id', 5)->get();
         $record = PaymentDetails::whereIn('status', [1,2])->get();
-        return view('layouts.pages.transaction.registation-index', compact('data', 'record'));
+        return view('layouts.pages.transaction.registation-index', compact('data', 'record', 'bank'));
     }
     public function createRegistation()
     {
@@ -29,11 +33,17 @@ class TransactionController extends Controller
     }
     public function storeRegistation(Request $request)
     {
-        $validated=$request -> validate([
-            'payment_number'=> 'required',
-            'transaction_number'=> 'required',
-            'transfer_number'=> 'required',
-        ]);
+        if($request->payment_method_id == 5){
+            $validated=$request -> validate([
+                'payment_number'=> 'required',
+            ]);
+        }else{
+            $validated=$request -> validate([
+                'payment_number'=> 'required',
+                'transaction_number'=> 'required',
+                'transfer_number'=> 'required',
+            ]);
+        }
         $approve = User::findorfail(Auth::user()->id);
         $approve->is_admin = 1;
         $approve->save();
@@ -47,7 +57,21 @@ class TransactionController extends Controller
         $transaction->user_id = Auth::user()->id;
         $transaction->save();
 
-
+        function uploadFile($request, $fieldName, $subfolder, $userId) {
+            if ($request->hasFile($fieldName)) {
+                $uploadedFile = $request->file($fieldName);
+                $extension = $uploadedFile->getClientOriginalExtension();
+                $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
+        
+                $folderPath = public_path("document/member/{$userId}/{$subfolder}");
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0777, true);
+                }
+                $uploadedFile->move($folderPath, $filenameToStore);
+                return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
+            }
+            return null;
+        }
         $paymentDetails = new PaymentDetails();
         $paymentDetails->payment_date = now()->format('Y-m-d');
         $paymentDetails->paid_amount = $request->amount;
@@ -63,25 +87,9 @@ class TransactionController extends Controller
         $paymentDetails->member_id = Auth::user()->id;
         $paymentDetails->status = 0;
         $paymentDetails->save();
-
-        function uploadFile($request, $fieldName, $subfolder, $userId) {
-            if ($request->hasFile($fieldName)) {
-                $uploadedFile = $request->file($fieldName);
-                $extension = $uploadedFile->getClientOriginalExtension();
-                $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
-
-                $folderPath = public_path("document/member/{$userId}/{$subfolder}");
-                if (!File::exists($folderPath)) {
-                    File::makeDirectory($folderPath, 0777, true);
-                }
-                $uploadedFile->move($folderPath, $filenameToStore);
-                return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
-            }
-            return null;
-        }//End
-
         return redirect()->route('member-approve.padding');
     }
+    
     
     public function approveRegistationApprove($id) {
         $data = PaymentDetails::findOrFail($id);
@@ -89,7 +97,15 @@ class TransactionController extends Controller
         $data->user_id = Auth::user()->id;
         $data->save();
 
-        return redirect()->back();
+        $mailData =[
+            'title' => 'Your Payment Is Receive Successfully',
+            'body' => 'This Is body',
+        ];
+        $user = User::find($data->member_id);
+        Mail::to($user->email)->send(new MemberApproved($mailData));
+
+        $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
+        return redirect()->back()->with($notification);
     }
     public function approveRegistationCancel($id) {
         $data = PaymentDetails::findOrFail($id);
@@ -98,6 +114,23 @@ class TransactionController extends Controller
         $data->save();
 
         return redirect()->back();
+    }
+    public function detailsRegistration($id) {
+        $data = PaymentDetails::where('id', $id)->first();
+        
+        return view('layouts.pages.transaction.registation-show', compact('data'));
+    }
+
+    public function downloadRegistration($id)
+    {
+        $data = PaymentDetails::findOrFail($id);
+        $filePath = public_path($data->slip);
+
+        if (file_exists($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'pdf') {
+            return Response::download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'PDF file not found.');
+        }
     }
     
     
