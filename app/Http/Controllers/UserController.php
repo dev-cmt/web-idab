@@ -10,6 +10,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Contact;
+use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 
 class UserController extends Controller
 {
@@ -23,11 +25,16 @@ class UserController extends Controller
 
         $this->middleware(function ($request, $next) {
             if (Auth::check()) {
-                $this->id = Auth::user()->id;
-
-                $this->message =Contact::where('to_id','=', $this->id)->get();
+                // Retrieve user's messages
+                $this->message = Contact::get();
                 view()->share('message', $this->message);
             }
+            // Retrieve Member types
+            $this->memberType = MemberType::get();
+            view()->share('memberType', $this->memberType);
+            // Retrieve Committee types
+            $this->committeeType = CommitteeType::get(); // Fixed assignment
+            view()->share('committeeType', $this->committeeType);
             
             return $next($request);
         });
@@ -76,7 +83,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
             'roles' => 'required',
-            // 'student_image'         =>  'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
             'profile_photo_path' => 'image|mimes:jpg,png,jpeg,gif,svg'
         ]);
 
@@ -104,16 +110,14 @@ class UserController extends Controller
             //---Data Save
             $user = User::create([
                 'name' => $request->name,
-                'batch' => $request->batch,
-                'contact_number' => $request->contact_number,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-                'status' => $request->status,
+                'batch' => $request->batch,
+                'contact_number' => $request->contact_number,
                 'profile_photo_path' => $file_name,
-    
                 'email_verified_at' => '2023-01-01',
                 'is_admin' => '1',
-                'pune_member' => '1',
+                'status' => $request->status,
             ]);
         }
 
@@ -158,7 +162,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|max:80',
-            'email' => "required|email|unique:users,email, $user->id",
+            // 'email' => "required|email|unique:users,email, $user->id",
         ]);
 
         if ($request->hasFile("profile_photo_path")) {
@@ -183,21 +187,18 @@ class UserController extends Controller
                 $constraint->aspectRatio();
             }); 
             $img->save($thumbnailpath);
-
             //---Data Save
             $user->update([
-                'name' => $request->name,
-                'batch' => $request->batch,
-                'contact_number' => $request->contact_number,
-                'email' => $request->email,
-                'status' => $request->status,
-                'cm_adviser' => $request->cm_adviser,
-                'cm_ecommittee' => $request->cm_ecommittee,
-                'cm_welfare' => $request->cm_welfare,
-                'profile_photo_path' => $user->profile_photo_path,
+                'profile_photo_path' => $filename,
             ]);
         }
-
+        //---Data Save
+        $user->update([
+            'name' => $request->name,
+            'status' => $request->status,
+            'member_type_id' => $request->member_type_id,
+            'committee_type_id' => $request->committee_type_id,
+        ]);
         $user->syncRoles($request->roles);
 
         $notification=array('messege'=>'User data updated!','alert-type'=>'success');

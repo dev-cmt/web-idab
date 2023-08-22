@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontViewController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -18,7 +19,6 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\LoseMemberController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\EventPaymentController;
-use App\Http\Controllers\Admin\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ Route::get('comming/soon', [FrontViewController::class, 'welcome'])->name('commi
 //______________ ABOUT US
 
 //______________ COMMITTEE
-
+Route::get('pages/{id}/committee', [FrontViewController::class, 'committee'])->name('page.committee');
 //______________ MEMBERS
 Route::get('pages/{id}/member', [FrontViewController::class, 'member'])->name('page.member');
 //______________ GALLERY
@@ -51,11 +51,12 @@ Route::get('pages/gallery-image',[FrontViewController::class,'galleryImage'])->n
 Route::get('pages/gallery-image/{id}/show',[FrontViewController::class,'galleryShow'])->name('page.gallery-show');
 //______________ EVENTS
 Route::get('pages/events', [FrontViewController::class,'events'])->name('page.events');
+Route::get('pages/events-search', [FrontViewController::class,'eventSearch'])->name('page.events-search');
 Route::get('pages/events/{id}/details', [FrontViewController::class,'eventShow'])->name('page.events-details');
 
 //______________ CONTACT US
-Route::get('pages/contact', [FrontViewController::class, 'contact'])->name('page.contact');
-
+Route::get('pages/contact-us', [FrontViewController::class, 'contact'])->name('page.contact-us');
+Route::post('contact-us/store', [ContactController::class,'contactStore'])->name('contact-us.store');
 
 
 
@@ -127,7 +128,7 @@ Route::group(['middleware' => ['auth']], function(){
      * TRANSACTION => MENU
      * ______________________________________________________________________________________________
      */
-    //-- TRANSACTION HISTORY
+    //-- TRANSACTION => MEMBER REGISTATION
     Route::get('master/transaction-registation/index',[TransactionController::class,'indexRegistation'])->name('transaction-registation.index');
     Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApprove'])->name('transaction-registation.approve');
     Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
@@ -135,7 +136,15 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('transaction-registation/{id}/download', [TransactionController::class, 'downloadRegistration'])->name('transaction-registration.download');
 
     Route::get('master/transaction-annual/index',[TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
-    Route::get('master/transaction-event/index',[TransactionController::class,'indexEvent'])->name('transaction-event.index');
+    //-- TRANSACTION => MEMBER REGISTATION
+    Route::get('transaction-event/index',[TransactionController::class,'indexEvent'])->name('transaction-event.index');
+    Route::get('transaction-event/{id}/create',[TransactionController::class,'createEventRegistation'])->name('transaction-event.create');
+    Route::get('transaction-event/{id}/store',[TransactionController::class,'storeEventRegistation'])->name('transaction-event.store');
+
+    Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApprove'])->name('transaction-registation.approve');
+    Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
+    Route::get('transaction-registation/{id}/details', [TransactionController::class, 'detailsRegistration'])->name('transaction-registration.details');
+
     //-- MASTER SETTING =>> PAYMENT NUMBER
     Route::get('master/transaction-payment/number/index',[TransactionController::class,'indexPaymentNumber'])->name('transaction-payment-number.index');
     Route::post('master/transaction-payment/number/store',[TransactionController::class,'storePaymentNumber'])->name('transaction-payment-number.store');
@@ -155,18 +164,22 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/download/{id}', [GalleryController::class, 'downloadFile'])->name('gallery.download');
     Route::get('/dowloads', [GalleryController::class, 'dowloads']);
 
-    Route::get('/backend_gallery',[GalleryController::class,'bv_gallery_image'])->name('layouts.gallery_image');
-    Route::get('/backend_gallery_show/{id}',[GalleryController::class,'bv_gallery_show'])->name('layouts.gallery_show');
+    Route::get('dashboard-gallery/all',[GalleryController::class,'bvGallery'])->name('dashboard-gallery.all');
+    Route::get('dashboard-gallery/{id}/show',[GalleryController::class,'bvGalleryImage'])->name('dashboard-gallery.images');
     //-- EVENTS
     Route::resource('event', EventController::class);
 
-    Route::get('/events_register/from/{id}', [EventController::class,'register_create'])->name('events_register');
-    Route::post('/events_register/store/{id}', [EventController::class,'event_register'])->name('events_register.store');
+    // Route::get('/events_register/from/{id}', [EventController::class,'register_create'])->name('page.events-register');
+    // Route::post('/events_register/store/{id}', [EventController::class,'event_register'])->name('events_register.store');
 
     Route::get('/event_registation_list', [EventController::class,'event_registation_list'])->name('event_registation_list');
     Route::get('/event_approve_list', [EventController::class,'event_approve_list'])->name('event_approve_list');
     Route::patch ('/approve_event/update/{id}', [EventController::class,'approve_event_fee'])->name('approve_event_fee.update');
     Route::patch ('/cancel_event_fee/update/{id}', [EventController::class,'cancel_event_fee'])->name('cancel_event_fee.update');
+    //-- CONTACT
+    Route::get('contact-us/index', [ContactController::class,'contactIndex'])->name('contact-us.index');
+    Route::get('contact-us/{id}/reply', [ContactController::class,'contactReply'])->name('contact-us.reply');
+    Route::get('contact-us/{id}/delete', [ContactController::class,'contactDelete'])->name('contact-us.delete');
 });
 
 
@@ -178,25 +191,6 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 
-
-
-
-
-
-
-/*______________________ Gallery __________________*/
-Route::group(['middleware' => ['auth']], function(){
-    Route::resource('gallery', GalleryController::class);
-    Route::delete('/destroy/{id}',[GalleryController::class,'destroy'])->name('gallery.destroy');
-    Route::delete('/deleteimage/{id}',[GalleryController::class,'deleteimage'])->name('gallery.deleteimage');
-    Route::delete('/deletecover/{id}',[GalleryController::class,'deletecover'])->name('gallery.deletecover');
-});
-//---Website View
-Route::get('/gallery_image',[GalleryController::class,'fv_gallery_image'])->name('page.gallery_image');
-Route::get('/gallery_show/{id}',[GalleryController::class,'fv_gallery_show'])->name('page.gallery_show');
-
-Route::get('/download/{id}', [GalleryController::class, 'downloadFile'])->name('gallery.download');
-Route::get('/dowloads', [GalleryController::class, 'dowloads']);
 
 
 
@@ -213,10 +207,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/bv_welfare', [MemberController::class,'bv_welfare'])->name('bv.welfare');
     Route::get('/bv_member/list', [MemberController::class,'bv_member_all'])->name('bv.member_list');
 });
-/*___________Member Register Information __________*/
-Route::group(['middleware' => ['auth']], function(){
-    Route::resource('committee', CommitteeController::class);
-});
+
 /*___________ Subscription Information __________*/
 Route::group(['middleware' => ['auth']], function(){
     Route::resource('subscription', SubscriptionController::class);
@@ -248,11 +239,3 @@ Route::group(['middleware' => ['auth']], function(){
 //     Route::patch ('/cancel_event_fee/update/{id}', [EventController::class,'cancel_event_fee'])->name('cancel_event_fee.update');
 // });
 //---Website View
-
-
-/*___________ Contact __________*/
-Route::group(['middleware' => ['auth']], function(){
-    Route::resource('contact', ContactController::class);
-    Route::get('/contact_chat/{id}', [ContactController::class,'chat'])->name('contact_chat');
-    Route::post('/admin_reply/{to_id}', [ContactController::class,'admin_reply'])->name('admin_reply.contact');
-});

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path')->nullable();
             $table->unsignedBigInteger('member_type_id');
+            $table->unsignedBigInteger('committee_type_id')->nullable();
             $table->tinyInteger('status')->default(false);
             $table->tinyInteger('is_admin')->default(false);
             $table->tinyInteger('is_approve')->nullable();

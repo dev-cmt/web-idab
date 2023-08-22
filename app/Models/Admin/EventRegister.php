@@ -10,16 +10,19 @@ class EventRegister extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'person_no',
-        'payment_number',
+        'self',
+        'guest',
+        'driver',
+        'spouse',
+        'child_above',
+        'child_bellow',
+        'total_person',
         'total_amount',
-        'transaction_no',
-        'status',
-        'receive_by',
-        'payment_type',
         'event_id',
-        'user_id',
+        'payment_details_id',
+        'member_id',
     ];
+       
     public function user()
     {
         return $this->belongsTo(User::class);

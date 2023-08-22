@@ -19,6 +19,7 @@ use App\Models\Member\InfoStudent;
 use App\Models\Member\InfoOther;
 use App\Models\Member\InfoDocument;
 use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,14 +42,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'profile_photo_path',
         'member_type_id',
+        'committee_type_id',
         'status',
         'is_admin',
-        'is_approve',
+        'approve_by',
     ];
 
     public function memberType()
     {
         return $this->belongsTo(MemberType::class, 'member_type_id');
+    }
+    public function committeeType()
+    {
+        return $this->belongsTo(CommitteeType::class, 'member_type_id');
     }
     public function parentUser()
     {

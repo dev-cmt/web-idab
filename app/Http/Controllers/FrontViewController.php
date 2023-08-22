@@ -7,6 +7,7 @@ use App\Models\Admin\Image;
 use App\Models\Admin\Gallery;
 use App\Models\Admin\Event;
 use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 use App\Models\User;
 use DB;
 
@@ -28,9 +29,12 @@ class FrontViewController extends Controller
      * Committee Menu Pages
      * ________________________________________________________________________________________
      */
-    public function index2()
+    public function committee($id)
     {
-        return view('comming_soon');
+        $data = User::where('committee_type_id', $id)->where('status', 1)->get();
+        $committeesType = CommitteeType::where('id', $id)->first()->name;
+
+        return view('frontend.pages.committee-member',compact('data', 'committeesType'));
     }
     /**________________________________________________________________________________________
      * Members Menu Pages
@@ -63,9 +67,24 @@ class FrontViewController extends Controller
      */
     public function events()
     {
-        $events =Event::all();
+        $events =Event::where('status', 1)->paginate(12);
         return view('frontend.pages.events',compact('events'));
     }
+    public function eventSearch(Request $request)
+    {
+        $query = Event::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'like', '%' . $searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $searchTerm . '%');
+        }
+
+        $events = $query->where('status', 1)->paginate(12);
+
+        return view('frontend.pages.events', compact('events'));
+    }
+
     public function eventShow($id)
     {
         $events =Event::latest()->orderByDesc('id')->take(10)->orderBy('id')->get();

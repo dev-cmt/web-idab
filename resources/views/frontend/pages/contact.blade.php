@@ -37,10 +37,7 @@
             </div>
             <div class="row g-5">
                 <div class="col-lg-6 form">
-                    @if (session()->has('success'))
-                        <strong class="text-success">{{session()->get('success')}}</strong>
-                    @endif
-                    <form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
+                    <form action="{{route('contact-us.store')}}" method="post" enctype="multipart/form-data" class="php-email-form"> 
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -89,4 +86,17 @@
         </div>
     </section><!-- End Contact Section -->
 
+    @if (session()->has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your message was sent successfully.',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '{{ route("/") }}';
+                }
+            });
+        </script>
+    @endif
 @endsection

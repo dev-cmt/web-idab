@@ -293,7 +293,7 @@ class MemberController extends Controller
     public function approveUpdate($id){
         $user = User::findorfail($id);
         $user->status = 1;
-        $user->is_approve = Auth::user()->id;
+        $user->approve_by = Auth::user()->id;
         $user->save();
         $user->assignRole('Member');
         
@@ -309,10 +309,10 @@ class MemberController extends Controller
     public function approveCancel($id){
         $approve = User::findorfail($id);
         $approve->status = 2;
-        $approve->is_approve = Auth::user()->id;
+        $approve->approve_by = Auth::user()->id;
         $approve->save();
-        $approve->assignRole('Member');
-        return back();
+        $notification=array('messege'=>'Cancel approve successfully!','alert-type'=>'success');
+        return redirect()->back()->with($notification);
     }
     public function approvePadding()
     {

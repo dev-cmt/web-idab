@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
+    /**____________________________________________________________________________________________
+     * MEMBER REGISTATION
+     * ____________________________________________________________________________________________
+     */
     public function indexRegistation() {
         $data = PaymentDetails::where('status', 0)->where('payment_method_id','!=', 5)->get();
         $bank = PaymentDetails::where('status', 0)->where('payment_method_id', 5)->get();
@@ -31,6 +35,25 @@ class TransactionController extends Controller
     {
         return view('frontend.pages.register_payment');
     }
+    /**____________________________________________________________________________________________
+     * EVENT REGISTATION
+     * ____________________________________________________________________________________________
+     */
+    public function indexEventRegistation() {
+        $data = PaymentDetails::where('status', 0)->where('payment_method_id','!=', 5)->get();
+        $bank = PaymentDetails::where('status', 0)->where('payment_method_id', 5)->get();
+        $record = PaymentDetails::whereIn('status', [1,2])->get();
+        return view('layouts.pages.transaction.registation-index', compact('data', 'record', 'bank'));
+    }
+    public function createEventRegistation($id)
+    {
+        $data =Event::findOrFail($id);
+        return view('frontend.pages.events_register', compact('data'));
+    }
+    /**____________________________________________________________________________________________
+     * STORE => REGISTATION
+     * ____________________________________________________________________________________________
+     */
     public function storeRegistation(Request $request)
     {
         if($request->payment_method_id == 5){
@@ -79,7 +102,7 @@ class TransactionController extends Controller
         $paymentDetails->transaction_number = $request->transaction_number; // (payment gateway's transaction number)
         $paymentDetails->transaction_id = $transaction->id;
         $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2
-        $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register => 1, Event => 2
+        $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register->null, Event->id
         $paymentDetails->transfer_number = $request->transfer_number;
         $paymentDetails->slip = uploadFile($request, 'slip', 'bank-info', Auth::user()->id);
         $paymentDetails->message = $request->message;
@@ -134,6 +157,11 @@ class TransactionController extends Controller
     }
     
     
+    /**_________________________________________________________________________________________
+     * EVENT REGISTATION
+     * _________________________________________________________________________________________
+     */
+
     /**_________________________________________________________________________________________
      * PAYMENT NUMBER => MASTER
      * _________________________________________________________________________________________

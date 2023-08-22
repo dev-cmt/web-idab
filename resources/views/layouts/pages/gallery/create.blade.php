@@ -42,9 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label">Description
-                                        <span class="text-danger">*</span>
-                                    </label>
+                                    <label class="col-lg-4 col-form-label">Description</label>
                                     <div class="col-lg-6">
                                         <textarea class="form-control " id="val-suggestions" name="description" rows="5" placeholder="What would you like to see?">{{old('description')}}</textarea>                                    
                                         @error('description')
@@ -83,9 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-drive_url">Drive Url
-                                        <span class="text-danger">*</span>
-                                    </label>
+                                    <label class="col-lg-4 col-form-label" for="val-drive_url">Drive Url</label>
                                     <div class="col-lg-6">
                                         <input type="text" id="val-drive_url" class="form-control @error('drive_url') is-invalid @enderror" name="drive_url" placeholder="https://example.com" value="{{old('drive_url')}}">                          
                                         @error('drive_url')

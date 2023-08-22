@@ -245,3 +245,6 @@ table.dataTable tbody td {
 .card-body {
     padding: 20px !important;
 }
+.form-control:disabled{
+  background: #eeecec !important;
+}

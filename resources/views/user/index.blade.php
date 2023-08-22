@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All User<span class="bg-blue-500 text-white rounded px-1 text-xs py-0.5">{{ $users->total() }}</span></h4>
+                    <h4 class="card-title">All User List<span class="bg-blue-500 text-white rounded px-1 text-xs py-0.5">{{ $users->total() }}</span></h4>
                     @can('Role create')
                     <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Create user</a>
                     @endcan
@@ -17,8 +17,9 @@
                                     <th></th>
                                     <th>User Name</th>
                                     <th>Role</th>
-                                    <th>Contact</th>
-                                    <th>Created at</th>
+                                    <th>Member Type</th>
+                                    <th>Committee Type</th>
+                                    <th>Created</th>
                                     <th>Status</th>
                                     <th class="text-right pr-4">Action</th>
                                 </tr>
@@ -34,7 +35,8 @@
                                             <span class="">{{ $role->name }}</span>
                                         @endforeach
                                     </td>
-                                    <td>{{ $user->contact_number}}</td>
+                                    <td>{{ $user->memberType->name}}</td>
+                                    <td>{{ $user->CommitteeType->name}}</td>
                                     <td>
                                         {{ $user->created_at->diffForHumans() }}
                                     </td>

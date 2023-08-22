@@ -17,6 +17,7 @@ class PaymentNumber extends Model
         'payment_reason_id',
         'ref_reason_id',
         'payment_method_id',
+        'member_id',
         'user_id',
         'status',
     ];

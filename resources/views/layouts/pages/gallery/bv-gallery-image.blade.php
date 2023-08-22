@@ -9,8 +9,8 @@
                     <div id="lightgallery" class="row">
                         @if (count($posts->images)>0)
                         @foreach ($posts->images as $img)
-                        <a href="{{asset('public')}}/images/{{ $img->image}}" data-exthumbimage="{{asset('public')}}/images/{{ $img->image}}" data-src="images/big/img1.jpg" class="col-lg-4 col-md-6 mb-4">
-                            <img src="{{asset('public')}}/images/{{ $img->image}}" alt="" style="width:100%;">
+                        <a href="{{asset('public/images')}}/gallery/img/{{ $img->image}}" data-exthumbimage="{{asset('public/images')}}/gallery/img/{{ $img->image}}" data-src="images/big/img1.jpg" class="col-lg-4 col-md-6 mb-4">
+                            <img src="{{asset('public/images')}}/gallery/img/{{ $img->image}}" alt="" style="width:100%;">
                         </a>
                         @endforeach
                         @endif

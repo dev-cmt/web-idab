@@ -29,6 +29,7 @@
     <link href="{{asset('public/frontend')}}/css/intro-effect.css" rel="stylesheet">
     <link href="{{asset('public/frontend')}}/css/custom.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.24/sweetalert2.all.js"></script>
     @yield('style')
 </head>
 <body>

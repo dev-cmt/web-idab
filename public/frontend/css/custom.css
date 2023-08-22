@@ -1,3 +1,35 @@
+.text-default{
+  color:#ff0000 !important;
+}
+.bg-default{
+  background-color:#ff0000 !important;
+}
+.description_1{
+  overflow: hidden ; 
+  display: -webkit-box ;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 1;
+}
+.description_2{
+  overflow: hidden ; 
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 2;
+}
+.description_3{
+  overflow: hidden ; 
+  display: -webkit-box ;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 3;
+}
+.description_4{
+  overflow: hidden ; 
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 4;
+}
+
+
 /*____________________________________________________________________
 * Plugin Edit CSS
 *_____________________________________________________________________
@@ -299,5 +331,13 @@
 }
 
 .nav-pills .nav-link.active{
-    background-color: #EF1620 !important;
+    background-color: #ff0000 !important;
+}
+.page-link{
+  color: #ff0000;
+}
+.active>.page-link, .page-link.active{
+  color: var(--bs-pagination-active-color);
+  background-color: #ff0000;
+  border-color: #ff0000;
 }

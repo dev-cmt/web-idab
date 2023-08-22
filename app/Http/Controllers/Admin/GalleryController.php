@@ -254,20 +254,18 @@ class GalleryController extends Controller
     }
 
     /**________________________________________________________________________________
-     * 
+     * Dashboard View Pages
      * ________________________________________________________________________________
      */
-
-    
-    public function bv_gallery_image()
+    public function bvGallery()
     {
         $posts=Gallery::all();
-        return view('layouts.pages.gallery.bv_gallary_album')->with('posts',$posts);
+        return view('layouts.pages.gallery.bv-gallery')->with('posts',$posts);
     }
-    public function bv_gallery_show($id)
+    public function bvGalleryImage($id)
     {
         $posts=Gallery::findOrFail($id);
-        return view('layouts.pages.gallery.bv_gallary_images')->with('posts',$posts);
+        return view('layouts.pages.gallery.bv-gallery-image')->with('posts',$posts);
     }
 
 

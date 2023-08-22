@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 use App\Models\Master\MastQualification;
 use App\Models\Member\InfoAcademic;
 
@@ -75,6 +76,22 @@ class ImportSeeder extends Seeder
             'description'=>'DR - 6',
             'status'=> 1,
             'user_id'=> 1,
+        ]);
+        /**___________________________________________________
+         * Committee Type
+         * ___________________________________________________
+         */
+        CommitteeType::create([
+            'name'=>'Ad Hoc Committee',
+            'description'=>'TEST DR - 1',
+            'status'=>'1',
+            'user_id'=>'1',
+        ]);
+        CommitteeType::create([
+            'name'=>'Executive Committee',
+            'description'=>'TEST DR - 2',
+            'status'=>'1',
+            'user_id'=>'1',
         ]);
         /**___________________________________________________
          * Qualification

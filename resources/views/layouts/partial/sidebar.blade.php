@@ -17,6 +17,14 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            
+            @canany('Member')
+            <li>
+                <a href="{{ route('dashboard-gallery.all')}}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-picture"></i><span class="nav-text">Gallery</span>
+                </a>
+            </li>
+            @endcanany
 
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-user-9"></i>
@@ -101,21 +109,22 @@
                 </a>
                 <ul aria-expanded="false">
                     @canany('Role access','Role add','Role edit','Role delete')
-                    <li><a href="{{route('contact.index')}}">Contact Us</a></li>
+                    <li><a href="{{route('contact-us.index')}}">Contact Us</a></li>
                     @endcanany
 
                     @canany('Role access','Role add','Role edit','Role delete')
-                        <li><a href="{{ route('roles.index') }}">Role</a></li>
+                        <li><a href="{{ route('roles.index') }}">Manage Role</a></li>
                     @endcanany
 
                     @canany('User access','User add','User edit','User delete')
-                    <li><a href="{{ Route('users.index')}}">User</a></li>
+                    <li><a href="{{ Route('users.index')}}">Manage User</a></li>
                     @endcanany
                     
                 </ul>
             </li>
             @endcanany
-            
+
+
             @canany('Super-Admin')
             <li>
                 <a href="{{ route('subscription.index')}}" class="ai-icon" aria-expanded="false">

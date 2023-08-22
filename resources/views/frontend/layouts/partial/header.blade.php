@@ -31,8 +31,9 @@
                 </li>
                 <li class="dropdown"><a href="#"><span>Committee</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Ad Hoc Committee</a></li>
-                        <li><a href="#">Executive Committee</a></li>
+                        @foreach ($committeeType as $item)
+                            <li><a href="{{Route('page.committee', $item->id )}}" >{{$item->name}} </a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>Members</span> <i class="bi bi-chevron-down"></i></a>
@@ -44,7 +45,7 @@
                 </li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallary</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.events') ? 'active' : '' }}" href="{{Route('page.events')}}">Events</a></li>
-                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact') ? 'active' : '' }}" href="{{Route('page.contact')}}">Contact</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact-us') ? 'active' : '' }}" href="{{Route('page.contact-us')}}">Contact</a></li>
                 @guest
                     <li><a class="getstarted scrollto" href="{{Route('member_register.create')}}">Become A Member</a></li>
                 @endguest
