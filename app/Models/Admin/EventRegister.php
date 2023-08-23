@@ -5,6 +5,8 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Admin\Event;
+use App\Models\Payment\PaymentDetails;
 
 class EventRegister extends Model
 {
@@ -21,10 +23,19 @@ class EventRegister extends Model
         'event_id',
         'payment_details_id',
         'member_id',
+        'status',
     ];
        
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'member_id');
+    }
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
+    public function paymentDetails()
+    {
+        return $this->belongsTo(PaymentDetails::class, 'payment_details_id');
     }
 }

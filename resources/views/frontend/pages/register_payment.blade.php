@@ -130,8 +130,8 @@
                                 </div>
                                 <div class="col-md-6 mt-2" id="slip" style="display: none">
                                     <label class="form-label">Bank Slip</label>
-                                    <input type="file" id="slip" name="slip" class="form-control" value="{{old('slip')}}">
-                                    @error('amount')
+                                    <input type="file" id="slip" name="slip" class="form-control @error('slip') is-invalid @enderror" value="{{old('slip')}}" accept=".pdf,.jpeg,.jpg,.png,.gif,.doc,.docx">
+                                    @error('slip')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

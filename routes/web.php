@@ -129,21 +129,24 @@ Route::group(['middleware' => ['auth']], function(){
      * ______________________________________________________________________________________________
      */
     //-- TRANSACTION => MEMBER REGISTATION
-    Route::get('master/transaction-registation/index',[TransactionController::class,'indexRegistation'])->name('transaction-registation.index');
-    Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApprove'])->name('transaction-registation.approve');
+    Route::get('transaction-registation/approve/index', [TransactionController::class,'approveIndexRegistation'])->name('transaction-registation-approve.index');
+    Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApproved'])->name('transaction-registation.approve');
     Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
-    Route::get('transaction-registation/{id}/details', [TransactionController::class, 'detailsRegistration'])->name('transaction-registration.details');
-    Route::get('transaction-registation/{id}/download', [TransactionController::class, 'downloadRegistration'])->name('transaction-registration.download');
+    Route::get('transaction-registation/{id}/details', [TransactionController::class, 'approveRegistrationDetails'])->name('transaction-registration.details');
+    Route::get('transaction-registation/{id}/download', [TransactionController::class, 'download'])->name('transaction-document.download');
 
-    Route::get('master/transaction-annual/index',[TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
-    //-- TRANSACTION => MEMBER REGISTATION
-    Route::get('transaction-event/index',[TransactionController::class,'indexEvent'])->name('transaction-event.index');
-    Route::get('transaction-event/{id}/create',[TransactionController::class,'createEventRegistation'])->name('transaction-event.create');
-    Route::get('transaction-event/{id}/store',[TransactionController::class,'storeEventRegistation'])->name('transaction-event.store');
+    //-- TRANSACTION => EVENT REGISTATION
+    Route::get('transaction-event/index', [TransactionController::class,'indexEventRegistation'])->name('transaction-event.index');
+    Route::get('transaction-event/{id}/create', [TransactionController::class,'createEventRegistation'])->name('transaction-event.create');
+    Route::get('transaction-event/{id}/store', [TransactionController::class,'storeEventRegistation'])->name('transaction-event.store');
 
-    Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApprove'])->name('transaction-registation.approve');
-    Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
-    Route::get('transaction-registation/{id}/details', [TransactionController::class, 'detailsRegistration'])->name('transaction-registration.details');
+    Route::get('transaction-event-approve/index', [TransactionController::class,'approveIndexEvent'])->name('transaction-event-approve.index');
+    Route::PATCH('transaction-event/{id}/approve', [TransactionController::class, 'approveEventApproved'])->name('transaction-event.approve');
+    Route::PATCH('transaction-event/{id}/cancel', [TransactionController::class, 'approveEventCancel'])->name('transaction-event.cancel');
+    Route::get('transaction-event/{id}/details', [TransactionController::class, 'approveEventDetails'])->name('transaction-event.details');
+    
+    //-- TRANSACTION => ANNUAL REGISTATION
+    Route::get('master/transaction-annual/index', [TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
 
     //-- MASTER SETTING =>> PAYMENT NUMBER
     Route::get('master/transaction-payment/number/index',[TransactionController::class,'indexPaymentNumber'])->name('transaction-payment-number.index');

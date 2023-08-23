@@ -16,7 +16,7 @@
                 <div class="col-lg-8">
                     <!-- Blog Detail Start -->
                     <div class="mb-5">
-                        <img class="img-fluid w-100 rounded mb-5" src="{{asset('public')}}/images/events/{{ $data->image}}" alt="">
+                        <img class="img-fluid w-100 rounded mb-5" src="{{asset('public')}}/images/events/{{ $data->image ?? 'null.jpg'}}" alt="">
                         <div class="d-flex justify-content-between mb-2">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="bi bi-geo-alt text-default me-2"></i>

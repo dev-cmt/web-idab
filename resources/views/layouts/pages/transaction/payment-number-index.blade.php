@@ -71,6 +71,21 @@
                         <div class="row" id="main-row-data">
                             <div class="col-md-12">
                                 <div class="form-group row">
+                                    <label for="member_id" class="col-md-4 col-form-label">Management
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="member_id" id="member_id" class="form-control dropdwon_select">
+                                            <option disabled selected>--Select--</option>
+                                            @foreach ($user as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
                                     <label for="payment_method_id" class="col-md-4 col-form-label">Payment Method
                                         <span class="text-danger">*</span>
                                     </label>

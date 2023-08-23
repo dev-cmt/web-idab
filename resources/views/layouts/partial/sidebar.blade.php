@@ -60,7 +60,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{ Route('event_registation_list')}}">Annual Fee</a></li>
-                    <li><a href="{{ Route('event_registation_list')}}">Event Fee</a></li>
+                    <li><a href="{{ Route('transaction-event.index')}}">Event Fee</a></li>
                 </ul>
             </li>
 
@@ -71,8 +71,8 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="#">Annual Fee Details</a></li>
-                    <li><a href="#">Event Fee Details</a></li>
-                    <li><a href="{{Route('transaction-registation.index')}}">Registation Fee Details</a></li>
+                    <li><a href="{{Route('transaction-event-approve.index')}}">Event Fee Details</a></li>
+                    <li><a href="{{Route('transaction-registation-approve.index')}}">Registation Fee Details</a></li>
                     @canany('Admin')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">

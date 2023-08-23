@@ -5,6 +5,8 @@ namespace App\Models\Payment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Payment\PaymentMethods;
+use App\Models\Admin\Event;
+use App\Models\Admin\EventRegister;
 use App\Models\User;
 
 class PaymentDetails extends Model
@@ -34,6 +36,14 @@ class PaymentDetails extends Model
     public function member()
     {
         return $this->belongsTo(User::class, 'member_id');
+    }
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'ref_reason_id');
+    }
+    public function eventRegister()
+    {
+        return $this->hasOne(EventRegister::class, 'payment_details_id');
     }
     public function approveBy()
     {

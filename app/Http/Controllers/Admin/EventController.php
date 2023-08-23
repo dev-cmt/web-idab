@@ -35,7 +35,6 @@ class EventController extends Controller
         ]);
 
         $data= new Event();
-
         if($request->hasFile('image')) {
             //get filename with extension
             $filenamewithextension = $request->file('image')->getClientOriginalName();
@@ -60,28 +59,30 @@ class EventController extends Controller
             }); 
             $img->save($thumbnailpath);
 
-            //-------Save Data
-            $data->title=$request->title;
-            $data->caption=$request->caption;
-            $data->event_date=$request->event_date;
-            $data->self=$request->self;
-            $data->spouse=$request->spouse;
-            $data->child_above=$request->child_above;
-            $data->child_bellow=$request->child_bellow;
-            $data->guest=$request->guest;
-            $data->driver=$request->driver;
-            $data->description=$request->description;
-            $data->location=$request->location;
-            $data->status=$request->status;
-            $data->user_id= Auth::user()->id;
+            //Img Path Save
             $data->image=$filenametostore;
-            $data->save();
         }
+        $data->title=$request->title;
+        $data->caption=$request->caption;
+        $data->event_date=$request->event_date;
+        $data->self=$request->self;
+        $data->spouse=$request->spouse;
+        $data->child_above=$request->child_above;
+        $data->child_bellow=$request->child_bellow;
+        $data->guest=$request->guest;
+        $data->driver=$request->driver;
+        $data->description=$request->description;
+        $data->location=$request->location;
+        $data->status=$request->status;
+        $data->user_id= Auth::user()->id;
+        $data->image=$filenametostore;
+        $data->save();
+
         $notification=array('messege'=>'Event add successfully!','alert-type'=>'success');
         return redirect()->route('event.index')->with($notification);
     }
     
-    public function show(Gallery $post)
+    public function show(Event $post)
     {
         //
     }
@@ -122,38 +123,23 @@ class EventController extends Controller
                 $constraint->aspectRatio();
             }); 
             $img->save($thumbnailpath);
-
-            //-------Save Data
-            $data->title=$request->title;
-            $data->caption=$request->caption;
-            $data->event_date=$request->event_date;
-            $data->self=$request->self;
-            $data->spouse=$request->spouse;
-            $data->child_above=$request->child_above;
-            $data->child_bellow=$request->child_bellow;
-            $data->guest=$request->guest;
-            $data->driver=$request->driver;
-            $data->description=$request->description;
-            $data->location=$request->location;
-            $data->status=$request->status;
             $data->image=$filenametostore;
-            $data->save();
-        }else{
-            //-------Save Data
-            $data->title=$request->title;
-            $data->caption=$request->caption;
-            $data->event_date=$request->event_date;
-            $data->self=$request->self;
-            $data->spouse=$request->spouse;
-            $data->child_above=$request->child_above;
-            $data->child_bellow=$request->child_bellow;
-            $data->guest=$request->guest;
-            $data->driver=$request->driver;
-            $data->description=$request->description;
-            $data->location=$request->location;
-            $data->status=$request->status;
-            $data->save();
         }
+        //-------Save Data
+        $data->title=$request->title;
+        $data->caption=$request->caption;
+        $data->event_date=$request->event_date;
+        $data->self=$request->self;
+        $data->spouse=$request->spouse;
+        $data->child_above=$request->child_above;
+        $data->child_bellow=$request->child_bellow;
+        $data->guest=$request->guest;
+        $data->driver=$request->driver;
+        $data->description=$request->description;
+        $data->location=$request->location;
+        $data->status=$request->status;
+        $data->save();
+
         $notification=array('messege'=>'Event add successfully!','alert-type'=>'success');
         return redirect()->route('event.index')->with($notification);
     }
@@ -167,70 +153,5 @@ class EventController extends Controller
          }
          $data->delete();
          return back();
-    }
-    /*______________________________________________________________________*/
-    /*____________________________REGISTER__________________________________*/
-    public function register_create($id)
-    {
-        $data =Event::findOrFail($id);
-
-        $bkash=EventPayment::with('user','event')->where('event_id','=', $id)->where('payment_type','=', '1')->get();
-        $nagad=EventPayment::with('user','event')->where('event_id','=', $id)->where('payment_type','=', '2')->get();
-        $rocket=EventPayment::with('user','event')->where('event_id','=', $id)->where('payment_type','=', '3')->get();
-
-        return view('frontend.pages.events_register',compact('data','bkash','nagad','rocket'));
-    }
-    public function event_register(Request $request, $id)
-    {
-        $validated=$request -> validate([
-            'payment_type' => ['required', 'in:0,1,2,3'],
-            'payment_number'=> 'required',
-            'transaction_no'=> 'required',
-        ]);
-
-        $contact= new EventRegister();
-        $contact->person_no=$request->person_no;
-        $contact->total_amount=$request->total_amount;
-        $contact->payment_number=$request->payment_number;
-        $contact->transaction_no=$request->transaction_no;
-        $contact->payment_type=$request->payment_type;
-        $contact->status='0';
-        $contact->event_id=$id;
-        $contact->user_id=Auth::user()->id;
-        $contact->save();
-
-        return redirect()->route('event_registation_list');
-    }
-    public function event_registation_list()
-    {
-        $user = User::findOrFail(Auth::user()->id);
-        $data = $user->eventRegister;
-
-        // $data = EventRegister::get();   
-        return view('layouts.pages.event_registation_list',compact('data'));
-    }
-    public function event_approve_list()
-    {
-        $data = EventRegister::get(); 
-        return view('layouts.pages.event.approve_list',compact('data'));
-    }
-    
-    public function approve_event_fee($id)
-    {
-        $events = EventRegister::findorfail($id);
-        $events->receive_by = Auth::user()->id;
-        $events->status = 1;
-        $events->save();
-
-        return back();
-    }
-    public function cancel_event_fee($id)
-    {
-        $events = EventRegister::findorfail($id);
-        $events->receive_by = Auth::user()->id;
-        $events->status = 2;
-        $events->save();
-
-        return back();
     }
 }

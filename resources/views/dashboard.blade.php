@@ -147,7 +147,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    @if (count($events)> 0)
+    <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
@@ -155,30 +158,27 @@
                 </div>
                 <div class="card-body row">
                     <!-- Event Start -->
-                        @if (count($events)>0)
-                            @foreach ($events as $row)
-                            <div class="col-xl-4">
-                                <div class="card mb-3">
-                                    <img class="card-img-top img-fluid" src="{{asset('public')}}/images/events/{{ $row->image}}" style="height: 80%" alt="Card image cap">
-                                    <div class="card-header">
-                                        <h5 class="card-title">{{$row->title}}</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text description_2">{{$row->description}}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <p class="card-text d-inline">{{date("j F, Y", strtotime($row->event_date))}}</p>
-                                        <a href="{{route('page.events_details', $row->id)}}" class="card-link float-right">Read More...</a>
-                                    </div>
+                        @foreach ($events as $row)
+                        <div class="col-xl-4">
+                            <div class="card mb-3">
+                                <img class="card-img-top img-fluid" src="{{asset('public')}}/images/events/{{ $row->image ?? 'null.jpg'}}" style="height: 80%" alt="Card image cap">
+                                <div class="card-header">
+                                    <h5 class="card-title">{{$row->title}}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text description_2">{{$row->description}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="card-text d-inline">{{date("j F, Y", strtotime($row->event_date))}}</p>
+                                    <a href="{{route('page.events-details', $row->id)}}" class="card-link float-right">Read More...</a>
                                 </div>
                             </div>
-
-                            @endforeach
-                        @endif
+                        </div>
+                        @endforeach
                     <!-- Event End -->
                 </div>
             </div>
         </div>
-
     </div>
+    @endif
 </x-app-layout>

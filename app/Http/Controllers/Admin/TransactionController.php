@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Admin\Event;
+use App\Models\Admin\EventRegister;
 use App\Models\Payment\PaymentReasons;
 use App\Models\Payment\PaymentMethods;
 use App\Models\Payment\Transaction;
@@ -21,29 +24,9 @@ use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
-    /**____________________________________________________________________________________________
-     * MEMBER REGISTATION
-     * ____________________________________________________________________________________________
-     */
-    public function indexRegistation() {
-        $data = PaymentDetails::where('status', 0)->where('payment_method_id','!=', 5)->get();
-        $bank = PaymentDetails::where('status', 0)->where('payment_method_id', 5)->get();
-        $record = PaymentDetails::whereIn('status', [1,2])->get();
-        return view('layouts.pages.transaction.registation-index', compact('data', 'record', 'bank'));
-    }
     public function createRegistation()
     {
         return view('frontend.pages.register_payment');
-    }
-    /**____________________________________________________________________________________________
-     * EVENT REGISTATION
-     * ____________________________________________________________________________________________
-     */
-    public function indexEventRegistation() {
-        $data = PaymentDetails::where('status', 0)->where('payment_method_id','!=', 5)->get();
-        $bank = PaymentDetails::where('status', 0)->where('payment_method_id', 5)->get();
-        $record = PaymentDetails::whereIn('status', [1,2])->get();
-        return view('layouts.pages.transaction.registation-index', compact('data', 'record', 'bank'));
     }
     public function createEventRegistation($id)
     {
@@ -56,65 +39,118 @@ class TransactionController extends Controller
      */
     public function storeRegistation(Request $request)
     {
-        if($request->payment_method_id == 5){
-            $validated=$request -> validate([
-                'payment_number'=> 'required',
-            ]);
-        }else{
-            $validated=$request -> validate([
-                'payment_number'=> 'required',
-                'transaction_number'=> 'required',
-                'transfer_number'=> 'required',
-            ]);
-        }
-        $approve = User::findorfail(Auth::user()->id);
-        $approve->is_admin = 1;
-        $approve->save();
-        
-        $transaction = new Transaction();
-        $transaction->amount = $request->amount;
-        $transaction->transaction_type = 1; // 'Deposit => 1', 'Withdraw => 2', 'Purchase => 3'
-        $transaction->transaction_id = null; // Payment gateway's transaction ID
-        $transaction->status = 0;
-        $transaction->payment_method_id = $request->payment_method_id;
-        $transaction->user_id = Auth::user()->id;
-        $transaction->save();
-
-        function uploadFile($request, $fieldName, $subfolder, $userId) {
-            if ($request->hasFile($fieldName)) {
-                $uploadedFile = $request->file($fieldName);
-                $extension = $uploadedFile->getClientOriginalExtension();
-                $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
-        
-                $folderPath = public_path("document/member/{$userId}/{$subfolder}");
-                if (!File::exists($folderPath)) {
-                    File::makeDirectory($folderPath, 0777, true);
-                }
-                $uploadedFile->move($folderPath, $filenameToStore);
-                return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
+        try{
+            if($request->payment_method_id == 5){
+                $validated=$request -> validate([
+                    'payment_number'=> 'required',
+                    'slip' => 'max:2048|nullable|mimes:pdf,jpeg,png,gif,doc,docx',
+                ]);
+            }else{
+                $validated=$request -> validate([
+                    'payment_number'=> 'required',
+                    'transaction_number'=> 'required',
+                    'transfer_number'=> 'required',
+                ]);
             }
-            return null;
+    
+            $eventCheck = EventRegister::where('event_id', $request->ref_reason_id)->where('member_id', Auth::user()->id)->first();
+            if ($eventCheck) {
+                return redirect()->back()->with('success', 'You have already registered for this event.');
+            }
+    
+            $update = User::findorfail(Auth::user()->id);
+            $update->is_admin = 1;
+            $update->save();
+            
+            $transaction = new Transaction();
+            $transaction->amount = $request->amount;
+            $transaction->transaction_type = 1; // 'Deposit => 1', 'Withdraw => 2', 'Purchase => 3'
+            $transaction->transaction_id = null; // Payment gateway's transaction ID
+            $transaction->status = 0;
+            $transaction->payment_method_id = $request->payment_method_id;
+            $transaction->user_id = Auth::user()->id;
+            $transaction->save();
+    
+            function uploadFile($request, $fieldName, $subfolder, $userId) {
+                if ($request->hasFile($fieldName)) {
+                    $uploadedFile = $request->file($fieldName);
+                    $extension = $uploadedFile->getClientOriginalExtension();
+                    $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
+            
+                    $folderPath = public_path("document/member/{$userId}/{$subfolder}");
+                    if (!File::exists($folderPath)) {
+                        File::makeDirectory($folderPath, 0777, true);
+                    }
+                    $uploadedFile->move($folderPath, $filenameToStore);
+                    return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
+                }
+                return null;
+            }
+            $paymentDetails = new PaymentDetails();
+            $paymentDetails->payment_date = now()->format('Y-m-d');
+            $paymentDetails->paid_amount = $request->amount;
+            $paymentDetails->payment_number = $request->payment_number; // (bKash number, Rocket number, Card last 4 digits)
+            $paymentDetails->transaction_number = $request->transaction_number; // (payment gateway's transaction number)
+            $paymentDetails->transaction_id = $transaction->id;
+            $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2
+            $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register->null, Event->id
+            $paymentDetails->transfer_number = $request->transfer_number;
+            $paymentDetails->slip = uploadFile($request, 'slip', 'bank-info', Auth::user()->id);
+            $paymentDetails->message = $request->message;
+            $paymentDetails->payment_method_id = $request->payment_method_id;
+            $paymentDetails->member_id = Auth::user()->id;
+            $paymentDetails->status = 0;
+            $paymentDetails->save();
+    
+            if($request->payment_reason_id == 2){ //Event Register
+                $eventStore = new EventRegister();
+                $eventStore->self = $request->self;
+                $eventStore->spouse = $request->spouse;
+                $eventStore->child_above = $request->child_above;
+                $eventStore->child_bellow = $request->child_bellow;
+                $eventStore->guest = $request->guest;
+                $eventStore->driver = $request->driver;
+                $eventStore->total_person = $request->total_person;
+                $eventStore->total_amount = $request->amount;
+                $eventStore->payment_details_id = $paymentDetails->id;
+                $eventStore->event_id = $request->ref_reason_id;
+                $eventStore->member_id = Auth::user()->id;
+                $eventStore->save();
+                
+                $notification=array('messege'=>'Category Delete successfully!','alert-type'=>'success');
+                return redirect()->route('transaction-event.index')->with($notification);
+            }
+    
+            return redirect()->route('member-approve.padding');
+        }catch (PostTooLargeException $e) {
+            return redirect()->back()->with('error', 'File size exceeds the limit.');
         }
-        $paymentDetails = new PaymentDetails();
-        $paymentDetails->payment_date = now()->format('Y-m-d');
-        $paymentDetails->paid_amount = $request->amount;
-        $paymentDetails->payment_number = $request->payment_number; // (bKash number, Rocket number, Card last 4 digits)
-        $paymentDetails->transaction_number = $request->transaction_number; // (payment gateway's transaction number)
-        $paymentDetails->transaction_id = $transaction->id;
-        $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2
-        $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register->null, Event->id
-        $paymentDetails->transfer_number = $request->transfer_number;
-        $paymentDetails->slip = uploadFile($request, 'slip', 'bank-info', Auth::user()->id);
-        $paymentDetails->message = $request->message;
-        $paymentDetails->payment_method_id = $request->payment_method_id;
-        $paymentDetails->member_id = Auth::user()->id;
-        $paymentDetails->status = 0;
-        $paymentDetails->save();
-        return redirect()->route('member-approve.padding');
+    }
+    public function download($id)
+    {
+        $data = PaymentDetails::findOrFail($id);
+        $filePath = public_path($data->slip);
+
+        if (file_exists($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'pdf') {
+            return Response::download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'PDF file not found.');
+        }
     }
     
-    
-    public function approveRegistationApprove($id) {
+    /**____________________________________________________________________________________________
+     * MEMBER REGISTATION => APPROVE
+     * ____________________________________________________________________________________________
+     */
+    public function approveIndexRegistation() 
+    {
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 1 => Membership
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 1)->get();
+        return view('layouts.pages.transaction.registation-approve', compact('data', 'record', 'bank'));
+    }
+    public function approveRegistationApproved($id) 
+    {
         $data = PaymentDetails::findOrFail($id);
         $data->status = 1;
         $data->user_id = Auth::user()->id;
@@ -130,7 +166,8 @@ class TransactionController extends Controller
         $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
         return redirect()->back()->with($notification);
     }
-    public function approveRegistationCancel($id) {
+    public function approveRegistationCancel($id) 
+    {
         $data = PaymentDetails::findOrFail($id);
         $data->status = 2;
         $data->user_id = Auth::user()->id;
@@ -138,46 +175,89 @@ class TransactionController extends Controller
 
         return redirect()->back();
     }
-    public function detailsRegistration($id) {
+    public function approveRegistrationDetails($id) 
+    {
         $data = PaymentDetails::where('id', $id)->first();
         
         return view('layouts.pages.transaction.registation-show', compact('data'));
     }
 
-    public function downloadRegistration($id)
-    {
-        $data = PaymentDetails::findOrFail($id);
-        $filePath = public_path($data->slip);
-
-        if (file_exists($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'pdf') {
-            return Response::download($filePath);
-        } else {
-            return redirect()->back()->with('error', 'PDF file not found.');
-        }
-    }
-    
-    
-    /**_________________________________________________________________________________________
-     * EVENT REGISTATION
-     * _________________________________________________________________________________________
+    /**____________________________________________________________________________________________
+     * EVENT REGISTATION => USER SHOW
+     * ____________________________________________________________________________________________
      */
+    public function indexEventRegistation() 
+    {
+        $data = EventRegister::where('member_id', Auth::user()->id)->get();
+        return view('layouts.pages.transaction.event-index',compact('data'));
+    }
+    /**____________________________________________________________________________________________
+     * EVENT REGISTATION => APPROVE
+     * ____________________________________________________________________________________________
+     */
+    public function approveIndexEvent() 
+    {
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 2)->get();
+        return view('layouts.pages.transaction.event-approve', compact('data', 'record', 'bank'));
+    }
+    public function approveEventApproved($id) {
+        
+        $eventUpdate = EventRegister::findOrFail($id);
+        $eventUpdate->status = 1;
+        $eventUpdate->save();
+
+        $data = PaymentDetails::findOrFail($eventUpdate->payment_details_id);
+        $data->status = 1;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        $mailData =[
+            'title' => 'You Event Registation Successfully',
+            'body' => 'This Is body.',
+        ];
+        $user = User::find($data->member_id);
+        Mail::to($user->email)->send(new MemberApproved($mailData));
+
+        $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
+        return redirect()->back()->with($notification);
+    }
+    public function approveEventCancel($id) {
+        $data = PaymentDetails::findOrFail($id);
+        $data->status = 2;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function approveEventDetails($id) {
+        $data = PaymentDetails::where('id', $id)->first();
+        
+        return view('layouts.pages.transaction.registation-show', compact('data'));
+    }
+
 
     /**_________________________________________________________________________________________
-     * PAYMENT NUMBER => MASTER
+     * _________________________________________________________________________________________
+     *  PAYMENT NUMBER => MASTER
+     * _________________________________________________________________________________________
      * _________________________________________________________________________________________
      */
     public function indexPaymentNumber() {
         $data = PaymentNumber::get();
+        $user = User::where('status', 1)->get();
         
         $payment_reasons = PaymentReasons::get();
         $payment_methods = PaymentMethods::get();
         $ref_reason = Event::where('status', 1)->get();
-        return view('layouts.pages.transaction.payment-number-index', compact('data', 'payment_reasons', 'payment_methods', 'ref_reason'));
+        return view('layouts.pages.transaction.payment-number-index', compact('data', 'user', 'payment_reasons', 'payment_methods', 'ref_reason'));
     }
     public function storePaymentNumber(Request $request) {
         //----Validation Check 
         $rules = [
             'number' => 'required',
+            'member_id' => 'required',
             'payment_reason_id' => 'required',
             'payment_method_id' => 'required',
         ];
@@ -200,6 +280,7 @@ class TransactionController extends Controller
         $data->payment_reason_id = $request->payment_reason_id;
         $data->payment_method_id = $request->payment_method_id;
         $data->ref_reason_id = $request->ref_reason_id;
+        $data->member_id = $request->member_id;
         $data->status = $request->status;
         $data->user_id = Auth::user()->id;
         $data->save();
