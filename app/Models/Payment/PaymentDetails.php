@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Payment\PaymentMethods;
 use App\Models\Admin\Event;
-use App\Models\Admin\EventRegister;
+use App\Models\Payment\EventRegister;
 use App\Models\User;
 
 class PaymentDetails extends Model

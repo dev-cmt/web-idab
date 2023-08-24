@@ -261,7 +261,10 @@
         
         </form>
     </div>
+@endsection
+@section('script')
     <script>
+        //======Show & Get Number
         $(document).ready(function(){
             $('input[type="radio"]').click(function(){
                 var inputValue = $(this).attr("value");
@@ -270,10 +273,6 @@
                 $(targetBox).show();
             });
         });
-    </script>
-@endsection
-@section('script')
-    <script>
         //======Get Payment Number Data
         $(document).on('click', 'input[type="radio"]', function() {
             var methodId = $(this).attr("value");

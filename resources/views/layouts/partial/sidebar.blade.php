@@ -59,7 +59,7 @@
                     <span class="nav-text">My Transactions</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ Route('event_registation_list')}}">Annual Fee</a></li>
+                    <li><a href="{{ Route('transaction-annual.index')}}">Annual Fee</a></li>
                     <li><a href="{{ Route('transaction-event.index')}}">Event Fee</a></li>
                 </ul>
             </li>
@@ -70,7 +70,7 @@
                     <span class="nav-text">Payment History</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">Annual Fee Details</a></li>
+                    <li><a href="{{Route('transaction-annual-approve.index')}}">Annual Fee Details</a></li>
                     <li><a href="{{Route('transaction-event-approve.index')}}">Event Fee Details</a></li>
                     <li><a href="{{Route('transaction-registation-approve.index')}}">Registation Fee Details</a></li>
                     @canany('Admin')
@@ -79,8 +79,7 @@
                             {{-- @canany('Payment add','Payment edit','Payment delete') --}}
                             <li><a href="{{Route('transaction-payment-number.index')}}">Setup Payment Number</a></li>
                             {{-- @endcanany --}}
-                            <li><a href="#">Setup Annual Fee</a></li>
-                            <li><a href="#">Setup Registation Fee</a></li>
+                            <li><a href="{{Route('transaction-payment-fees.index')}}">Setup Payment Fee</a></li>
                         </ul>
                     </li>
                     @endcanany

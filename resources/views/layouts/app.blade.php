@@ -27,8 +27,7 @@
 	<link href="{{asset('public/backend')}}/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{asset('public/backend')}}/css/style.css" rel="stylesheet">
     
-    <!-- Jquery -->
-    <script src="{{asset('public/backend')}}/js/jquery-3.5.1.min.js"></script>
+    @stack('style')
 </head>
 <body>
 
@@ -93,6 +92,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
+    <!-- Jquery -->
+    <script src="{{asset('public/backend')}}/js/jquery-3.5.1.min.js"></script>
     <!-- Required vendors -->
     <script src="{{asset('public/backend')}}/vendor/global/global.min.js"></script>
 	<script src="{{asset('public/backend')}}/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>

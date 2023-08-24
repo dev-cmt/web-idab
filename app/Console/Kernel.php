@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\CreateAnnualFees;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,6 +17,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->command(CreateAnnualFees::class)->yearlyOn(1, 1, '00:00');
+        $schedule->command(CreateAnnualFees::class)->dailyAt('17:03');
     }
 
     /**

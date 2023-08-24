@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Admin\Event;
-use App\Models\Admin\EventRegister;
+use App\Models\Master\MemberType;
+use App\Models\Payment\EventRegister;
 use App\Models\Payment\PaymentReasons;
 use App\Models\Payment\PaymentMethods;
 use App\Models\Payment\Transaction;
@@ -32,6 +33,10 @@ class TransactionController extends Controller
     {
         $data =Event::findOrFail($id);
         return view('frontend.pages.events_register', compact('data'));
+    }
+    public function createAnnualAnnualFees()
+    {
+        return view('layouts.pages.transaction.annual-fees-create');
     }
     /**____________________________________________________________________________________________
      * STORE => REGISTATION
@@ -181,7 +186,6 @@ class TransactionController extends Controller
         
         return view('layouts.pages.transaction.registation-show', compact('data'));
     }
-
     /**____________________________________________________________________________________________
      * EVENT REGISTATION => USER SHOW
      * ____________________________________________________________________________________________
@@ -236,7 +240,62 @@ class TransactionController extends Controller
         
         return view('layouts.pages.transaction.registation-show', compact('data'));
     }
+    
+    /**____________________________________________________________________________________________
+     * ANNUAL REGISTATION => USER SHOW
+     * ____________________________________________________________________________________________
+     */
+    public function indexAnnualFees() 
+    {
+        $data = EventRegister::where('member_id', Auth::user()->id)->get();
+        return view('layouts.pages.transaction.annual-index',compact('data'));
+    }
 
+    /**____________________________________________________________________________________________
+     * ANNUAL REGISTATION => APPROVE
+     * ____________________________________________________________________________________________
+     */
+    public function approveIndexAnnual() 
+    {
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 2)->get();
+        return view('layouts.pages.transaction.annual-approve', compact('data', 'record', 'bank'));
+    }
+    public function approveAnnualApproved($id) {
+        
+        $eventUpdate = EventRegister::findOrFail($id);
+        $eventUpdate->status = 1;
+        $eventUpdate->save();
+
+        $data = PaymentDetails::findOrFail($eventUpdate->payment_details_id);
+        $data->status = 1;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        $mailData =[
+            'title' => 'You Event Registation Successfully',
+            'body' => 'This Is body.',
+        ];
+        $user = User::find($data->member_id);
+        Mail::to($user->email)->send(new MemberApproved($mailData));
+
+        $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
+        return redirect()->back()->with($notification);
+    }
+    public function approveAnnualCancel($id) {
+        $data = PaymentDetails::findOrFail($id);
+        $data->status = 2;
+        $data->user_id = Auth::user()->id;
+        $data->save();
+
+        return redirect()->back();
+    }
+    public function approveAnnualDetails($id) {
+        $data = PaymentDetails::where('id', $id)->first();
+        
+        return view('layouts.pages.transaction.registation-show', compact('data'));
+    }
 
     /**_________________________________________________________________________________________
      * _________________________________________________________________________________________
@@ -317,6 +376,23 @@ class TransactionController extends Controller
         // Return message
         return response()->json(['data' => $data], 200);
     }
+
+    /**_________________________________________________________________________________________
+     * _________________________________________________________________________________________
+     *  PAYMENT FEES => MEMBER TYPE
+     * _________________________________________________________________________________________
+     * _________________________________________________________________________________________
+     */
+    public function indexPaymentFees() {
+        $data = MemberType::where('status', 1)->get();
+        return view('layouts.pages.transaction.payment-fees-index', compact('data'));
+    }
+    /**_________________________________________________________________________________________
+     * _________________________________________________________________________________________
+     *  GET AJAX DATA
+     * _________________________________________________________________________________________
+     * _________________________________________________________________________________________
+     */
     public function getPaymentNumber(Request $request)
     {
         $data = PaymentNumber::where('payment_method_id', $request->method_id)->get();

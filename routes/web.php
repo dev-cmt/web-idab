@@ -146,14 +146,24 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('transaction-event/{id}/details', [TransactionController::class, 'approveEventDetails'])->name('transaction-event.details');
     
     //-- TRANSACTION => ANNUAL REGISTATION
-    Route::get('master/transaction-annual/index', [TransactionController::class,'indexAnnual'])->name('transaction-annual.index');
+    Route::get('transaction-annual/index', [TransactionController::class,'indexAnnualFees'])->name('transaction-annual.index');
+    Route::get('transaction-annual/create', [TransactionController::class,'createAnnualAnnualFees'])->name('transaction-annual.create');
+    Route::get('transaction-annual/{id}/store', [TransactionController::class,'storeEventAnnualFees'])->name('transaction-annual.store');
 
+    Route::get('transaction-annual-approve/index', [TransactionController::class,'approveIndexAnnualFees'])->name('transaction-annual-approve.index');
+    Route::PATCH('transaction-annual/{id}/approve', [TransactionController::class, 'approveAnnualFeesApproved'])->name('transaction-annual.approve');
+    Route::PATCH('transaction-annual/{id}/cancel', [TransactionController::class, 'approveAnnualFeesCancel'])->name('transaction-annual.cancel');
+    Route::get('transaction-annual/{id}/details', [TransactionController::class, 'approveAnnualFeesDetails'])->name('transaction-annual.details');
+    
     //-- MASTER SETTING =>> PAYMENT NUMBER
     Route::get('master/transaction-payment/number/index',[TransactionController::class,'indexPaymentNumber'])->name('transaction-payment-number.index');
     Route::post('master/transaction-payment/number/store',[TransactionController::class,'storePaymentNumber'])->name('transaction-payment-number.store');
     Route::get('master/transaction-payment/number/edit',[TransactionController::class,'editPaymentNumber'])->name('transaction-payment-number.edit');
     Route::get('master/transaction-payment/number/delete',[TransactionController::class,'deletePaymentNumber'])->name('transaction-payment-number.delete');
     Route::get('get/payment-number',[TransactionController::class,'getPaymentNumber'])->name('get-payment-number');
+    //-- MASTER SETTING =>> PAYMENT FEE
+    Route::get('master/transaction-payment/fees/index',[TransactionController::class,'indexPaymentFees'])->name('transaction-payment-fees.index');
+    Route::post('master/transaction-payment/fees/store',[TransactionController::class,'storePaymentFees'])->name('transaction-payment-fees.store');
     /**______________________________________________________________________________________________
      * POST => MENU
      * ______________________________________________________________________________________________
@@ -171,14 +181,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('dashboard-gallery/{id}/show',[GalleryController::class,'bvGalleryImage'])->name('dashboard-gallery.images');
     //-- EVENTS
     Route::resource('event', EventController::class);
-
-    // Route::get('/events_register/from/{id}', [EventController::class,'register_create'])->name('page.events-register');
-    // Route::post('/events_register/store/{id}', [EventController::class,'event_register'])->name('events_register.store');
-
-    Route::get('/event_registation_list', [EventController::class,'event_registation_list'])->name('event_registation_list');
-    Route::get('/event_approve_list', [EventController::class,'event_approve_list'])->name('event_approve_list');
-    Route::patch ('/approve_event/update/{id}', [EventController::class,'approve_event_fee'])->name('approve_event_fee.update');
-    Route::patch ('/cancel_event_fee/update/{id}', [EventController::class,'cancel_event_fee'])->name('cancel_event_fee.update');
     //-- CONTACT
     Route::get('contact-us/index', [ContactController::class,'contactIndex'])->name('contact-us.index');
     Route::get('contact-us/{id}/reply', [ContactController::class,'contactReply'])->name('contact-us.reply');
