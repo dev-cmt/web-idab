@@ -398,6 +398,7 @@
         </section><!-- End Frequently Asked Questions Section -->
 
         <!-- ======= Team Section ======= -->
+        @if (count($member)>0)
         <section id="team" class="team">
             <div class="container">
 
@@ -407,11 +408,12 @@
                 </div>
 
                 <div id="owl-team-member" class="owl-carousel">
+                    @foreach ($member as $item)
                     <div class="member">
-                        <img src="{{asset('public/frontend')}}/img/team/team-1.jpg" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/profile/{{$item->profile_photo_path}}" class="img-fluid" alt="">
                         <div class="member-info">
                             <div class="member-info-content">
-                                <h4>Walter White</h4>
+                                <h4>{{$item->name}}</h4>
                                 <span>Chief Executive Officer</span>
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter"></i></a>
@@ -422,71 +424,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="member">
-                        <img src="{{asset('public/frontend')}}/img/team/team-2.jpg" class="img-fluid" alt="">
-                        <div class="member-info">
-                            <div class="member-info-content">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member">
-                        <img src="{{asset('public/frontend')}}/img/team/team-3.jpg" class="img-fluid" alt="">
-                        <div class="member-info">
-                            <div class="member-info-content">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member" data-wow-delay="0.1s">
-                        <img src="{{asset('public/frontend')}}/img/team/team-4.jpg" class="img-fluid" alt="">
-                        <div class="member-info">
-                            <div class="member-info-content">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member">
-                        <img src="{{asset('public/frontend')}}/img/team/team-3.jpg" class="img-fluid" alt="">
-                        <div class="member-info">
-                            <div class="member-info-content">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
 
             </div>
         </section><!-- End Team Section -->
+        @endif
 
         <!-- ======= Clients Section ======= -->
         <section id="clients" class="clients section-bg">

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Admin\SubscriptionSetup;
 use App\Models\Master\MastQualification;
 use App\Models\Payment\PaymentMethods;
 use App\Models\Payment\PaymentReasons;
@@ -18,10 +17,6 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        SubscriptionSetup::create([
-            'monthly_fee'=>'500',
-            'sub_start_date'=>'2023-01-01',
-        ]);
         /**___________________________________________________
          * Payment Reasons
          * ___________________________________________________

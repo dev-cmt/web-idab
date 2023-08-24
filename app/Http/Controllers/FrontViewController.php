@@ -15,7 +15,10 @@ class FrontViewController extends Controller
 {
     public function welcome()
     {
-        return view('welcome');
+        $member = User::where('status', 1)->get();
+        $event = Event::where('status', 1)->get();
+
+        return view('welcome', compact('member', 'event'));
     }
     /**________________________________________________________________________________________
      * About Menu Pages
