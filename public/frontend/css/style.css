@@ -313,7 +313,7 @@ h6 {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-color: #202124;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -560,7 +560,7 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 60px 10px;
 }
 
 .section-bg {

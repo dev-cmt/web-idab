@@ -24,39 +24,94 @@ class RolePermissionSeeder extends Seeder
         $member_role = Role::create(['name' => 'Member']);
 
         $permissions = [
-            /*_____Menu Access_____*/
-            ['name' => 'Pages'],
-            ['name' => 'Setting'],
+            /*_____MENU ACCESS_____*/
+            ['name' => 'Member menu access'],
+            ['name' => 'Payment menu access'],
+            ['name' => 'Post menu access'],
+            ['name' => 'Setting menu access'],
 
-            //-----Gallery Access
+            //---MEMBER => Approve
+            ['name' => 'Member approve access'],
+            ['name' => 'Member approved'],
+            ['name' => 'Member approve record'],
+
+            //---DATA MEMBER => Member Type
+            ['name' => 'MemberType access'],
+            ['name' => 'MemberType create'],
+            ['name' => 'MemberType edit'],
+            ['name' => 'MemberType view'],
+            ['name' => 'MemberType delete'],
+
+            //---DATA MEMBER => Qualification
+            ['name' => 'Qualification access'],
+            ['name' => 'Qualification create'],
+            ['name' => 'Qualification edit'],
+            ['name' => 'Qualification view'],
+            ['name' => 'Qualification delete'],
+
+            //---PYMENT => Annual Fees
+            ['name' => 'Annual fees access'],
+            ['name' => 'Annual fees approved'],
+            ['name' => 'Annual fees record'],
+
+            //---PYMENT => Event Fees
+            ['name' => 'Event fees access'],
+            ['name' => 'Event fees approved'],
+            ['name' => 'Event fees record'],
+
+            //---PYMENT => Membership Fees
+            ['name' => 'Membership fees access'],
+            ['name' => 'Membership fees approved'],
+            ['name' => 'Membership fees record'],
+
+            //---DATA PAYMENT => Pyment Number
+            ['name' => 'Pyment number access'],
+            ['name' => 'Pyment number create'],
+            ['name' => 'Pyment number edit'],
+            ['name' => 'Pyment number view'],
+            ['name' => 'Pyment number delete'],
+
+            //---DATA PAYMENT => Pyment Fees
+            ['name' => 'Pyment fees access'],
+            ['name' => 'Pyment annual fees'],
+            ['name' => 'Pyment membership fees'],
+
+            //---POST => Gallery
             ['name' => 'Gallery access'],
             ['name' => 'Gallery create'],
             ['name' => 'Gallery edit'],
             ['name' => 'Gallery delete'],
+
+            //---POST => Event
+            ['name' => 'Event access'],
+            ['name' => 'Event create'],
+            ['name' => 'Event edit'],
+            ['name' => 'Event delete'],
             
-            //-----User Access
-            ['name' => 'User access'],
-            ['name' => 'User create'],
-            ['name' => 'User edit'],
-            ['name' => 'User delete'],
+            //---SETTING => Contact
+            ['name' => 'Contact access'],
+            ['name' => 'Contact reply'],
+            ['name' => 'Contact delete'],
             
-            //-----Role Access
+            //---SETTING => Role
             ['name' => 'Role access'],
             ['name' => 'Role create'],
             ['name' => 'Role edit'],
             ['name' => 'Role delete'],
 
-            /*_____ WEB Access _____*/
+            //---SETTING => User
+            ['name' => 'User access'],
+            ['name' => 'User create'],
+            ['name' => 'User edit'],
+            ['name' => 'User delete'],
+
+            /*_____ WEB ACCESS _____*/
             ['name' => 'Super-Admin'],
             ['name' => 'Admin'],
-            ['name' => 'Guest'],
-            
-            ['name' => 'Create'],
-            ['name' => 'Edit'],
-            ['name' => 'Delete'],
-
-            //-----Member Access
             ['name' => 'Member'],
+            ['name' => 'Data Setting'],
+
+            //-----MEMBER ACCESS
             ['name' => 'Student Member'],
             ['name' => 'Candidate Member'],
             ['name' => 'Professional Member'],
@@ -80,6 +135,6 @@ class RolePermissionSeeder extends Seeder
         $permissions = Permission::all(); // Get all permissions
 
         $super_admin_role->syncPermissions($permissions);
-        $admin_role->givePermissionTo('Gallery access');
+        $admin_role->givePermissionTo(['Gallery access', 'Member']);
     }
 }

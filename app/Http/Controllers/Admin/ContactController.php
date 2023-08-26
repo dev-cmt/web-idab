@@ -92,7 +92,7 @@ class ContactController extends Controller
     /*___________________ CONTACt ADMIN ______________________*/
     public function contactIndex()
     {
-        $message=Contact::where('status', 0)->get();
+        $message=Contact::get();
         return view('layouts.pages.contact',compact('message'));
     }
     public function contactStore(Request $request)

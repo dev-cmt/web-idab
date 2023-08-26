@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Admin\Image;
+use App\Models\Admin\Contact;
 use App\Models\Admin\Gallery;
 use App\Models\Admin\Event;
 use App\Models\Master\MemberType;
@@ -15,18 +15,21 @@ class FrontViewController extends Controller
 {
     public function welcome()
     {
-        $member = User::where('status', 1)->get();
+        $user = User::where('status', 1)->get();
+        $add_hoc = $user->where('committee_type_id', 1);
+        $executive = $user->where('committee_type_id', 2);
         $event = Event::where('status', 1)->get();
+        $contact = Contact::where('status', 1)->get();
 
-        return view('welcome', compact('member', 'event'));
+        return view('welcome', compact('user', 'add_hoc', 'executive', 'event', 'contact'));
     }
     /**________________________________________________________________________________________
      * About Menu Pages
      * ________________________________________________________________________________________
      */
-    public function index1()
+    public function about()
     {
-        return view('comming_soon');
+        return view('frontend.pages.about-us');
     }
     /**________________________________________________________________________________________
      * Committee Menu Pages
@@ -101,6 +104,18 @@ class FrontViewController extends Controller
     public function contact()
     {
         return view('frontend.pages.contact');
+    }
+    /**________________________________________________________________________________________
+     * Other Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function termsCondition()
+    {
+        return view('frontend.pages.terms-condition');
+    }
+    public function privacyPolicy()
+    {
+        return view('frontend.pages.privacy-policy');
     }
     /**________________________________________________________________________________________
      * Comming Soon Page

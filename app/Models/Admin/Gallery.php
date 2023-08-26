@@ -16,6 +16,7 @@ class Gallery extends Model
         'cover',
         'drive_url',
         'public',
+        'status',
         'user_id',
     ];
 

@@ -69,13 +69,14 @@ class GalleryController extends Controller
 
             //---Data Save
             $post =new Gallery([
-                "title" =>$request->title,
-                "description"=>$request->description,
-                "date"=>$request->date,
+                "title" => $request->title,
+                "description" => $request->description,
+                "date" => $request->date,
                 "cover" => $filenametostore,
-                "drive_url"=>$request->drive_url,
-                "public"=>$request->public,
-                "user_id"=>Auth::user()->id,
+                "drive_url" => $request->drive_url,
+                "public" => $request->public,
+                "status" => 1,
+                "user_id" => Auth::user()->id,
             ]);
            $post->save();
         }

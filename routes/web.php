@@ -41,7 +41,7 @@ Route::get('/', [FrontViewController::class, 'welcome'])->name('/');
  */
 Route::get('comming/soon', [FrontViewController::class, 'welcome'])->name('comming_soon');
 //______________ ABOUT US
-
+Route::get('pages/about-us', [FrontViewController::class, 'about'])->name('page.about-us');
 //______________ COMMITTEE
 Route::get('pages/{id}/committee', [FrontViewController::class, 'committee'])->name('page.committee');
 //______________ MEMBERS
@@ -53,10 +53,12 @@ Route::get('pages/gallery-image/{id}/show',[FrontViewController::class,'galleryS
 Route::get('pages/events', [FrontViewController::class,'events'])->name('page.events');
 Route::get('pages/events-search', [FrontViewController::class,'eventSearch'])->name('page.events-search');
 Route::get('pages/events/{id}/details', [FrontViewController::class,'eventShow'])->name('page.events-details');
-
 //______________ CONTACT US
 Route::get('pages/contact-us', [FrontViewController::class, 'contact'])->name('page.contact-us');
 Route::post('contact-us/store', [ContactController::class,'contactStore'])->name('contact-us.store');
+//______________ OTHER
+Route::get('pages/terms-condition', [FrontViewController::class, 'termsCondition'])->name('page.terms-condition');
+Route::get('pages/privacy-policy', [FrontViewController::class,'privacyPolicy'])->name('page.privacy-policy');
 
 
 
@@ -65,7 +67,10 @@ Route::post('contact-us/store', [ContactController::class,'contactStore'])->name
  * ______________________________________________________________________________________________
  */
 Route::middleware([ 'auth:sanctum','verified','member', config('jetstream.auth_session')])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('pages/member-all', [AdminController::class, 'member'])->name('page.member-all');
+    Route::get('pages/member-search', [AdminController::class,'memberSearch'])->name('page.member-search');
+    
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
 });
@@ -138,7 +143,6 @@ Route::group(['middleware' => ['auth']], function(){
     //-- TRANSACTION => EVENT REGISTATION
     Route::get('transaction-event/index', [TransactionController::class,'indexEventRegistation'])->name('transaction-event.index');
     Route::get('transaction-event/{id}/create', [TransactionController::class,'createEventRegistation'])->name('transaction-event.create');
-    Route::get('transaction-event/{id}/store', [TransactionController::class,'storeEventRegistation'])->name('transaction-event.store');
 
     Route::get('transaction-event-approve/index', [TransactionController::class,'approveIndexEvent'])->name('transaction-event-approve.index');
     Route::PATCH('transaction-event/{id}/approve', [TransactionController::class, 'approveEventApproved'])->name('transaction-event.approve');
@@ -147,8 +151,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     //-- TRANSACTION => ANNUAL REGISTATION
     Route::get('transaction-annual/index', [TransactionController::class,'indexAnnualFees'])->name('transaction-annual.index');
-    Route::get('transaction-annual/create', [TransactionController::class,'createAnnualAnnualFees'])->name('transaction-annual.create');
-    Route::get('transaction-annual/{id}/store', [TransactionController::class,'storeEventAnnualFees'])->name('transaction-annual.store');
+    Route::get('transaction-annual/create', [TransactionController::class,'createAnnualFees'])->name('transaction-annual.create');
 
     Route::get('transaction-annual-approve/index', [TransactionController::class,'approveIndexAnnualFees'])->name('transaction-annual-approve.index');
     Route::PATCH('transaction-annual/{id}/approve', [TransactionController::class, 'approveAnnualFeesApproved'])->name('transaction-annual.approve');
@@ -163,6 +166,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('get/payment-number',[TransactionController::class,'getPaymentNumber'])->name('get-payment-number');
     //-- MASTER SETTING =>> PAYMENT FEE
     Route::get('master/transaction-payment/fees/index',[TransactionController::class,'indexPaymentFees'])->name('transaction-payment-fees.index');
+    Route::get('master/transaction-payment/fees/edit',[TransactionController::class,'editPaymentFees'])->name('transaction-payment-fees.edit');
     Route::post('master/transaction-payment/fees/store',[TransactionController::class,'storePaymentFees'])->name('transaction-payment-fees.store');
     /**______________________________________________________________________________________________
      * POST => MENU

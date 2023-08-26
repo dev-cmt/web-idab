@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Registation Fee (Online Payment)</h4>
-                    @canany('Super-Admin')
+                    @can('Member approve access')
                     <a href="{{route('members-approve.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i><span class="btn-icon-add"></span>Member Approve</a>
                     @endcanany
                 </div>
@@ -30,6 +30,7 @@
                                     <td><strong>Number: </strong>{{$row->payment_number}} <br> <strong>Method: </strong>{{$row->paymentMethod->name}}</td>
                                     <td><strong>Transfer No.: </strong>{{$row->transfer_number}} <br> <strong>Transaction No.: </strong>{{$row->transaction_number}}</td>
                                     <td><strong>Date: </strong>{{date("j F, Y", strtotime($row->payment_date))}}<br> <strong>Amount: </strong>{{$row->paid_amount}}</td>
+                                    @can('Membership fees approved')
                                     <td class="d-flex justify-content-end">
                                         <form action="{{route('transaction-registation.approve', $row->id)}}" method="post">
                                             <button class="btn btn-sm btn-info p-1 mr-1">Approve</i></button>
@@ -42,6 +43,7 @@
                                             @method('PATCH')
                                         </form>
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -87,6 +89,7 @@
                                             <span class="flaticon-381-download"></span>
                                         </a>
                                     </td>
+                                    @can('Membership fees approved')
                                     <td class="d-flex justify-content-end">
                                         <form action="{{route('transaction-registation.approve', $row->id)}}" method="post">
                                             <button class="btn btn-sm btn-info p-1 m-1">Approve</i></button>
@@ -99,6 +102,7 @@
                                             @method('PATCH')
                                         </form>
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -108,6 +112,7 @@
             </div>
         </div>
     </div>
+    @can('Membership fees record')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -141,7 +146,7 @@
                                     <td>
                                         <a href="{{route('profile_show', $row->approveBy->id)}}" class="btn btn-sm btn-secondary p-1 px-2">{{$row->approveBy->name ?? 'null'}}</i></a>
                                     </td>
-                                    <td class="text-right">@if($row->status == 1)
+                                    <td>@if($row->status == 1)
                                         <span class="badge light badge-success">
                                             <i class="fa fa-circle text-success mr-1"></i> Approve
                                         </span>
@@ -151,7 +156,7 @@
                                         </span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-right">
                                         <a href="{{ route('transaction-registration.details', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a>
                                     </td>
                                 </tr>
@@ -163,5 +168,6 @@
             </div>
         </div>
     </div>
+    @endcan
  
 </x-app-layout>

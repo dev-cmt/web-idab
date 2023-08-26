@@ -34,7 +34,7 @@ class TransactionController extends Controller
         $data =Event::findOrFail($id);
         return view('frontend.pages.events_register', compact('data'));
     }
-    public function createAnnualAnnualFees()
+    public function createAnnualFees()
     {
         return view('layouts.pages.transaction.annual-fees-create');
     }
@@ -97,7 +97,7 @@ class TransactionController extends Controller
             $paymentDetails->payment_number = $request->payment_number; // (bKash number, Rocket number, Card last 4 digits)
             $paymentDetails->transaction_number = $request->transaction_number; // (payment gateway's transaction number)
             $paymentDetails->transaction_id = $transaction->id;
-            $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2
+            $paymentDetails->payment_reason_id = $request->payment_reason_id; // Register => 1, Event => 2, Annual Fees =>3
             $paymentDetails->ref_reason_id = $request->ref_reason_id; // Register->null, Event->id
             $paymentDetails->transfer_number = $request->transfer_number;
             $paymentDetails->slip = uploadFile($request, 'slip', 'bank-info', Auth::user()->id);
@@ -122,11 +122,33 @@ class TransactionController extends Controller
                 $eventStore->member_id = Auth::user()->id;
                 $eventStore->save();
                 
-                $notification=array('messege'=>'Category Delete successfully!','alert-type'=>'success');
+                $notification=array('messege'=>'Event Register successfully!','alert-type'=>'success');
                 return redirect()->route('transaction-event.index')->with($notification);
             }
-    
-            return redirect()->route('member-approve.padding');
+            if($request->payment_reason_id == 3){ //Anuual Fees
+                $eventStore = new EventRegister();
+                $eventStore->self = $request->self;
+                $eventStore->spouse = $request->spouse;
+                $eventStore->child_above = $request->child_above;
+                $eventStore->child_bellow = $request->child_bellow;
+                $eventStore->guest = $request->guest;
+                $eventStore->driver = $request->driver;
+                $eventStore->total_person = $request->total_person;
+                $eventStore->total_amount = $request->amount;
+                $eventStore->payment_details_id = $paymentDetails->id;
+                $eventStore->event_id = $request->ref_reason_id;
+                $eventStore->member_id = Auth::user()->id;
+                $eventStore->save();
+                
+                $notification=array('messege'=>'Anuual fees payment successfully!','alert-type'=>'success');
+                return redirect()->route('transaction-annual.index')->with($notification);
+            }
+
+            if($request->payment_reason_id == 1){
+                return redirect()->route('member-approve.padding');
+            }else{
+                return redirect()->back();
+            }
         }catch (PostTooLargeException $e) {
             return redirect()->back()->with('error', 'File size exceeds the limit.');
         }
@@ -158,6 +180,7 @@ class TransactionController extends Controller
     {
         $data = PaymentDetails::findOrFail($id);
         $data->status = 1;
+        $data->created_at = now()->format('Y-m-d');
         $data->user_id = Auth::user()->id;
         $data->save();
 
@@ -247,7 +270,7 @@ class TransactionController extends Controller
      */
     public function indexAnnualFees() 
     {
-        $data = EventRegister::where('member_id', Auth::user()->id)->get();
+        $data = PaymentDetails::where('member_id', Auth::user()->id)->get();
         return view('layouts.pages.transaction.annual-index',compact('data'));
     }
 
@@ -255,11 +278,11 @@ class TransactionController extends Controller
      * ANNUAL REGISTATION => APPROVE
      * ____________________________________________________________________________________________
      */
-    public function approveIndexAnnual() 
+    public function approveIndexAnnualFees() 
     {
-        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
-        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
-        $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 2)->get();
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 3)->get();
         return view('layouts.pages.transaction.annual-approve', compact('data', 'record', 'bank'));
     }
     public function approveAnnualApproved($id) {
@@ -379,13 +402,29 @@ class TransactionController extends Controller
 
     /**_________________________________________________________________________________________
      * _________________________________________________________________________________________
-     *  PAYMENT FEES => MEMBER TYPE
+     *  PAYMENT FEES ADD => MEMBER TYPE
      * _________________________________________________________________________________________
      * _________________________________________________________________________________________
      */
     public function indexPaymentFees() {
         $data = MemberType::where('status', 1)->get();
         return view('layouts.pages.transaction.payment-fees-index', compact('data'));
+    }
+    public function editPaymentFees(Request $request) {
+        $data = MemberType::where('id', $request->id)->first();
+        // Return message
+        return response()->json(['data' => $data], 200);
+    }
+    public function storePaymentFees(Request $request) {
+        $data = MemberType::findOrFail($request->id);
+        if($request->annual_fee){
+            $data->annual_fee = $request->annual_fee;
+        }else{
+            $data->registration_fee = $request->registration_fee;
+        }
+        $data->save();
+        // Return message
+        return response()->json(['data' => $data, 'user' => $data->user->name], 200);
     }
     /**_________________________________________________________________________________________
      * _________________________________________________________________________________________

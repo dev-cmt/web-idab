@@ -4,9 +4,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Event List<span class="bg-blue-500 text-white rounded px-1 text-xs py-0.5"></span></h4>
-                    {{-- @can('Role create') --}}
+                    @can('Event create')
                     <a href="{{ route('event.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Add New</a>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
 
                 <div class="card-body">
@@ -41,10 +41,10 @@
                                         @endif
                                     </td>
                                     <td class="d-flex justify-content-end">
-                                        @can('User edit')
+                                        @can('Event edit')
                                         <a href="{{ route('event.edit', $row->id) }}" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
                                         @endcan
-                                        @can('User delete')
+                                        @can('Event delete')
                                         <form action="{{ route('event.destroy', $row->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf

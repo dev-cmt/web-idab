@@ -60,7 +60,9 @@
                             <div class="rounded mb-2 img-thumbnail" style="width:150px;height:150px;overflow:hidden">
                                 <img src="{{asset('public/images')}}/profile/{{ $user->profile_photo_path }}" alt="..." style="height: 100%;width: 100%;object-fit: cover;">
                             </div>
-                            <a href="{{route('info_member.edit', $user->id)}}" class="btn btn-primary light text-white btn-sl-sm btn-block"><i class="fa fa-pencil mr-2"></i> Edit profile</a>
+                            @if ($user->id == Auth::user()->id)
+                                <a href="{{route('info_member.edit', $user->id)}}" class="btn btn-primary light text-white btn-sl-sm btn-block"><i class="fa fa-pencil mr-2"></i> Edit profile</a>
+                            @endif
                         </div>
                         <div class="media-body mb-5 text-white">
                             <h4 class="text-white">{{$user->name}}</h4>
@@ -72,11 +74,13 @@
                 <div class="card-body">
                     <div class="profile-tab">
                         <div class="custom-tab-1">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link {{Session::has('info_update') ? '' : 'active'}}">Member Information</a></li>
-                                <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link {{Session::has('info_update') ? 'active' : ''}}">Other Information</a></li>
-                                <li class="nav-item"><a href="#profile-settings" data-toggle="tab" class="nav-link {{Session::has('messege') || $errors->any() ? 'active' : ''}}">Setting</a></li>
-                            </ul>
+                            @if ($user->id == Auth::user()->id)
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a href="#my-posts" data-toggle="tab" class="nav-link {{Session::has('info_update') ? '' : 'active'}}">Member Information</a></li>
+                                    <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link {{Session::has('info_update') ? 'active' : ''}}">Other Information</a></li>
+                                    <li class="nav-item"><a href="#profile-settings" data-toggle="tab" class="nav-link {{Session::has('messege') || $errors->any() ? 'active' : ''}}">Setting</a></li>
+                                </ul>
+                            @endif
 
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade {{Session::has('messege') || Session::has('info_update') || $errors->any() ? '' : 'active show'}}">

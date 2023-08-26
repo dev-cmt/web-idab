@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
-        <!-- ======= Content Section ======= -->
+    <!-- ======= Content Section ======= -->
     <main id="main">
         <!-- ======= Feature Section ======= -->
         <section id="feature" class="feature">
@@ -41,7 +41,7 @@
             <div class="container">
 
                 <div class="row no-gutters">
-                    <div class="image animate__animated animate__fadeInDown col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start">
+                    <div class="image animate__animated animate__fadeInDown col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" style="background: url({{asset('public/images')}}/pages/about.jpg) center center no-repeat;">
 
                     </div>
                     <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch">
@@ -79,7 +79,8 @@
 
             </div>
         </section><!-- End About Section -->
-  
+        
+        @if (count($event) > 0)
         <!-- ======= Upcoming Events Section======= -->
         <section id="events" class="events section-bg">
             <div class="container">
@@ -91,16 +92,15 @@
 
                 <div class="row">
                     <div id="owl-upcoming-events" class="owl-carousel owl-theme">
-                        <div><img src="http://placehold.it/1170x300/42bdc2/FFFFFF"></div>
-                        <div><img src="http://placehold.it/1170x400/42bdc2/FFFFFF"></div>
-                        <div><img src="http://placehold.it/1170x500/42bdc2/FFFFFF"></div>
-                        <div><img src="http://placehold.it/1170x200/42bdc2/FFFFFF"></div>
-                        <div><img src="http://placehold.it/1170x500/42bdc2/FFFFFF"></div>
+                        @foreach ($event as $item)
+                            <div><img src="{{asset('public/images')}}/events/{{ $item->image }}"></div>
+                        @endforeach
                     </div>
                 </div>
 
             </div>
         </section><!-- End Upcoming Events Section -->
+        @endif
 
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
@@ -203,36 +203,36 @@
                     <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                             <i class="bi bi-emoji-smile"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{count($user)}}" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Happy Clients</strong> consequuntur quae</p>
+                            <p><strong>Our Member</strong></p>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                             <i class="bi bi-journal-richtext"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{count($event)}}" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+                            <p><strong>Events</strong></p>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                             <i class="bi bi-headset"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{count($contact)}}" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+                            <p><strong>Community Support</strong></p>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                         <div class="count-box">
                             <i class="bi bi-people"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{count($executive)}}" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
+                            <p><strong>Executive Members</strong></p>
                         </div>
                     </div>
 
@@ -279,7 +279,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-1.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -297,7 +297,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-2.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -317,7 +317,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-3.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/null.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -338,7 +338,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-4.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -357,7 +357,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-5.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/null.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -375,7 +375,7 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/frontend')}}/img/portfolio/portfolio-6.jpg" style="object-fit: cover;" alt="">
+                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -398,7 +398,7 @@
         </section><!-- End Frequently Asked Questions Section -->
 
         <!-- ======= Team Section ======= -->
-        @if (count($member)>0)
+        @if (count($add_hoc) > 0)
         <section id="team" class="team">
             <div class="container">
 
@@ -408,9 +408,9 @@
                 </div>
 
                 <div id="owl-team-member" class="owl-carousel">
-                    @foreach ($member as $item)
-                    <div class="member">
-                        <img src="{{asset('public/images')}}/profile/{{$item->profile_photo_path}}" class="img-fluid" alt="">
+                    @foreach ($add_hoc as $item)
+                    <div class="member" style="height:260px">
+                        <img src="{{asset('public/images')}}/profile/{{$item->profile_photo_path}}" class="img-fluid" alt="" style="height: 100%">
                         <div class="member-info">
                             <div class="member-info-content">
                                 <h4>{{$item->name}}</h4>
@@ -437,27 +437,27 @@
 
                 <div id="owl-clients" class="owl-carousel">
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-1.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-1.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-2.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-2.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-3.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-3.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-4.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-4.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-5.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-5.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/frontend')}}/img/clients/client-6.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/clients/client-6.png" class="img-fluid" alt="">
                     </div>
                   </div>
 
@@ -480,23 +480,23 @@
                         <div class="contact-address">
                             <i class="bi bi-geo-alt"></i>
                             <h3>Address</h3>
-                            <address>A108 Adam Street, NY 535022, USA</address>
+                            <address> Rain Razzak Plaza,2 Shahid Tazuddin Soroni, Moghbazar, Dhaka-1217, Bangladesh</address>
                         </div>
                     </div>
-
+    
                     <div class="col-md-4">
                         <div class="contact-phone">
                             <i class="bi bi-phone"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                            <p><a href="tel:02222227174">02222227174</a>, <a href="tel:01725151515">01725151515</a></p>
                         </div>
                     </div>
-
+    
                     <div class="col-md-4">
                         <div class="contact-email">
                             <i class="bi bi-envelope"></i>
                             <h3>Email</h3>
-                            <p><a href="mailto:info@example.com">info@example.com</a></p>
+                            <p><a href="mailto:contact.idab@gmail.com">contact.idab@gmail.com</a></p>
                         </div>
                     </div>
                 </div>

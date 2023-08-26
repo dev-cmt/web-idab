@@ -20,6 +20,7 @@ use App\Models\Master\MastQualification;
 use App\Models\Master\MemberType;
 use App\Models\Payment\PaymentDetails;
 use App\Models\User;
+use App\Helpers\Helper;
 use App\Mail\MemberApproved;
 use Illuminate\Support\Facades\Mail;
 
@@ -125,11 +126,13 @@ class MemberController extends Controller
                 }); 
                 $data->save($thumbnailpath);
 
+
+                $member_code = Helper::IDGenerator(new User, 'member_code', 5, 'IDAB'); /* Generate id */
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
-                    'status' => $request->status,
+                    'x' => $member_code,
                     'profile_photo_path' => $filenametostore,
                     'member_type_id' => $request->member_type_id,
                     'status' => 0,

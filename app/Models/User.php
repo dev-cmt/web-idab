@@ -54,11 +54,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function committeeType()
     {
-        return $this->belongsTo(CommitteeType::class, 'member_type_id');
+        return $this->belongsTo(CommitteeType::class, 'committee_type_id');
     }
     public function parentUser()
     {
-        return $this->belongsTo(User::class, 'is_approve');
+        return $this->belongsTo(User::class, 'approve_by');
     }
     public function infoPersonal()
     {

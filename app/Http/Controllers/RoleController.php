@@ -12,25 +12,33 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\RoleFormRequest;
 use Spatie\Permission\Models\Permission;
 use App\Models\Admin\Contact;
-use DB;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 
 class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:Role access'])->only(['index']);
-        $this->middleware(['permission:Role create'])->only(['create']);
-        $this->middleware(['permission:Role edit'])->only(['edit']);
-        $this->middleware(['permission:Role delete'])->only(['destroy']);
+        $this->middleware(['permission:User access'])->only(['index']);
+        $this->middleware(['permission:User create'])->only(['create']);
+        $this->middleware(['permission:User edit'])->only(['edit']);
+        $this->middleware(['permission:User delete'])->only(['destroy']);
+
 
         $this->middleware(function ($request, $next) {
             if (Auth::check()) {
-                $this->id = Auth::user()->id;
-
-                $this->message =Contact::where('to_id','=', $this->id)->get();
+                // Retrieve user's messages
+                $this->message = Contact::get();
                 view()->share('message', $this->message);
             }
+            // Retrieve Member types
+            $this->memberType = MemberType::get();
+            view()->share('memberType', $this->memberType);
+            // Retrieve Committee types
+            $this->committeeType = CommitteeType::get(); // Fixed assignment
+            view()->share('committeeType', $this->committeeType);
             
             return $next($request);
         });
@@ -53,7 +61,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy('name')->get();
         // $permission_groups = User::getPermissionGroup();
 
         return view('role.create', compact('permissions'));

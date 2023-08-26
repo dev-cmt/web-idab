@@ -23,11 +23,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path')->nullable();
-            $table->unsignedBigInteger('member_type_id');
+            $table->unsignedBigInteger('member_type_id')->nullable();
             $table->unsignedBigInteger('committee_type_id')->nullable();
             $table->tinyInteger('status')->default(false);
             $table->tinyInteger('is_admin')->default(false);
-            $table->tinyInteger('is_approve')->nullable();
+            $table->unsignedBigInteger('approve_by')->nullable();
             $table->timestamps();
         });
     }

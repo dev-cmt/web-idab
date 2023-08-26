@@ -31,10 +31,11 @@ class CreateUserSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'status' => '1',
             'is_admin' => '1',
-            'is_approve' => '1',
+            'approve_by' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/admin.jpg',
             'member_type_id'=> '1',
+            'member_code'=> 'IDAB-00001',
         ]);
         InfoPersonal::create([
             'contact_number'=>'01909302126',
@@ -75,10 +76,11 @@ class CreateUserSeeder extends Seeder
             'email_verified_at' => '2000-01-01',
             'status' => '1',
             'is_admin' => '1',
-            'is_approve' => '1',
+            'approve_by' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/member.jpg',
             'member_type_id'=> '1',
+            'member_code'=> 'IDAB-00002',
         ]);
         InfoPersonal::create([
             'contact_number'=>'01909302126',

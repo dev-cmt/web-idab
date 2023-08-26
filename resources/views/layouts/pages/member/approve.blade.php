@@ -38,6 +38,7 @@
                                         
                                         @endif
                                     </a></td>
+                                    @can('Member approved')
                                     <td class="d-flex justify-content-end">
                                         <form action="{{route('member-approve.update', $row->id)}}" method="post">
                                             <button class="btn btn-sm btn-info p-1 mr-1">Approve</i></button>
@@ -50,6 +51,7 @@
                                             @method('PATCH')
                                         </form>
                                     </td>
+                                    @endcan
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -59,6 +61,7 @@
             </div>
         </div>
     </div>
+    @can('Member approve record')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -111,6 +114,7 @@
             </div>
         </div>
     </div>
+    @endcan
 
 
 </x-app-layout>

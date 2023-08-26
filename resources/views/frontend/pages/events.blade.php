@@ -64,7 +64,7 @@
                 <!-- Sidebar Start -->
                 <div class="col-lg-4">
                     <!-- Search Form Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="mb-5">
                         <form action="{{ route('page.events-search') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control p-3" placeholder="Keyword">

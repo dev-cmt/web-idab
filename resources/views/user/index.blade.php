@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">All User List<span class="bg-blue-500 text-white rounded px-1 text-xs py-0.5">{{ $users->total() }}</span></h4>
-                    @can('Role create')
+                    @can('User create')
                     <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Create user</a>
                     @endcan
                 </div>

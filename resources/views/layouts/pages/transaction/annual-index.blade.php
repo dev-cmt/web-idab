@@ -15,9 +15,8 @@
                                 <th>#</th>
                                 <th>Member Info.</th>
                                 <th>Payment Info.</th>
-                                <th>Registation</th>
-                                <th>Date</th>
-                                <th>View Event</th>
+                                <th>Transfer Info.</th>
+                                <th>Details</th>
                                 <th class="text-right">Status</th>
                             </tr>
                             </thead>
@@ -26,12 +25,10 @@
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td><strong>Name: </strong>{{$row->member->name}} <br> <strong>Type: </strong> {{$row->member->memberType->name}}</td>
-                                    <td><strong>Number: </strong>{{$row->paymentDetails->payment_number}} <br> <strong>Method: </strong>{{$row->paymentDetails->paymentMethod->name}}</td>
-                                    <td><strong>Person: </strong>{{$row->total_person}} <br> <strong>Amount: </strong>{{$row->total_amount}}</td>
-                                    <td><strong>Event: </strong>{{date("j F, Y", strtotime($row->event->event_date))}} <br> <strong>Payment: </strong>{{date("j F, Y", strtotime($row->paymentDetails->payment_date))}}</td>
-                                    <td class="text-center"><a href="{{ route('page.events-details', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a></td>
-                                    <td class="text-right">
-                                        @if($row->status == 1)
+                                    <td><strong>Number: </strong>{{$row->payment_number}} <br> <strong>Method: </strong>{{$row->paymentMethod->name}}</td>
+                                    <td><strong>Transfer No.: </strong>{{$row->transfer_number}} <br> <strong>Transaction No.: </strong>{{$row->transaction_number}}</td>
+                                    <td><strong>Date: </strong>{{date("j F, Y", strtotime($row->payment_date))}}<br> <strong>Amount: </strong>{{$row->paid_amount}}</td>
+                                    <td class="text-right">@if($row->status == 1)
                                         <span class="badge light badge-success">
                                             <i class="fa fa-circle text-success mr-1"></i> Approve
                                         </span>
@@ -41,7 +38,7 @@
                                         </span>
                                         @else
                                         <span class="badge light badge-warning">
-                                            <i class="fa fa-circle text-warning mr-1"></i> Pandding
+                                            <i class="fa fa-circle text-warning mr-1"></i> Pending
                                         </span>
                                         @endif
                                     </td>

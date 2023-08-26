@@ -38,7 +38,15 @@
                     <div class="bootstrap-media">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12 text-center">
-                                <img class="img-fluid rounded" width="120" src="{{asset('public')}}/images/profile/{{ Auth::user()->profile_photo_path }}" alt="DexignZone">
+                                <img class="img-fluid rounded" width="165" src="{{asset('public')}}/images/profile/{{ Auth::user()->profile_photo_path }}" alt="">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-6 col-5">
+                                <h5 class="f-w-500">Member ID<span class="pull-right">:</span>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 col-7"><span>{{Auth::user()->member_code}}</span>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -47,6 +55,22 @@
                                 </h5>
                             </div>
                             <div class="col-sm-6 col-7"><span>{{Auth::user()->name}}</span>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-6 col-5">
+                                <h5 class="f-w-500">Email <span class="pull-right">:</span>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 col-7"><span>{{Auth::user()->email}}</span>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-6 col-5">
+                                <h5 class="f-w-500">Number <span class="pull-right">:</span>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 col-7"><span>{{Auth::user()->infoPersonal->contact_number}}</span>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -86,6 +110,8 @@
                         @endif
                         <form action="{{route('registation-payment.store')}}" method="post" enctype="multipart/form-data"> 
                             @csrf
+                            <input type="hidden" name="payment_reason_id" value="3">
+                            <input type="hidden" name="ref_reason_id">
                             <div class="d-flex justify-content-center" style="border-bottom: 1px dashed #ff0000;">
                                 <div>
                                     <input type="radio" name="payment_method_id" id="bKash" class="input-hidden" value="1"/>
@@ -107,7 +133,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row form-group">
+                            <div class="row form-group pt-4">
                                 <div class="form-group col-md-6">
                                     <label class="form-label" id="labelChange">Payment Number 
                                         <span class="text-danger">*</span>
@@ -155,15 +181,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6" id="transferNumber">
-                                    <label class="form-label">Number Of Year
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="transfer_number" class="form-control @error('transfer_number') is-invalid @enderror" placeholder="01X-XXXX-XXXX" value="{{old('transfer_number') }}">
-                                    @error('transfer_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="message" rows="1" placeholder="Enter your message here..."></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class=" d-flex justify-content-center">
@@ -182,13 +201,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label>Description</label>
-                                    <textarea class="form-control" name="message" rows="2" placeholder="Enter your message here..."></textarea>
-                                </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-10">
+                                <div class="col-sm-12 text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
@@ -213,6 +228,7 @@
         //======Get Payment Number Data
         $(document).on('click', 'input[type="radio"]', function() {
             var methodId = $(this).attr("value");
+            $("#loading").show();
             $.ajax({
                 url: '{{ route('get-payment-number')}}', // Make sure the route is correct
                 method: 'GET',
@@ -231,9 +247,11 @@
                     }else{
                         payment_number_dr.append('<option disabled selected>Not available</option>');
                     }
+                    $("#loading").hide();
                 },
                 error: function() {
-                    alert('Fail');
+                    $("#loading").hide();
+                    alert('Sorry try again!');
                 }
             });
             if(methodId == 5){
