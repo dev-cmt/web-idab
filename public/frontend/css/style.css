@@ -15,7 +15,7 @@ body {
 }
 
 a {
-  color: #EF1620;
+  color: #444444;
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: rgba(0, 0, 0, 0.384);
+  background: #fff;
   transition: all 0.5s;
   z-index: 997;
   height: 80px;
@@ -130,7 +130,6 @@ h6 {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
   white-space: nowrap;
   transition: 0.3s;
   text-transform: uppercase;
@@ -619,7 +618,7 @@ section {
 .feature .icon-box i {
   font-size: 48px;
   float: left;
-  color: #000;
+  color: #444444;
 }
 
 .feature .icon-box h4 {

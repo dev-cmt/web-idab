@@ -19,7 +19,7 @@
                                 @canany('Super-Admin')
                                 <th>Approve By</th>
                                 @endcanany
-                                @canany('Edit', 'View', 'Delete')
+                                @canany('Member','Member edit', 'Member view', 'Member delete')
                                 <th class="text-right">Action</th>
                                 @endcanany
                             </tr>
@@ -39,13 +39,13 @@
                                     @endcanany
                                     @canany('Super-Admin')
                                     <td class="text-right">
-                                        {{-- @canany('Edit') --}}
+                                        @canany('Member edit')
                                         <a href="{{ route('info_member.edit', $row->id) }}" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                        {{-- @endcanany --}}
-                                        {{-- @canany('View') --}}
+                                        @endcanany
+                                        @canany('Member view')
                                         <a href="{{ route('profile_show', $row->id) }}" class="btn btn-info shadow btn-xs sharp mr-1"><i class="flaticon-381-view"></i></a>
-                                        {{-- @endcanany --}}
-                                        @canany('Delete')
+                                        @endcanany
+                                        @canany('Member delete')
                                         {{-- <a href="{{ route('users.edit', $row->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1"><i class="fa fa-trash"></i></a> --}}
                                         @endcanany
                                     </td>

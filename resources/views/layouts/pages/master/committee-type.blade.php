@@ -3,8 +3,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Qualification List</h4>
-                    @can('Qualification create')
+                    <h4 class="card-title">Committee Type List</h4>
+                    @can('CommitteeType create')
                     <button id="open_modal" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i><span class="btn-icon-add"></span>Add New</button>
                     @endcan
                 </div>
@@ -41,13 +41,13 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-end">
-                                            @can('Qualification edit')
+                                            @can('CommitteeType edit')
                                             <button id="data-show" data-id="{{ $row->id }}" data-check="1" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></button>
                                             @endcan
-                                            @can('Qualification view')
+                                            @can('CommitteeType view')
                                             <button id="data-show" data-id="{{ $row->id }}" data-check="2" class="btn btn-info shadow btn-xs sharp mr-1"><i class="fa fa-folder-open"></i></button>
                                             @endcan
-                                            @can('Qualification delete')
+                                            @can('CommitteeType delete')
                                             <button id="data-delete" data-id="{{ $row->id }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button>
                                             @endcan
                                         </div>
@@ -70,7 +70,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
-                <form class="form-valide" data-action="{{ route('member-qualification.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
+                <form class="form-valide" data-action="{{ route('committee-type.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                     @csrf
                     <input type="hidden" name="id" id="set_id">
                     <div class="modal-body py-2">
@@ -115,7 +115,6 @@
             </div>
         </div>
     </div>
-
     @push('script')
     <script type="text/javascript">
         /*=======//Show Modal//=========*/
@@ -129,7 +128,7 @@
             $('#name').prop("disabled", false);
             $('#description').prop("disabled", false);
 
-            $(".modal-title").html('Add New Qualification');
+            $(".modal-title").html('Add New Committee Type');
             $("#exampleModalCenter").modal('show');
         });
         /*=======//Save Data //=========*/
@@ -207,13 +206,13 @@
             var id = $(this).data('id');
             var check = $(this).data('check');
             $.ajax({
-                url:'{{ route('member-qualification.edit')}}',
+                url:'{{ route('committee-type.edit')}}',
                 method:'GET',
                 dataType:"JSON",
                 data:{id:id},
                 success:function(response){
                     if(check == 1){ //Edit
-                        $(".modal-title").html('Edit Qualification');
+                        $(".modal-title").html('Edit Committee Type');
                         $(".submit_btn").show();
 
                         $("#set_id").val(response.data.id);
@@ -231,7 +230,7 @@
                         $('#name').prop("disabled", false);
                         $('#description').prop("disabled", false);
                     }else if(check == 2){ //View
-                        $(".modal-title").html('View Qualification');
+                        $(".modal-title").html('View Committee Type');
 
                         $("#set_id").val(response.data.id);
                         $("#name").val(response.data.name);
@@ -273,7 +272,7 @@
                     // Place your delete code here
                     var id = $(this).data('id');
                     $.ajax({
-                        url:'{{ route('member-qualification.delete')}}',
+                        url:'{{ route('committee-type.delete')}}',
                         method:'GET',
                         dataType:"JSON",
                         data:{'id':id},
@@ -298,5 +297,4 @@
     @endpush
 
 </x-app-layout>
-
 

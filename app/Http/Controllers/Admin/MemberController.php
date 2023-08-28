@@ -127,12 +127,27 @@ class MemberController extends Controller
                 $data->save($thumbnailpath);
 
 
-                $member_code = Helper::IDGenerator(new User, 'member_code', 5, 'IDAB'); /* Generate id */
+                /*_____________________ MEMBER ID GENERATE ___________________*/
+                $currentYear = date('Y');
+                $currentMonth = date('m');
+
+                $prefix = MemberType::where('id', $request->member_type_id)->first()->prefix;
+                $highestNumber = User::where('member_code', 'like', "$prefix$currentYear-$currentMonth%")->max('member_code');
+                $lastNumber = intval(substr($highestNumber, -3));
+                $newNumber = $lastNumber + 1;
+                $formattedNewNumber = sprintf('%03d', $newNumber);
+
+                if ($prefix) {
+                    $memberCode = "$prefix$currentYear-$currentMonth-$formattedNewNumber";
+                } else {
+                    $memberCode = "NEW SELECTED";
+                }
+                
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
-                    'x' => $member_code,
+                    'member_code' => $memberCode,
                     'profile_photo_path' => $filenametostore,
                     'member_type_id' => $request->member_type_id,
                     'status' => 0,

@@ -35,17 +35,21 @@
                                             <span class="">{{ $role->name }}</span>
                                         @endforeach
                                     </td>
-                                    <td>{{ $user->memberType->name}}</td>
-                                    <td>{{ $user->CommitteeType->name}}</td>
+                                    <td>{{ $user->memberType->name ?? 'Null'}}</td>
+                                    <td>{{ $user->CommitteeType->name ?? 'Null'}}</td>
                                     <td>
                                         {{ $user->created_at->diffForHumans() }}
                                     </td>
                                     <td>
                                         <div class="flex items-center">
                                             @if($user->status == '1')
-                                            <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Active
+                                            <span class="badge light badge-success">
+                                                <i class="fa fa-circle text-success mr-1"></i> Active
+                                            </span>
                                             @else
-                                            <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div> Inactive
+                                            <span class="badge light badge-danger">
+                                                <i class="fa fa-circle text-danger mr-1"></i> Inactive
+                                            </span>
                                             @endif
                                         </div>
                                     </td>
@@ -57,7 +61,7 @@
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger shadow btn-xs sharp" {{--id="delete"--}} onclick="return confirm('Are you sure?');" type="submit"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?');" type="submit"><i class="fa fa-trash"></i></button>
                                         </form>
                                         @endcan
                                     </td>												

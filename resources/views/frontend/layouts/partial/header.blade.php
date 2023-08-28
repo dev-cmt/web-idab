@@ -44,7 +44,7 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallary</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallery</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.events') ? 'active' : '' }}" href="{{Route('page.events')}}">Events</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact-us') ? 'active' : '' }}" href="{{Route('page.contact-us')}}">Contact</a></li>
                 @guest

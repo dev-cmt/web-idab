@@ -31,9 +31,22 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Setting menu access'],
 
             //---MEMBER => Approve
+            ['name' => 'Member access'],
+            ['name' => 'Member edit'],
+            ['name' => 'Member view'],
+            ['name' => 'Member delete'],
+
+            //---MEMBER => Approve
             ['name' => 'Member approve access'],
             ['name' => 'Member approved'],
             ['name' => 'Member approve record'],
+
+            //---DATA MEMBER => Committee Type
+            ['name' => 'CommitteeType access'],
+            ['name' => 'CommitteeType create'],
+            ['name' => 'CommitteeType edit'],
+            ['name' => 'CommitteeType view'],
+            ['name' => 'CommitteeType delete'],
 
             //---DATA MEMBER => Member Type
             ['name' => 'MemberType access'],
@@ -111,7 +124,7 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'Member'],
             ['name' => 'Data Setting'],
 
-            //-----MEMBER ACCESS
+            //-----MEMBER TYPE
             ['name' => 'Student Member'],
             ['name' => 'Candidate Member'],
             ['name' => 'Professional Member'],

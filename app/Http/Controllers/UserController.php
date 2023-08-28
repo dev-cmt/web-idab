@@ -65,9 +65,10 @@ class UserController extends Controller
     public function create()
     {
         // abort_if(!auth()->user()->can('create user'), 403);
-
+        $memberType = MemberType::where('is_delete', 0)->where('status', 1)->get();
+        $committeeType = CommitteeType::where('is_delete', 0)->where('status', 1)->get();
         $roles = Role::latest()->get();
-        return view('user.create', compact('roles'));
+        return view('user.create', compact('roles','memberType','committeeType'));
     }
 
     /**
@@ -80,50 +81,56 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|max:80',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-            'roles' => 'required',
-            'profile_photo_path' => 'image|mimes:jpg,png,jpeg,gif,svg'
+            'email' => 'required|unique:users,email|max:255',
+            'password' => 'required|confirmed|min:8',
+            'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
+            'member_type_id' => 'required', // Assuming these fields are in your form
+            'committee_type_id' => 'required', // Assuming these fields are in your form
+            'status' => 'required', // Assuming these fields are in your form
         ]);
 
+        /*_____________________ MEMBER ID GENERATE ___________________*/
+        $currentYear = date('Y');
+        $currentMonth = date('m');
 
-        if ($request->hasFile("profile_photo_path")) {
-            //get filename with extension
-            $filenamewithextension = $request->file('profile_photo_path')->getClientOriginalName();
-            //get filename without extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            //get file extension
-            $extension = $request->file('profile_photo_path')->getClientOriginalExtension();
-            //filename to store
-            $filenametostore = $filename.'_'.time().'.'.$extension;
-            //Upload File
-            $request->file('profile_photo_path')->move('public/images/profile/', $filenametostore); //--Upload Location
-            // $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
-            //Resize image here
-            $thumbnailpath = public_path('images/profile/'.$filenametostore); //--Get File Location
-            // $thumbnailpath = public_path('storage/images/profile/'.$filenametostore);
-            $img = Image::make($thumbnailpath)->resize(1200, 850, function($constraint) {
-                $constraint->aspectRatio();
-            }); 
-            $img->save($thumbnailpath);
+        $prefix = MemberType::where('id', $request->member_type_id)->first()->prefix;
+        $highestNumber = User::where('member_code', 'like', "$prefix$currentYear-$currentMonth%")->max('member_code');
+        $lastNumber = intval(substr($highestNumber, -3));
+        $newNumber = $lastNumber + 1;
+        $formattedNewNumber = sprintf('%03d', $newNumber);
 
-            //---Data Save
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'batch' => $request->batch,
-                'contact_number' => $request->contact_number,
-                'profile_photo_path' => $file_name,
-                'email_verified_at' => '2023-01-01',
-                'is_admin' => '1',
-                'status' => $request->status,
-            ]);
+        if ($prefix) {
+            $memberCode = "$prefix$currentYear-$currentMonth-$formattedNewNumber";
+        } else {
+            $memberCode = "NEW SELECTED";
         }
-
-        $user->syncRoles($request->roles);
-
-        $notification=array('messege'=>'User created successfully!','alert-type'=>'success');
+        /*_____________________ MEMBER CREATE ___________________*/
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->member_type_id = $request->member_type_id;
+        $user->committee_type_id = $request->committee_type_id;
+        $user->member_code = $memberCode;
+        $user->status = $request->status;
+        $user->email_verified_at = now()->format('Y-m-d');
+        $user->is_admin = 1; // Assuming this should be set to 1 for admins
+        $user->approve_by = Auth::user()->id;
+    
+        if ($request->hasFile('profile_photo_path')) {
+            $profilePhoto = $request->file('profile_photo_path');
+            $filename = time() . '_' . $profilePhoto->getClientOriginalName();
+            $thumbnailPath = public_path('images/profile/' . $filename);
+            Image::make($profilePhoto)->resize(1200, 850, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($thumbnailPath);
+            $user->profile_photo_path = $filename;
+        }
+    
+        $user->save();
+        $user->syncRoles($request->roles); // Assuming roles are sent through the form
+    
+        $notification = ['message' => 'User created successfully!', 'alert-type' => 'success'];
         return back()->with($notification);
     }
 

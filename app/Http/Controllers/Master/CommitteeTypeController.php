@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Master\MemberType;
+use App\Models\Master\CommitteeType;
 
-class MemberTypeController extends Controller
+class CommitteeTypeController extends Controller
 {
     public function index() {
-        $data = MemberType::where('is_delete', 0)->orderBy('name', 'desc')->get();
-        return view('layouts.pages.master.member-type', compact('data'));
+        $data = CommitteeType::where('is_delete', 0)->orderBy('name', 'desc')->get();
+        return view('layouts.pages.master.committee-type', compact('data'));
     }
     public function store(Request $request)
     {
@@ -26,15 +26,11 @@ class MemberTypeController extends Controller
 
         //----Data Save
         if(isset($request->id)){
-            $data = MemberType::findOrFail($request->id);
+            $data = CommitteeType::findOrFail($request->id);
         }else{
-            $data = new MemberType();
+            $data = new CommitteeType();
         }
         $data->name = $request->name;
-        $data->prefix = $request->prefix;
-        $data->registration_fee = $request->registration_fee;
-        $data->monthly_fee = $request->monthly_fee;
-        $data->annual_fee = $request->annual_fee;
         $data->description = $request->description;
         $data->status = $request->status;
         $data->user_id = Auth::user()->id;
@@ -48,17 +44,18 @@ class MemberTypeController extends Controller
     }
     public function edit(Request $request)
     {
-        $data = MemberType::where('is_delete', 0)->where('id', $request->id)->first();
+        $data = CommitteeType::where('id', $request->id)->first();
         // Return message
         return response()->json(['data' => $data], 200);
     }
     public function delete(Request $request)
     {
-        $data = MemberType::findOrFail($request->id);
+        $data = CommitteeType::findOrFail($request->id);
         $data->is_delete = 1;
         $data->save();
         
         // Return message
         return response()->json(['data' => $data], 200);
     }
+    
 }

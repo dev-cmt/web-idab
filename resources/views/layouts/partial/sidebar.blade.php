@@ -46,11 +46,14 @@
                     @canany('Data Setting')
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Data Setting</a>
                         <ul aria-expanded="false">
+                            @canany('CommitteeType access','CommitteeType create','CommitteeType edit','CommitteeType view', 'CommitteeType delete')
+                                <li><a href="{{Route('committee-type.index')}}">Add Committee Types</a></li>
+                            @endcanany
                             @canany('MemberType access','MemberType create','MemberType edit','MemberType view', 'MemberType delete')
-                                <li><a href="{{Route('memebr-type.index')}}">Add Member Types</a></li>
+                                <li><a href="{{Route('member-type.index')}}">Add Member Types</a></li>
                             @endcanany
                             @canany('Qualification access','Qualification create','Qualification edit','Qualification view', 'Qualification delete')
-                                <li><a href="{{Route('memebr-qualification.index')}}">Add Qualification</a></li>
+                                <li><a href="{{Route('member-qualification.index')}}">Add Qualification</a></li>
                             @endcanany
                         </ul>
                     </li>

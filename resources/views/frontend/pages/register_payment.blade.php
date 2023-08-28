@@ -44,6 +44,14 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6 col-5">
+                                        <h5 class="f-w-500">Member ID <span class="pull-right">:</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->member_code}}</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-sm-6 col-5">
                                         <h5 class="f-w-500">Name <span class="pull-right">:</span>
                                         </h5>
                                     </div>
@@ -65,13 +73,6 @@
                                     </div>
                                     <div class="col-sm-6 col-7"><span>{{Auth::user()->memberType->name}}</span>
                                     </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-sm-6 col-5">
-                                        <h5 class="f-w-500">Location <span class="pull-right">:</span>
-                                        </h5>
-                                    </div>
-                                    <div class="col-sm-6 col-7"><span>{{Auth::user()->infoPersonal->parmanent_address}}</span></div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6 col-5">
@@ -98,13 +99,13 @@
                                     <input type="radio" name="payment_method_id" id="bKash" class="input-hidden" value="1"/>
                                     <label for="bKash"><img src="{{asset('public/images')}}/payment/bKash.png" alt="Payment bKash" /></label>
                                 
-                                    <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="2"/>
+                                    {{-- <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="2"/>
                                     <label for="roket"><img src="{{asset('public/images')}}/payment/roket.png" alt="Payment roket" /></label>
                                 
                                     <input type="radio" name="payment_method_id" id="nagad" class="input-hidden" value="3"/>
-                                    <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label>
+                                    <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label> --}}
                                     
-                                    <input type="radio" name="payment_method_id" id="city-bank" class="input-hidden" value="5"/>
+                                    <input type="radio" name="payment_method_id" id="city-bank" class="input-hidden" value="2"/>
                                     <label for="city-bank"><img src="{{asset('public/images')}}/payment/city-bank.jpg" alt="Payment upay"/></label>
 
                                     @error('payment_method_id')
@@ -203,16 +204,20 @@
                     var datas = response.data;
                     var payment_number_dr = $('#payment_number');
                     payment_number_dr.empty();
-                    payment_number_dr.append('<option disabled selected>--Select--</option>');
-                    $.each(datas, function(index, option) {
-                        payment_number_dr.append('<option value="' + option.number + '">' + option.number + '</option>');
-                    });
+                    // payment_number_dr.append('<option disabled selected>--Select--</option>');
+                    if(datas.length > 0){
+                        $.each(datas, function(index, option) {
+                            payment_number_dr.append('<option value="' + option.number + '">' + option.number + '</option>');
+                        });
+                    }else{
+                        payment_number_dr.append('<option disabled selected>Not available</option>');
+                    }
                 },
                 error: function() {
-                    alert('Fail');
+                    alert('Sorry try agian...');
                 }
             });
-            if(methodId == 5){
+            if(methodId == 2){
                 $('#transferNumber').hide();
                 $('#transactionNumber').hide();
                 $('#labelChange').html('Bank-Number');

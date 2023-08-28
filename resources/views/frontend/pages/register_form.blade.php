@@ -228,8 +228,8 @@
                                 <label for="gender" class="form-label col-md-5">Gender</label>
                                 <div class="col-md-7">
                                     <select name="gender" id="gender" class="form-control form-select @error('gender') is-invalid @enderror">
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
                                     </select>
                                     @error('gender')
                                     <span class="invalid-feedback" role="alert">
@@ -560,7 +560,7 @@
                             <div class="col-md-12 mb-2" id="educational_certificates">
                                 <div class="row">
                                     <label for="edu_certificate" class="form-label col-md-5">Educational Certificates
-                                        (SSC/HSC/ID/IAR/ARCH)</label>
+                                        (SSC/HSC/ID/IAR/ARCH)<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="edu_certificate" id="edu_certificate" class="form-control @error('edu_certificate') is-invalid @enderror" value="{{old('edu_certificate')}}">
                                         @error('edu_certificate')
@@ -762,7 +762,7 @@
 
                         $("#document").show();
                         $("#passport_photo").hide();
-                        $("#educational_certificates").hide();
+                        $("#educational_certificates").show();
                         $("#student_id").hide();
                         $("#recomendation_letter").hide();
                         $("#experience_certificate").hide();

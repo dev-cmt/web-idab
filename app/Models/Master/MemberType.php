@@ -11,6 +11,7 @@ class MemberType extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'prefix',
         'registration_fee',
         'monthly_fee',
         'annual_fee',

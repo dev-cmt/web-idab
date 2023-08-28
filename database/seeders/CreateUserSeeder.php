@@ -27,44 +27,13 @@ class CreateUserSeeder extends Seeder
     {
         $super_admin = User::create([
             'name'=>'IDAB',
-            'email_verified_at' => '2002-01-01',
-            'email'=>'admin@gmail.com',
+            'email_verified_at' => '2022-01-01',
+            'email'=>'Admin',
             'status' => '1',
             'is_admin' => '1',
-            'approve_by' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/admin.jpg',
-            'member_type_id'=> '1',
-            'member_code'=> 'IDAB-00001',
-        ]);
-        InfoPersonal::create([
-            'contact_number'=>'01909302126',
-            'member_id'=> $super_admin->id,
-        ]);
-        InfoChildDetails::create([
-            'status'=>'1',
-            'member_id'=> $super_admin->id,
-        ]);
-        // InfoAcademic::create([
-        //     'mast_qualification_id'=>'1',
-        //     'status'=>'1',
-        //     'member_id'=> $super_admin->id,
-        // ]);
-        InfoCompany::create([
-            'status'=>'1',
-            'member_id'=> $super_admin->id,
-        ]);
-        InfoStudent::create([
-            'status'=>'1',
-            'member_id'=> $super_admin->id,
-        ]);
-        InfoOther::create([
-            'status'=>'1',
-            'member_id'=> $super_admin->id,
-        ]);
-        InfoDocument::create([
-            'status'=>'1',
-            'member_id'=> $super_admin->id,
+            'member_code'=> 'IDAB-ADMIN',
         ]);
         
         /**
@@ -76,41 +45,11 @@ class CreateUserSeeder extends Seeder
             'email_verified_at' => '2000-01-01',
             'status' => '1',
             'is_admin' => '1',
-            'approve_by' => '1',
             'password'=>bcrypt('password'),
             'profile_photo_path'=>'fix/member.jpg',
-            'member_type_id'=> '1',
-            'member_code'=> 'IDAB-00002',
+            'member_code'=> 'IDAB-00000',
         ]);
-        InfoPersonal::create([
-            'contact_number'=>'01909302126',
-            'member_id'=> $admin->id,
-        ]);
-        InfoChildDetails::create([
-            'status'=>'1',
-            'member_id'=> $admin->id,
-        ]);
-        // InfoAcademic::create([
-        //     'mast_qualification_id'=>'1',
-        //     'status'=>'1',
-        //     'member_id'=> $admin->id,
-        // ]);
-        InfoCompany::create([
-            'status'=>'1',
-            'member_id'=> $admin->id,
-        ]);
-        InfoStudent::create([
-            'status'=>'1',
-            'member_id'=> $admin->id,
-        ]);
-        InfoOther::create([
-            'status'=> '1',
-            'member_id'=> $admin->id,
-        ]);
-        InfoDocument::create([
-            'status'=> '1',
-            'member_id'=> $admin->id,
-        ]);
+        
 
     }
 }

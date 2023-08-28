@@ -8,11 +8,12 @@
 
             <div class="carousel-inner" role="listbox">
                 <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url({{asset('public/images')}}/slide/slide-1.jpg);">
+                {{-- <div class="carousel-item active" style="background-image: url({{asset('public/images')}}/slide/slide-1.jpg);"> --}}
+                <div class="carousel-item active" style="background-color: #f2f2f2">
                     <div class="carousel-container">
                         <div class="intro-wrapper">
                             <div class="intro-logo">
-                                <img src="{{asset('public/frontend')}}/img/logo.png" alt="">
+                                <img src="{{asset('public/images')}}/logo.png" alt="">
                             </div>
                             <div class="intro-cover">
                                 <h1 class="intro-title">Interior Designers Association Of Bangladesh</h1>
@@ -24,14 +25,14 @@
                     </div>
                 </div>
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url({{asset('public/images')}}/slide/slide-2.jpg);">
+                {{-- <div class="carousel-item" style="background-image: url({{asset('public/images')}}/slide/slide-2.jpg);">
                     <div class="carousel-container">
                         <div class="carousel-content">
                             <h2 class="animate__animated animate__fadeInDown">Grow Your Business</h2>
                             <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid quialiquid. Sequiea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique eamodi architecto.</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div id="particles-js"></div>
             </div>

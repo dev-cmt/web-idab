@@ -28,7 +28,7 @@
                                     <td>{{$row->email}}</td>
                                     <td>{{$row->contact_number}}</td>
                                     <td>{{$row->methods_name}}</td>
-                                    <td><a href="{{route('transaction-registation.index')}}">
+                                    <td><a href="{{route('transaction-registation-approve.index')}}">
                                         @if($row->is_payment == 1)
                                         <span class="badge light badge-success">
                                             <i class="fa fa-circle text-success mr-1"></i> Payment

@@ -55,8 +55,8 @@
 *_____________________________________________________________________
 */
 #header.scrolled {
-    background: rgb(29, 29, 29);
-    box-shadow: 0 3px 9px #EF1620;
+    background: #fff;
+    box-shadow: 0 3px 9px #97979791;
 }
 .button {
     padding: 8px 25px;
@@ -295,7 +295,7 @@
 *_____________________________________________________________________
 */
 #header {
-    border-top: 5px solid #ffff;
+    border-bottom: 3.4px solid #ffff;
 }
 #header .logo {
     /* padding: 10px 25px !important; */
@@ -306,11 +306,11 @@
     max-height: 75px !important;
 }
 .navbar>ul>li>a:before {
-    height: 5px !important;
-    top: -32px !important;
+    height: 3.4px !important;
+    bottom: -31px !important;
 }
 .navbar .dropdown:hover>ul {
-    top: 58px !important;
+    top: 62px !important;
 }
 #hero .carousel-item::before {
     background-color: rgb(0 0 0 / 0%) !important;

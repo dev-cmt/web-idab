@@ -25,6 +25,7 @@ class ImportSeeder extends Seeder
          */
         MemberType::create([
             'name'=>'Student Member',
+            'prefix'=>'S-',
             'registration_fee'=> 1000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 0.00,
@@ -34,6 +35,7 @@ class ImportSeeder extends Seeder
         ]);
         MemberType::create([
             'name'=>'Candidate Member',
+            'prefix'=>'',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -43,6 +45,7 @@ class ImportSeeder extends Seeder
         ]);
         MemberType::create([
             'name'=>'Professional Member',
+            'prefix'=>'',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -52,6 +55,7 @@ class ImportSeeder extends Seeder
         ]);
         MemberType::create([
             'name'=>'Associate Member',
+            'prefix'=>'A-',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -61,6 +65,7 @@ class ImportSeeder extends Seeder
         ]);
         MemberType::create([
             'name'=>'Trade Member',
+            'prefix'=>'T-',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 10000.00,
@@ -70,6 +75,7 @@ class ImportSeeder extends Seeder
         ]);
         MemberType::create([
             'name'=>'Corporate Member',
+            'prefix'=>'C-',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
@@ -88,7 +94,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         CommitteeType::create([
-            'name'=>'Executive Committee',
+            'name'=>'Founder Committee',
             'description'=>'TEST DR - 2',
             'status'=>'1',
             'user_id'=>'1',
@@ -110,12 +116,6 @@ class ImportSeeder extends Seeder
             'user_id' => 1,
         ]);
         MastQualification::create([
-            'name'=>'12th Stander',
-            'description' => 'Admin Input',
-            'status' => 1,
-            'user_id' => 1,
-        ]);
-        MastQualification::create([
             'name'=>'Graduation',
             'description' => 'Admin Input',
             'status' => 1,
@@ -126,21 +126,6 @@ class ImportSeeder extends Seeder
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,
-        ]); 
-        /**
-         * ---------------------------
-         * 
-         * ---------------------------
-         */
-         InfoAcademic::create([
-            'mast_qualification_id'=>'1',
-            'status'=>'1',
-            'member_id'=> 1,
-        ]);
-         InfoAcademic::create([
-            'mast_qualification_id'=>'1',
-            'status'=>'1',
-            'member_id'=> 2,
         ]);
         
     }

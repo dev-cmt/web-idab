@@ -113,7 +113,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Contact Number <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->contact_number }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->contact_number ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -122,7 +122,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">NID No.<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->nid_no }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{ $infoPersonal->nid_no ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -131,7 +131,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Gender <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->gender == '0'? 'Male': 'Female'}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->gender ?? "Null" == '0' ? 'Male': 'Female' }}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -140,7 +140,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Date Of Birth <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{date('d-m-Y', strtotime($infoPersonal->dob))}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{date('d-m-Y', strtotime($infoPersonal->dob ?? "Null"))}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -150,21 +150,21 @@
                                                     <h6 class="f-w-500">Blood Group <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7">
-                                                    @if ($infoPersonal->blood_group == 1)
+                                                    @if ($infoPersonal->blood_group ?? "Null" == 1)
                                                     <span>A Positive (A+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 2)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 2)
                                                     <span>A Negative (A-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 3)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 3)
                                                     <span>B Positive (B+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 4)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 4)
                                                     <span>B Negative (B-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 5)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 5)
                                                     <span>AB Positive (AB+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 6)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 6)
                                                     <span>AB Negative (AB-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 7)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 7)
                                                     <span>O Positive (0+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 8)
+                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 8)
                                                     <span>O Negative (0-)</span>
                                                     @endif
                                                 </div>
@@ -177,13 +177,13 @@
                                                     <h6 class="f-w-500">Marrital Status <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7">
-                                                    @if ($infoPersonal->marrital_status == 0)
+                                                    @if ($infoPersonal->marrital_status ?? "Null" == 0)
                                                     <span>Unmarried</span>
-                                                    @elseif ($infoPersonal->marrital_status == 1)
+                                                    @elseif ($infoPersonal->marrital_status ?? "Null" == 1)
                                                     <span>Married</span>
-                                                    @elseif ($infoPersonal->marrital_status == 2)
+                                                    @elseif ($infoPersonal->marrital_status ?? "Null" == 2)
                                                     <span>Divorce</span>
-                                                    @elseif ($infoPersonal->marrital_status == 3)
+                                                    @elseif ($infoPersonal->marrital_status ?? "Null" == 3)
                                                     <span>Widowed</span>
                                                     @endif
                                                 </div>
@@ -195,7 +195,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Present Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->present_address}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->present_address ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -204,7 +204,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Parmanent Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->parmanent_address}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoPersonal->parmanent_address ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Institute Name <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->institute }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->institute ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -228,7 +228,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Qualification<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->mastQualification->name}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->mastQualification->name  ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -237,7 +237,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Subject  <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->subject}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->subject ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -246,7 +246,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Passing Year<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->passing_year}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->passing_year ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -255,11 +255,11 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Other Qualification<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->other_qualification}}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoAcademic->other_qualification ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                     </div>
-                                    @if ($infoCompany->company_name || $infoCompany->designation)
+                                    @if (!is_null($infoCompany))
                                     <!--=====// Company Information//=====-->
                                     <div class="row">
                                         <div class="col-md-12">
@@ -271,7 +271,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Company Name <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_name }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_name ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -280,7 +280,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Designation <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->designation }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->designation ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -289,7 +289,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Company Email <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_email }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_email ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -298,7 +298,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Company Phone <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_phone }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->company_phone ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -307,7 +307,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Address <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->address }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoCompany->address ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -316,12 +316,12 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Web Site Url<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span><a href="{{$infoCompany->web_url }}">{{$infoCompany->web_url }}</a></span></div>
+                                                <div class="col-sm-6 col-7"><span><a href="{{$infoCompany->web_url ?? "Null"}}">{{$infoCompany->web_url }}</a></span></div>
                                             </div>
                                         </div>
                                     </div>
                                     @endif
-                                    @if ($infoStudent->student_institute || $infoStudent->semester)
+                                    @if (!is_null($infoStudent))
                                     <!--=====// Student Information//=====-->
                                     <div class="row">
                                         <div class="col-md-12">
@@ -333,7 +333,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Institute Name<span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->student_institute }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->student_institute ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -342,7 +342,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Semester <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->semester }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->semester ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -351,7 +351,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Head Faculty Name <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_name }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_name ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                         <!--Item-->
@@ -360,7 +360,7 @@
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Head Faculty Number <span class="pull-right">:</span></h6>
                                                 </div>
-                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_number }}</span></div>
+                                                <div class="col-sm-6 col-7"><span>{{$infoStudent->head_faculty_number ?? "Null"}}</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -398,33 +398,17 @@
                                 </div>
                                 <div id="about-me" class="tab-pane fade {{Session::has('info_update') ? 'active show' : ''}}">
                                     <!--=====// Other Information //=====-->
-                                    <form action="{{ route('info_other.update', $infoOther->id )}}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="row">
-                                            <div class="col-lg-12 mt-3">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-2 col-form-label">About Me</label>
-                                                    <div class="col-lg-10">
-                                                        <textarea name="about_me" class="form-control @error('about_me') is-invalid @enderror" rows="2" id="comment" placeholder="What would you like to see?">{{$infoOther->about_me}}</textarea>
-                                                        @error('about_me')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label">Facebook Link</label>
-                                                    <div class="col-lg-8">
-                                                        <div class="input-group mb-3  input-success">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fa fa-facebook"></i></span>
-                                                            </div>
-                                                            <input type="text" name="facebook_url" class="form-control @error('facebook_url') is-invalid @enderror" placeholder="https://www.facebook.com" value="{{$infoOther->facebook_url}}">
-                                                            @error('facebook_url')
+                                    @if (!is_null($infoOther) && !is_null($infoOther->id))
+                                        <form action="{{ route('info_other.update', $infoOther->id )}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-3">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-form-label">About Me</label>
+                                                        <div class="col-lg-10">
+                                                            <textarea name="about_me" class="form-control @error('about_me') is-invalid @enderror" rows="2" id="comment" placeholder="What would you like to see?">{{$infoOther->about_me}}</textarea>
+                                                            @error('about_me')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
@@ -432,89 +416,107 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label">Youtube Link</label>
-                                                    <div class="col-lg-8">
-                                                        <div class="input-group mb-3  input-success">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fa fa-youtube"></i></span>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Facebook Link</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group mb-3  input-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-facebook"></i></span>
+                                                                </div>
+                                                                <input type="text" name="facebook_url" class="form-control @error('facebook_url') is-invalid @enderror" placeholder="https://www.facebook.com" value="{{$infoOther->facebook_url}}">
+                                                                @error('facebook_url')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
-                                                            <input type="text" name="youtube_url" class="form-control @error('facebook_url') is-invalid @enderror" placeholder="https://www.youtube.com" value="{{$infoOther->youtube_url}}">
-                                                            @error('youtube_url')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Youtube Link</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group mb-3  input-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-youtube"></i></span>
+                                                                </div>
+                                                                <input type="text" name="youtube_url" class="form-control @error('facebook_url') is-invalid @enderror" placeholder="https://www.youtube.com" value="{{$infoOther->youtube_url}}">
+                                                                @error('youtube_url')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Twitter Link</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group mb-3  input-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-twitter"></i></span>
+                                                                </div>
+                                                                <input type="text" name="twitter_url" class="form-control @error('twitter_url') is-invalid @enderror" placeholder="https://twitter.com" value="{{$infoOther->twitter_url}}">
+                                                                @error('twitter_url')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Instagram Link</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group mb-3  input-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-instagram"></i></span>
+                                                                </div>
+                                                                <input type="text" name="instagram_url" class="form-control @error('instagram_url') is-invalid @enderror" placeholder="https://www.instagram.com" value="{{$infoOther->instagram_url}}">
+                                                                @error('instagram_url')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Linkedin Link</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group mb-3  input-success">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-linkedin"></i></span>
+                                                                </div>
+                                                                <input type="text" name="linkedin_url" class="form-control @error('linkedin_url') is-invalid @enderror" placeholder="https://www.linkedin.com" value="{{$infoOther->linkedin_url}}">
+                                                                @error('linkedin_url')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <div class="d-flex justify-content-end">
+                                                            <button type="submit" class="btn btn-primary">Update</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label">Twitter Link</label>
-                                                    <div class="col-lg-8">
-                                                        <div class="input-group mb-3  input-success">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fa fa-twitter"></i></span>
-                                                            </div>
-                                                            <input type="text" name="twitter_url" class="form-control @error('twitter_url') is-invalid @enderror" placeholder="https://twitter.com" value="{{$infoOther->twitter_url}}">
-                                                            @error('twitter_url')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label">Instagram Link</label>
-                                                    <div class="col-lg-8">
-                                                        <div class="input-group mb-3  input-success">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fa fa-instagram"></i></span>
-                                                            </div>
-                                                            <input type="text" name="instagram_url" class="form-control @error('instagram_url') is-invalid @enderror" placeholder="https://www.instagram.com" value="{{$infoOther->instagram_url}}">
-                                                            @error('instagram_url')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group row">
-                                                    <label class="col-lg-4 col-form-label">Linkedin Link</label>
-                                                    <div class="col-lg-8">
-                                                        <div class="input-group mb-3  input-success">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fa fa-linkedin"></i></span>
-                                                            </div>
-                                                            <input type="text" name="linkedin_url" class="form-control @error('linkedin_url') is-invalid @enderror" placeholder="https://www.linkedin.com" value="{{$infoOther->linkedin_url}}">
-                                                            @error('linkedin_url')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <div class="d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary">Update</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    @endif
                                 </div>
                                 <div id="profile-settings" class="tab-pane fade {{Session::has('messege') || $errors->any() ? 'active show' : ''}}">
                                      <!--=====// Change Profile //=====-->

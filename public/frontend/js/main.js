@@ -226,7 +226,7 @@ function toggleHeaderBackground() {
     if (window.scrollY > 0) {
         header.classList.add('scrolled');
         colorNavbarLinks.forEach(link => {
-            link.style.color = '#fff';
+            link.style.color = '#444444';
         });
     } else {
         header.classList.remove('scrolled');

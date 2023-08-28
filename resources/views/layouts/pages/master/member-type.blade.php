@@ -15,6 +15,7 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Short Name</th>
                                 <th>Description</th>
                                 <th>Create Date</th>
                                 <th>Creator Name</th>
@@ -26,6 +27,7 @@
                                 @foreach ($data as $key=> $row)
                                 <tr id="row_table_{{ $row->id}}">
                                     <td>{{$row->name}}</td>
+                                    <td>{{$row->prefix}}</td>
                                     <td>{{$row->description}}</td>
                                     <td>{{date("j F, Y", strtotime($row->created_at))}}</td>
                                     <td>{{$row->user->name ?? 'NULL'}}</td>
@@ -70,7 +72,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
-                <form class="form-valide" data-action="{{ route('memebr-type.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
+                <form class="form-valide" data-action="{{ route('member-type.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                     @csrf
                     <input type="hidden" name="id" id="set_id">
                     <input type="hidden" name="registration_fee" id="registration_fee">
@@ -85,6 +87,16 @@
                                     </label>
                                     <div class="col-md-8">
                                         <input type="text" name="name" id="name" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="prefix" class="col-md-4 col-form-label">Short Name
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="prefix" id="prefix" class="form-control" value="">
                                     </div>
                                 </div>
                             </div>
@@ -127,11 +139,13 @@
             $("#monthly_fee").val('');
             $("#annual_fee").val('');
             $("#name").val('');
+            $("#prefix").val('');
             $("#description").val('');
             $(".submit_btn").show();
 
             $('#set_id').prop("disabled", false);
             $('#name').prop("disabled", false);
+            $('#prefix').prop("disabled", false);
             $('#description').prop("disabled", false);
 
             $(".modal-title").html('Add New Member Type');
@@ -159,6 +173,7 @@
                         // Create a row to insert into the table
                         var row = '<tr id="row_table_' + response.data.id + '">';
                         row += '<td>' + response.data.name + '</td>';
+                        row += '<td>' + response.data.prefix + '</td>';
                         row += '<td>' + response.data.description + '</td>';
                         row += '<td>' + formatDate(response.data.created_at) + '</td>';
                         row += '<td>' + response.creator_name + '</td>';
@@ -212,7 +227,7 @@
             var id = $(this).data('id');
             var check = $(this).data('check');
             $.ajax({
-                url:'{{ route('memebr-type.edit')}}',
+                url:'{{ route('member-type.edit')}}',
                 method:'GET',
                 dataType:"JSON",
                 data:{id:id},
@@ -226,6 +241,7 @@
                         $("#monthly_fee").val(response.data.monthly_fee);
                         $("#annual_fee").val(response.data.annual_fee);
                         $("#name").val(response.data.name);
+                        $("#prefix").val(response.data.prefix);
                         $("#description").val(response.data.description);
                         
                         $("#status").empty();
@@ -237,17 +253,20 @@
 
                         $('#set_id').prop("disabled", false);
                         $('#name').prop("disabled", false);
+                        $('#prefix').prop("disabled", false);
                         $('#description').prop("disabled", false);
                     }else if(check == 2){ //View
                         $(".modal-title").html('View Member Type');
 
                         $("#set_id").val(response.data.id);
                         $("#name").val(response.data.name);
+                        $("#prefix").val(response.data.prefix);
                         $("#description").val(response.data.description);
                         $(".submit_btn").hide();
 
                         $('#set_id').prop("disabled", true);
                         $('#name').prop("disabled", true);
+                        $('#prefix').prop("disabled", true);
                         $('#description').prop("disabled", true);
                     }else{
                         swal({
@@ -281,7 +300,7 @@
                     // Place your delete code here
                     var id = $(this).data('id');
                     $.ajax({
-                        url:'{{ route('memebr-type.delete')}}',
+                        url:'{{ route('member-type.delete')}}',
                         method:'GET',
                         dataType:"JSON",
                         data:{'id':id},

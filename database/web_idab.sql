@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2023 at 04:16 PM
+-- Generation Time: Aug 27, 2023 at 02:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -79,8 +79,8 @@ CREATE TABLE `committee_types` (
 --
 
 INSERT INTO `committee_types` (`id`, `name`, `description`, `user_id`, `status`, `is_delete`, `created_at`, `updated_at`) VALUES
-(1, 'Ad Hoc Committee', 'TEST DR - 1', 1, 1, 0, '2023-08-25 08:10:16', '2023-08-25 08:10:16'),
-(2, 'Executive Committee', 'TEST DR - 2', 1, 1, 0, '2023-08-25 08:10:16', '2023-08-25 08:10:16');
+(1, 'Ad Hoc Committee', 'TEST DR - 1', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(2, 'Founder Committee', 'TEST DR - 2', 1, 1, 0, '2023-08-27 06:04:06', '2023-08-27 06:04:06');
 
 -- --------------------------------------------------------
 
@@ -233,14 +233,6 @@ CREATE TABLE `info_academics` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `info_academics`
---
-
-INSERT INTO `info_academics` (`id`, `institute`, `mast_qualification_id`, `subject`, `passing_year`, `other_qualification`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, NULL, NULL, NULL, 1, 1, '2023-08-25 08:10:17', '2023-08-25 08:10:17'),
-(2, NULL, 1, NULL, NULL, NULL, 1, 2, '2023-08-25 08:10:17', '2023-08-25 08:10:17');
-
 -- --------------------------------------------------------
 
 --
@@ -257,14 +249,6 @@ CREATE TABLE `info_child_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `info_child_details`
---
-
-INSERT INTO `info_child_details` (`id`, `child_name`, `child_dob`, `child_gender`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, 1, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, NULL, NULL, NULL, 1, 2, '2023-08-25 08:06:46', '2023-08-25 08:06:46');
 
 -- --------------------------------------------------------
 
@@ -288,14 +272,6 @@ CREATE TABLE `info_companies` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `info_companies`
---
-
-INSERT INTO `info_companies` (`id`, `company_name`, `company_email`, `company_phone`, `designation`, `address`, `web_url`, `is_job`, `is_business`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 2, '2023-08-25 08:07:01', '2023-08-25 08:07:01');
-
 -- --------------------------------------------------------
 
 --
@@ -317,14 +293,6 @@ CREATE TABLE `info_documents` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `info_documents`
---
-
-INSERT INTO `info_documents` (`id`, `trade_licence`, `tin_certificate`, `nid_photo_copy`, `passport_photo`, `edu_certificate`, `experience_certificate`, `stu_id_copy`, `recoment_letter`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2023-08-25 08:06:46', '2023-08-25 08:06:46'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2, '2023-08-25 08:07:18', '2023-08-25 08:07:18');
 
 -- --------------------------------------------------------
 
@@ -356,14 +324,6 @@ CREATE TABLE `info_others` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `info_others`
---
-
-INSERT INTO `info_others` (`id`, `about_me`, `nick_name`, `phone_number`, `cover_photo`, `favorite`, `facebook_url`, `youtube_url`, `instagram_url`, `twitter_url`, `linkedin_url`, `whatsapp_url`, `telegram_url`, `snapchat_url`, `tiktok_url`, `wechat_url`, `discord_url`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 2, '2023-08-25 08:07:18', '2023-08-25 08:07:18');
-
 -- --------------------------------------------------------
 
 --
@@ -394,14 +354,6 @@ CREATE TABLE `info_personals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `info_personals`
---
-
-INSERT INTO `info_personals` (`id`, `contact_number`, `nid_no`, `dob`, `father_name`, `mother_name`, `present_address`, `parmanent_address`, `gender`, `blood_group`, `marrital_status`, `spouse`, `spouse_dob`, `number_child`, `em_name`, `em_phone`, `em_rleation`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, '01909302126', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, '01909302126', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2, '2023-08-25 08:06:46', '2023-08-25 08:06:46');
-
 -- --------------------------------------------------------
 
 --
@@ -419,14 +371,6 @@ CREATE TABLE `info_students` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `info_students`
---
-
-INSERT INTO `info_students` (`id`, `student_institute`, `semester`, `head_faculty_name`, `head_faculty_number`, `status`, `member_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, 1, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, NULL, NULL, NULL, NULL, 1, 2, '2023-08-25 08:07:17', '2023-08-25 08:07:17');
 
 -- --------------------------------------------------------
 
@@ -450,11 +394,10 @@ CREATE TABLE `mast_qualifications` (
 --
 
 INSERT INTO `mast_qualifications` (`id`, `name`, `description`, `user_id`, `created_at`, `updated_at`, `status`, `is_delete`) VALUES
-(1, 'SSC', 'Admin Input', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(2, 'HSC', 'Admin Input', 1, '2023-08-25 08:10:17', '2023-08-25 08:10:17', 1, 0),
-(3, '12th Stander', 'Admin Input', 1, '2023-08-25 08:10:17', '2023-08-25 08:10:17', 1, 0),
-(4, 'Graduation', 'Admin Input', 1, '2023-08-25 08:10:17', '2023-08-25 08:10:17', 1, 0),
-(5, 'Ph.D', 'Admin Input', 1, '2023-08-25 08:10:17', '2023-08-25 08:10:17', 1, 0);
+(1, 'SSC', 'Admin Input', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06', 1, 0),
+(2, 'HSC', 'Admin Input', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06', 1, 0),
+(3, 'Graduation', 'Admin Input', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06', 1, 0),
+(4, 'Ph.D', 'Admin Input', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -465,28 +408,29 @@ INSERT INTO `mast_qualifications` (`id`, `name`, `description`, `user_id`, `crea
 CREATE TABLE `member_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `prefix` varchar(255) DEFAULT NULL,
   `registration_fee` decimal(10,2) DEFAULT NULL,
   `monthly_fee` decimal(10,2) DEFAULT NULL,
   `annual_fee` decimal(10,2) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
-  `is_delete` tinyint(4) NOT NULL DEFAULT 0
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `member_types`
 --
 
-INSERT INTO `member_types` (`id`, `name`, `registration_fee`, `monthly_fee`, `annual_fee`, `description`, `user_id`, `created_at`, `updated_at`, `status`, `is_delete`) VALUES
-(1, 'Student Member', '1000.00', '0.00', '0.00', 'DR - 1', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(2, 'Candidate Member', '2000.00', '0.00', '4000.00', 'DR - 2', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(3, 'Professional Member', '2000.00', '0.00', '4000.00', 'DR - 3', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(4, 'Associate Member', '2000.00', '0.00', '4000.00', 'DR - 4', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(5, 'Trade Member', '2000.00', '0.00', '10000.00', 'DR - 5', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0),
-(6, 'Corporate Member', '2000.00', '0.00', '4000.00', 'DR - 6', 1, '2023-08-25 08:10:16', '2023-08-25 08:10:16', 1, 0);
+INSERT INTO `member_types` (`id`, `name`, `prefix`, `registration_fee`, `monthly_fee`, `annual_fee`, `description`, `user_id`, `status`, `is_delete`, `created_at`, `updated_at`) VALUES
+(1, 'Student Member', 'S-', '1000.00', '0.00', '0.00', 'DR - 1', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(2, 'Candidate Member', '', '2000.00', '0.00', '4000.00', 'DR - 2', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(3, 'Professional Member', '', '2000.00', '0.00', '4000.00', 'DR - 3', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(4, 'Associate Member', 'A-', '2000.00', '0.00', '4000.00', 'DR - 4', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(5, 'Trade Member', 'T-', '2000.00', '0.00', '10000.00', 'DR - 5', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05'),
+(6, 'Corporate Member', 'C-', '2000.00', '0.00', '4000.00', 'DR - 6', 1, 1, 0, '2023-08-27 06:04:05', '2023-08-27 06:04:05');
 
 -- --------------------------------------------------------
 
@@ -626,12 +570,8 @@ CREATE TABLE `payment_methods` (
 --
 
 INSERT INTO `payment_methods` (`id`, `name`, `image_path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'bKash', 'bKash.png', 1, '2023-08-25 08:10:23', '2023-08-25 08:10:23'),
-(2, 'Rocket', 'Rocket.png', 1, '2023-08-25 08:10:23', '2023-08-25 08:10:23'),
-(3, 'Nagad', 'Nagad.png', 1, '2023-08-25 08:10:24', '2023-08-25 08:10:24'),
-(4, 'Upay', 'Upay.png', 1, '2023-08-25 08:10:24', '2023-08-25 08:10:24'),
-(5, 'City-Bank', 'city-bank.png', 1, '2023-08-25 08:10:24', '2023-08-25 08:10:24'),
-(6, 'Card', 'Card.png', 1, '2023-08-25 08:10:24', '2023-08-25 08:10:24');
+(1, 'bKash', 'bKash.png', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06'),
+(2, 'City-Bank', 'city-bank.png', 1, '2023-08-27 06:04:06', '2023-08-27 06:04:06');
 
 -- --------------------------------------------------------
 
@@ -673,9 +613,9 @@ CREATE TABLE `payment_reasons` (
 --
 
 INSERT INTO `payment_reasons` (`id`, `name`, `description`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Membership', NULL, 1, 0, '2023-08-25 08:10:17', '2023-08-25 08:10:17'),
-(2, 'Event', NULL, 1, 0, '2023-08-25 08:10:18', '2023-08-25 08:10:18'),
-(3, 'Annual', NULL, 1, 0, '2023-08-25 08:10:18', '2023-08-25 08:10:18');
+(1, 'Membership', NULL, 1, 0, '2023-08-27 06:04:06', '2023-08-27 06:04:06'),
+(2, 'Event', NULL, 1, 0, '2023-08-27 06:04:06', '2023-08-27 06:04:06'),
+(3, 'Annual', NULL, 1, 0, '2023-08-27 06:04:06', '2023-08-27 06:04:06');
 
 -- --------------------------------------------------------
 
@@ -696,69 +636,78 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Member menu access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(2, 'Payment menu access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(3, 'Post menu access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(4, 'Setting menu access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(5, 'Member approve access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(6, 'Member approved', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(7, 'Member approve record', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(8, 'MemberType access', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(9, 'MemberType create', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(10, 'MemberType edit', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(11, 'MemberType view', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(12, 'MemberType delete', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(13, 'Qualification access', 'web', '2023-08-25 08:08:01', '2023-08-25 08:08:01'),
-(14, 'Qualification create', 'web', '2023-08-25 08:08:01', '2023-08-25 08:08:01'),
-(15, 'Qualification edit', 'web', '2023-08-25 08:08:01', '2023-08-25 08:08:01'),
-(16, 'Qualification view', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(17, 'Qualification delete', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(18, 'Annual fees access', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(19, 'Annual fees approved', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(20, 'Annual fees record', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(21, 'Event fees access', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(22, 'Event fees approved', 'web', '2023-08-25 08:08:02', '2023-08-25 08:08:02'),
-(23, 'Event fees record', 'web', '2023-08-25 08:08:04', '2023-08-25 08:08:04'),
-(24, 'Membership fees access', 'web', '2023-08-25 08:08:09', '2023-08-25 08:08:09'),
-(25, 'Membership fees approved', 'web', '2023-08-25 08:08:09', '2023-08-25 08:08:09'),
-(26, 'Membership fees record', 'web', '2023-08-25 08:08:09', '2023-08-25 08:08:09'),
-(27, 'Pyment number access', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(28, 'Pyment number create', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(29, 'Pyment number edit', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(30, 'Pyment number view', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(31, 'Pyment number delete', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(32, 'Pyment fees access', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(33, 'Pyment annual fees', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(34, 'Pyment membership fees', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(35, 'Gallery access', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(36, 'Gallery create', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(37, 'Gallery edit', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(38, 'Gallery delete', 'web', '2023-08-25 08:08:10', '2023-08-25 08:08:10'),
-(39, 'Event access', 'web', '2023-08-25 08:08:18', '2023-08-25 08:08:18'),
-(40, 'Event create', 'web', '2023-08-25 08:08:27', '2023-08-25 08:08:27'),
-(41, 'Event edit', 'web', '2023-08-25 08:08:27', '2023-08-25 08:08:27'),
-(42, 'Event delete', 'web', '2023-08-25 08:08:27', '2023-08-25 08:08:27'),
-(43, 'Contact access', 'web', '2023-08-25 08:08:27', '2023-08-25 08:08:27'),
-(44, 'Contact reply', 'web', '2023-08-25 08:08:48', '2023-08-25 08:08:48'),
-(45, 'Contact delete', 'web', '2023-08-25 08:08:49', '2023-08-25 08:08:49'),
-(46, 'Role access', 'web', '2023-08-25 08:08:49', '2023-08-25 08:08:49'),
-(47, 'Role create', 'web', '2023-08-25 08:08:49', '2023-08-25 08:08:49'),
-(48, 'Role edit', 'web', '2023-08-25 08:08:49', '2023-08-25 08:08:49'),
-(49, 'Role delete', 'web', '2023-08-25 08:08:49', '2023-08-25 08:08:49'),
-(50, 'User access', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(51, 'User create', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(52, 'User edit', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(53, 'User delete', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(54, 'Super-Admin', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(55, 'Admin', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(56, 'Member', 'web', '2023-08-25 08:09:14', '2023-08-25 08:09:14'),
-(57, 'Data Setting', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(58, 'Student Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(59, 'Candidate Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(60, 'Professional Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(61, 'Associate Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(62, 'Trade Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15'),
-(63, 'Corporate Member', 'web', '2023-08-25 08:09:15', '2023-08-25 08:09:15');
+(1, 'Member menu access', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53'),
+(2, 'Payment menu access', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53'),
+(3, 'Post menu access', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53'),
+(4, 'Setting menu access', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53'),
+(5, 'Member access', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53'),
+(6, 'Member edit', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(7, 'Member view', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(8, 'Member delete', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(9, 'Member approve access', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(10, 'Member approved', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(11, 'Member approve record', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(12, 'CommitteeType access', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(13, 'CommitteeType create', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(14, 'CommitteeType edit', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(15, 'CommitteeType view', 'web', '2023-08-27 06:03:54', '2023-08-27 06:03:54'),
+(16, 'CommitteeType delete', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(17, 'MemberType access', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(18, 'MemberType create', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(19, 'MemberType edit', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(20, 'MemberType view', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(21, 'MemberType delete', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(22, 'Qualification access', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(23, 'Qualification create', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(24, 'Qualification edit', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(25, 'Qualification view', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(26, 'Qualification delete', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(27, 'Annual fees access', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(28, 'Annual fees approved', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(29, 'Annual fees record', 'web', '2023-08-27 06:03:55', '2023-08-27 06:03:55'),
+(30, 'Event fees access', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(31, 'Event fees approved', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(32, 'Event fees record', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(33, 'Membership fees access', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(34, 'Membership fees approved', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(35, 'Membership fees record', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(36, 'Pyment number access', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(37, 'Pyment number create', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(38, 'Pyment number edit', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(39, 'Pyment number view', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(40, 'Pyment number delete', 'web', '2023-08-27 06:03:56', '2023-08-27 06:03:56'),
+(41, 'Pyment fees access', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(42, 'Pyment annual fees', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(43, 'Pyment membership fees', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(44, 'Gallery access', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(45, 'Gallery create', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(46, 'Gallery edit', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(47, 'Gallery delete', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(48, 'Event access', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(49, 'Event create', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(50, 'Event edit', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(51, 'Event delete', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(52, 'Contact access', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(53, 'Contact reply', 'web', '2023-08-27 06:03:57', '2023-08-27 06:03:57'),
+(54, 'Contact delete', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(55, 'Role access', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(56, 'Role create', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(57, 'Role edit', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(58, 'Role delete', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(59, 'User access', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(60, 'User create', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(61, 'User edit', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(62, 'User delete', 'web', '2023-08-27 06:03:58', '2023-08-27 06:03:58'),
+(63, 'Super-Admin', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(64, 'Admin', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(65, 'Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(66, 'Data Setting', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(67, 'Student Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(68, 'Candidate Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(69, 'Professional Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(70, 'Associate Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(71, 'Trade Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59'),
+(72, 'Corporate Member', 'web', '2023-08-27 06:03:59', '2023-08-27 06:03:59');
 
 -- --------------------------------------------------------
 
@@ -798,9 +747,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Super-Admin', 'web', '2023-08-25 08:07:59', '2023-08-25 08:07:59'),
-(2, 'Admin', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00'),
-(3, 'Member', 'web', '2023-08-25 08:08:00', '2023-08-25 08:08:00');
+(1, 'Super-Admin', 'web', '2023-08-27 06:03:52', '2023-08-27 06:03:52'),
+(2, 'Admin', 'web', '2023-08-27 06:03:52', '2023-08-27 06:03:52'),
+(3, 'Member', 'web', '2023-08-27 06:03:53', '2023-08-27 06:03:53');
 
 -- --------------------------------------------------------
 
@@ -853,7 +802,6 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (33, 1),
 (34, 1),
 (35, 1),
-(35, 2),
 (36, 1),
 (37, 1),
 (38, 1),
@@ -863,6 +811,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (42, 1),
 (43, 1),
 (44, 1),
+(44, 2),
 (45, 1),
 (46, 1),
 (47, 1),
@@ -875,14 +824,23 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (54, 1),
 (55, 1),
 (56, 1),
-(56, 2),
 (57, 1),
 (58, 1),
 (59, 1),
 (60, 1),
 (61, 1),
 (62, 1),
-(63, 1);
+(63, 1),
+(64, 1),
+(65, 1),
+(65, 2),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1);
 
 -- --------------------------------------------------------
 
@@ -898,13 +856,6 @@ CREATE TABLE `sessions` (
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('sHet45YpB82xUc3UAM9sUhWlO7s8Y0MzEZ5ZfBFM', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiYzdHcEFFQ1Fsa2I5WWhBcHdrdWxUNzF6NjE5cDZOaEhyTllHVkFiOCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vbG9jYWxob3N0L3dlYi1pZGFiL3JvbGVzL2NyZWF0ZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkLml2MkxNUVR4d052QkgwbllnaTViLlI2UnpqalRUUWgxOFkvSzVTVzBQOVdPM2VvbEt3WVciO30=', 1692972829);
 
 -- --------------------------------------------------------
 
@@ -957,8 +908,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `member_code`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `member_type_id`, `committee_type_id`, `status`, `is_admin`, `approve_by`, `created_at`, `updated_at`) VALUES
-(1, 'IDAB', 'admin@gmail.com', 'IDAB-00001', '2001-12-31 18:00:00', '$2y$10$.iv2LMQTxwNvBH0nYgi5b.R6RzjjTTQh18Y/K5SW0P9WO3eolKwYW', NULL, NULL, NULL, NULL, NULL, 'fix/admin.jpg', 1, NULL, 1, 1, 1, '2023-08-25 08:06:45', '2023-08-25 08:06:45'),
-(2, 'Member', 'member@gmail.com', 'IDAB-00002', '1999-12-31 18:00:00', '$2y$10$GfylRg64wSzbUjYaUpw31.RxWQgZyU2SnQoqwYFD2pbqpI37n3Mdm', NULL, NULL, NULL, NULL, NULL, 'fix/member.jpg', 1, NULL, 1, 1, 1, '2023-08-25 08:06:46', '2023-08-25 08:06:46');
+(1, 'IDAB', 'Admin', 'IDAB-ADMIN', '2021-12-31 18:00:00', '$2y$10$/lU8X/G9htoPUpxO1wp71OSu3ExCiJlY9fzumU1gyES6fwYcQjexK', NULL, NULL, NULL, NULL, NULL, 'fix/admin.jpg', NULL, NULL, 1, 1, NULL, '2023-08-27 06:03:52', '2023-08-27 06:03:52'),
+(2, 'Member', 'member@gmail.com', 'IDAB-00000', '1999-12-31 18:00:00', '$2y$10$7eMEJa0UpZNcj2ONa/5Zpe7qiRvdxHTAqWm4bsWgN5Bh8qswDzyle', NULL, NULL, NULL, NULL, NULL, 'fix/member.jpg', NULL, NULL, 1, 1, NULL, '2023-08-27 06:03:52', '2023-08-27 06:03:52');
 
 --
 -- Indexes for dumped tables
@@ -1276,49 +1227,49 @@ ALTER TABLE `gallery_images`
 -- AUTO_INCREMENT for table `info_academics`
 --
 ALTER TABLE `info_academics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_child_details`
 --
 ALTER TABLE `info_child_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_companies`
 --
 ALTER TABLE `info_companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_documents`
 --
 ALTER TABLE `info_documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_others`
 --
 ALTER TABLE `info_others`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_personals`
 --
 ALTER TABLE `info_personals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `info_students`
 --
 ALTER TABLE `info_students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mast_qualifications`
 --
 ALTER TABLE `mast_qualifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `member_types`
@@ -1342,7 +1293,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `payment_methods`
 --
 ALTER TABLE `payment_methods`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment_numbers`
@@ -1360,7 +1311,7 @@ ALTER TABLE `payment_reasons`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

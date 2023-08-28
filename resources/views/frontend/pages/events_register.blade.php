@@ -185,13 +185,13 @@
                             <input type="radio" name="payment_method_id" id="bKash" class="input-hidden" value="1"/>
                             <label for="bKash"><img src="{{asset('public/images')}}/payment/bKash.png" alt="Payment bKash" /></label>
                         
-                            <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="2"/>
+                            {{-- <input type="radio" name="payment_method_id" id="roket" class="input-hidden" value="2"/>
                             <label for="roket"><img src="{{asset('public/images')}}/payment/roket.png" alt="Payment roket" /></label>
                         
                             <input type="radio" name="payment_method_id" id="nagad" class="input-hidden" value="3"/>
-                            <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label>
+                            <label for="nagad"><img src="{{asset('public/images')}}/payment/nagad.png" alt="Payment nagad" /></label> --}}
                             
-                            <input type="radio" name="payment_method_id" id="city-bank" class="input-hidden" value="5"/>
+                            <input type="radio" name="payment_method_id" id="city-bank" class="input-hidden" value="2"/>
                             <label for="city-bank"><img src="{{asset('public/images')}}/payment/city-bank.jpg" alt="Payment upay"/></label>
 
                             @error('payment_method_id')
@@ -296,10 +296,10 @@
                     }
                 },
                 error: function() {
-                    alert('Fail');
+                    alert('Sorry try agian...');
                 }
             });
-            if(methodId == 5){
+            if(methodId == 2){
                 $('#transferNumber').hide();
                 $('#transactionNumber').hide();
                 $('#labelChange').html('Bank-Number');

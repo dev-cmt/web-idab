@@ -42,31 +42,31 @@ class PaymentSeeder extends Seeder
             'image_path'=>'bKash.png',
             'status'=>'1',
         ]);
-        PaymentMethods::create([
-            'name'=>'Rocket',
-            'image_path'=>'Rocket.png',
-            'status'=>'1',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Nagad',
-            'image_path'=>'Nagad.png',
-            'status'=>'1',
-        ]);
-        PaymentMethods::create([
-            'name'=>'Upay',
-            'image_path'=>'Upay.png',
-            'status'=>'1',
-        ]);
+        // PaymentMethods::create([
+        //     'name'=>'Rocket',
+        //     'image_path'=>'Rocket.png',
+        //     'status'=>'1',
+        // ]);
+        // PaymentMethods::create([
+        //     'name'=>'Nagad',
+        //     'image_path'=>'Nagad.png',
+        //     'status'=>'1',
+        // ]);
+        // PaymentMethods::create([
+        //     'name'=>'Upay',
+        //     'image_path'=>'Upay.png',
+        //     'status'=>'1',
+        // ]);
         PaymentMethods::create([
             'name'=>'City-Bank',
             'image_path'=>'city-bank.png',
             'status'=>'1',
         ]);
-        PaymentMethods::create([
-            'name'=>'Card',
-            'image_path'=>'Card.png',
-            'status'=>'1',
-        ]);
+        // PaymentMethods::create([
+        //     'name'=>'Card',
+        //     'image_path'=>'Card.png',
+        //     'status'=>'1',
+        // ]);
         
     }
 }

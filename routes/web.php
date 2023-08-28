@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Master\CommitteeTypeController;
 use App\Http\Controllers\Master\MemberTypeController;
 use App\Http\Controllers\Master\QualificationController;
 
@@ -119,15 +120,20 @@ Route::group(['middleware' => ['auth']], function(){
     Route::PATCH('member-approve/{id}/cancel', [MemberController::class, 'approveCancel'])->name('member-approve.cancel');
     
     //-- MASTER SETTING =>> Member
-    Route::get('master/memebr-type/index',[MemberTypeController::class,'index'])->name('memebr-type.index');
-    Route::post('master/memebr-type/store', [MemberTypeController::class, 'store'])->name('memebr-type.store');
-    Route::get('master/memebr-type/edit', [MemberTypeController::class, 'edit'])->name('memebr-type.edit');
-    Route::get('master/memebr-type/delete', [MemberTypeController::class, 'delete'])->name('memebr-type.delete');
+    Route::get('master/member-type/index',[MemberTypeController::class,'index'])->name('member-type.index');
+    Route::post('master/member-type/store', [MemberTypeController::class, 'store'])->name('member-type.store');
+    Route::get('master/member-type/edit', [MemberTypeController::class, 'edit'])->name('member-type.edit');
+    Route::get('master/member-type/delete', [MemberTypeController::class, 'delete'])->name('member-type.delete');
+    //-- MASTER SETTING =>> Committee
+    Route::get('master/committee-type/index',[CommitteeTypeController::class,'index'])->name('committee-type.index');
+    Route::post('master/committee-type/store', [CommitteeTypeController::class, 'store'])->name('committee-type.store');
+    Route::get('master/committee-type/edit', [CommitteeTypeController::class, 'edit'])->name('committee-type.edit');
+    Route::get('master/committee-type/delete', [CommitteeTypeController::class, 'delete'])->name('committee-type.delete');
     //-- MASTER SETTING =>> Qualification
-    Route::get('master/memebr-qualification/index',[QualificationController::class,'index'])->name('memebr-qualification.index');
-    Route::post('master/memebr-qualification/store', [QualificationController::class, 'store'])->name('memebr-qualification.store');
-    Route::get('master/memebr-qualification/edit', [QualificationController::class, 'edit'])->name('memebr-qualification.edit');
-    Route::get('master/memebr-qualification/delete', [QualificationController::class, 'delete'])->name('memebr-qualification.delete');
+    Route::get('master/member-qualification/index',[QualificationController::class,'index'])->name('member-qualification.index');
+    Route::post('master/member-qualification/store', [QualificationController::class, 'store'])->name('member-qualification.store');
+    Route::get('master/member-qualification/edit', [QualificationController::class, 'edit'])->name('member-qualification.edit');
+    Route::get('master/member-qualification/delete', [QualificationController::class, 'delete'])->name('member-qualification.delete');
     
     /**______________________________________________________________________________________________
      * TRANSACTION => MENU

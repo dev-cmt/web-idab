@@ -18,7 +18,7 @@
 
     <!-- Your logo on the top left -->
     <a href="{{ url()->previous() }}" class="logo-link" title="back home">
-        <img src="{{asset('public/frontend')}}/images/pune_logo.png" class="logo" style="width:200px" alt="Company's logo">
+        <img src="{{asset('public/images')}}/logo.png" class="logo" style="width:200px" alt="Company's logo">
     </a>
 
     <div class="content">

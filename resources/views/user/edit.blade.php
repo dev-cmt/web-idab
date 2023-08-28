@@ -59,7 +59,7 @@
                         <a href="{{route('users.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i><span class="btn-icon-add"></span>Back</a>
                     @endcan
                 </div>
-                <div class="card-body d-flex justify-content-center">
+                <div class="card-body">
                     <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data" class="col-12">
                         @csrf
                         @method('PUT')
@@ -183,4 +183,24 @@
             </div>
         </div>
     </div>
+
+    @push('script')
+    <!--Image Profile-->
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    </script>
+    @endpush
 </x-app-layout>
