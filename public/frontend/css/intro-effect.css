@@ -3,19 +3,35 @@
 * Intro-Logo -> Slider 
 *______________________________________________________________
 */
-
+#hero-title{
+    font-size: 32px;
+    color:#000;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    /* border-top: 5px solid red;
+    border-bottom: 5px solid red;
+    padding: 10px 0px; */
+}
 .intro-wrapper {
     width: 75% !important;
 }
 .intro-wrapper .intro-logo{
     display: flex;
     justify-content: center;
-    padding: 25px 0px;
+    padding: 0px 0px 25px 0px;
 }
 .intro-wrapper .intro-logo img{
-    width: 150px;
+    width: 248px;
 }
 
+@media (max-width: 768px) {
+    .intro-wrapper .intro-logo img{
+        width: 124px;
+    }
+    #hero-title{
+        font-size: 20px;
+    }
+  }
 @media (max-width: 991px) {
     .intro-wrapper{
         width: 95%;
@@ -99,7 +115,7 @@
     text-align: center;
     font-size: 24px;
     font-weight: 700;
-    color: red;
+    color: #000;
     padding: 15px 0;
     overflow: hidden;
     transition: all 2s;
@@ -164,7 +180,7 @@
 .intro-text span {
     display: inline-block;
     position: relative;
-    padding: 36px 100px;
+    padding: 36px 130px;
     color: red;
     margin-top: 15px;
 }

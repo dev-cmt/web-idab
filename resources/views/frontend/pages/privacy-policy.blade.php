@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 @section('title', 'Privacy Policy')
 @section('content')
+@include('frontend.layouts.partial.banner')
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container">

@@ -45,7 +45,7 @@ class TransactionController extends Controller
     public function storeRegistation(Request $request)
     {
         try{
-            if($request->payment_method_id == 5){
+            if($request->payment_method_id == 2){
                 $validated=$request -> validate([
                     'payment_number'=> 'required',
                     'slip' => 'max:2048|nullable|mimes:pdf,jpeg,png,gif,doc,docx',
@@ -153,12 +153,12 @@ class TransactionController extends Controller
             return redirect()->back()->with('error', 'File size exceeds the limit.');
         }
     }
-    public function download($id)
+    public function downloadSlip($id)
     {
         $data = PaymentDetails::findOrFail($id);
         $filePath = public_path($data->slip);
 
-        if (file_exists($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'pdf') {
+        if (file_exists($filePath)) {
             return Response::download($filePath);
         } else {
             return redirect()->back()->with('error', 'PDF file not found.');
@@ -171,8 +171,8 @@ class TransactionController extends Controller
      */
     public function approveIndexRegistation() 
     {
-        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 1 => Membership
-        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id','!=', 2)->get(); // payment_reason_id => 1 => Membership
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 1)->where('payment_method_id', 2)->get(); //payment_method_id => 2 => City Bank
         $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 1)->get();
         return view('layouts.pages.transaction.registation-approve', compact('data', 'record', 'bank'));
     }
@@ -224,8 +224,8 @@ class TransactionController extends Controller
      */
     public function approveIndexEvent() 
     {
-        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
-        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id','!=', 2)->get(); // payment_reason_id => 2 => Event
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 2)->where('payment_method_id', 2)->get(); //payment_method_id => 5 => City Bank
         $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 2)->get();
         return view('layouts.pages.transaction.event-approve', compact('data', 'record', 'bank'));
     }
@@ -280,8 +280,8 @@ class TransactionController extends Controller
      */
     public function approveIndexAnnualFees() 
     {
-        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id','!=', 5)->get(); // payment_reason_id => 2 => Event
-        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id', 5)->get(); //payment_method_id => 5 => City Bank
+        $data = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id','!=', 2)->get(); // payment_reason_id => 2 => Event
+        $bank = PaymentDetails::where('status', 0)->where('payment_reason_id', 3)->where('payment_method_id', 2)->get(); //payment_method_id => 5 => City Bank
         $record = PaymentDetails::whereIn('status', [1,2])->where('payment_reason_id', 3)->get();
         return view('layouts.pages.transaction.annual-approve', compact('data', 'record', 'bank'));
     }

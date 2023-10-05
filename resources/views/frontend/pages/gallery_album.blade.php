@@ -1,5 +1,25 @@
 @extends('frontend.layouts.app')
-@section('title', 'Gallery')
+
+@section('style')
+<style>
+    .new-arrival-product .new-arrivals-img-contnent {
+        overflow: hidden;
+    }
+    .new-arrival-product:hover .new-arrivals-img-contnent img {
+        transform: scale(1.5) translateY(12%);
+        -moz-transform: scale(1.5) translateY(12%);
+        -webkit-transform: scale(1.5) translateY(12%);
+        -ms-transform: scale(1.5) translateY(12%);
+        -o-transform: scale(1.5) translateY(12%);
+    }
+    .new-arrival-product .new-arrivals-img-contnent img {
+        width: 100%;
+        -webkit-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+</style>
+@endsection
 @section('content')
 <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -10,39 +30,34 @@
             </div>
             <div class="row g-5">
                 @foreach ($posts as $key=> $row )
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <a href="{{route('page.gallery-show', $row ->id)}}">
-                            <div class="text-center p-2">
-                                <h4 class="text-primary pt-3">{{$row->title}}</h4>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="new-arrival-product">
+                                <div class="new-arrivals-img-contnent">
+                                    <a href="{{route('page.gallery-show', $row ->id)}}"><img class="img-fluid" src="{{asset('public/images')}}/gallery/{{ $row->cover }}" alt=""></a>
+                                </div>
+                                <div class="new-arrival-content mt-2">
+                                    <h4>Picture</h4>
+                                    <p class="text-uppercase description_2 mb-2"></p>
+                                    <div class="d-flex justify-content-between">
+                                        <label class="text-primary">Event Date:</label><span>{{date("j F, Y", strtotime($row->date))}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <label class="text-primary">Published Date:</label><span>{{date("j F, Y", strtotime($row->created_at))}}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <label class="text-primary">Publisher Name:</label><span>{{$row->user->name}}</span>
+                                    </div>
+                                    @if ($row->description)
+                                        <hr>
+                                    @endif
+                                    <p class="text-uppercase description_2 m-0">{{$row->description}}</p>
+                                </div>
                             </div>
-                            <div class="team-img position-relative overflow-hidden" style="width:100%; height: 250px">
-                                <img class="img-fluid w-100" src="{{asset('public/images')}}/gallery/{{ $row->cover }}" alt="">
-                            </div>
-                            <div class="row p-4">
-                                <div class="col-lg-5">
-                                    <h6 class="text-primary"><i class="far fa-calendar-alt text-primary me-2"></i> Event</h6>
-                                </div>
-                                <div class="col-lg-7">
-                                    <h6 class="text-dark">: {{date("j F, Y", strtotime($row->date))}}</h6>
-                                </div>
-                                <div class="col-lg-5">
-                                    <h6 class="text-primary"><i class="far fa-calendar-alt text-primary me-2"></i> Published</h6>
-                                </div>
-                                <div class="col-lg-7">
-                                    <h6 class="text-dark">: {{date("j F, Y", strtotime($row->created_at))}}</h6>
-                                </div>
-                                <div class="col-lg-5">
-                                    <h6 class="text-primary"><i class="far fa-user text-primary me-2"></i> Publisher</h6>
-                                </div>
-                                <div class="col-lg-7">
-                                    <h6 class="text-dark">: {{$row->user->name}}</h6>
-                                </div>
-                                <p class="text-uppercase description_2 m-0">{{$row->description}}</p>
-                                <!--<a href="{{$row->drive_url}}" class="text-white btn btn-primary my-2">Download</a>-->
-                            </div>
-                        </a>
+                        </div>
                     </div>
+
                 </div>
                 @endforeach
             </div>

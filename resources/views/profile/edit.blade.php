@@ -3,7 +3,7 @@
         <div class="col-xl-12 col-xxl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Edit Member Information</h4>
+                    <h4 class="card-title">Edit {{$user->memberType->name ?? 'Member'}} Information</h4>
                     <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i><span class="btn-icon-add"></span>Back</a>
                 </div>
 
@@ -16,14 +16,13 @@
                         <form class="form-valide" action="{{ route('info_member.update', $user->id) }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                             @csrf
                             <!-- Step 1 input fields {Personal Information}-->
-                            @if (!is_null($infoPersonal) && !is_null($infoPersonal->id) && !is_null($infoAcademic->contact_number ))
                             <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseZero" aria-expanded="false">
+                                <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseZero" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Personal Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseZero" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseZero" class="accordion__body collapse" data-parent="#accordion-eleven" style="">
                                     <!--__________________  Personal __________________-->
                                     <div class="row pb-0 accordion__body--text">
                                         <div class="col-md-6 mb-2">
@@ -98,8 +97,8 @@
                                                 <label for="gender" class="form-label col-md-5">Gender</label>
                                                 <div class="col-md-7">
                                                     <select name="gender" id="gender" class="form-control form-select @error('gender') is-invalid @enderror">
-                                                        <option value="0" {{ $infoPersonal->gender ?? '' == '0' ? 'selected' : '' }}>Male</option>
-                                                        <option value="1" {{ $infoPersonal->gender ?? '' == '1' ? 'selected' : '' }}>Female</option>
+                                                        <option value="0" {{ (isset($infoPersonal) && $infoPersonal->gender == '0') ? 'selected' : '' }}>Male</option>
+                                                        <option value="1" {{ (isset($infoPersonal) && $infoPersonal->gender == '1') ? 'selected' : '' }}>Female</option>
                                                     </select>
                                                     @error('gender')
                                                     <span class="invalid-feedback" role="alert">
@@ -113,11 +112,11 @@
                                             <div class="row">
                                                 <label for="marrital_status" class="form-label col-md-5">Marrital Status</label>
                                                 <div class="col-md-7">
-                                                    <select name="marrital_status" class="form-control form-select  @error('marrital_status') is-invalid @enderror">
-                                                        <option value="0" selected>Unmarried</option>
-                                                        <option value="1" {{ $infoPersonal->marrital_status ?? '' == '1' ? 'selected' : '' }}>Married</option>
-                                                        <option value="2" {{ $infoPersonal->marrital_status ?? '' == '2' ? 'selected' : '' }}>Divorce</option>
-                                                        <option value="3" {{ $infoPersonal->marrital_status ?? '' == '3' ? 'selected' : '' }}>Widowed</option>
+                                                    <select name="marrital_status" class="form-control form-select @error('marrital_status') is-invalid @enderror">
+                                                        <option value="0" {{ isset($infoPersonal) && $infoPersonal->marrital_status === '0' ? 'selected' : '' }}>Unmarried</option>
+                                                        <option value="1" {{ isset($infoPersonal) && $infoPersonal->marrital_status === '1' ? 'selected' : '' }}>Married</option>
+                                                        <option value="2" {{ isset($infoPersonal) && $infoPersonal->marrital_status === '2' ? 'selected' : '' }}>Divorce</option>
+                                                        <option value="3" {{ isset($infoPersonal) && $infoPersonal->marrital_status === '3' ? 'selected' : '' }}>Widowed</option>
                                                     </select>
                                                     @error('marrital_status')
                                                     <span class="invalid-feedback" role="alert">
@@ -132,15 +131,15 @@
                                                 <label for="blood_group" class="form-label col-md-5">Blood Group</label>
                                                 <div class="col-md-7">
                                                     <select name="blood_group" id="blood_group" class="form-control form-select @error('blood_group') is-invalid @enderror">
-                                                        <option value="" selected>Select</option>
-                                                        <option value="1" {{ $infoPersonal->blood_group ?? '' == '1' ? 'selected' : '' }}>A Positive (A+)</option>
-                                                        <option value="2" {{ $infoPersonal->blood_group ?? '' == '2' ? 'selected' : '' }}>A Negative (A-)</option>
-                                                        <option value="3" {{ $infoPersonal->blood_group ?? '' == '3' ? 'selected' : '' }}>B Positive (B+)</option>
-                                                        <option value="4" {{ $infoPersonal->blood_group ?? '' == '4' ? 'selected' : '' }}>B Negative (B-)</option>
-                                                        <option value="5" {{ $infoPersonal->blood_group ?? '' == '5' ? 'selected' : '' }}>AB Positive (AB+)</option>
-                                                        <option value="6" {{ $infoPersonal->blood_group ?? '' == '6' ? 'selected' : '' }}>AB Negative (AB-)</option>
-                                                        <option value="7" {{ $infoPersonal->blood_group ?? '' == '7' ? 'selected' : '' }}>O Positive (0+)</option>
-                                                        <option value="8" {{ $infoPersonal->blood_group ?? '' == '8' ? 'selected' : '' }}>O Negative (0-)</option>
+                                                        <option value="" {{ empty($infoPersonal->blood_group) ? 'selected' : '' }}>Select</option>
+                                                        <option value="1" {{ ($infoPersonal->blood_group ?? '') === '1' ? 'selected' : '' }}>A Positive (A+)</option>
+                                                        <option value="2" {{ ($infoPersonal->blood_group ?? '') === '2' ? 'selected' : '' }}>A Negative (A-)</option>
+                                                        <option value="3" {{ ($infoPersonal->blood_group ?? '') === '3' ? 'selected' : '' }}>B Positive (B+)</option>
+                                                        <option value="4" {{ ($infoPersonal->blood_group ?? '') === '4' ? 'selected' : '' }}>B Negative (B-)</option>
+                                                        <option value="5" {{ ($infoPersonal->blood_group ?? '') === '5' ? 'selected' : '' }}>AB Positive (AB+)</option>
+                                                        <option value="6" {{ ($infoPersonal->blood_group ?? '') === '6' ? 'selected' : '' }}>AB Negative (AB-)</option>
+                                                        <option value="7" {{ ($infoPersonal->blood_group ?? '') === '7' ? 'selected' : '' }}>O Positive (O+)</option>
+                                                        <option value="8" {{ ($infoPersonal->blood_group ?? '') === '8' ? 'selected' : '' }}>O Negative (O-)</option>
                                                     </select>
                                                     @error('blood_group')
                                                     <span class="invalid-feedback" role="alert">
@@ -187,16 +186,14 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             <!-- Step 2 input fields {Academic Information}-->
-                            @if (!is_null($infoAcademic) && !is_null($infoAcademic->id ) && !is_null($infoAcademic->institute ))
                             <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseTwo" aria-expanded="false">
+                                <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseTwo" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Academic Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseTwo" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseTwo" class="accordion__body collapse @error('mast_qualification_id') show @enderror " data-parent="#accordion-eleven" style="">
                                     <!--__________________  Academic __________________-->
                                     <div class="row pb-0 accordion__body--text">
                                         <div class="bar_academic"></div>
@@ -224,9 +221,11 @@
                                                     <select name="mast_qualification_id" id="mast_qualification_id" class="form-control form-select @error('mast_qualification_id') is-invalid @enderror">
                                                         <option disabled selected>Please select</option>
                                                         @foreach ($qualification as $item)
-                                                            <option value="{{$item->id}}" {{ $infoAcademic->mast_qualification_id ?? '' == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
+                                                            <option value="{{ $item->id }}" {{ isset($infoAcademic) && $infoAcademic->mast_qualification_id == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->name }}
+                                                            </option>
                                                         @endforeach
-                                                    </select>                                                    
+                                                    </select>                                                  
                                                     @error('mast_qualification_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -252,7 +251,7 @@
                                             <div class="row">
                                                 <label for="passing_year" class="form-label col-md-5">Passing Year</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" name="passing_year" id="passing_year" class="form-control @error('passing_year') is-invalid @enderror" value="{{$infoAcademic->passing_year ?? ''}}">
+                                                    <input type="number" name="passing_year" id="passing_year" class="form-control @error('passing_year') is-invalid @enderror" value="{{$infoAcademic->passing_year ?? ''}}">
                                                     @error('passing_year')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -285,16 +284,15 @@
 
                                 </div>
                             </div>
-                            @endif
                             <!-- Step 3 input fields {Business Information}-->
-                            @if (!is_null($infoCompany) && !is_null($infoCompany->id ) && !is_null($infoCompany->company_name ))
+                            @if (!is_null($infoCompany) && $user->member_type_id != 1 || is_null($user->member_type_id))
                             <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseThree" aria-expanded="false">
+                                <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseThree" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Business Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseThree" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseThree" class="accordion__body collapse" data-parent="#accordion-eleven" style="">
                                     <!--__________________  Business __________________-->
                                     <div class="row accordion__body--text">
                                         <div class="bar_business" id="bar_business" style="display: none;"></div>                            
@@ -355,7 +353,7 @@
                                             <div class="row">
                                                 <label for="address" class="form-label col-md-5">Company Address</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{$infoCompany->address ?? '' }}">
+                                                    <textarea name="address" class="form-control @error('address') is-invalid @enderror" rows="2" id="web_url" placeholder="Your office address!">{{$infoCompany->address ?? '' }}</textarea>
                                                     @error('address')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -368,16 +366,16 @@
                                             <div class="row">
                                                 <label for="web_url" class="form-label col-md-5">Company Website</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" name="web_url" id="web_url"class="form-control @error('web_url') is-invalid @enderror" value="{{$infoCompany->web_url ?? '' }}">
+                                                    <textarea name="web_url" class="form-control @error('web_url') is-invalid @enderror" rows="2" id="web_url" placeholder="Website address!">{{$infoCompany->web_url ?? '' }}</textarea>
                                                     @error('web_url')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
+                                            </div>te
                                         </div>
-                                        <div class="col-md-6 mb-2">
+                                        <div class="col-md-12 mb-2">
                                             <div class="form-group">
                                                 <div class="d-flex justify-content-end">
                                                     <button type="submit" class="btn btn-primary">Update</button>
@@ -389,14 +387,14 @@
                             </div>
                             @endif
                             <!-- Step 4 input fields {Student Information}-->
-                            @if (!is_null($infoStudent) && !is_null($infoStudent->id ) && !is_null($infoStudent->student_institute ))
+                            @if (!is_null($infoStudent) && $user->member_type_id == 1 || is_null($user->member_type_id) )
                             <div class="accordion__item">
-                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFour" aria-expanded="false">
+                                <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseFour" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Student Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseFour" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseFour" class="accordion__body collapse" data-parent="#accordion-eleven" style="">
                                     <!--__________________ Student  __________________-->
                                     <div class="row accordion__body--text">
                                         <div class="col-md-6 mb-2">
@@ -463,7 +461,6 @@
                             </div>
                             @endif
                             <!-- Step 5 input fields {Other Information}-->
-                            @if (!is_null($infoOther) && !is_null($infoOther->id ))
                             <div class="accordion__item">
                                 <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFive" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
@@ -587,7 +584,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                         </form>
 
                     </div>

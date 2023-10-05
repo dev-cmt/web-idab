@@ -38,7 +38,7 @@ class FrontViewController extends Controller
     public function committee($id)
     {
         $data = User::where('committee_type_id', $id)->where('status', 1)->get();
-        $committeesType = CommitteeType::where('id', $id)->first()->name;
+        $committeesType = CommitteeType::where('id', $id)->first();
 
         return view('frontend.pages.committee-member',compact('data', 'committeesType'));
     }
@@ -52,6 +52,22 @@ class FrontViewController extends Controller
         $membersType = MemberType::where('id', $id)->first()->name;
 
         return view('frontend.pages.member',compact('data', 'membersType'));
+    }
+    /**________________________________________________________________________________________
+     * Why-be-member Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function whyBeMember()
+    {
+        return view('frontend.pages.why-be-member');
+    }
+    /**________________________________________________________________________________________
+     * Requirements Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function requirements()
+    {
+        return view('frontend.pages.requirements');
     }
     /**________________________________________________________________________________________
      * Gallery Menu Pages
@@ -96,6 +112,14 @@ class FrontViewController extends Controller
         $events =Event::latest()->orderByDesc('id')->take(10)->orderBy('id')->get();
         $data =Event::findOrFail($id);
         return view('frontend.pages.events_details',compact('events','data'));
+    }
+    /**________________________________________________________________________________________
+     * Corporate Partners Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function corporatePartners()
+    {
+        return view('frontend.pages.corporate-partners');
     }
     /**________________________________________________________________________________________
      * Contact Menu Pages

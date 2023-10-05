@@ -26,6 +26,7 @@
 </style>
 @endsection
 @section('content')
+@include('frontend.layouts.partial.banner')
     <!-- Blog Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">

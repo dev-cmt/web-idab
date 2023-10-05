@@ -85,25 +85,25 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:8',
             'profile_photo_path' => 'required|mimes:jpg,png,jpeg,gif,svg|image',
             'member_type_id' => 'required', // Assuming these fields are in your form
-            'committee_type_id' => 'required', // Assuming these fields are in your form
             'status' => 'required', // Assuming these fields are in your form
         ]);
 
         /*_____________________ MEMBER ID GENERATE ___________________*/
         $currentYear = date('Y');
         $currentMonth = date('m');
-
         $prefix = MemberType::where('id', $request->member_type_id)->first()->prefix;
         $highestNumber = User::where('member_code', 'like', "$prefix$currentYear-$currentMonth%")->max('member_code');
         $lastNumber = intval(substr($highestNumber, -3));
         $newNumber = $lastNumber + 1;
         $formattedNewNumber = sprintf('%03d', $newNumber);
 
-        if ($prefix) {
+        if ($prefix == '-') {
+            $memberCode = "NEW";
+        }else {
             $memberCode = "$prefix$currentYear-$currentMonth-$formattedNewNumber";
-        } else {
-            $memberCode = "NEW SELECTED";
         }
+        
+        
         /*_____________________ MEMBER CREATE ___________________*/
         $user = new User();
         $user->name = $request->name;
@@ -199,6 +199,7 @@ class UserController extends Controller
                 'profile_photo_path' => $filename,
             ]);
         }
+        
         //---Data Save
         $user->update([
             'name' => $request->name,
@@ -220,6 +221,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (File::exists("public/images/profile/".$user->profile_photo_path)) {
+            File::delete("public/images/profile/".$user->profile_photo_path);
+        }
         $user->delete();
 
         $notification=array('messege'=>'Delete user successfully!','alert-type'=>'success');

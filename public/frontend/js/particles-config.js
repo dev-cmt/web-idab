@@ -8,7 +8,7 @@ particlesJS("particles-js", {
         }
       },
       "color": {
-        "value": "#ff0000"
+        "value": "#fff"
       },
       "shape": {
         "type": "triangle",
@@ -48,13 +48,13 @@ particlesJS("particles-js", {
       "line_linked": {
         "enable": true,
         "distance": 200,
-        "color": "#000000",
+        "color": "#fff",
         "opacity": 0.16034120608655228,
         "width": 1
       },
       "move": {
         "enable": true,
-        "speed": 4,
+        "speed": 2,
         "direction": "none",
         "random": false,
         "straight": false,

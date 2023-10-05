@@ -5,31 +5,31 @@
         <!-- ======= Feature Section ======= -->
         <section id="feature" class="feature">
             <div class="container">
-                <div class="row">
-                    <div class="col-3">
-                        <div class="icon-box animate__animated animate__slideInLeft">
-                            <i class="bi bi-people-fill"></i>
-                            <h4>The Society</h4>
-                        </div>
-                    </div>
-                    <div class="col-3">
+                <div class="d-flex justify-content-center">
+                    <!--<div class="col-3">-->
+                    <!--    <div class="icon-box animate__animated animate__slideInLeft">-->
+                    <!--        <i class="bi bi-people-fill"></i>-->
+                    <!--        <h4>The Association</h4>-->
+                    <!--    </div>-->
+                    <!--</div>-->
+                    <a href="https://idab.com.bd/pages/why-be-member" class="col-3 mx-2">
                         <div class="icon-box animate__animated animate__slideInLeft">
                             <i class="bi bi-person-badge"></i>
-                            <h4>Be a Member</h4>
+                            <h4>Why be a Member</h4>
                         </div>
-                    </div>
-                    <div class="col-3">
+                    </a>
+                    <a href="https://idab.com.bd/pages/requirements" class="col-3 mx-2">
                         <div class="icon-box animate__animated animate__slideInRight">
                             <i class="bi bi-award-fill"></i>
-                            <h4>IDAB Awards</h4>
+                            <h4>Requirements</h4>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="icon-box animate__animated animate__slideInRight">
-                            <i class="bi bi-wechat"></i>
-                            <h4>Social</h4>
-                        </div>
-                    </div>
+                    </a>
+                    <!--<div class="col-3">-->
+                    <!--    <div class="icon-box animate__animated animate__slideInRight">-->
+                    <!--        <i class="bi bi-wechat"></i>-->
+                    <!--        <h4>Social</h4>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                 </div><!-- /.row -->
 
             </div><!-- /.container -->
@@ -37,9 +37,8 @@
         <!-- End Feature -->
 
         <!-- ======= About Section ======= -->
-        <section id="about" class="about">
+         <!--<section id="about" class="about">
             <div class="container">
-
                 <div class="row no-gutters">
                     <div class="image animate__animated animate__fadeInDown col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" style="background: url({{asset('public/images')}}/pages/about.jpg) center center no-repeat;">
 
@@ -73,21 +72,20 @@
                                     <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
                                 </div>
                             </div>
-                        </div><!-- End .content-->
+                        </div>
                     </div>
                 </div>
 
             </div>
-        </section><!-- End About Section -->
+        </section>--><!-- 75End .content--><!-- End About Section -->
         
         @if (count($event) > 0)
         <!-- ======= Upcoming Events Section======= -->
-        <section id="events" class="events section-bg">
+        <section id="events" class="events">
             <div class="container">
 
                 <div class="section-title">
                     <h2 class="reveal">UPCOMING EVENTS</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                 </div>
 
                 <div class="row">
@@ -103,21 +101,19 @@
         @endif
 
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services">
+        {{-- <section id="services" class="services">
             <div class="container">
 
                 <div class="section-title">
                     <h2 class="reveal">How IDAB Benefit You</h2>
-                    <p class="reveal">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                        Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <!--<p class="reveal">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>-->
                 </div>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 icon-box">
                         <div class="icon"><i class="bi bi-briefcase"></i></div>
                         <h4 class="title"><a href="">Professional Guidance</a></h4>
-                        <p class="description">VWe offer legal helplines, specialist guides, and peer-to-peer mentoring for our members.</p>
+                        <p class="description">We offer legal helplines, specialist guides, and peer-to-peer mentoring for our members.</p>
                     </div>
                     <div class="col-lg-4 col-md-6 icon-box">
                         <div class="icon"><i class="bi bi-card-checklist"></i></div>
@@ -139,17 +135,16 @@
                         <h4 class="title"><a href="">Networking Events</a></h4>
                         <p class="description">Our busy events calendar provides members with regular opportunities to network with fellow industry professionals</p>
                     </div>
-                    <div class="col-lg-4 col-md-6 icon-box">
-                        <div class="icon"><i class="bi bi-brightness-high"></i></div>
-                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                            tempore, cum
-                            soluta nobis est eligendi</p>
-                    </div>
+                    <!--<div class="col-lg-4 col-md-6 icon-box">-->
+                    <!--    <div class="icon"><i class="bi bi-brightness-high"></i></div>-->
+                    <!--    <h4 class="title"><a href="">Eiusmod Tempor</a></h4>-->
+                    <!--    <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero-->
+                    <!--        tempore, cumsoluta nobis est eligendi</p>-->
+                    <!--</div>-->
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section><!-- End Services Section --> --}}
 
         <!-- ======= Why Us Section ======= -->
         <section id="why-us" class="why-us">
@@ -157,36 +152,102 @@
 
                 <div class="section-title">
                     <h2 class="reveal">Why Be A Member?</h2>
-                    <p>IDAB a complete association of people who are passionate about Interior Design in Bangladesh.</p>
+                    <!--<p>IDAB a complete association of people who are passionate about Interior Design in Bangladesh.</p>-->
                 </div>
 
                 <div class="row">
 
-                    <div class="col-lg-4">
-                        <div class="box">
-                            <span>01</span>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero
-                                placeat</p>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Identification</h4>
+                            <ul>
+                                <li>IDAB- Organized Events, Seminars & Workshops.</li>
+                                <li>Regional & Local Programs.</li>
+                                <li>Updates on latest Developments in the Industry.</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        <div class="box">
-                            <span>02</span>
-                            <h4>Repellat Nihil</h4>
-                            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire
-                                leno para
-                                dest</p>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Knowledge</h4>
+                            <ul>
+                                <li>IDAB- Membership Certificate identifies you as a current Interior Design Society member who accepts our Code of Ethics.</li>
+                                <li>Provides clients with knowledge they are working with a well-informed & educated designer</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        <div class="box">
-                            <span>03</span>
-                            <h4> Ad ad velit qui</h4>
-                            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam
-                                quis</p>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Networking</h4>
+                            <ul>
+                                <li>IDAB local chapter meeting, activities, educational seminars & special events.</li>
+                                <li>Link up with Government Agencies, Local & International Enterprises, Design Associations, & Professional creative individuals.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Resources</h4>
+                            <ul>
+                                <li>Employment Student bridging.</li>
+                                <li>Access to designers’ job portal for easier recruitment.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Authorization</h4>
+                            <ul>
+                                <li>IDAB Member could potentially provide further authority & for your organization since being a member of IDAB could empower your customers, audience & clients to reach you easier through to the IDAB website.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Overseas Networking</h4>
+                            <ul>
+                                <li>Gain Access to resources from local partners who worked overseas.</li>
+                                <li>Link up with overseas government agencies and updates on latest developments in the overseas industries.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Discount</h4>
+                            <ul>
+                                <li>Potentials rates for IDAB-organized Award, Events, Seminars, Workshops.</li>
+                                <li>Member rates for a for a wide range of products, & services with industry partners.</li>
+                                <li>Member rates to designer cafeterias & online store.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Publicity</h4>
+                            <ul>
+                                <li>Expand your business locally & regionally</li>
+                                <li>Recognition & promotion of members through IDAB communications like website, FB Page.</li>
+                                <li>Endorsement, mention of design related events organized by members.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-2">
+                        <div class="box" style="height:460px">
+                            <span><i class="bi bi-info-circle-fill"></i></span>
+                            <h4>Contribute To Society</h4>
+                            <ul>
+                                <li>Volunteer Opportunities, can make a difference, give back.</li>
+                                <li>Members can offer sponsorship or scholarships to students.</li>
+                                <li>Members can offer materials, or resources to design schools for resources.</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -196,7 +257,7 @@
         </section><!-- End Why Us Section -->
         
         <!-- ======= Counts Section ======= -->
-        <section id="counts" class="counts">
+        <section id="counts" class="counts section-bg">
             <div class="container">
 
                 <div class="row no-gutters">
@@ -241,163 +302,7 @@
             </div>
         </section><!-- End Counts Section -->
 
-        <!-- ======= Frequently Asked Questions Section ======= -->
-        <section id="faq" class="faq section-bg">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2 class="reveal">Frequently Asked Questions</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-                        Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 nav nav-pills" style="height: 380px;overflow: hidden;">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                            <i class="bi bi-card-text me-3"></i>Student member
-                        </button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                            <i class="bi bi-card-text me-3"></i>Candidate member
-                        </button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                            <i class="bi bi-card-text me-3"></i>Professional member
-                        </button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                            <i class="bi bi-card-text me-3"></i>Associate member
-                        </button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-5" type="button">
-                            <i class="bi bi-card-text me-3"></i>Trade member
-                        </button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-6" type="button">
-                            <i class="bi bi-card-text me-3"></i>Corporate member
-                        </button>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab-pane-1">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4 class="mb-4"><i class="bi bi-amd text-danger"></i> First 100 Member 50% Discount</h4>
-                                        <h5 class="mb-4">Student Member</h5>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Student Member</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>2. Educational Certificate (SSC/HSC)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>3. Educational Certificate (ID, ARCH, IAR)</p>
-                                        <p class="mb-4">(Registration Fee 1000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-pane-2">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="mb-4">Candidate Member</h3>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>2.Educational Certificate (SSC/HSC)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (ID, ARCH, IAR)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>5.Valid TIN Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>6. NID</p>
-                                        <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-pane-3">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/null.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="mb-4">Professional Member</h3>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>2.Educational Certificate (SSC/HSC)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (ID, ARCH, IAR)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>4.Job Experience Certificate </p>
-                                        <p><i class="bi bi-check-lg me-3"></i>5.Valid Trade License</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>6.Valid Tin Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>7.NID</p>
-                                        <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-pane-4">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="mb-4">Associate Member</h3>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>2.Educational Certificate (SSC/HSC)</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>3.Job Experience Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>6.NID (They don't have voting rights.)</p>
-                                        <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="tab-pane fade" id="tab-pane-5">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/null.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="mb-4">Trade Member</h3>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>2.Valid Trade License</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>3.Valid Tin Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>4.NID (They don't have voting rights.)</p>
-                                        <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 10000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="tab-pane fade" id="tab-pane-6">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/welcome.jpg" style="object-fit: cover;" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="mb-4">Corporate Member</h3>
-                                        <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>4.Job Experience Certificate </p>
-                                        <p><i class="bi bi-check-lg me-3"></i>5.Valid Trade License</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>6.Valid Tin Certificate</p>
-                                        <p><i class="bi bi-check-lg me-3"></i>7.NID</p>
-                                        <p class="mb-4">(Registration Fee 000/-) (Annual Fee 0000/-)</p>
-                                        <a href="#" class="button">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Frequently Asked Questions Section -->
-
-        <!-- ======= Team Section ======= -->
+        <!-- ======= Team Section ======= 
         @if (count($add_hoc) > 0)
         <section id="team" class="team">
             <div class="container">
@@ -428,53 +333,48 @@
                 </div>
 
             </div>
-        </section><!-- End Team Section -->
-        @endif
+        </section>
+        @endif--><!-- End Team Section -->
 
         <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients section-bg">
-            <div class="container">
+        <!--<section id="clients" class="clients section-bg">-->
+        <!--    <div class="container">-->
 
-                <div id="owl-clients" class="owl-carousel">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-1.png" class="img-fluid" alt="">
-                    </div>
+        <!--        <div id="owl-clients" class="owl-carousel">-->
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-1.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
 
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-2.png" class="img-fluid" alt="">
-                    </div>
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-2.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
 
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-3.png" class="img-fluid" alt="">
-                    </div>
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-3.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
 
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-4.png" class="img-fluid" alt="">
-                    </div>
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-4.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
 
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-5.png" class="img-fluid" alt="">
-                    </div>
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-5.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
 
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-6.png" class="img-fluid" alt="">
-                    </div>
-                  </div>
+        <!--            <div class="d-flex align-items-center justify-content-center">-->
+        <!--                <img src="{{asset('public/images')}}/clients/client-6.png" class="img-fluid" alt="">-->
+        <!--            </div>-->
+        <!--          </div>-->
 
-            </div>
-        </section><!-- End Clients Section -->
+        <!--    </div>-->
+        <!--</section><!-- End Clients Section -->
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container">
-
                 <div class="section-title">
                     <h2 class="reveal">Contact</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-                        in iste officiis commodi quidem hic quas.</p>
                 </div>
-
                 <div class="row contact-info">
                     <div class="col-md-4">
                         <div class="contact-address">
@@ -488,7 +388,7 @@
                         <div class="contact-phone">
                             <i class="bi bi-phone"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:02222227174">02222227174</a>, <a href="tel:01725151515">01725151515</a></p>
+                            <p><a href="tel:01725151515">01725151515</a></p>
                         </div>
                     </div>
     

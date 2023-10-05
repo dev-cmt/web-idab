@@ -47,6 +47,10 @@ Route::get('pages/about-us', [FrontViewController::class, 'about'])->name('page.
 Route::get('pages/{id}/committee', [FrontViewController::class, 'committee'])->name('page.committee');
 //______________ MEMBERS
 Route::get('pages/{id}/member', [FrontViewController::class, 'member'])->name('page.member');
+//______________ WHY BE MEMBER
+Route::get('pages/why-be-member',[FrontViewController::class,'whyBeMember'])->name('page.why-be-member');
+//______________ GALLERY
+Route::get('pages/requirements',[FrontViewController::class,'requirements'])->name('page.requirements');
 //______________ GALLERY
 Route::get('pages/gallery-image',[FrontViewController::class,'galleryImage'])->name('page.gallery-cover');
 Route::get('pages/gallery-image/{id}/show',[FrontViewController::class,'galleryShow'])->name('page.gallery-show');
@@ -54,6 +58,8 @@ Route::get('pages/gallery-image/{id}/show',[FrontViewController::class,'galleryS
 Route::get('pages/events', [FrontViewController::class,'events'])->name('page.events');
 Route::get('pages/events-search', [FrontViewController::class,'eventSearch'])->name('page.events-search');
 Route::get('pages/events/{id}/details', [FrontViewController::class,'eventShow'])->name('page.events-details');
+//______________ Corporate Partners
+Route::get('page/corporate-partners', [FrontViewController::class, 'corporatePartners'])->name('page.corporate-partners');
 //______________ CONTACT US
 Route::get('pages/contact-us', [FrontViewController::class, 'contact'])->name('page.contact-us');
 Route::post('contact-us/store', [ContactController::class,'contactStore'])->name('contact-us.store');
@@ -144,7 +150,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApproved'])->name('transaction-registation.approve');
     Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
     Route::get('transaction-registation/{id}/details', [TransactionController::class, 'approveRegistrationDetails'])->name('transaction-registration.details');
-    Route::get('transaction-registation/{id}/download', [TransactionController::class, 'download'])->name('transaction-document.download');
+    Route::get('download/transaction-registation/{filename}', [TransactionController::class, 'downloadSlip'])->name('transaction-document.download');
 
     //-- TRANSACTION => EVENT REGISTATION
     Route::get('transaction-event/index', [TransactionController::class,'indexEventRegistation'])->name('transaction-event.index');

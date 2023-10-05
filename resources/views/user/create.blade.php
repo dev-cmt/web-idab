@@ -70,7 +70,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-7">
-                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Type your full name">
+                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -83,7 +83,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-7">
-                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Type your email">
+                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -118,10 +118,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-5 col-form-label">Member Type</label>
+                                    <label class="col-lg-5 col-form-label">Member Type
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <div class="col-lg-7">
-                                        <select class="form-control default-select" name="member_type_id">
-                                            <option selected>None</option>
+                                        <select class="form-control default-select @error('member_type_id') is-invalid @enderror" name="member_type_id">
+                                            <option disabled selected>None</option>
                                             @foreach($memberType as $item)
                                             <option value="{{ $item->id }}" {{old('member_type_id') == $item->id ? 'selected' : '' }}> {{ $item->name }}</option>
                                             @endforeach
@@ -137,7 +139,7 @@
                                     <label class="col-lg-5 col-form-label">Committee Type</label>
                                     <div class="col-lg-7">
                                         <select class="form-control default-select" id="committee_type_id" name="committee_type_id">
-                                            <option selected>None</option>
+                                            <option value="" selected>None</option>
                                             @foreach($committeeType as $item)
                                                 <option value="{{ $item->id}}" {{ old('committee_type_id') == $item->id ? 'selected' : '' }}> {{ $item->name }} </option>
                                             @endforeach

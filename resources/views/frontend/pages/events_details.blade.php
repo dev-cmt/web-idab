@@ -9,6 +9,7 @@
     }
 </style>
 @section('content')
+@include('frontend.layouts.partial.banner')
     <!-- Blog Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">

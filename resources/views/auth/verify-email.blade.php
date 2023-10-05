@@ -1,4 +1,3 @@
-
     <style>
         .resent_verify_btn {
             cursor: pointer;

@@ -8,8 +8,8 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 	
 	<!-- Favicons -->
-	<link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
-	<link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
+    <link href="{{asset('public/images')}}/favicon.png" rel="icon">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 

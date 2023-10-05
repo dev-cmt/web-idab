@@ -35,7 +35,6 @@
                                         </span>
                                         @else
                                             <span class="badge light badge-danger"><i class="fa fa-circle text-danger mr-1"></i> No-Payment</span>
-                                        
                                         @endif
                                     </a></td>
                                     @can('Member approved')

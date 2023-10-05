@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <h5 class="title"><a href="javascript:void(0);">{{$row->name}}</a></h5>
-                            <span class="text-primary">{{$row->memberType->name}}</span>
+                            <span class="text-primary">{{$row->memberType->name ?? 'Null'}}</span>
                         </div>
                     </div>
                     <p class="fs-12">Answering guest inquiries, directing phone calls, coordinating travel plans, and more.</p>
@@ -40,9 +40,9 @@
                             <span class="mb-0 title">Email</span> :
                             <span class="text-black ml-2"><a href="mailto:{{$row->email}}" class="__cf_email__">{{$row->email}}</a></span>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item"> 
                             <span class="mb-0 title">Phone</span> :
-                            <span class="text-black ml-2"><a href="tel:{{$row->infoPersonal->contact_number}}">{{$row->infoPersonal->contact_number}}</a></span>
+                            <span class="text-black ml-2"><a href="tel:{{$row->infoPersonal->contact_number ?? 'Nul'}}">{{$row->infoPersonal->contact_number ?? 'Null'}}</a></span>
                         </li>
                     </ul>
                 </div>

@@ -137,10 +137,10 @@ class MemberController extends Controller
                 $newNumber = $lastNumber + 1;
                 $formattedNewNumber = sprintf('%03d', $newNumber);
 
-                if ($prefix) {
+                if ($prefix == '-') {
+                    $memberCode = "NEW";
+                }else {
                     $memberCode = "$prefix$currentYear-$currentMonth-$formattedNewNumber";
-                } else {
-                    $memberCode = "NEW SELECTED";
                 }
                 
                 $user = User::create([
@@ -192,31 +192,33 @@ class MemberController extends Controller
             $infoAcademic->save();
             
             /*______________________/ InfoCompany \___________________*/
-            $infoCompany =new InfoCompany([
-                'company_name' => $request->company_name,
-                'company_email' => $request->company_email,
-                'company_phone' => $request->company_phone,
-                'designation' => $request->designation,
-                'address' => $request->address,
-                'web_url' => $request->web_url,
-                'is_job' => 1,
-                'is_business' => 0,
-                'status' => 1,
-                'member_id' => $user->id,
-            ]);
-            $infoCompany->save();
-
+            if($request->company_name || $request->designation || $request->company_email || $request->company_phone){
+                $infoCompany =new InfoCompany([
+                    'company_name' => $request->company_name,
+                    'company_email' => $request->company_email,
+                    'company_phone' => $request->company_phone,
+                    'designation' => $request->designation,
+                    'address' => $request->address,
+                    'web_url' => $request->web_url,
+                    'is_job' => 1,
+                    'is_business' => 0,
+                    'status' => 1,
+                    'member_id' => $user->id,
+                ]);
+                $infoCompany->save();
+            }
             /*______________________/ InfoStudent \___________________*/
-            $infoStudent =new InfoStudent([
-                'student_institute' => $request->student_institute,
-                'semester' => $request->semester,
-                'head_faculty_name' => $request->head_faculty_name,
-                'head_faculty_number' => $request->head_faculty_number,
-                'status' => 1,
-                'member_id' => $user->id,
-            ]);
-            $infoStudent->save();
-
+            if ($request->student_institute || $request->semester || $request->head_faculty_name || $request->head_faculty_number) {
+                $infoStudent =new InfoStudent([
+                    'student_institute' => $request->student_institute,
+                    'semester' => $request->semester,
+                    'head_faculty_name' => $request->head_faculty_name,
+                    'head_faculty_number' => $request->head_faculty_number,
+                    'status' => 1,
+                    'member_id' => $user->id,
+                ]);
+                $infoStudent->save(); 
+            }
             /*______________________/ InfoOther \___________________*/
             $infoOther = new InfoOther([
                 'status' => 1,
@@ -336,114 +338,5 @@ class MemberController extends Controller
     {
         return view('waiting');
     }
-    /*__________________________________________________________________________________ */
-    /*__________________________________________________________________________________ */
-    public function fv_member_all()
-    {
-        $results = DB::table('users')
-            ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-            ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-            ->join('info_others', 'users.id', '=', 'info_others.user_id')
-            ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-            ->where('users.pune_member', '=', '1')
-            ->get();
-
-        return view('frontend.pages.member_list',compact('results'));
-    }
-    public function fv_member_details($id)
-    {
-        $user = User::findOrFail($id);
-        $infoPersonal = $user->infoPersonal;
-        $infoFamily = $user->infoFamily;
-        $infoAcademic = $user->infoAcademic;
-        $infoOther = $user->infoOther;
-
-        return view('frontend.pages.member_details', compact('user','infoPersonal','infoAcademic','infoOther'));
-    }
-    public function fv_adviser ()
-    {
-        $results = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_adviser', '=', '1')
-        ->get();
-
-        return view('frontend.pages.cm_adviser',compact('results'));
-    }
-    public function fv_executive_committee ()
-    {
-        $results = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_ecommittee', '=', '1')
-        ->get();
-
-        return view('frontend.pages.cm_ecommittee',compact('results'));
-    }
-    public function fv_welfare ()
-    {
-        $results = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_welfare', '=', '1')
-        ->get();
-
-        return view('frontend.pages.cm_welfare',compact('results'));
-    }
-    /*__________________________________________________________________________________ */
-    /*__________________________________________________________________________________ */
-    public function bv_member_all()
-    {
-        $user = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.pune_member', '=', '1')
-        ->get();
-
-        return view('layouts.pages.view_pune_member',compact('user'));
-    }
-    public function bv_adviser ()
-    {
-        $user = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_adviser', '=', '1')
-        ->get();
-
-        return view('layouts.pages.view_adviser',compact('user'));
-    }
-    public function bv_executive_committee ()
-    {
-        $user = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_ecommittee', '=', '1')
-        ->get();
-
-        return view('layouts.pages.view_ecommittee',compact('user'));
-    }
-    public function bv_welfare ()
-    {
-        $user = DB::table('users')
-        ->join('info_personals', 'users.id', '=', 'info_personals.user_id')
-        ->join('info_academics', 'users.id', '=', 'info_academics.user_id')
-        ->join('info_others', 'users.id', '=', 'info_others.user_id')
-        ->select('users.*','info_personals.*','info_academics.*','info_others.*')
-        ->where('users.cm_welfare', '=', '1')
-        ->get();
-
-        return view('layouts.pages.view_welfare',compact('user'));
-    }
+    
 }

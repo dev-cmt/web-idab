@@ -8,8 +8,27 @@
 
             <div class="carousel-inner" role="listbox">
                 <!-- Slide 1 -->
-                {{-- <div class="carousel-item active" style="background-image: url({{asset('public/images')}}/slide/slide-1.jpg);"> --}}
+                {{-- <div class="carousel-item active" style="background-image: url({{asset('public/images')}}/slide/bg-interior.jpg);"> --}}
                 <div class="carousel-item active" style="background-color: #f2f2f2">
+                    <div class="carousel-container">
+                        <div class="intro-wrapper">
+                            <div class="intro-logo">
+                                <img src="{{asset('public/images')}}/logo.png" alt="">
+                            </div>
+                            <div class="carousel-content">
+                                <h4 id="hero-title" class="animate__animated animate__fadeInDown">Interior Designers Association Of Bangladesh</h4>
+                            </div>
+                            <!--<div class="intro-cover">
+                                <h1 class="intro-title">Interior Designers Association Of Bangladesh</h1>
+                            </div>
+                            <div class="intro-text">
+                                <span class="animate__animated animate__fadeInUp"><h4>THE ASSOCIATION</h4></span>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 1 -->
+                {{-- <div class="carousel-item active" style="background-image: url({{asset('public/images')}}/slide/bg-interior.jpg);">
                     <div class="carousel-container">
                         <div class="intro-wrapper">
                             <div class="intro-logo">
@@ -19,11 +38,11 @@
                                 <h1 class="intro-title">Interior Designers Association Of Bangladesh</h1>
                             </div>
                             <div class="intro-text">
-                                <span class="animate__animated animate__fadeInUp"><h4>THE SOCIETY</h4></span>
+                                <span class="animate__animated animate__fadeInUp"><h4>THE ASSOCIATION</h4></span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Slide 2 -->
                 {{-- <div class="carousel-item" style="background-image: url({{asset('public/images')}}/slide/slide-2.jpg);">
                     <div class="carousel-container">

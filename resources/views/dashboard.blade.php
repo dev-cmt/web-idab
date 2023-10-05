@@ -3,7 +3,7 @@
         <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
             <div class="widget-stat card bg-danger">
                 <div class="card-body p-4">
-                    <a href="{{route('bv.advisor')}}">
+                    <a href="#">
                         <div class="media">
                             <span class="mr-3">
                                 <i class="las la-users-cog"></i>
@@ -20,13 +20,13 @@
         <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
             <div class="widget-stat card bg-primary">
                 <div class="card-body  p-4">
-                    <a href="{{route('bv.executive_committee')}}">
+                    <a href="#">
                         <div class="media">
                             <span class="mr-3">
                                 <i class="las la-users-cog"></i>
                             </span>
                             <div class="media-body text-white text-right">
-                                <p class="mb-1">Executive Committee</p>
+                                <p class="mb-1">Founder Members</p>
                                 <h3 class="text-white">{{$executive}}</h3>
                             </div>
                         </div>
@@ -53,8 +53,8 @@
         </div>
         <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
             <div class="widget-stat card bg-secondary">
-                <div class="card-body  p-4">
-                    <a href="{{route('bv.welfare')}}">
+                <div class="card-body p-4">
+                    <a href="#">
                         <div class="media">
                             <span class="mr-3">
                                 <i class="la la-user"></i>
@@ -72,6 +72,7 @@
         <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
             <div class="widget-stat card bg-warning">
                 <div class="card-body  p-4">
+                    <a href="{{ route('dashboard-gallery.all')}}">
                     <div class="media">
                         <span class="mr-3">
                             <i class="lar la-image"></i>
@@ -85,6 +86,7 @@
                             <small>20% Increase in 30 Days</small>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>

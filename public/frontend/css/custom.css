@@ -341,3 +341,16 @@
   background-color: #ff0000;
   border-color: #ff0000;
 }
+
+.why-us .box span {
+    font-size: 62px !important;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.why-us .box {
+    padding: 30px 30px !important;
+}
+
+.why-us .box:hover {
+    padding: 0px 30px 70px 30px !important;
+}

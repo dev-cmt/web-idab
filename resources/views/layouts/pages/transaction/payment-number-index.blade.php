@@ -453,7 +453,7 @@
                     // Place your delete code here
                     var id = $(this).data('id');
                     $.ajax({
-                        url:'{{ route('memebr-type.delete')}}',
+                        url:'{{ route('transaction-payment-number.delete')}}',
                         method:'GET',
                         dataType:"JSON",
                         data:{'id':id},

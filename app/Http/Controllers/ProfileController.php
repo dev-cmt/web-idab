@@ -148,71 +148,159 @@ class ProfileController extends Controller
         $user = User::findOrFail($id);
 
         /*__________________/ InfoPersonal \_________________*/
-        $infoPersonal = $user->infoPersonal;
-        $infoPersonal->contact_number = $request->contact_number;
-        $infoPersonal->nid_no = $request->nid_no;
-        $infoPersonal->dob = $request->dob;
-        $infoPersonal->father_name = $request->father_name;
-        $infoPersonal->mother_name = $request->mother_name;
-        $infoPersonal->present_address = $request->present_address;
-        $infoPersonal->parmanent_address = $request->parmanent_address;
-        $infoPersonal->gender = $request->gender;
-        $infoPersonal->blood_group = $request->blood_group;
-        $infoPersonal->marrital_status = $request->marrital_status;
-        $infoPersonal->spouse = $request->spouse;
-        $infoPersonal->spouse_dob = $request->spouse_dob;
-        $infoPersonal->number_child = $request->number_child;
-        $infoPersonal->em_name = $request->em_name;
-        $infoPersonal->em_phone = $request->em_phone;
-        $infoPersonal->em_rleation = $request->em_rleation;
-        $infoPersonal->save();
+        if(is_null($user->infoPersonal)){
+            $infoPersonal = new InfoPersonal();
+            $infoPersonal->contact_number = $request->contact_number;
+            $infoPersonal->nid_no = $request->nid_no;
+            $infoPersonal->dob = $request->dob;
+            $infoPersonal->father_name = $request->father_name;
+            $infoPersonal->mother_name = $request->mother_name;
+            $infoPersonal->present_address = $request->present_address;
+            $infoPersonal->parmanent_address = $request->parmanent_address;
+            $infoPersonal->gender = $request->gender;
+            $infoPersonal->blood_group = $request->blood_group;
+            $infoPersonal->marrital_status = $request->marrital_status;
+            $infoPersonal->spouse = $request->spouse;
+            $infoPersonal->spouse_dob = $request->spouse_dob;
+            $infoPersonal->number_child = $request->number_child;
+            $infoPersonal->em_name = $request->em_name;
+            $infoPersonal->em_phone = $request->em_phone;
+            $infoPersonal->em_rleation = $request->em_rleation;
+            $infoPersonal->status = 1;
+            $infoPersonal->member_id = $user->id;
+            $infoPersonal->save();
+        }else{ 
+            $infoPersonal = $user->infoPersonal;
+            $infoPersonal->contact_number = $request->contact_number;
+            $infoPersonal->nid_no = $request->nid_no;
+            $infoPersonal->dob = $request->dob;
+            $infoPersonal->father_name = $request->father_name;
+            $infoPersonal->mother_name = $request->mother_name;
+            $infoPersonal->present_address = $request->present_address;
+            $infoPersonal->parmanent_address = $request->parmanent_address;
+            $infoPersonal->gender = $request->gender;
+            $infoPersonal->blood_group = $request->blood_group;
+            $infoPersonal->marrital_status = $request->marrital_status;
+            $infoPersonal->spouse = $request->spouse;
+            $infoPersonal->spouse_dob = $request->spouse_dob;
+            $infoPersonal->number_child = $request->number_child;
+            $infoPersonal->em_name = $request->em_name;
+            $infoPersonal->em_phone = $request->em_phone;
+            $infoPersonal->em_rleation = $request->em_rleation;
+            $infoPersonal->save();
+        }
         
         /*______________________/ InfoAcademic \___________________*/
-        $infoAcademic = $user->infoAcademic;
-        $infoAcademic->institute = $request->institute;
-        $infoAcademic->mast_qualification_id = $request->mast_qualification_id;
-        $infoAcademic->subject = $request->subject;
-        $infoAcademic->passing_year = $request->passing_year;
-        $infoAcademic->other_qualification = $request->other_qualification;
-        $infoAcademic->save();
+        if(is_null($user->infoAcademic || !is_null($request->institute))){
+            $validated=$request -> validate([
+                'mast_qualification_id'=> 'required',
+            ]);
+            
+            $infoAcademic->institute = $request->institute;
+            $infoAcademic->mast_qualification_id = $request->mast_qualification_id;
+            $infoAcademic->subject = $request->subject;
+            $infoAcademic->passing_year = $request->passing_year;
+            $infoAcademic->other_qualification = $request->other_qualification;
+            $infoAcademic = new InfoAcademic();
+            $infoAcademic->status = 1;
+            $infoAcademic->member_id = $user->id;
+            $infoAcademic->save();
+        }elseif (!is_null($user->infoAcademic)) { 
+            $infoAcademic = $user->infoAcademic;
+            $infoAcademic->institute = $request->institute;
+            $infoAcademic->mast_qualification_id = $request->mast_qualification_id;
+            $infoAcademic->subject = $request->subject;
+            $infoAcademic->passing_year = $request->passing_year;
+            $infoAcademic->other_qualification = $request->other_qualification;
+            $infoAcademic->save();
+        }
         
         /*______________________/ InfoCompany \___________________*/
-        $infoCompany = $user->infoCompany;
-        $infoCompany->company_name = $request->company_name;
-        $infoCompany->company_email = $request->company_email;
-        $infoCompany->company_phone = $request->company_phone;
-        $infoCompany->designation = $request->designation;
-        $infoCompany->address = $request->address;
-        $infoCompany->web_url = $request->web_url;
-        $infoCompany->save();
+        if(!is_null($request->company_name) && is_null($request->student_institute) && is_null($user->infoCompany)){
+            $infoCompany = new InfoCompany();
+            $infoCompany->company_name = $request->company_name;
+            $infoCompany->company_email = $request->company_email;
+            $infoCompany->company_phone = $request->company_phone;
+            $infoCompany->designation = $request->designation;
+            $infoCompany->address = $request->address;
+            $infoCompany->web_url = $request->web_url;
+            $infoCompany->status = 1;
+            $infoCompany->member_id = $user->id;
+            $infoCompany->save();
+        }elseif (!is_null($user->infoCompany)) { 
+            $infoCompany = $user->infoCompany;
+            $infoCompany->company_name = $request->company_name;
+            $infoCompany->company_email = $request->company_email;
+            $infoCompany->company_phone = $request->company_phone;
+            $infoCompany->designation = $request->designation;
+            $infoCompany->address = $request->address;
+            $infoCompany->web_url = $request->web_url;
+            $infoCompany->save();
+        }
+        
 
         /*______________________/ InfoStudent \___________________*/
-        $infoStudent = $user->infoStudent;
-        $infoStudent->student_institute = $request->student_institute;
-        $infoStudent->semester = $request->semester;
-        $infoStudent->head_faculty_name = $request->head_faculty_name;
-        $infoStudent->head_faculty_number = $request->head_faculty_number;
-        $infoStudent->save();
+        if(!is_null($request->student_institute) && is_null($request->company_name) && is_null($user->infoStudent)){
+            $infoStudent = new InfoStudent();
+             $infoStudent->student_institute = $request->student_institute;
+            $infoStudent->semester = $request->semester;
+            $infoStudent->head_faculty_name = $request->head_faculty_name;
+            $infoStudent->head_faculty_number = $request->head_faculty_number;
+            $infoStudent->status = 1;
+            $infoStudent->member_id = $user->id;
+            $infoStudent->save();
+        }elseif (!is_null($user->infoStudent)) { 
+            $infoStudent = $user->infoStudent;
+            $infoStudent->student_institute = $request->student_institute;
+            $infoStudent->semester = $request->semester;
+            $infoStudent->head_faculty_name = $request->head_faculty_name;
+            $infoStudent->head_faculty_number = $request->head_faculty_number;
+            $infoStudent->save();
+        }
+        
 
-        //--Info Other
-        $infoOther = $user->infoOther;
-        $infoOther->about_me = $request->about_me;
-        $infoOther->nick_name = $request->nick_name;
-        $infoOther->phone_number = $request->phone_number;
-        $infoOther->cover_photo = $request->cover_photo;
-        $infoOther->favorite = $request->favorite;
-        $infoOther->facebook_url = $request->facebook_url;
-        $infoOther->youtube_url = $request->youtube_url;
-        $infoOther->instagram_url = $request->instagram_url;
-        $infoOther->twitter_url = $request->twitter_url;
-        $infoOther->linkedin_url = $request->linkedin_url;
-        $infoOther->whatsapp_url = $request->whatsapp_url;
-        $infoOther->telegram_url = $request->telegram_url;
-        $infoOther->snapchat_url = $request->snapchat_url;
-        $infoOther->tiktok_url = $request->tiktok_url;
-        $infoOther->wechat_url = $request->wechat_url;
-        $infoOther->discord_url = $request->discord_url;
-        $infoOther->save();
+        /*______________________/ InfoOther \___________________*/
+        if(is_null($user->infoOther)){
+            $infoOther = new InfoOther();
+            $infoOther->about_me = $request->about_me;
+            $infoOther->nick_name = $request->nick_name;
+            $infoOther->phone_number = $request->phone_number;
+            $infoOther->cover_photo = $request->cover_photo;
+            $infoOther->favorite = $request->favorite;
+            $infoOther->facebook_url = $request->facebook_url;
+            $infoOther->youtube_url = $request->youtube_url;
+            $infoOther->instagram_url = $request->instagram_url;
+            $infoOther->twitter_url = $request->twitter_url;
+            $infoOther->linkedin_url = $request->linkedin_url;
+            $infoOther->whatsapp_url = $request->whatsapp_url;
+            $infoOther->telegram_url = $request->telegram_url;
+            $infoOther->snapchat_url = $request->snapchat_url;
+            $infoOther->tiktok_url = $request->tiktok_url;
+            $infoOther->wechat_url = $request->wechat_url;
+            $infoOther->discord_url = $request->discord_url;
+            $infoOther->status = 1;
+            $infoOther->member_id = $user->id;
+            $infoOther->save();
+        }else{ 
+            $infoOther = $user->infoOther;
+            $infoOther->about_me = $request->about_me;
+            $infoOther->nick_name = $request->nick_name;
+            $infoOther->phone_number = $request->phone_number;
+            $infoOther->cover_photo = $request->cover_photo;
+            $infoOther->favorite = $request->favorite;
+            $infoOther->facebook_url = $request->facebook_url;
+            $infoOther->youtube_url = $request->youtube_url;
+            $infoOther->instagram_url = $request->instagram_url;
+            $infoOther->twitter_url = $request->twitter_url;
+            $infoOther->linkedin_url = $request->linkedin_url;
+            $infoOther->whatsapp_url = $request->whatsapp_url;
+            $infoOther->telegram_url = $request->telegram_url;
+            $infoOther->snapchat_url = $request->snapchat_url;
+            $infoOther->tiktok_url = $request->tiktok_url;
+            $infoOther->wechat_url = $request->wechat_url;
+            $infoOther->discord_url = $request->discord_url;
+            $infoOther->save();
+        }
 
         $notification = array('messege' => 'information_edit successfully!', 'alert-type' => 'update');
         return redirect()->back()->with($notification);

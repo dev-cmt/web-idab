@@ -3,3 +3,4 @@
 Stack trace:
 #0 {main}
   thrown in /home/puneclub/public_html/index.php on line 34
+[29-Aug-2023 10:43:00 UTC] PHP Fatal error:  Unparenthesized `a ? b : c ? d : e` is not supported. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in /home1/idabcomb/public_html/storage/framework/views/f1c9720024a070fc9bd0cec58af9efa15b59a661.php on line 342

@@ -37,8 +37,6 @@
     
     @if (Route::currentRouteName() == '/')
         @include('frontend.layouts.partial.slider')
-    @else
-        @include('frontend.layouts.partial.banner')
     @endif
 
     @yield('content')
@@ -47,7 +45,7 @@
     
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
-    <script src="{{asset('public/frontend')}}/js/jquery-3.6.0.min.js"></script> 
+    <script src="{{asset('public/frontend')}}/js/jquery-3.7.1.min.js"></script> 
     <!-- Vendor JS Files -->
     <script src="{{asset('public/frontend')}}/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="{{asset('public/frontend')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

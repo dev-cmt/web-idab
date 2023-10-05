@@ -118,7 +118,7 @@ h6 {
 
 .navbar>ul>li {
   white-space: nowrap;
-  padding: 10px 0 10px 22px;
+  padding: 10px 0 10px 15px;
 }
 
 .navbar a,
@@ -172,12 +172,14 @@ h6 {
 
 .navbar .getstarted,
 .navbar .getstarted:focus {
-  padding: 8px 25px;
+  padding: 8px 10px;
   margin-left: 12px;
   border-radius: 4px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
   border: 2px solid #EF1620;
+  background: red;
+  color:#fff;
 }
 
 .navbar .getstarted:hover,
@@ -189,6 +191,24 @@ h6 {
 .navbar .getstarted:hover:before,
 .navbar li:hover>.getstarted:before {
   visibility: hidden;
+}
+
+
+.navbar .getstarted-login,
+.navbar .getstarted-login:focus {
+  padding: 8px 10px;
+  margin-left: 12px;
+  border-radius: 4px;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  border: 2px solid #000;
+  color:#000;
+}
+
+.navbar .getstarted-login:hover,
+.navbar .getstarted-login:focus:hover {
+  color: #fff;
+  background: #000;
 }
 
 .navbar .dropdown ul {
@@ -264,7 +284,7 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #fff;
+  color: #000;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -344,7 +364,7 @@ h6 {
 .navbar-mobile .getstarted,
 .navbar-mobile .getstarted:focus {
   margin: 15px;
-  color: #EF1620;
+  color: #fff;
   padding-left: 15px;
 }
 
@@ -817,7 +837,7 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 .why-us {
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
 }
 
 .why-us .box {
@@ -839,6 +859,7 @@ section {
   padding: 0;
   margin: 20px 0;
   color: #2a2a2a;
+  text-align: center;
 }
 
 .why-us .box p {
@@ -846,6 +867,10 @@ section {
   font-size: 15px;
   margin: 0;
   padding: 0;
+}
+
+.why-us .box ul li {
+  list-style-type: square;
 }
 
 .why-us .box:hover {
@@ -856,6 +881,7 @@ section {
 
 .why-us .box:hover span,
 .why-us .box:hover h4,
+.why-us .box:hover ul,
 .why-us .box:hover p {
   color: #fff;
 }

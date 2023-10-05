@@ -51,26 +51,26 @@
 </style>
 <x-guest-layout>
     
-    <div class="bg-dark p-4" style="min-height:100%; background-image: url('{{asset('public/images')}}/pages/registation-bg.avif'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; overflow:hidden;">
-        <!-- STAR ANIMATION -->
+    <div class="bg-dark" style="min-height:100%; background-image: url('{{asset('public/images')}}/pages/registation-bg.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; overflow:hidden;">
+        <!-- STAR ANIMATION
         <div class="bg-animations">
             <div id='stars'></div>
             <div id='stars2'></div>
             <div id='stars3'></div>
             <div id='stars4'></div>
-        </div><!-- / STAR ANIMATION -->
-        <div class="wrapper wrapper--w960">
-            <div class="card-6">
-                <div class="card-heading">
+        </div>-->
+        <div class="from-wrapper">
+            <div class="">
+                <!--<div class="card-heading">
                     <h2 class="title">Apply For Membership</h2>
-                </div>
+                </div>-->
                 <form class="card-body" data-action="{{ route('member_register.store') }}" method="POST" enctype="multipart/form-data" id="add-user-form">
                     @csrf
                     <div class="d-flex justify-content-center mb-4">
                         <a href="{{route('/')}}"><img src="{{asset('public/images')}}/logo.png" alt="" width="150"></a>
                     </div>
                     <!--__________________  Account __________________-->
-                    <div class="bar_account"></div>
+                    <div class="bar_account"></div><br>
                     <div class="row">
                         <div class="col-md-7">
                             <div class="row mb-2">
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
+                        <!--<div class="col-md-6 mb-2">
                             <div class="row">
                                 <label for="marrital_status" class="form-label col-md-5">Marrital Status</label>
                                 <div class="col-md-7">
@@ -256,7 +256,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-md-6 mb-2">
                             <div class="row">
                                 <label for="blood_group" class="form-label col-md-5">Blood Group</label>
@@ -534,6 +534,9 @@
                     <div id="document">
                         <div class="bar_document"></div>
                         <div class="row">
+                            <div class="d-flex justify-content-center">
+                                <p style="font-weight: 700; color: red; border-bottom: 1px solid;">10 MB Attachment Limit</p>
+                            </div>
                             {{-- <div class="col-lg-4 col-sm-12 px-4" style="margin: 0 auto">
                                 <div class="upload-file-cover mb-4">
                                     <div class="upload-file-title"><h1>Profile Photo</h1></div>
@@ -676,7 +679,83 @@
                     $("#business, #bar_job, #student").hide();
 
                     // Show the corresponding section based on the selected option
-                    if (selectedOption === "1") { //Student
+                    if (selectedOption === "1") { // Professional
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").hide();
+                        $("#bar_job").show();
+
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").show();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
+
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "2") {// Associate
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").show();
+                        $("#bar_job").hide();
+
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").show();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
+
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "3") {//Candidate
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").hide();
+                        $("#bar_job").show();
+
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").hide();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
+
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "4") {// Trade
+                        $("#personal").show();
+                        $("#academic").show();
+                        $("#student").hide();
+                        $("#business_job").show();
+                        $("#bar_business").show();
+                        $("#bar_job").hide();
+
+                        $("#document").show();
+                        $("#passport_photo").hide();
+                        $("#educational_certificates").show();
+                        $("#student_id").hide();
+                        $("#recomendation_letter").hide();
+                        $("#experience_certificate").hide();
+                        $("#trade_lisence").show();
+                        $("#tin_certificate").show();
+                        $("#nid_photo").show();
+
+                        $("#btn-submit").prop("disabled", false);
+                    } else if (selectedOption === "5") { //Student
                         $("#personal").show();
                         $("#academic").show();
                         $("#student").show();
@@ -693,82 +772,6 @@
                         $("#experience_certificate").hide();
                         $("#tin_certificate").hide();
                         $("#nid_photo").hide();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "2") {//Candidate
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").hide();
-                        $("#bar_job").show();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").hide();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "3") { // Professional
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").hide();
-                        $("#bar_job").show();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").show();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "4") {// Associate
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").show();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").show();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "5") {// Trade
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").show();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").hide();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
 
                         $("#btn-submit").prop("disabled", false);
                     } else if (selectedOption === "6") {// Corporate LEFT

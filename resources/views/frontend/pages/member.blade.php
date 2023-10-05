@@ -1,13 +1,13 @@
 @extends('frontend.layouts.app')
 @section('title', $membersType)
 @section('content')
+@include('frontend.layouts.partial.banner')
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container">
 
             <div class="section-title">
-                <h2 class="reveal">If You Have Any Query, Feel Free To Contact Us</h2>
-                <p>Et nemo qui impedit suscipit alias ea. Quia fugiat sitin iste officiis commodi quidem hic quas.</p>
+                <h2 class="reveal">Members List</h2>
             </div>
             <div class="row">
                 @foreach ($data as $key=> $row )
@@ -18,10 +18,10 @@
                         </div>
                         <div class="hover_card_details">
                             <h2>{{$row->name}}</h2>
-                            @if ($row->infoCompany->company_name || $row->infoCompany->designation)
+                            @if ($row->infoCompany && ($row->infoCompany->company_name || $row->infoCompany->designation))
                                 <h2><span>{{$row->infoCompany->designation}}</span></h2>
                                 <h4><span>({{$row->infoCompany->company_name ?? ''}})</span></h4>
-                            @elseif ($row->infoStudent->student_institute || $row->infoStudent->semester)
+                            @elseif ($row->infoStudent && ($row->infoStudent->student_institute || $row->infoStudent->semester))
                                 <h2><span>{{$row->infoStudent->student_institute}}</span></h2>
                             @endif
                         </div>

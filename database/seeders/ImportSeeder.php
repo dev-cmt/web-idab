@@ -24,32 +24,12 @@ class ImportSeeder extends Seeder
          * ___________________________________________________
          */
         MemberType::create([
-            'name'=>'Student Member',
-            'prefix'=>'S-',
-            'registration_fee'=> 1000.00,
-            'monthly_fee'=> 0.00,
-            'annual_fee'=> 0.00,
-            'description'=>'DR - 1',
-            'status'=>'1',
-            'user_id'=>'1',
-        ]);
-        MemberType::create([
-            'name'=>'Candidate Member',
-            'prefix'=>'',
-            'registration_fee'=> 2000.00,
-            'monthly_fee'=> 0.00,
-            'annual_fee'=> 4000.00,
-            'description'=>'DR - 2',
-            'status'=>'1',
-            'user_id'=>'1',
-        ]);
-        MemberType::create([
             'name'=>'Professional Member',
             'prefix'=>'',
-            'registration_fee'=> 2000.00,
+            'registration_fee'=> 3000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
-            'description'=>'DR - 3',
+            'description'=>'DR - 1',
             'status'=>'1',
             'user_id'=>'1',
         ]);
@@ -59,7 +39,17 @@ class ImportSeeder extends Seeder
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
             'annual_fee'=> 4000.00,
-            'description'=>'DR - 4',
+            'description'=>'DR - 2',
+            'status'=>'1',
+            'user_id'=>'1',
+        ]);
+        MemberType::create([
+            'name'=>'Candidate Member',
+            'prefix'=>'C-',
+            'registration_fee'=> 2000.00,
+            'monthly_fee'=> 0.00,
+            'annual_fee'=> 4000.00,
+            'description'=>'DR - 3',
             'status'=>'1',
             'user_id'=>'1',
         ]);
@@ -68,20 +58,20 @@ class ImportSeeder extends Seeder
             'prefix'=>'T-',
             'registration_fee'=> 2000.00,
             'monthly_fee'=> 0.00,
-            'annual_fee'=> 10000.00,
+            'annual_fee'=> 4000.00,
             'description'=>'DR - 5',
             'status'=>'1',
             'user_id'=>'1',
         ]);
         MemberType::create([
-            'name'=>'Corporate Member',
-            'prefix'=>'C-',
-            'registration_fee'=> 2000.00,
+            'name'=>'Student Member',
+            'prefix'=>'S-',
+            'registration_fee'=> 1000.00,
             'monthly_fee'=> 0.00,
-            'annual_fee'=> 4000.00,
-            'description'=>'DR - 6',
-            'status'=> 1,
-            'user_id'=> 1,
+            'annual_fee'=> 1000.00,
+            'description'=>'DR - 4',
+            'status'=>'1',
+            'user_id'=>'1',
         ]);
         /**___________________________________________________
          * Committee Type
@@ -94,7 +84,7 @@ class ImportSeeder extends Seeder
             'user_id'=>'1',
         ]);
         CommitteeType::create([
-            'name'=>'Founder Committee',
+            'name'=>'Founder Members',
             'description'=>'TEST DR - 2',
             'status'=>'1',
             'user_id'=>'1',
@@ -104,25 +94,55 @@ class ImportSeeder extends Seeder
          * ___________________________________________________
          */
         MastQualification::create([
-            'name'=>'SSC',
+            'name'=>'BSc in Architecture',
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,
         ]);
         MastQualification::create([
-            'name'=>'HSC',
+            'name'=>'Masters in any Discipline',
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,
         ]);
         MastQualification::create([
-            'name'=>'Graduation',
+            'name'=>'BSc in Civil Engineering',
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,
         ]);
         MastQualification::create([
-            'name'=>'Ph.D',
+            'name'=>'BSc in Interior Architecture',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastQualification::create([
+            'name'=>'Graduation in Any Discipline',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastQualification::create([
+            'name'=>'Diploma in Civil Engineering',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastQualification::create([
+            'name'=>'Diploma in Architecture',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastQualification::create([
+            'name'=>'Diploma in Interior Design',
+            'description' => 'Admin Input',
+            'status' => 1,
+            'user_id' => 1,
+        ]);
+        MastQualification::create([
+            'name'=>'Bachelor in fine arts',
             'description' => 'Admin Input',
             'status' => 1,
             'user_id' => 1,

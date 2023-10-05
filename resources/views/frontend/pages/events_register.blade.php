@@ -45,6 +45,7 @@
 </style>
 @endsection
 @section('content')
+@include('frontend.layouts.partial.banner')
     <!-- Contact Start -->
     <div class="container py-5">
         @if(session('success'))

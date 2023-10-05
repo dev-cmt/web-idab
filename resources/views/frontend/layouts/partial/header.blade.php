@@ -1,11 +1,11 @@
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between z-index">
+    <div class="container d-flex align-items-center justify-content-center z-index">
 
         <!-- <h1 class="logo"><a href="index.html">Groovin</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="{{url('/')}}" class="logo"><img src="{{asset('public/images')}}/logo.png" alt="" class="img-fluid"></a>
+        <!--<a href="{{url('/')}}" class="logo"><img src="{{asset('public/images')}}/logo.png" alt="" class="img-fluid"></a>-->
 
         
         <nav id="navbar" class="navbar mb-0">
@@ -44,11 +44,15 @@
                         @endforeach
                     </ul>
                 </li>
+                <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.why-be-member') ? 'active' : '' }}" href="{{Route('page.why-be-member')}}">Why be a Member</a></li>-->
+                <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.requirements') ? 'active' : '' }}" href="{{Route('page.requirements')}}">Requirements</a></li>-->
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallery</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.events') ? 'active' : '' }}" href="{{Route('page.events')}}">Events</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.corporate-partners') ? 'active' : '' }}" href="{{Route('page.corporate-partners')}}">Corporate Partners</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact-us') ? 'active' : '' }}" href="{{Route('page.contact-us')}}">Contact</a></li>
                 @guest
-                    <li><a class="getstarted scrollto" href="{{Route('member_register.create')}}">Become A Member</a></li>
+                    <a class="getstarted" href="{{Route('member_register.create')}}">Become A Member</a>
+                    <a class="getstarted-login" href="{{Route('login')}}">Login</a>
                 @endguest
                 @auth
                 <li class="dropdown"><a href="#" class="getstarted scrollto"><span>{{Auth::user()->name}}</span><i class="bi bi-chevron-down"></i></a>

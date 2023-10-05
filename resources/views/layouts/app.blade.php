@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- Favicons -->
-    <link href="{{asset('public/frontend')}}/img/favicon.png" rel="icon">
+    <link href="{{asset('public/images')}}/favicon.png" rel="icon">
     
     <!-- Datatable -->
     <link href="{{asset('public/backend')}}/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
