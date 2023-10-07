@@ -85,7 +85,7 @@
                                     <td>{{date("j F, Y", strtotime($row->payment_date))}}</td>
                                     <td>{{$row->paid_amount}}</td>
                                     <td>
-                                        <a href="{{ route('transaction-document.download', 1) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 mr-1">
+                                        <a href="{{ route('transaction-document.download', $row->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 mr-1">
                                             <span class="flaticon-381-download"></span>
                                         </a>
                                     </td>

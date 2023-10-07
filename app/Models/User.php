@@ -20,6 +20,7 @@ use App\Models\Member\InfoOther;
 use App\Models\Member\InfoDocument;
 use App\Models\Master\MemberType;
 use App\Models\Master\CommitteeType;
+use App\Models\Payment\PaymentDetails;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -87,6 +88,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function infoOther()
     {
         return $this->hasOne(InfoOther::class, 'member_id');
+    }
+    public function paymentDetails()
+    {
+        return $this->hasOne(PaymentDetails::class, 'member_id');
     }
     
 

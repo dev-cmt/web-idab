@@ -156,7 +156,7 @@ class TransactionController extends Controller
     public function downloadSlip($id)
     {
         $data = PaymentDetails::findOrFail($id);
-        $filePath = public_path($data->slip);
+        $filePath = public_path($data->trade_licence);
 
         if (file_exists($filePath)) {
             return Response::download($filePath);

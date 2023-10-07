@@ -124,6 +124,17 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('member-approve/padding', [MemberController::class, 'approvePadding'])->name('member-approve.padding');
     Route::PATCH('member-approve/{id}/update', [MemberController::class, 'approveUpdate'])->name('member-approve.update');
     Route::PATCH('member-approve/{id}/cancel', [MemberController::class, 'approveCancel'])->name('member-approve.cancel');
+
+    Route::get('download/member-documents/{id}/download-ZipFile', [MemberController::class, 'downloadZipFile'])->name('member-document.downloadZipFile');
+
+    Route::get('download/member-documents/{id}/trade_licence', [MemberController::class, 'downloadTradeLicence'])->name('document-trade-licence.download');
+    Route::get('download/member-documents/{id}/tin_certificate', [MemberController::class, 'downloadTinCertificate'])->name('document-tin-certificate.download');
+    Route::get('download/member-documents/{id}/nid_photo_copy', [MemberController::class, 'downloadNidPhotoCopy'])->name('document-nid-photo-copy.download');
+    Route::get('download/member-documents/{id}/passport_photo', [MemberController::class, 'downloadPassportPhoto'])->name('document-passport-photo.download');
+    Route::get('download/member-documents/{id}/edu_certificate', [MemberController::class, 'downloadEduCertificate'])->name('document-edu-certificate.download');
+    Route::get('download/member-documents/{id}/experience_certificate', [MemberController::class, 'downloadExperienceCertificate'])->name('document-experience-certificate.download');
+    Route::get('download/member-documents/{id}/stu_id_copy', [MemberController::class, 'downloadStuIdCopy'])->name('document-stu-id-copy.download');
+    Route::get('download/member-documents/{id}/recoment_letter', [MemberController::class, 'downloadRecomentLetter'])->name('document-recoment-letter.download');
     
     //-- MASTER SETTING =>> Member
     Route::get('master/member-type/index',[MemberTypeController::class,'index'])->name('member-type.index');
@@ -150,7 +161,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::PATCH('transaction-registation/{id}/approve', [TransactionController::class, 'approveRegistationApproved'])->name('transaction-registation.approve');
     Route::PATCH('transaction-registation/{id}/cancel', [TransactionController::class, 'approveRegistationCancel'])->name('transaction-registation.cancel');
     Route::get('transaction-registation/{id}/details', [TransactionController::class, 'approveRegistrationDetails'])->name('transaction-registration.details');
-    Route::get('download/transaction-registation/{filename}', [TransactionController::class, 'downloadSlip'])->name('transaction-document.download');
+    Route::get('download/transaction-registation/{id}', [TransactionController::class, 'downloadSlip'])->name('transaction-document.download');
 
     //-- TRANSACTION => EVENT REGISTATION
     Route::get('transaction-event/index', [TransactionController::class,'indexEventRegistation'])->name('transaction-event.index');

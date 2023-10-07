@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
@@ -23,6 +24,7 @@ use App\Models\User;
 use App\Helpers\Helper;
 use App\Mail\MemberApproved;
 use Illuminate\Support\Facades\Mail;
+use ZipArchive;
 
 class MemberController extends Controller
 {
@@ -300,12 +302,7 @@ class MemberController extends Controller
     /*__________________________________________________________________________________ */
     /*__________________________________________________________________________________ */
     public function approveIndex(){
-        $data = PaymentDetails::where('is_admin', 1)->where('users.status', 0)
-        ->join('users', 'users.id', 'payment_details.member_id')
-        ->join('info_personals', 'info_personals.member_id', 'users.id') // Adding the join to InfoPersonal
-        ->join('payment_methods', 'payment_methods.id', 'payment_details.payment_method_id')
-        ->select('users.*','info_personals.contact_number','payment_methods.name as methods_name', 'payment_details.status as is_payment')
-        ->get();
+        $data = User::where('is_admin', 1)->where('status', 0)->get();
 
         $record = User::where('is_admin', 1)->whereIn('status', [1,2])->get();
         return view('layouts.pages.member.approve', compact('data','record'));
@@ -337,6 +334,182 @@ class MemberController extends Controller
     public function approvePadding()
     {
         return view('waiting');
+    }
+    /**___________________________________________________________________________________
+     * DOWNLOAD DOCUMENT
+     * ___________________________________________________________________________________
+     */
+
+    function downloadZipFile($userId) {
+        // Define the path where the user's documents are stored
+        $documentPath = public_path("document/member/{$userId}");
+
+        // Check if the folder exists
+        if (File::exists($documentPath)) {
+            // Create a unique zip file name
+            $zipFileName = "user_documents_{$userId}.zip";
+
+            // Initialize a new ZipArchive
+            $zip = new ZipArchive();
+
+            // Open the zip file for writing
+            if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
+                // Add all files in the user's document folder to the zip archive
+                $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($documentPath));
+                foreach ($files as $file) {
+                    if (!$file->isDir()) {
+                        $filePath = $file->getRealPath();
+                        $relativePath = substr($filePath, strlen($documentPath) + 1);
+                        $zip->addFile($filePath, $relativePath);
+                    }
+                }
+
+                // Close the zip file
+                $zip->close();
+
+                // Set headers to force the download of the zip file
+                header('Content-Type: application/zip');
+                header('Content-Disposition: attachment; filename="' . $zipFileName . '"');
+                header('Content-Length: ' . filesize($zipFileName));
+
+                // Output the zip file
+                readfile($zipFileName);
+
+                // Delete the zip file after download (optional)
+                unlink($zipFileName);
+
+                exit;
+            }
+        }
+
+        // Handle the case where no documents were found for the user
+        return "No documents found for user {$userId}";
+    }
+
+    /*--------------------------------------------------------------------------------
+    --------------------------------  SINGLE   ---------------------------------------
+    --------------------------------------------------------------------------------*/
+
+    public function downloadTradeLicence($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->trade_licence);
+            
+            if (!File::exists($filePath)) {
+                return Response::download($filePath);
+            }else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadTinCertificate($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->tin_certificate);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadNidPhotoCopy($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->nid_photo_copy);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadPassportPhoto($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->passport_photo);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadEduCertificate($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->edu_certificate);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadExperienceCertificate($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->experience_certificate);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+    public function downloadStuIdCopy($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->stu_id_copy);
+            
+            if (file_exists($filePath)) {
+                return response()->download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
+    }
+
+    public function downloadRecomentLetter($id)
+    {
+        try {
+            $data = InfoDocument::findOrFail($id);
+            $filePath = public_path($data->recoment_letter);
+            
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return abort(404, 'File not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
+        }
     }
     
 }
