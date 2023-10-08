@@ -155,13 +155,17 @@ class TransactionController extends Controller
     }
     public function downloadSlip($id)
     {
-        $data = PaymentDetails::findOrFail($id);
-        $filePath = public_path($data->trade_licence);
+        try {
+            $data = PaymentDetails::findOrFail($id);
+            $filePath = public_path($data->slip);
 
-        if (file_exists($filePath)) {
-            return Response::download($filePath);
-        } else {
-            return redirect()->back()->with('error', 'PDF file not found.');
+            if (file_exists($filePath)) {
+                return Response::download($filePath);
+            } else {
+                return redirect()->back()->with('error', 'PDF file not found.');
+            }
+        } catch (\Exception $e) {
+            return abort(500, 'An error occurred.');
         }
     }
     

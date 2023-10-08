@@ -70,7 +70,7 @@
                                 <h5 class="f-w-500">Number <span class="pull-right">:</span>
                                 </h5>
                             </div>
-                            <div class="col-sm-6 col-7"><span>{{Auth::user()->infoPersonal->contact_number}}</span>
+                            <div class="col-sm-6 col-7"><span>{{Auth::user()->infoPersonal->contact_number ?? 'null'}}</span>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -192,8 +192,8 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">৳</span>
                                                 </div>
-                                                <input type="hidden" name="amount" id="amount" value="{{ Auth::user()->membertype->annual_fee}}">
-                                                <input type="text" id="TOTAL" class="form-control" value="{{ Auth::user()->membertype->annual_fee}}" disabled>
+                                                <input type="hidden" name="amount" id="amount" value="{{ Auth::user()->membertype ? Auth::user()->membertype->annual_fee : 0 }}">
+                                                <input type="text" id="TOTAL" class="form-control" value="{{ Auth::user()->membertype ? Auth::user()->membertype->annual_fee : 0 }}" disabled>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">.00</span>
                                                 </div>

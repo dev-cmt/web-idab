@@ -74,7 +74,7 @@ class TemporaryUploadedFile extends UploadedFile
         return $this->extractOriginalNameFromFilePath($this->path);
     }
 
-    public function imageSize(): ?array
+    public function dimensions(): ?array
     {
         stream_copy_to_stream($this->storage->readStream($this->path), $tmpFile = tmpfile());
 
@@ -151,16 +151,9 @@ class TemporaryUploadedFile extends UploadedFile
     {
         $hash = str()->random(30);
         $meta = str('-meta'.base64_encode($file->getClientOriginalName()).'-')->replace('/', '_');
+        $extension = '.'.$file->guessExtension();
 
-        $extension = rescue(function() use ($file) {
-            return $file->clientExtension();
-        }, null, false);
-
-        if ($extension === null) {
-            $extension = $file->guessExtension();
-        }
-
-        return $hash.$meta.'.'.$extension;
+        return $hash.$meta.$extension;
     }
 
     public function extractOriginalNameFromFilePath($path)
