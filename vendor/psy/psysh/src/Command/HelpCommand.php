@@ -12,6 +12,7 @@
 namespace Psy\Command;
 
 use Psy\Output\ShellOutput;
+use Symfony\Component\Console\Helper\TableHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -92,7 +93,11 @@ class HelpCommand extends Command
                 $output->startPaging();
             }
 
-            $table->render();
+            if ($table instanceof TableHelper) {
+                $table->render($output);
+            } else {
+                $table->render();
+            }
 
             if ($output instanceof ShellOutput) {
                 $output->stopPaging();

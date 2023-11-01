@@ -17,8 +17,6 @@ use Psy\Shell;
 
 /**
  * A runkit-based code reloader, which is pretty much magic.
- *
- * @todo Remove RunkitReloader once we drop support for PHP 7.x :(
  */
 class RunkitReloader extends AbstractListener
 {

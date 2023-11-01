@@ -163,8 +163,8 @@
                                 </div>
                                 <div class="col-md-6 mt-2">
                                     <label class="form-label">Amount</label>
-                                    <input type="text" id="amount" class="form-control" value="{{auth::user()->memberType->registration_fee}}" disabled>
-                                    <input type="hidden" name="amount" value="{{auth::user()->memberType->registration_fee}}">
+                                    {{--<input type="text" id="amount" class="form-control" value="{{auth::user()->memberType->registration_fee}}" disabled>--}}
+                                    <input type="text" name="amount" class="form-control" value="{{auth::user()->memberType->registration_fee}}">
                                     @error('amount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

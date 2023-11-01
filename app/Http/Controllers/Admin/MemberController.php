@@ -8,6 +8,7 @@ use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
@@ -61,6 +62,7 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
             //----Validation Check 
             $validator = Validator::make($request->all(), [
@@ -81,26 +83,34 @@ class MemberController extends Controller
                 'experience_certificate' => 'max:10240',
                 'stu_id_copy' => 'max:10240',
                 'recoment_letter' => 'max:10240',
+
+                'company_name' => 'required_if:member_type_id,1,2,3,4',
+                'designation' => 'required_if:member_type_id,1,2,3,4',
+                'student_institute' => 'required_if:member_type_id,5',
             ], [
                 'profile_photo_path.required' => 'The Profile photo field is required.',
                 'profile_photo_path.mimes' => 'The :attribute must be a valid image file.',
                 'contact_number.required' => 'The Contact Number field is required.',
                 'mast_qualification_id.required' => 'The Qualification field is required.',
-                'trade_licence.max' => 'Trade licence not be greater than 10MB.',
-                'tin_certificate.max' => 'Tin certificate not be greater than 10MB.',
-                'nid_photo_copy.max' => 'NID photo not be greater than 10MB.',
-                'passport_photo.max' => 'Passport photo not be greater than 10MB.',
+                'trade_licence.max' => 'Trade licence must not be greater than 10MB.',
+                'tin_certificate.max' => 'Tin certificate must not be greater than 10MB.',
+                'nid_photo_copy.max' => 'NID photo must not be greater than 10MB.',
+                'passport_photo.max' => 'Passport photo must not be greater than 10MB.',
                 'edu_certificate.required' => 'The EDU. Certificate field is required.',
-                'edu_certificate.max' => 'EDU. certificate not be greater than 10MB.',
-                'experience_certificate.max' => 'Experience certificate not be greater than 10MB.',
-                'stu_id_copy.max' => 'STU. id not be greater than 10MB.',
-                'recoment_letter.max' => 'Recoment letter not be greater than 10MB.',
+                'edu_certificate.max' => 'EDU. certificate must not be greater than 10MB.',
+                'experience_certificate.max' => 'Experience certificate must not be greater than 10MB.',
+                'stu_id_copy.max' => 'STU. id must not be greater than 10MB.',
+                'recoment_letter.max' => 'Recoment letter must not be greater than 10MB.',
+                
+                'company_name.required_if' => 'The company name field is required',
+                'designation.required_if' => 'The designation field is required',
+                'student_institute.required_if' => 'The student institute field is required',
             ]);
-
-
+            
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors()], 422);
             }
+            
 
 
             /*__________________/ USER CREATE \_________________*/
@@ -266,9 +276,14 @@ class MemberController extends Controller
             // Send email verification
             $user->sendEmailVerificationNotification();
             
+            // Commit the transaction if everything is successful
+            DB::commit();
+
             // Return message
             return response()->json(['user' => $user], 200);
         } catch (PostTooLargeException $e) {
+            DB::rollback();
+            \Log::error('Cash transaction error: ' . $e->getMessage());
             return response()->json([
                 'error' => 'File size exceeds the limit',
                 'message' => 'The uploaded file size exceeds the allowed limit.',

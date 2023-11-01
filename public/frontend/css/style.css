@@ -15,7 +15,7 @@ body {
 }
 
 a {
-  color: #444444;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #fff;
+  background: #646464;
   transition: all 0.5s;
   z-index: 997;
   height: 80px;
@@ -134,6 +134,7 @@ h6 {
   transition: 0.3s;
   text-transform: uppercase;
   position: relative;
+  color: #fff;
 }
 
 .navbar a i,
@@ -201,8 +202,8 @@ h6 {
   border-radius: 4px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
-  border: 2px solid #000;
-  color:#000;
+  border: 2px solid #fff;
+  color:#fff;
 }
 
 .navbar .getstarted-login:hover,
@@ -284,7 +285,7 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #000;
+  color: #fff;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -644,7 +645,7 @@ section {
 .feature .icon-box h4 {
   font-size: 20px;
   font-weight: 700;
-  margin: 25px 0 10px 15px;
+  margin: 25px 10px;
   color: #000;
 }
 .feature .icon-box p {
@@ -654,7 +655,7 @@ section {
 }
 @media (max-width: 991px) {
   .feature .icon-box h4 {
-    display: none;
+    display: block;
   }
 }
 /*--------------------------------------------------------------

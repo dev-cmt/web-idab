@@ -22,6 +22,7 @@ use Psy\Context;
 use Psy\ContextAware;
 use Psy\Exception\ThrowUpException;
 use Psy\Input\CodeArgument;
+use Psy\ParserFactory;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -38,7 +39,9 @@ class ThrowUpCommand extends Command implements ContextAware
      */
     public function __construct($name = null)
     {
-        $this->parser = new CodeArgumentParser();
+        $parserFactory = new ParserFactory();
+
+        $this->parser = $parserFactory->createParser();
         $this->printer = new Printer();
 
         parent::__construct($name);
@@ -117,7 +120,11 @@ HELP
             return [new Arg(new Variable('_e'))];
         }
 
-        $nodes = $this->parser->parse($code);
+        if (\strpos($code, '<?') === false) {
+            $code = '<?php '.$code;
+        }
+
+        $nodes = $this->parse($code);
         if (\count($nodes) !== 1) {
             throw new \InvalidArgumentException('No idea how to throw this');
         }
@@ -135,5 +142,26 @@ HELP
         }
 
         return $args;
+    }
+
+    /**
+     * Lex and parse a string of code into statements.
+     *
+     * @param string $code
+     *
+     * @return array Statements
+     */
+    private function parse(string $code): array
+    {
+        try {
+            return $this->parser->parse($code);
+        } catch (\PhpParser\Error $e) {
+            if (\strpos($e->getMessage(), 'unexpected EOF') === false) {
+                throw $e;
+            }
+
+            // If we got an unexpected EOF, let's try it again with a semicolon.
+            return $this->parser->parse($code.';');
+        }
     }
 }

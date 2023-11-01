@@ -62,7 +62,7 @@
                         <div>
                             <img src="{{asset('public/images')}}/member-pic/Sarker.jpeg" class="img-fluid" alt="" style="height: 100%">
                         </div>
-                        <h5 class="mt-4">IDr MD Pial Sarker (pia)</h4>
+                        <h5 class="mt-4">IDr. MD Pial Sarker (pia)</h4>
                         <h6 class="text-danger">Professional Member</h6>
                     </div>
                 </div>

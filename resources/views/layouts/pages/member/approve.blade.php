@@ -32,7 +32,6 @@
                                     <td>
                                         <strong>Email: </strong><a href="mailto:{{ $row->email }}">{{ $row->email }}</a> <br>
                                         <strong>Number: </strong>{{ $row->infoPersonal->contact_number ?? 'null' }}<br>
-                                        <strong>id: </strong>{{ $row->infoPersonal->id ?? 'null' }}<br>
                                     </td>
                                     <td>
                                         <a href="{{ route('member-document.downloadZipFile', $row->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">

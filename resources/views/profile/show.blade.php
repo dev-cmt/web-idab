@@ -90,14 +90,14 @@
                                             <h6 class="text-primary my-3">Personal Information</h6>
                                         </div>
                                         <!--Item-->
-                                        <div class="col-xl-6 col-sm-12">
+                                        {{-- <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Name <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7"><span>{{$user->name }}</span></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
@@ -117,23 +117,23 @@
                                             </div>
                                         </div>
                                         <!--Item-->
-                                        <div class="col-xl-6 col-sm-12">
+                                        {{-- <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">NID No.<span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7"><span>{{ $infoPersonal->nid_no ?? "Null"}}</span></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!--Item-->
-                                        <div class="col-xl-6 col-sm-12">
+                                        {{-- <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Gender <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7"><span>{{$infoPersonal->gender ?? "Null" == '0' ? 'Male': 'Female' }}</span></div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
@@ -150,28 +150,31 @@
                                                     <h6 class="f-w-500">Blood Group <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7">
-                                                    @if ($infoPersonal->blood_group ?? "Null" == 1)
-                                                    <span>A Positive (A+)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 2)
-                                                    <span>A Negative (A-)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 3)
-                                                    <span>B Positive (B+)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 4)
-                                                    <span>B Negative (B-)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 5)
-                                                    <span>AB Positive (AB+)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 6)
-                                                    <span>AB Negative (AB-)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 7)
-                                                    <span>O Positive (0+)</span>
-                                                    @elseif ($infoPersonal->blood_group ?? "Null" == 8)
-                                                    <span>O Negative (0-)</span>
+                                                    @if ($infoPersonal->blood_group == 1)
+                                                        <span>A Positive (A+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 2)
+                                                        <span>A Negative (A-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 3)
+                                                        <span>B Positive (B+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 4)
+                                                        <span>B Negative (B-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 5)
+                                                        <span>AB Positive (AB+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 6)
+                                                        <span>AB Negative (AB-)</span>
+                                                    @elseif ($infoPersonal->blood_group == 7)
+                                                        <span>O Positive (O+)</span>
+                                                    @elseif ($infoPersonal->blood_group == 8)
+                                                        <span>O Negative (O-)</span>
+                                                    @else
+                                                        <span>Unknown Blood Group</span>
                                                     @endif
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                         <!--Item-->
-                                        <div class="col-xl-6 col-sm-12">
+                                        {{-- <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-5">
                                                     <h6 class="f-w-500">Marrital Status <span class="pull-right">:</span></h6>
@@ -188,7 +191,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!--Item-->
                                         <div class="col-xl-6 col-sm-12">
                                             <div class="row mb-2">

@@ -1,54 +1,3 @@
-<style>
-    /*__________________Image Profile______________________*/
-    .avatar-upload {
-        position: relative;
-        max-width: 192px;
-        margin: 10px auto;
-    }
-    .avatar-upload .avatar-edit {
-    position: absolute;
-    right: 5px;
-    z-index: 1;
-    top: 10px;
-    }
-    .avatar-upload .avatar-edit input {
-    display: none;
-    }
-    .avatar-upload .avatar-edit input + label {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    margin-bottom: 0;
-    border-radius: 0%;
-    background: #ff0000;
-    border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    font-weight: normal;
-    transition: all 0.2s ease-in-out;
-    padding: 7px 9px;
-    color: #fff;
-    }
-    .avatar-upload .avatar-edit input + label:hover {
-    background: #c00000;
-    }
-    .avatar-upload .avatar-preview {
-        width: 192px;
-        height: 192px;
-        position: relative;
-        border-radius: 0%;
-        border: 6px solid #ff0000;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    }
-    .avatar-upload .avatar-preview > div {
-        width: 100%;
-        height: 100%;
-        border-radius: 0%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-</style>
 <x-guest-layout>
     
     <div class="bg-dark" style="min-height:100%; background-image: url('{{asset('public/images')}}/pages/registation-bg.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; overflow:hidden;">
@@ -59,8 +8,8 @@
             <div id='stars3'></div>
             <div id='stars4'></div>
         </div>-->
-        <div class="from-wrapper">
-            <div class="">
+        <div style="height: 100vh">
+            <div class="from-wrapper">
                 <!--<div class="card-heading">
                     <h2 class="title">Apply For Membership</h2>
                 </div>-->
@@ -73,6 +22,22 @@
                     <div class="bar_account"></div><br>
                     <div class="row">
                         <div class="col-md-7">
+                            <div class="row mb-2">
+                                <label for="formFile" class="form-label col-md-5">Member Type <span class="text-danger">*</span></label>
+                                <div class="col-md-7">
+                                    <select class="form-control form-select @error('member_type_id') is-invalid @enderror" name="member_type_id" id="member_type_id" required>
+                                        <option disabled selected>Please select</option>
+                                        @foreach ($memberType as $item)
+                                        <option value="{{$item->id}}" {{old('member_type_id')== $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                                        @endforeach
+                                    </select>                                                    
+                                    @error('member_type_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row mb-2">
                                 <label for="name" class="form-label col-md-5">Applicant Name <span class="text-danger">*</span></label>
                                 <div class="col-md-7">
@@ -117,40 +82,76 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row">
-                                <label for="formFile" class="form-label col-md-5">Member Type <span class="text-danger">*</span></label>
-                                <div class="col-md-7">
-                                    <select class="form-control form-select @error('member_type_id') is-invalid @enderror" name="member_type_id" id="member_type_id" required>
-                                        <option disabled selected>Please select</option>
-                                        @foreach ($memberType as $item)
-                                        <option value="{{$item->id}}" {{old('member_type_id')== $item->id ? 'selected' : ''}}>{{$item->name}}</option>
-                                        @endforeach
-                                    </select>                                                    
-                                    @error('member_type_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
                         <div class="col-md-5">
-                            <div class="avatar-upload">
-                                <div class="avatar-edit">
-                                    <input type='file' name="profile_photo_path" class="@error('profile_photo_path') is-invalid @enderror form-control" id="imageUpload" accept=".png,.jpg,.jpeg,.gif,.svg" value="{{old('profile_photo_path')}}"/>                                    <label for="imageUpload"><i class="fa fa-camera"></i></label>
-                                    @error('profile_photo_path')
-                                        <span class="invalid-feedback" role="alert" style="position: absolute;top: 195px;left: -180px;width: 300px;">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <label for="imageUpload">
-                                    <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('{{asset('public/images')}}/pages/user.png');"></div>
-                                    </div>
-                                </label>
+                            <div id="tab-pane-1">
+                                <h3 class="mb-4">Professional Member</h3>
+                                <p><i class="bi bi-check-lg me-3"></i>1.One Year Diloma/4 Year Experience</p></p></p>
+                                <p><i class="bi bi-check-lg me-3"></i>2. B. Arch/1 Year Experience</p></p>
+                                <p><i class="bi bi-check-lg me-3"></i>3.Int. Architecture/2 Years Experience</p>
+                                <p><i class="bi bi-check-lg me-3"></i>4.Passport Size Picture</p>
+                                <p><i class="bi bi-check-lg me-3"></i>5.Educational Certificate (SSC/HSC)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>6.Educational Certificate (ID, ARCH, IAR)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>7.Job Experience Certificate </p>
+                                <p><i class="bi bi-check-lg me-3"></i>8.Valid Trade License</p>
+                                <p><i class="bi bi-check-lg me-3"></i>9.Valid Tin Certificate</p>
+                                <p><i class="bi bi-check-lg me-3"></i>10.NID</p>
+                                <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
+                            </div>
+                            <div id="tab-pane-2">
+                                <h3 class="mb-4">Associate Member</h3>
+                                <p><i class="bi bi-check-lg me-3"></i>1.Graduation in Any Subject</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
+                                <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (SSC/HSC)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>4.Job Experience Certificate</p>
+                                <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
+                                <p><i class="bi bi-check-lg me-3"></i>6.NID (They don't have voting rights.)</p>
+                                <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
+                            </div>
+                            <div id="tab-pane-3">
+                                <h3 class="mb-4">Candidate Member</h3>
+                                <p><i class="bi bi-check-lg me-3"></i>1.B.Arch</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2.OneYear Diploma in Related Subject</p>
+                                <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2.Educational Certificate (SSC/HSC)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (ID, ARCH, IAR)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
+                                <p><i class="bi bi-check-lg me-3"></i>5.Valid TIN Certificate</p>
+                                <p><i class="bi bi-check-lg me-3"></i>6. NID</p>
+                                <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
+                            </div>
+                            <div id="tab-pane-4">
+                                <h3 class="mb-4">Trade Member</h3>
+                                <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Interior Business</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
+                                <p><i class="bi bi-check-lg me-3"></i>3.Valid Trade License</p>
+                                <p><i class="bi bi-check-lg me-3"></i>4.Valid Tin Certificate</p>
+                                <p><i class="bi bi-check-lg me-3"></i>5.NID (They don't have voting rights.)</p>
+                                <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 10000/-)</p>
+                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
+                            </div>
+                            <div id="tab-pane-5">
+                                <h4 class="mb-4"><i class="bi bi-amd text-danger"></i>First 100 Member 50% Discount</h4>
+                                <h5 class="mb-4">Student Member</h5>
+                                <p><i class="bi bi-check-lg me-3"></i>1.Studentship in Relative Subject</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2. Educational Certificate (SSC/HSC)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>3. Copy of Student ID</p>
+                                <p class="mb-4">(Registration Fee 1000/-)</p>
+                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
                             </div>
 
+                        </div>
+                        
+                    </div>
+                    <!--NEXT-->
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-end">                            
+                                <button type="button" class="btn btn-register" id="next-step">Next</button>
+                            </div>
                         </div>
                     </div>
                     <!--__________________  Personal __________________-->
@@ -173,6 +174,19 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="row">
+                                <label for="dob" class="form-label col-md-5">Date Of Birth</label>
+                                <div class="col-md-7">
+                                    <input type="date" name="dob" id="formFile"class="form-control @error('dob') is-invalid @enderror" value="{{old('dob')}}">
+                                    @error('dob')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        {{--<div class="col-md-6 mb-2">
+                            <div class="row">
                                 <label for="nid_no" class="form-label col-md-5">NID No.</label>
                                 <div class="col-md-7">
                                     <input type="text" name="nid_no" id="nid_no"class="form-control @error('nid_no') is-invalid @enderror" value="{{old('nid_no')}}">
@@ -183,7 +197,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="col-md-6 mb-2">
                             <div class="row">
                                 <label for="formFile" class="form-label col-md-5">Father's Name</label>
@@ -203,19 +217,6 @@
                                 <div class="col-md-7">
                                     <input type="text" name="mother_name" id="mother_name"class="form-control @error('mother_name') is-invalid @enderror" value="{{old('mother_name')}}">
                                     @error('mother_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="row">
-                                <label for="dob" class="form-label col-md-5">Date Of Birth</label>
-                                <div class="col-md-7">
-                                    <input type="date" name="dob" id="formFile"class="form-control @error('dob') is-invalid @enderror" value="{{old('dob')}}">
-                                    @error('dob')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -395,7 +396,9 @@
                         <div class="bar_job" id="bar_job" style="display: none;"></div>                            
                         <div class="col-md-6 mb-2">
                             <div class="row">
-                                <label for="company_name" class="form-label col-md-5">Company Name</label>
+                                <label for="company_name" class="form-label col-md-5">Company Name
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="col-md-7">
                                     <input type="text" name="company_name" id="company_name"class="form-control @error('company_name') is-invalid @enderror" value="{{old('company_name')}}">
                                     @error('company_name')
@@ -408,7 +411,9 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="row">
-                                <label for="designation" class="form-label col-md-5">Designation</label>
+                                <label for="designation" class="form-label col-md-5">Designation
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="col-md-7">
                                     <input type="text" name="designation" id="designation"class="form-control @error('designation') is-invalid @enderror" value="{{old('designation')}}">
                                     @error('designation')
@@ -537,16 +542,19 @@
                             <div class="d-flex justify-content-center">
                                 <p style="font-weight: 700; color: red; border-bottom: 1px solid;">10 MB Attachment Limit</p>
                             </div>
-                            {{-- <div class="col-lg-4 col-sm-12 px-4" style="margin: 0 auto">
-                                <div class="upload-file-cover mb-4">
-                                    <div class="upload-file-title"><h1>Profile Photo</h1></div>
-                                    <div class="dropzone">
-                                        <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-                                        <input type="file" class="upload-input" />
+                            <div class="col-md-12 mb-2">
+                                <div class="row">
+                                    <label for="profile_photo_path" class="form-label col-md-5">Profile Photo<span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <input type="file" name="profile_photo_path" id="profile_photo_path" class="form-control @error('profile_photo_path') is-invalid @enderror" value="{{old('profile_photo_path')}}" accept=".png, .jpg, .jpeg, .svg, .gif">
+                                        @error('profile_photo_path')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-                                    <button type="button" class="btn-upload" name="uploadbutton">Upload file</button>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-md-12 mb-2" id="passport_photo">
                                 <div class="row">
                                     <label for="passport_photo" class="form-label col-md-5">Passport size photo</label>
@@ -576,7 +584,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="student_id">
                                 <div class="row">
-                                    <label for="stu_id_copy" class="form-label col-md-5">Copy of Student ID</label>
+                                    <label for="stu_id_copy" class="form-label col-md-5">Copy of Student ID<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="stu_id_copy" id="stu_id_copy" class="form-control @error('stu_id_copy') is-invalid @enderror" value="{{old('stu_id_copy')}}">
                                         @error('stu_id_copy')
@@ -589,7 +597,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="trade_lisence">
                                 <div class="row">
-                                    <label for="trade_licence" class="form-label col-md-5">Valid Trade Lisence</label>
+                                    <label for="trade_licence" class="form-label col-md-5">Valid Trade Lisence<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="trade_licence" id="trade_licence" class="form-control @error('trade_licence') is-invalid @enderror" value="{{old('trade_licence')}}">
                                         @error('trade_licence')
@@ -615,7 +623,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="tin_certificate">
                                 <div class="row">
-                                    <label for="tin_certificate" class="form-label col-md-5">Valid TIN Certificate</label>
+                                    <label for="tin_certificate" class="form-label col-md-5">Valid TIN Certificate<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="tin_certificate" id="tin_certificate" class="form-control @error('tin_certificate') is-invalid @enderror" value="{{old('tin_certificate')}}">
                                         @error('tin_certificate')
@@ -628,7 +636,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="nid_photo">
                                 <div class="row">
-                                    <label for="nid_photo_copy" class="form-label col-md-5">NID Photo Copy</label>
+                                    <label for="nid_photo_copy" class="form-label col-md-5">NID Photo Copy<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="nid_photo_copy" id="nid_photo_copy" class="form-control @error('nid_photo_copy') is-invalid @enderror" value="{{old('nid_photo_copy')}}">
                                         @error('nid_photo_copy')
@@ -659,7 +667,7 @@
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <div class="d-flex justify-content-end">                            
-                                <button class="btn btn-register" id="btn-submit" disabled>Submit</button>
+                                <button class="btn btn-register" id="btn-submit">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -668,133 +676,184 @@
             </div>
         </div>
     </div>
- 
+    <input type="hidden" id="display-control" value="0">
     @push('script')   
+        <script>
+            $("#member_type_id").change(function() {
+                var selectedOption = $(this).val();
+
+                if (selectedOption === "1") { // Professional
+                    $("#tab-pane-1").show();
+                    $("#tab-pane-2").hide();
+                    $("#tab-pane-3").hide();
+                    $("#tab-pane-4").hide();
+                    $("#tab-pane-5").hide();
+                } else if (selectedOption === "2") {// Associate
+                    $("#tab-pane-1").hide();
+                    $("#tab-pane-2").show();
+                    $("#tab-pane-3").hide();
+                    $("#tab-pane-4").hide();
+                    $("#tab-pane-5").hide();
+                } else if (selectedOption === "3") {//Candidate
+                    $("#tab-pane-1").hide();
+                    $("#tab-pane-2").hide();
+                    $("#tab-pane-3").show();
+                    $("#tab-pane-4").hide();
+                    $("#tab-pane-5").hide();
+                } else if (selectedOption === "4") {// Trade
+                    $("#tab-pane-1").hide();
+                    $("#tab-pane-2").hide();
+                    $("#tab-pane-3").hide();
+                    $("#tab-pane-4").show();
+                    $("#tab-pane-5").hide();
+                } else if (selectedOption === "5") { //Student
+                    $("#tab-pane-1").hide();
+                    $("#tab-pane-2").hide();
+                    $("#tab-pane-3").hide();
+                    $("#tab-pane-4").hide();
+                    $("#tab-pane-5").show();
+                }
+                
+                var displayContol = $('#display-control').val();
+                if(displayContol == 1){
+                    manageInformation();
+                }
+            });
+
+            $("#next-step").click(function() {
+                $(this).hide();
+                $('#display-control').val(1);
+                manageInformation();
+            });
+            function manageInformation(){
+                var selectedOption = $('#member_type_id').val();
+
+                if (selectedOption === "1") { // Professional
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").hide();
+                    $("#business_job").show();
+                    $("#bar_business").hide();
+                    $("#bar_job").show();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").hide();
+                    $("#recomendation_letter").hide();
+                    $("#experience_certificate").show();
+                    $("#trade_lisence").show();
+                    $("#tin_certificate").show();
+                    $("#nid_photo").show();
+
+                    $("#btn-submit").show();
+                } else if (selectedOption === "2") {// Associate
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").hide();
+                    $("#business_job").show();
+                    $("#bar_business").show();
+                    $("#bar_job").hide();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").hide();
+                    $("#recomendation_letter").hide();
+                    $("#experience_certificate").show();
+                    $("#trade_lisence").show();
+                    $("#tin_certificate").show();
+                    $("#nid_photo").show();
+
+                    $("#btn-submit").show();
+                } else if (selectedOption === "3") {//Candidate
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").hide();
+                    $("#business_job").show();
+                    $("#bar_business").hide();
+                    $("#bar_job").show();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").hide();
+                    $("#recomendation_letter").hide();
+                    $("#experience_certificate").hide();
+                    $("#trade_lisence").show();
+                    $("#tin_certificate").show();
+                    $("#nid_photo").show();
+                    
+                    $("#btn-submit").show();
+                } else if (selectedOption === "4") {// Trade
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").hide();
+                    $("#business_job").show();
+                    $("#bar_business").show();
+                    $("#bar_job").hide();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").hide();
+                    $("#recomendation_letter").hide();
+                    $("#experience_certificate").hide();
+                    $("#trade_lisence").show();
+                    $("#tin_certificate").show();
+                    $("#nid_photo").show();
+                    
+                    $("#btn-submit").show();
+                } else if (selectedOption === "5") { //Student
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").show();
+                    $("#business_job").hide();
+                    $("#bar_business").hide();
+                    $("#bar_job").hide();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").show();
+                    $("#recomendation_letter").show();
+                    $("#trade_lisence").hide();
+                    $("#experience_certificate").hide();
+                    $("#tin_certificate").hide();
+                    $("#nid_photo").hide();
+                    
+                    $("#btn-submit").show();
+                } else if (selectedOption === "6") {// Corporate LEFT
+                    $("#personal").show();
+                    $("#academic").show();
+                    $("#student").hide();
+                    $("#business_job").show();
+                    $("#bar_business").show();
+                    $("#bar_job").hide();
+
+                    $("#document").show();
+                    $("#passport_photo").hide();
+                    $("#educational_certificates").show();
+                    $("#student_id").hide();
+                    $("#trade_lisence").show();
+                    $("#experience_certificate").show();
+                    $("#tin_certificate").show();
+                    $("#nid_photo").hide();
+                    $("#recomendation_letter").hide();
+
+                    $("#btn-submit").prop("disabled", false);
+                }
+            }
+        </script>
         <script>
             $(document).ready(function() {
                 $("#document").hide();
-                $("#member_type_id").change(function() {
-                    var selectedOption = $(this).val();
-                    // Hide all sections
-                    $("#business, #bar_job, #student").hide();
-
-                    // Show the corresponding section based on the selected option
-                    if (selectedOption === "1") { // Professional
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").hide();
-                        $("#bar_job").show();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").show();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "2") {// Associate
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").show();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").show();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "3") {//Candidate
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").hide();
-                        $("#bar_job").show();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").hide();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "4") {// Trade
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").show();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#recomendation_letter").hide();
-                        $("#experience_certificate").hide();
-                        $("#trade_lisence").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").show();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "5") { //Student
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").show();
-                        $("#business_job").hide();
-                        $("#bar_business").hide();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").show();
-                        $("#recomendation_letter").show();
-                        $("#trade_lisence").hide();
-                        $("#experience_certificate").hide();
-                        $("#tin_certificate").hide();
-                        $("#nid_photo").hide();
-
-                        $("#btn-submit").prop("disabled", false);
-                    } else if (selectedOption === "6") {// Corporate LEFT
-                        $("#personal").show();
-                        $("#academic").show();
-                        $("#student").hide();
-                        $("#business_job").show();
-                        $("#bar_business").show();
-                        $("#bar_job").hide();
-
-                        $("#document").show();
-                        $("#passport_photo").hide();
-                        $("#educational_certificates").show();
-                        $("#student_id").hide();
-                        $("#trade_lisence").show();
-                        $("#experience_certificate").show();
-                        $("#tin_certificate").show();
-                        $("#nid_photo").hide();
-                        $("#recomendation_letter").hide();
-
-                        $("#btn-submit").prop("disabled", false);
-                    }
-                });
+                $("#tab-pane-1").hide();
+                $("#tab-pane-2").hide();
+                $("#tab-pane-3").hide();
+                $("#tab-pane-4").hide();
+                $("#tab-pane-5").hide();
+                $("#btn-submit").hide();
             });
         </script>
         <!--Image Profile-->
@@ -895,8 +954,6 @@
             </span>
         </div>
     </div>
-
-
 
 
 </x-guest-layout>

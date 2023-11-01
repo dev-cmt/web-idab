@@ -36,8 +36,6 @@ final class InlineParserMatch
 
     /**
      * @internal
-     *
-     * @psalm-return non-empty-string
      */
     public function getRegex(): string
     {

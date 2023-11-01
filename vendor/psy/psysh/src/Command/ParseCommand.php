@@ -122,10 +122,13 @@ HELP
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $code = $input->getArgument('code');
+        if (\strpos($code, '<?') === false) {
+            $code = '<?php '.$code;
+        }
+
         $parserKind = $input->getOption('kind');
         $depth = $input->getOption('depth');
-
-        $nodes = $this->getParser($parserKind)->parse($code);
+        $nodes = $this->parse($this->getParser($parserKind), $code);
         $output->page($this->presenter->present($nodes, $depth));
 
         $this->context->setReturnValue($nodes);
@@ -134,14 +137,36 @@ HELP
     }
 
     /**
+     * Lex and parse a string of code into statements.
+     *
+     * @param Parser $parser
+     * @param string $code
+     *
+     * @return array Statements
+     */
+    private function parse(Parser $parser, string $code): array
+    {
+        try {
+            return $parser->parse($code);
+        } catch (\PhpParser\Error $e) {
+            if (\strpos($e->getMessage(), 'unexpected EOF') === false) {
+                throw $e;
+            }
+
+            // If we got an unexpected EOF, let's try it again with a semicolon.
+            return $parser->parse($code.';');
+        }
+    }
+
+    /**
      * Get (or create) the Parser instance.
      *
      * @param string|null $kind One of Psy\ParserFactory constants (only for PHP parser 2.0 and above)
      */
-    private function getParser(string $kind = null): CodeArgumentParser
+    private function getParser(string $kind = null): Parser
     {
         if (!\array_key_exists($kind, $this->parsers)) {
-            $this->parsers[$kind] = new CodeArgumentParser($this->parserFactory->createParser($kind));
+            $this->parsers[$kind] = $this->parserFactory->createParser($kind);
         }
 
         return $this->parsers[$kind];

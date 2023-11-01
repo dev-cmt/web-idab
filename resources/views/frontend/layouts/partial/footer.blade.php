@@ -38,14 +38,15 @@
                         <h3>IDAB</h3>
                         <p>Rain Razzak Plaza, 2 Shahid Tazuddin Soroni, Moghbazar, Dhaka-1217, Bangladesh <br><br>
                             <strong>Phone:</strong>01725151515<br>
-                            <strong>Email:</strong> contact.idab@gmail.com<br>
+                            <strong>Email:</strong> <a href="mailto:contact.idab@gmail.com">contact.idab@gmail.com</a><br>
+                            
                         </p>
                         <div class="social-links mt-3">
-                              <a href="https://www.facebook.com/IDABofficialsite" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            <a href="https://www.facebook.com/IDABofficialsite" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <!--<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>-->
+                            <!--<a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>-->
+                            <!--<a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>-->
+                            <!--<a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>-->
                         </div>
                     </div>
                 </div>

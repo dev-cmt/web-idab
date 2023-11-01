@@ -48,7 +48,7 @@ class FrontViewController extends Controller
      */
     public function member($id)
     {
-        $data = User::where('member_type_id', $id)->where('status', 1)->get();
+        $data = User::with('infoCompany')->where('member_type_id', $id)->where('status', 1)->get();
         $membersType = MemberType::where('id', $id)->first()->name;
 
         return view('frontend.pages.member',compact('data', 'membersType'));

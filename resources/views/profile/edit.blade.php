@@ -42,6 +42,19 @@
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <div class="row">
+                                                <label for="dob" class="form-label col-md-5">Date Of Birth</label>
+                                                <div class="col-md-7">
+                                                    <input type="date" name="dob" id="formFile"class="form-control @error('dob') is-invalid @enderror" value="{{ $infoPersonal->dob ?? '' }}">
+                                                    @error('dob')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-6 mb-2">
+                                            <div class="row">
                                                 <label for="nid_no" class="form-label col-md-5">NID No.</label>
                                                 <div class="col-md-7">
                                                     <input type="text" name="nid_no" id="nid_no"class="form-control @error('nid_no') is-invalid @enderror" value="{{ $infoPersonal->nid_no ?? '' }}">
@@ -52,7 +65,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6 mb-2">
                                             <div class="row">
                                                 <label for="formFile" class="form-label col-md-5">Father's Name</label>
@@ -81,22 +94,9 @@
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <div class="row">
-                                                <label for="dob" class="form-label col-md-5">Date Of Birth</label>
-                                                <div class="col-md-7">
-                                                    <input type="date" name="dob" id="formFile"class="form-control @error('dob') is-invalid @enderror" value="{{ $infoPersonal->dob ?? '' }}">
-                                                    @error('dob')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="row">
                                                 <label for="gender" class="form-label col-md-5">Gender</label>
                                                 <div class="col-md-7">
-                                                    <select name="gender" id="gender" class="form-control form-select @error('gender') is-invalid @enderror">
+                                                    <select name="gender" id="gender" class="form-control default-select @error('gender') is-invalid @enderror">
                                                         <option value="0" {{ (isset($infoPersonal) && $infoPersonal->gender == '0') ? 'selected' : '' }}>Male</option>
                                                         <option value="1" {{ (isset($infoPersonal) && $infoPersonal->gender == '1') ? 'selected' : '' }}>Female</option>
                                                     </select>
@@ -108,7 +108,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-2">
+                                        {{-- <div class="col-md-6 mb-2">
                                             <div class="row">
                                                 <label for="marrital_status" class="form-label col-md-5">Marrital Status</label>
                                                 <div class="col-md-7">
@@ -125,22 +125,22 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6 mb-2">
                                             <div class="row">
                                                 <label for="blood_group" class="form-label col-md-5">Blood Group</label>
                                                 <div class="col-md-7">
-                                                    <select name="blood_group" id="blood_group" class="form-control form-select @error('blood_group') is-invalid @enderror">
+                                                    <select name="blood_group" id="blood_group" class="form-control default-select @error('blood_group') is-invalid @enderror">
                                                         <option value="" {{ empty($infoPersonal->blood_group) ? 'selected' : '' }}>Select</option>
-                                                        <option value="1" {{ ($infoPersonal->blood_group ?? '') === '1' ? 'selected' : '' }}>A Positive (A+)</option>
-                                                        <option value="2" {{ ($infoPersonal->blood_group ?? '') === '2' ? 'selected' : '' }}>A Negative (A-)</option>
-                                                        <option value="3" {{ ($infoPersonal->blood_group ?? '') === '3' ? 'selected' : '' }}>B Positive (B+)</option>
-                                                        <option value="4" {{ ($infoPersonal->blood_group ?? '') === '4' ? 'selected' : '' }}>B Negative (B-)</option>
-                                                        <option value="5" {{ ($infoPersonal->blood_group ?? '') === '5' ? 'selected' : '' }}>AB Positive (AB+)</option>
-                                                        <option value="6" {{ ($infoPersonal->blood_group ?? '') === '6' ? 'selected' : '' }}>AB Negative (AB-)</option>
-                                                        <option value="7" {{ ($infoPersonal->blood_group ?? '') === '7' ? 'selected' : '' }}>O Positive (O+)</option>
-                                                        <option value="8" {{ ($infoPersonal->blood_group ?? '') === '8' ? 'selected' : '' }}>O Negative (O-)</option>
-                                                    </select>
+                                                        <option value="1" {{ $infoPersonal->blood_group == '1' ? 'selected' : '' }}>A Positive (A+)</option>
+                                                        <option value="2" {{ $infoPersonal->blood_group == '2' ? 'selected' : '' }}>A Negative (A-)</option>
+                                                        <option value="3" {{ $infoPersonal->blood_group == '3' ? 'selected' : '' }}>B Positive (B+)</option>
+                                                        <option value="4" {{ $infoPersonal->blood_group == '4' ? 'selected' : '' }}>B Negative (B-)</option>
+                                                        <option value="5" {{ $infoPersonal->blood_group == '5' ? 'selected' : '' }}>AB Positive (AB+)</option>
+                                                        <option value="6" {{ $infoPersonal->blood_group == '6' ? 'selected' : '' }}>AB Negative (AB-)</option>
+                                                        <option value="7" {{ $infoPersonal->blood_group == '7' ? 'selected' : '' }}>O Positive (O+)</option>
+                                                        <option value="8" {{ $infoPersonal->blood_group == '8' ? 'selected' : '' }}>O Negative (O-)</option>
+                                                    </select>                                                    
                                                     @error('blood_group')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -218,7 +218,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-md-7">
-                                                    <select name="mast_qualification_id" id="mast_qualification_id" class="form-control form-select @error('mast_qualification_id') is-invalid @enderror">
+                                                    <select name="mast_qualification_id" id="mast_qualification_id" class="form-control default-select @error('mast_qualification_id') is-invalid @enderror">
                                                         <option disabled selected>Please select</option>
                                                         @foreach ($qualification as $item)
                                                             <option value="{{ $item->id }}" {{ isset($infoAcademic) && $infoAcademic->mast_qualification_id == $item->id ? 'selected' : '' }}>
@@ -285,7 +285,7 @@
                                 </div>
                             </div>
                             <!-- Step 3 input fields {Business Information}-->
-                            @if (!is_null($infoCompany) && $user->member_type_id != 1 || is_null($user->member_type_id))
+                            @if (!is_null($infoCompany) && $user->member_type_id != 5 || is_null($user->member_type_id))
                             <div class="accordion__item">
                                 <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseThree" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
@@ -387,7 +387,7 @@
                             </div>
                             @endif
                             <!-- Step 4 input fields {Student Information}-->
-                            @if (!is_null($infoStudent) && $user->member_type_id == 1 || is_null($user->member_type_id) )
+                            @if (!is_null($infoStudent) && $user->member_type_id == 5 || is_null($user->member_type_id) )
                             <div class="accordion__item">
                                 <div class="accordion__header accordion__header--primary collapsed" data-toggle="collapse" data-target="#rounded-stylish_collapseFour" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
@@ -460,14 +460,191 @@
                                 </div>
                             </div>
                             @endif
-                            <!-- Step 5 input fields {Other Information}-->
+                            <!-- Step 5 input fields {Document}-->
                             <div class="accordion__item">
                                 <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseFive" aria-expanded="false">
+                                    <span class="accordion__header--icon"></span>
+                                    <span class="accordion__header--text">Documents</span>
+                                    <span class="accordion__header--indicator"></span>
+                                </div>
+                                <div id="rounded-stylish_collapseFive" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                    <!--__________________ Documents  __________________-->
+                                    <div class="row pb-0 accordion__body--text">
+                                        <div class="col-md-12 mb-4">
+                                            <h6 class="text-danger text-center">10 MB Attachment Limit</h6>
+                                        </div>
+                                        <div class="col-md-12 mb-2">
+                                            <div class="row">
+                                                <label for="edu_certificate" class="form-label col-md-4">Educational Certificates
+                                                    (SSC/HSC/ID/IAR/ARCH)<span class="text-danger">*</span></label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="edu_certificate" id="edu_certificate" class="form-control @error('edu_certificate') is-invalid @enderror" value="{{old('edu_certificate')}}">
+                                                    @error('edu_certificate')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->edu_certificate))
+                                                        <a href="{{ route('document-edu-certificate.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Education Certificate
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id == 5) style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="trade_licence" class="form-label col-md-4">Valid Trade Lisence<span class="text-danger">*</span></label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="trade_licence" id="trade_licence" class="form-control @error('trade_licence') is-invalid @enderror" value="{{old('trade_licence')}}">
+                                                    @error('trade_licence')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->trade_licence))
+                                                        <a href="{{ route('document-trade-licence.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Trade Licence
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id == 5) style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="tin_certificate" class="form-label col-md-4">Valid TIN Certificate<span class="text-danger">*</span></label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="tin_certificate" id="tin_certificate" class="form-control @error('tin_certificate') is-invalid @enderror" value="{{old('tin_certificate')}}">
+                                                    @error('tin_certificate')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->tin_certificate))
+                                                        <a href="{{ route('document-tin-certificate.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> TIN Certificate
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id == 5) style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="nid_photo_copy" class="form-label col-md-4">NID Photo Copy<span class="text-danger">*</span></label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="nid_photo_copy" id="nid_photo_copy" class="form-control @error('nid_photo_copy') is-invalid @enderror" value="{{old('nid_photo_copy')}}">
+                                                    @error('nid_photo_copy')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->nid_photo_copy))
+                                                        <a href="{{ route('document-nid-photo-copy.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> NID Photo Copy
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id != 5) style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="stu_id_copy" class="form-label col-md-4">Copy of Student ID<span class="text-danger">*</span></label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="stu_id_copy" id="stu_id_copy" class="form-control @error('stu_id_copy') is-invalid @enderror" value="{{old('stu_id_copy')}}">
+                                                    @error('stu_id_copy')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->stu_id_copy))
+                                                        <a href="{{ route('document-stu-id-copy.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Student Id Copy
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id == 1 || $user->member_type_id == 2)  @else style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="experience_certificate" class="form-label col-md-4">Job Experience Certificate</label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="experience_certificate" id="experience_certificate" class="form-control @error('experience_certificate') is-invalid @enderror" value="{{old('experience_certificate')}}">
+                                                    @error('experience_certificate')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                @if (!empty($user->infoDocument->experience_certificate))
+                                                    <a href="{{ route('document-experience-certificate.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                        <i class="flaticon-381-download"></i> Experience Certificate
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-2" @if($user->member_type_id != 5) style="display: none;" @endif>
+                                            <div class="row">
+                                                <label for="recoment_letter" class="form-label col-md-4">Recomendation Letter</label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="recoment_letter" id="recoment_letter" class="form-control @error('recoment_letter') is-invalid @enderror" value="{{old('recoment_letter')}}">
+                                                    @error('recoment_letter')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                @if (!empty($user->infoDocument->recoment_letter))
+                                                    <a href="{{ route('document-recoment-letter.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                        <i class="flaticon-381-download"></i> Recomend Letter
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-12 mb-2" id="passport_photo">
+                                            <div class="row">
+                                                <label for="passport_photo" class="form-label col-md-4">Passport size photo</label>
+                                                <div class="col-md-5">
+                                                    <input type="file" name="passport_photo" id="passport_photo" class="form-control @error('passport_photo') is-invalid @enderror" value="{{old('passport_photo')}}">
+                                                    @error('passport_photo')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->passport_photo))
+                                                        <a href="{{ route('document-passport-photo.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Passport Photo
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Step 6 input fields {Other Information}-->
+                            <div class="accordion__item">
+                                <div class="accordion__header accordion__header--primary {{ Session::has('messege') ? '' :'collapsed'}}" data-toggle="collapse" data-target="#rounded-stylish_collapseSix" aria-expanded="false">
                                     <span class="accordion__header--icon"></span>
                                     <span class="accordion__header--text">Other Information</span>
                                     <span class="accordion__header--indicator"></span>
                                 </div>
-                                <div id="rounded-stylish_collapseFive" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
+                                <div id="rounded-stylish_collapseSix" class="accordion__body collapse {{ Session::has('messege') ? 'show' :''}}" data-parent="#accordion-eleven" style="">
                                     <!--__________________ Student  __________________-->
                                     <div class="row pb-0 accordion__body--text">
                                         <div class="col-lg-12">

@@ -88,10 +88,6 @@ use RuntimeException;
  * @method static static minute($minutes = 1) Alias for minutes().
  * @method static static seconds($seconds = 1) Create instance specifying a number of seconds for date interval or replace the interval by the given a number of seconds if called on an instance.
  * @method static static second($seconds = 1) Alias for seconds().
- * @method static static milliseconds($milliseconds = 1) Create instance specifying a number of milliseconds for date interval or replace the interval by the given a number of milliseconds if called on an instance.
- * @method static static millisecond($milliseconds = 1) Alias for milliseconds().
- * @method static static microseconds($microseconds = 1) Create instance specifying a number of microseconds for date interval or replace the interval by the given a number of microseconds if called on an instance.
- * @method static static microsecond($microseconds = 1) Alias for microseconds().
  * @method $this roundYear(float $precision = 1, string $function = "round") Round the current instance year with given precision using the given function.
  * @method $this roundYears(float $precision = 1, string $function = "round") Round the current instance year with given precision using the given function.
  * @method $this floorYear(float $precision = 1) Truncate the current instance year with given precision.
@@ -667,8 +663,6 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             }
         }
 
-        $optionsSet = false;
-
         foreach ($arguments as $argument) {
             $parsedDate = null;
 
@@ -692,9 +686,8 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
                 $this->setEndDate($parsedDate);
             } elseif ($this->recurrences === null && $this->endDate === null && is_numeric($argument)) {
                 $this->setRecurrences($argument);
-            } elseif (!$optionsSet && (\is_int($argument) || $argument === null)) {
-                $optionsSet = true;
-                $this->setOptions(((int) $this->options) | ((int) $argument));
+            } elseif ($this->options === null && (\is_int($argument) || $argument === null)) {
+                $this->setOptions($argument);
             } else {
                 throw new InvalidPeriodParameterException('Invalid constructor parameters.');
             }
@@ -1816,10 +1809,6 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             case 'minute':
             case 'seconds':
             case 'second':
-            case 'milliseconds':
-            case 'millisecond':
-            case 'microseconds':
-            case 'microsecond':
                 return $this->setDateInterval((
                     // Override default P1D when instantiating via fluent setters.
                     [$this->isDefaultInterval ? new CarbonInterval('PT0S') : $this->dateInterval, $method]

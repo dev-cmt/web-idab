@@ -19,7 +19,7 @@
             <div id="lightgallery" class="row">
                 @if (count($posts->images)>0)
                     @foreach ($posts->images as $img)
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2" data-responsive="{{asset('public/images/gallery')}}/img/{{ $img->image}}" data-src="{{asset('public/images/gallery')}}/img/{{ $img->image}}" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2" data-responsive="{{asset('public/images/gallery')}}/img/{{ $img->image}}" data-src="{{asset('public/images/gallery')}}/img/{{ $img->image}}" data-sub-html="<h4>IDAB</h4><p></p>">
                         <div class="thumbnail-classic">
                             <a href="" class="thumbnail-classic-figure"> <img class="img-responsive" src="{{asset('public/images/gallery')}}/img/{{ $img->image}}"></a>
                             <div class="thumbnail-classic-caption">

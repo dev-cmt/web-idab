@@ -17,6 +17,8 @@ use Nette;
  */
 final class FileSystem
 {
+	use Nette\StaticClass;
+
 	/**
 	 * Creates a directory if it does not exist, including parent directories.
 	 * @throws Nette\IOException  on error occurred

@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'Membership Requirements')
+@section('title', 'Types of Membership')
 @section('content')
 @include('frontend.layouts.partial.banner')
     <!-- ======= Frequently Asked Questions Section ======= -->
@@ -7,7 +7,7 @@
         <div class="container">
 
             <div class="section-title">
-                <h2 class="reveal">Frequently Asked Questions</h2>
+                <!--<h2 class="reveal">Frequently Asked Questions</h2>-->
         
             </div>
 
@@ -29,7 +29,7 @@
                         <i class="bi bi-card-text me-3"></i>Trade member
                     </button>
                     <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-6" type="button">
-                        <i class="bi bi-card-text me-3"></i>Corporate member
+                        <i class="bi bi-card-text me-3"></i>Corporate Partner
                     </button>
                 </div>
                 <div class="col-lg-8">
@@ -145,7 +145,7 @@
                                 <!--    </div>-->
                                 <!--</div>-->
                                 <div class="col-md-6">
-                                    <h3 class="mb-4">Corporate Member</h3>
+                                    <h3 class="mb-4">Corporate Partner</h3>
                                     <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Industrial Business</p>
                                     <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
                                     <p><i class="bi bi-check-lg me-3"></i>3.Job Experience Certificate </p>
