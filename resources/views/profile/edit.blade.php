@@ -585,13 +585,13 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                @if (!empty($user->infoDocument->experience_certificate))
-                                                    <a href="{{ route('document-experience-certificate.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
-                                                        <i class="flaticon-381-download"></i> Experience Certificate
-                                                    </a>
-                                                @endif
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->experience_certificate))
+                                                        <a href="{{ route('document-experience-certificate.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Experience Certificate
+                                                        </a>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mb-2" @if($user->member_type_id != 5) style="display: none;" @endif>
@@ -605,13 +605,13 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                @if (!empty($user->infoDocument->recoment_letter))
-                                                    <a href="{{ route('document-recoment-letter.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
-                                                        <i class="flaticon-381-download"></i> Recomend Letter
-                                                    </a>
-                                                @endif
+                                                <div class="col-md-3">
+                                                    @if (!empty($user->infoDocument->recoment_letter))
+                                                        <a href="{{ route('document-recoment-letter.download', $user->infoDocument->id) }}" target="_blank" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                                            <i class="flaticon-381-download"></i> Recomend Letter
+                                                        </a>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-12 mb-2" id="passport_photo">
@@ -634,6 +634,13 @@
                                                 </div>
                                             </div>
                                         </div> --}}
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

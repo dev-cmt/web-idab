@@ -47,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'is_admin',
         'approve_by',
+        'index',
     ];
 
     public function memberType()

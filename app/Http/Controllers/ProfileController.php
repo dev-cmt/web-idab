@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
@@ -301,6 +302,60 @@ class ProfileController extends Controller
             $infoOther->discord_url = $request->discord_url;
             $infoOther->save();
         }
+        /*______________________/ InfoDocument \___________________*/
+        $userId = $user->id;
+        function uploadFile($request, $fieldName, $subfolder, $userId, $oldFilePath = null) {
+            if ($request->hasFile($fieldName)) {
+                if ($oldFilePath && File::exists($oldFilePath)) {
+                    File::delete($oldFilePath);
+                }
+
+                $uploadedFile = $request->file($fieldName);
+                $extension = $uploadedFile->getClientOriginalExtension();
+                $filenameToStore = strtoupper($fieldName) . '_' . time() . '.' . $extension;
+
+                $folderPath = public_path("document/member/{$userId}/{$subfolder}");
+                
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0777, true);
+                }
+
+                $newFilePath = "{$folderPath}/{$filenameToStore}";
+                $uploadedFile->move($folderPath, $filenameToStore);
+
+                return $newFilePath;
+            } elseif ($oldFilePath) {
+                if (File::exists($oldFilePath)) {
+                    File::delete($oldFilePath);
+                }
+            }
+
+            return $oldFilePath;
+        }
+
+        
+        $infoDocument = $user->infoDocument;
+        if ($request->hasFile('trade_licence')) {
+            $infoDocument->trade_licence = uploadFile($request, 'trade_licence', 'trade', $userId, $infoDocument->trade_licence);
+        } elseif ($request->hasFile('tin_certificate')) {
+            $infoDocument->tin_certificate = uploadFile($request, 'tin_certificate', 'tin', $userId, $infoDocument->tin_certificate);
+        } elseif ($request->hasFile('nid_photo_copy')) {
+            $infoDocument->nid_photo_copy = uploadFile($request, 'nid_photo_copy', 'nid', $userId, $infoDocument->nid_photo_copy);
+        } elseif ($request->hasFile('passport_photo')) {
+            $infoDocument->passport_photo = uploadFile($request, 'passport_photo', 'passport', $userId, $infoDocument->passport_photo);
+        } elseif ($request->hasFile('edu_certificate')) {
+            $infoDocument->edu_certificate = uploadFile($request, 'edu_certificate', 'edu', $userId, $infoDocument->edu_certificate);
+        } elseif ($request->hasFile('experience_certificate')) {
+            $infoDocument->experience_certificate = uploadFile($request, 'experience_certificate', 'experience', $userId, $infoDocument->experience_certificate);
+        } elseif ($request->hasFile('stu_id_copy')) {
+            $infoDocument->stu_id_copy = uploadFile($request, 'stu_id_copy', 'stu', $userId, $infoDocument->stu_id_copy);
+        } elseif ($request->hasFile('recoment_letter')) {
+            $infoDocument->recoment_letter = uploadFile($request, 'recoment_letter', 'recommend', $userId, $infoDocument->recoment_letter);
+        }
+
+        $infoDocument->status = 1;
+        $infoDocument->member_id = $userId;
+        $infoDocument->save();
 
         $notification = array('messege' => 'information_edit successfully!', 'alert-type' => 'update');
         return redirect()->back()->with($notification);
