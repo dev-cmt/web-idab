@@ -81,7 +81,7 @@
         
         @if (count($event) > 0)
         <!-- ======= Upcoming Events Section======= -->
-        <section id="events" class="events">
+        <section id="events" class="events animate__fadeInUp">
             <div class="container">
 
                 <div class="section-title">
@@ -101,7 +101,7 @@
         @endif
 
         <!-- ======= Services Section ======= -->
-        {{-- <section id="services" class="services">
+        {{-- <section id="services" class="services animate__fadeInUp">
             <div class="container">
 
                 <div class="section-title">
@@ -154,7 +154,7 @@
             <div class="container">
 
                 <div class="row no-gutters">
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-emoji-smile"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($user)}}" data-purecounter-duration="1"
@@ -163,7 +163,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-journal-richtext"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($event)}}" data-purecounter-duration="1"
@@ -172,7 +172,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-headset"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($contact)}}" data-purecounter-duration="1"
@@ -181,7 +181,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-people"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($executive)}}" data-purecounter-duration="1"
@@ -230,7 +230,7 @@
         @endif--><!-- End Team Section -->
 
          <!--======= Clients Section ======= -->
-        <section id="clients" class="clients mt-5">
+        <section id="clients" class="clients mt-5 animate__fadeInUp">
             <div class="container">
                  <div class="section-title">
                     <h2 class="reveal">Corporate Partners</h2>
@@ -266,7 +266,7 @@
         </section><!-- End Clients Section 
 
         <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
+        <section id="contact" class="contact animate__fadeInUp">
             <div class="container">
                 <div class="section-title">
                     <h2 class="reveal">Contact</h2>
