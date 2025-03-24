@@ -1,0 +1,4 @@
+[28-Jul-2024 09:15:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/idabcom/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/idabcom/public_html/config/database.php on line 18

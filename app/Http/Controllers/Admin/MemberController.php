@@ -36,7 +36,7 @@ class MemberController extends Controller
      */
     public function index($id)
     {
-        $data = User::where('member_type_id', $id)->where('status', 1)->get();
+        $data = User::where('member_type_id', $id)->where('status', 1)->orderBy('member_code', 'asc')->get();
         $memberType = MemberType::where('id', $id)->first()->name;
         return view('layouts.pages.member.index',compact('data', 'memberType'));
     }
@@ -281,13 +281,22 @@ class MemberController extends Controller
 
             // Return message
             return response()->json(['user' => $user], 200);
-        } catch (PostTooLargeException $e) {
+        } catch (\Exception $e) {
             DB::rollback();
-            \Log::error('Cash transaction error: ' . $e->getMessage());
-            return response()->json([
-                'error' => 'File size exceeds the limit',
-                'message' => 'The uploaded file size exceeds the allowed limit.',
-            ], 422);
+            \Log::error('Error: ' . $e->getMessage());
+            // Depending on the type of exception, handle accordingly
+            if ($e instanceof PostTooLargeException) {
+                return response()->json([
+                    'error' => 'File size exceeds the limit',
+                    'message' => 'The uploaded file size exceeds the allowed limit.',
+                ], 422);
+            } else {
+                // Handle other types of exceptions here
+                return response()->json([
+                    'error' => 'Internal Server Error',
+                    'message' => 'An unexpected error occurred. Please try again later.',
+                ], 500);
+            }
         }
         
     }

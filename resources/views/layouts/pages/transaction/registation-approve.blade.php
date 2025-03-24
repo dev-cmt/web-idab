@@ -19,7 +19,7 @@
                                 <th>Receive Info.</th>
                                 <th>Transfer</th>
                                 <th>Payment</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-right">Approval</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,7 +72,7 @@
                                 <th>Payment Date</th>
                                 <th>Amount</th>
                                 <th>Slip</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-right">Approval</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -132,7 +132,7 @@
                                 <th>Payment</th>
                                 <th>Receive By</th>
                                 <th>Status</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-right">Approval</th>
                             </tr>
                             </thead>
                             <tbody>

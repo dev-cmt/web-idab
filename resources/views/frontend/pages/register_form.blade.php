@@ -84,63 +84,69 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div id="tab-pane-1">
-                                <h3 class="mb-4">Professional Member</h3>
-                                <p><i class="bi bi-check-lg me-3"></i>1.One Year Diloma/4 Year Experience</p></p></p>
-                                <p><i class="bi bi-check-lg me-3"></i>2. B. Arch/1 Year Experience</p></p>
-                                <p><i class="bi bi-check-lg me-3"></i>3.Int. Architecture/2 Years Experience</p>
-                                <p><i class="bi bi-check-lg me-3"></i>4.Passport Size Picture</p>
-                                <p><i class="bi bi-check-lg me-3"></i>5.Educational Certificate (SSC/HSC)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>6.Educational Certificate (ID, ARCH, IAR)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>7.Job Experience Certificate </p>
-                                <p><i class="bi bi-check-lg me-3"></i>8.Valid Trade License</p>
-                                <p><i class="bi bi-check-lg me-3"></i>9.Valid Tin Certificate</p>
-                                <p><i class="bi bi-check-lg me-3"></i>10.NID</p>
+                            <div id="tab-pane-1" style="font-size:12px;">
+                                <h5 class="mb-4">Professional Member</h5>
+                                <h6 class="mb-4">Eligibility for Professional membership</h6>
+                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute with 5 years’ experience</p>
+                                    <h6>Documents</h6>
+                                <p><i class="bi bi-check-lg me-3"></i>1. Last Educational certificate (Architect, Interior Design, Diploma Architect)</p>
+                                <p><i class="bi bi-check-lg me-3"></i>2. Passport size picture with white background</p>
+                                <p><i class="bi bi-check-lg me-3"></i>3. Trade license/ Job Certificate with 5 years’ experience.</p>
+                                <p><i class="bi bi-check-lg me-3"></i>4. Updated TIN paper</p>
+                                <p><i class="bi bi-check-lg me-3"></i>5. NID</p>
                                 <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
                             </div>
-                            <div id="tab-pane-2">
-                                <h3 class="mb-4">Associate Member</h3>
-                                <p><i class="bi bi-check-lg me-3"></i>1.Graduation in Any Subject</p>
-                                <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
-                                <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (SSC/HSC)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>4.Job Experience Certificate</p>
-                                <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
-                                <p><i class="bi bi-check-lg me-3"></i>6.NID (They don't have voting rights.)</p>
+                            <div id="tab-pane-2" style="font-size:12px;">
+                                <h5 class="mb-4">Associate Member</h5>
+                                   <h6 class="mb-4">Eligibility for Associate membership</h6>
+                                    <p>•	Must be graduation from any reputed university</p>
+                                    <p>•	Doing Interior design Business last 5 years</p>
+                                    <h6>Documents</h6>
+                                    <p><i class="bi bi-check-lg me-3"></i>1. Last Educational certificate (Any Discipline)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>2. Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>3. Updated Trade License as Interior design Company</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>4. Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>5. NID</p>
                                 <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
                             </div>
-                            <div id="tab-pane-3">
-                                <h3 class="mb-4">Candidate Member</h3>
-                                <p><i class="bi bi-check-lg me-3"></i>1.B.Arch</p>
-                                <p><i class="bi bi-check-lg me-3"></i>2.OneYear Diploma in Related Subject</p>
-                                <p><i class="bi bi-check-lg me-3"></i>1.Passport Size Picture</p>
-                                <p><i class="bi bi-check-lg me-3"></i>2.Educational Certificate (SSC/HSC)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>3.Educational Certificate (ID, ARCH, IAR)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
-                                <p><i class="bi bi-check-lg me-3"></i>5.Valid TIN Certificate</p>
-                                <p><i class="bi bi-check-lg me-3"></i>6. NID</p>
+                            <div id="tab-pane-3" style="font-size:12px;">
+                                <h5 class="mb-4">Candidate Member</h5>
+                                 <h6 class="mb-4">Eligibility for Candidate membership</h6>
+                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                    <h6>Documents</h6>
+                                    <p><i class="bi bi-check-lg me-3"></i>1. Last Educational certificate (Architect, Interior design, Diploma Architect)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>2. Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>3. Trade license/ Job Certificate</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>4. Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>5. NID</p>
                                 <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
-                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
                             </div>
-                            <div id="tab-pane-4">
-                                <h3 class="mb-4">Trade Member</h3>
-                                <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Interior Business</p>
-                                <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
-                                <p><i class="bi bi-check-lg me-3"></i>3.Valid Trade License</p>
-                                <p><i class="bi bi-check-lg me-3"></i>4.Valid Tin Certificate</p>
-                                <p><i class="bi bi-check-lg me-3"></i>5.NID (They don't have voting rights.)</p>
+                            <div id="tab-pane-4" style="font-size:12px;">
+                                <h5 class="mb-4">Trade Member</h5>
+                       <h6 class="mb-4">Eligibility for Trade membership</h6>
+                                    <p>•	Must be graduation from any reputed university</p>
+                                    <p>•	Must do business as Importer, shop owner, trader on Interior design materials</p>
+                                    <h6>Documents</h6>
+                                    <p><i class="bi bi-check-lg me-3"></i>1. Last Educational certificate (Any Discipline)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>2. Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>3. Updated Trade License</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>4. Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>5. NID</p>
                                 <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 10000/-)</p>
-                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
                             </div>
-                            <div id="tab-pane-5">
-                                <h4 class="mb-4"><i class="bi bi-amd text-danger"></i>First 100 Member 50% Discount</h4>
+                            <div id="tab-pane-5" style="font-size:12px;">
+                                <h5 class="mb-4"><i class="bi bi-amd text-danger"></i>First 100 Member 50% Discount</h5>
                                 <h5 class="mb-4">Student Member</h5>
-                                <p><i class="bi bi-check-lg me-3"></i>1.Studentship in Relative Subject</p>
-                                <p><i class="bi bi-check-lg me-3"></i>2. Educational Certificate (SSC/HSC)</p>
-                                <p><i class="bi bi-check-lg me-3"></i>3. Copy of Student ID</p>
+                                  <h6 class="mb-4">Eligibility for Student membership</h6>
+                                    <p>•	Must be Student of Bachelor of Architect, Interior Design, Diploma Architect form any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                    <h6>Documents</h6>
+                                    <p><i class="bi bi-check-lg me-3"></i>1. Last Educational certificate</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>2. Student ID copy (both side)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>3. Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>4. Relevant head of department’s acknowledgment letter.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>5. NID copy</p></p>
                                 <p class="mb-4">(Registration Fee 1000/-)</p>
-                                <a href="{{route('page.requirements')}}" class="btn btn-info btn-sm">Read More</a>
+                               
                             </div>
 
                         </div>
@@ -570,8 +576,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="educational_certificates">
                                 <div class="row">
-                                    <label for="edu_certificate" class="form-label col-md-5">Educational Certificates
-                                        (SSC/HSC/ID/IAR/ARCH)<span class="text-danger">*</span></label>
+                                    <label for="edu_certificate" class="form-label col-md-5">Educational Certificates<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="edu_certificate" id="edu_certificate" class="form-control @error('edu_certificate') is-invalid @enderror" value="{{old('edu_certificate')}}">
                                         @error('edu_certificate')
@@ -597,7 +602,7 @@
                             </div>
                             <div class="col-md-12 mb-2" id="trade_lisence">
                                 <div class="row">
-                                    <label for="trade_licence" class="form-label col-md-5">Valid Trade Lisence<span class="text-danger">*</span></label>
+                                    <label for="trade_licence" class="form-label col-md-5">Valid Trade Lisence/Job Experience Certificate<span class="text-danger">*</span></label>
                                     <div class="col-md-7">
                                         <input type="file" name="trade_licence" id="trade_licence" class="form-control @error('trade_licence') is-invalid @enderror" value="{{old('trade_licence')}}">
                                         @error('trade_licence')
@@ -608,7 +613,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-2" id="experience_certificate">
+                            {{--<div class="col-md-12 mb-2" id="experience_certificate">
                                 <div class="row">
                                     <label for="experience_certificate" class="form-label col-md-5">Job Experience Certificate</label>
                                     <div class="col-md-7">
@@ -620,7 +625,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="col-md-12 mb-2" id="tin_certificate">
                                 <div class="row">
                                     <label for="tin_certificate" class="form-label col-md-5">Valid TIN Certificate<span class="text-danger">*</span></label>

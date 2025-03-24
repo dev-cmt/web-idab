@@ -31,6 +31,15 @@ class FrontViewController extends Controller
     {
         return view('frontend.pages.about-us');
     }
+    
+    public function message()
+    {
+        return view('frontend.pages.message');
+    }
+    public function memorandum()
+    {
+        return view('frontend.pages.memorandum');
+    }
     /**________________________________________________________________________________________
      * Committee Menu Pages
      * ________________________________________________________________________________________
@@ -46,12 +55,14 @@ class FrontViewController extends Controller
      * Members Menu Pages
      * ________________________________________________________________________________________
      */
+
     public function member($id)
     {
-        $data = User::orderBy('index', 'asc')->where('member_type_id', $id)->where('status', 1)->get();
+        $data = User::where('member_type_id', $id)->where('status', 1)->orderByRaw('ISNULL(`index`), `index` ASC')->get();
+    
         $membersType = MemberType::where('id', $id)->first()->name;
-
-        return view('frontend.pages.member',compact('data', 'membersType'));
+    
+        return view('frontend.pages.member', compact('data', 'membersType'));
     }
     /**________________________________________________________________________________________
      * Why-be-member Menu Pages
@@ -68,6 +79,14 @@ class FrontViewController extends Controller
     public function requirements()
     {
         return view('frontend.pages.requirements');
+    }
+    public function requirementDetails()
+    {
+        return view('frontend.pages.requirements_details');
+    }
+    public function requirementStudent()
+    {
+        return view('frontend.pages.requirements_student');
     }
     /**________________________________________________________________________________________
      * Gallery Menu Pages
@@ -120,6 +139,27 @@ class FrontViewController extends Controller
     public function corporatePartners()
     {
         return view('frontend.pages.corporate-partners');
+    }
+    /**________________________________________________________________________________________
+     * Blogs Menu Pages
+     * ________________________________________________________________________________________
+     */
+    public function blogs()
+    {
+        return view('frontend.pages.blogs');
+    }
+    public function blogShow()
+    {
+        return view('frontend.pages.blogs_details');
+    }
+    
+    public function blogShowdetail()
+    {
+        return view('frontend.pages.blogs_details_two');
+    }
+     public function blogShowdetailTwo()
+    {
+        return view('frontend.pages.blogs_details_three');
     }
     /**________________________________________________________________________________________
      * Contact Menu Pages

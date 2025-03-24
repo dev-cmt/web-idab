@@ -17,7 +17,7 @@
                                 <th>Contact Info.</th>
                                 <th>Documents</th>
                                 <th>Status</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-right">Approval</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,7 +107,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('transaction-registation-approve.index') }}">
-                                            @if ($row->paymentDetails->status == 1)
+                                            @if (optional($row->paymentDetails)->status == 1)
                                                 <span class="badge light badge-success">
                                                     <i class="fa fa-circle text-success mr-1"></i> Payment
                                                 </span>
@@ -120,7 +120,7 @@
                                     <td>
                                         <div class="d-flex justify-content-end align-items-center">
                                             <form action="{{ route('member-approve.update', $row->id) }}" method="post">
-                                                <button class="btn btn-sm btn-info p-1 m-1">Approve</button>
+                                            <button class="btn btn-sm btn-info p-1 m-1" {{ optional($row->paymentDetails)->status != 1 ? 'disabled' : '' }}>Approve</button>
                                                 @csrf
                                                 @method('PATCH')
                                             </form>

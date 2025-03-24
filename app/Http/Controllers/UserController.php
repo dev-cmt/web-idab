@@ -52,7 +52,7 @@ class UserController extends Controller
         $customers = $data->where('is_admin', false)->count();
 
         $userData = ['customers' => $customers, 'admin' => $admin, 'inactive' => $inactiveUsers];
-        $users = User::with('roles')->latest()->paginate(20);
+        $users = User::with('roles')->get();
 
         return view('user.index', compact(['users', 'userData']));
     }
@@ -206,6 +206,8 @@ class UserController extends Controller
             'status' => $request->status,
             'member_type_id' => $request->member_type_id,
             'committee_type_id' => $request->committee_type_id,
+            'member_code' => $request->member_code,
+            'index' => $request->index,
         ]);
         $user->syncRoles($request->roles);
 

@@ -11,25 +11,25 @@
         <nav id="navbar" class="navbar mb-0">
             <ul>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == '/') ? 'active' : '' }}" href="{{Route('/')}}">Home</a></li>
-                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.about-us') ? 'active' : '' }}" href="{{Route('page.about-us')}}">About</a></li>
-                <!-- <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
+                <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.about-us') ? 'active' : '' }}" href="{{Route('page.about-us')}}">About</a></li>-->
+                 <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Why IDAB?</a></li>
-                        <li><a href="#">Vision & Mission</a></li>
-                        <li><a href="#">Objectives</a></li>
-                        <li><a href="#">Why be a Member?</a></li>
-                        <li><a href="#">Membership Requirements</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li> 
+                        <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.about-us') ? 'active' : '' }}" href="{{Route('page.about-us')}}">About IDAB</a></li>
+                        <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.memorandum') ? 'active' : '' }}" href="{{Route('page.memorandum')}}">Memorandum & Articles of Association</a></li>
+                        <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.message') ? 'active' : '' }}" href="{{Route('page.message')}}">Message from the President</a></li>
+                        <!--<li><a href="#">Why be a Member?</a></li>-->
+                        <!--<li><a href="#">Membership Requirements</a></li>-->
+                        <!--<li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>-->
+                        <!--    <ul>-->
+                        <!--        <li><a href="#">Deep Drop Down 1</a></li>-->
+                        <!--        <li><a href="#">Deep Drop Down 2</a></li>-->
+                        <!--        <li><a href="#">Deep Drop Down 3</a></li>-->
+                        <!--        <li><a href="#">Deep Drop Down 4</a></li>-->
+                        <!--        <li><a href="#">Deep Drop Down 5</a></li>-->
+                        <!--    </ul>-->
+                        <!--</li> -->
                     </ul>
-                </li>-->
+                </li>
                 <li class="dropdown"><a href="#"><span>Committee</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         @foreach ($committeeType as $item)
@@ -46,9 +46,10 @@
                 </li>
                 <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.why-be-member') ? 'active' : '' }}" href="{{Route('page.why-be-member')}}">Why be a Member</a></li>-->
                 <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.requirements') ? 'active' : '' }}" href="{{Route('page.requirements')}}">Requirements</a></li>-->
-                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-show', 1)}}">Gallery</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallery</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.events') ? 'active' : '' }}" href="{{Route('page.events')}}">Events</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.corporate-partners') ? 'active' : '' }}" href="{{Route('page.corporate-partners')}}">Job Apply</a></li>
+                <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.blogs') ? 'active' : '' }}" href="{{Route('page.blogs')}}">News</a></li>
                 <li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.contact-us') ? 'active' : '' }}" href="{{Route('page.contact-us')}}">Contact</a></li>
                 @guest
                     <a class="getstarted" href="{{Route('member_register.create')}}">Become A Member</a>

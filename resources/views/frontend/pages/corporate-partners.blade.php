@@ -10,7 +10,7 @@
             </div>
             <div class="text-center">
                 <p>
-                <strong>Phone:</strong> 01725151515<br>
+                <strong>Phone:</strong> +88-01725151515<br>
                 <strong>Email:</strong> <a href="mailto:contact.idab@gmail.com" class="text-dark"> contact.idab@gmail.com</a><br>
                 
                 <a href="mailto:contact.idab@gmail.com" class="btn btn-primary mt-4" >Apply Here</a>

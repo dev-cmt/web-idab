@@ -5,8 +5,6 @@
     <link href="{{asset('public/frontend')}}/css/light-gallery.min.css" rel="stylesheet">
 @endsection
 @section('content')
-
-
     <!-- ======= Contact Section ======= -->
     <div style="background: url({{asset('public/images')}}/pages/gallery_img.jpg);min-height: 100%;background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
     <section id="contact" class="contact" style="padding-top: 120px">

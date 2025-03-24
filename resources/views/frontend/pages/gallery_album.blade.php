@@ -38,7 +38,7 @@
                                     <a href="{{route('page.gallery-show', $row ->id)}}"><img class="img-fluid" src="{{asset('public/images')}}/gallery/{{ $row->cover }}" alt=""></a>
                                 </div>
                                 <div class="new-arrival-content mt-2">
-                                    <h4>Picture</h4>
+                                    <h6>{{$row->title}}</h6>
                                     <p class="text-uppercase description_2 mb-2"></p>
                                     <div class="d-flex justify-content-between">
                                         <label class="text-primary">Event Date:</label><span>{{date("j F, Y", strtotime($row->date))}}</span>

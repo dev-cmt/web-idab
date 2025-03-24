@@ -9,25 +9,35 @@
                 <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch ">
                     <div class="content d-flex flex-column justify-content-center">
                         <h3>About IDAB</h3>
-                        <h4>History</h4>
-                        <p>IDAB (Interior designer’s Association Of Bangladesh) founded in 2019 with some young and energetic Bangladeshi Interior Designers to represent the Interior designers & interior design industry as a whole of Bangladesh.</p>
-                        <h4 class="mt-4">Vision & Mission</h4>
-                        <p>To elevate the Interior Design Industry in Bangladesh to the highest possible level of professionalism and integrity. Our mission is to bring together professionals in the field of Interior Architecture/Design, and to work towards a common goal of raising awareness for good design; in order to create an environment of sharing of ideas and experiences for the benefit of members and the industry. We also aim to mentor and nurture young talent so that they may be able to lead the industry towards greater heights and to encourage lifelong learning and continual upgrading of skills and knowledge for all members.</p>
+                        <p>The Interior Designers Association of Bangladesh (IDAB) was founded in 2019 by a group of visionary and dedicated interior designers committed to advancing the interior design profession in Bangladesh. As the premier association representing the industry, IDAB serves as a collective platform to uphold excellence, foster innovation, and integrate Bangladesh’s rich artistic and architectural heritage into contemporary global design practices.</p><br>
+                        <p>IDAB is dedicated to elevating the standards of the interior design profession, ensuring recognition, and advocating for policies that support its members while nurturing future generations of designers.</p>
+                        <h4 class="mt-4">Vision:</h4>
+                        <p>To establish Bangladesh as a distinguished global leader in interior design by promoting professional excellence, innovation, and the integration of cultural heritage into contemporary design.</p>
                     </div>
                 </div>
                 <div class="image animate__animated animate__fadeInDown col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" style="background: url({{asset('public/images')}}/pages/about.jpg) center center no-repeat;">
                 </div>
                 <div class="col-xl-12 ps-0 ps-lg-5">
-                    <h4 class=" mb-4">Objectives</h4>
-                     <p><strong>1. Professional Development:</strong> We provide opportunities for skill enhancement, knowledge sharing, and learning through workshops, seminars, webinars, and other educational programs. Our goal is to equip our members with the latest trends, techniques, and best practices in the field.<br><br>
-                        <strong>2. Networking and Collaboration:</strong> We organize networking events, design competitions, and social gatherings that facilitate interaction and exchange of ideas. <br><br>
-                        <strong>3. Advocacy and Representation:</strong> IDAB is committed to advocating for the interests of interior designers and promoting their contributions to the built environment. <br><br>
-                        <strong>4. Knowledge Sharing and Research:</strong> We encourage our members to contribute to the body of knowledge by conducting research, publishing articles, and participating in conferences. <br><br>
-                        <strong>5. Sustainable and Inclusive Design:</strong> We aim to promote environmentally responsible design solutions and advocate for accessibility and inclusivity in the built environment. By encouraging sustainable design principles and addressing social and cultural aspects, we contribute to the well-being of individuals and communities.<br><br>
-                        <strong>6. Professional Ethics and Standards:</strong> IDAB upholds high ethical standards within the interior design profession. We promote professionalism, integrity, and excellence among our members. Through our code of ethics, we ensure that interior designers adhere to ethical guidelines and conduct themselves in a manner that upholds the reputation of the profession</p><br>
-                        
-                         <p>As you navigate our website, you will find a wealth of resources, including a directory of our esteemed members, a portfolio of exceptional design projects, and a comprehensive library of articles and publications. Our goal is to provide a valuable online hub where you can find inspiration, seek guidance, and connect with the interior design community in Bangladesh.<br>
-                         Thank you for visiting IDAB. We invite you to join our association and become a part of a dynamic community that is dedicated to shaping the future of interior design in Bangladesh. Together, let's celebrate creativity, innovation, and the transformative power of design.<br><br>Welcome to IDAB, where imagination meets inspiration!</p>
+                    <h4 class=" mb-4">Mission:</h4>
+                     <p><li>To unite professionals in the fields of interior design and architecture, fostering collaboration and knowledge exchange.</li><br>
+                        <li>To advocate for the recognition of interior design as a vital aspect of the built environment.</li><br>
+                        <li>To provide a robust platform for professional development, skill enhancement, and lifelong learning.</li><br>
+                        <li>To mentor and nurture young designers, ensuring the sustainable growth of the industry.</li><br>
+                        <li>To uphold the highest ethical standards and best practices within the profession.</li><br>
+                </div>
+                
+                 <div class="col-xl-12 ps-0 ps-lg-5">
+                    <h4 class=" mb-4">Core Objectives</h4>
+                     <p><strong>1. Professional Development:</strong>IDAB offers continuous education through workshops, seminars, conferences, and certification programs. Our initiatives ensure members stay updated on global trends, emerging technologies, and best industry practices.<br><br>
+                        <strong>2. Networking & Collaboration:</strong>We facilitate meaningful engagement among designers, educators, and industry leaders through networking events, design competitions, and collaborative projects that showcase Bangladeshi design excellence on an international stage.<br><br>
+                        <strong>3. Advocacy & Representation:</strong>IDAB actively engages with policymakers, academic institutions, and industry stakeholders to advocate for professional recognition, accreditation systems, and regulatory support that empower interior designers in Bangladesh.<br><br>
+                        <strong>4. Cultural & Heritage Integration in Design:</strong>IDAB promotes the incorporation of Bengali artistry, craftsmanship, and traditional design elements into modern interior solutions, positioning Bangladesh as a unique and influential design force globally.<br><br>
+                        <strong>5. Sustainability & Inclusive Design:</strong>We champion eco-conscious and socially responsible design principles, encouraging members to integrate sustainability, accessibility, and community well-being into their work.<br><br>
+                        <strong>6. Ethics & Professional Standards:</strong>IDAB upholds the highest ethical standards, ensuring professionalism, integrity, and accountability among its members. Our code of conduct fosters credibility and trust within the industry.</p><br>
+                        <h4 class=" mb-4">Join IDAB & Shape the Future of Interior Design</h4>
+                         <p>As Bangladesh’s leading association for interior designers, IDAB provides an essential platform for career advancement, professional networking, and international recognition. Our members gain access to exclusive industry resources, a directory of esteemed professionals, case studies of exemplary projects, and a wealth of scholarly research and publications.</p>
+                        <p>We welcome interior designers, architects, students, and industry partners to join our dynamic community dedicated to shaping the future of design in Bangladesh and beyond. Let us collectively celebrate creativity, innovation, and the transformative power of interior design.</p>
+                        <p>Welcome to IDAB – Where Heritage Inspires Innovation and Design Transforms Spaces!</p>
                 </div>
             </div>
 

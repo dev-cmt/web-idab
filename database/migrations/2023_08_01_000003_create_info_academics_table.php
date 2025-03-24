@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('mast_qualification_id');
             $table->foreign('mast_qualification_id')->references('id')->on('mast_qualifications')->onDelete('cascade');
             $table->string('subject')->nullable();
-            $table->integer('passing_year')->nullable();
+            $table->string('passing_year')->nullable();
             $table->text('other_qualification')->nullable();
 
             $table->tinyInteger('status')->default(false);

@@ -65,14 +65,14 @@
                 <!-- Sidebar Start -->
                 <div class="col-lg-4">
                     <!-- Search Form Start -->
-                    <div class="mb-5">
+                    <!--<div class="mb-5">
                         <form action="{{ route('page.events-search') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control p-3" placeholder="Keyword">
                                 <button class="btn bg-default text-white px-4"><i class="bi bi-search"></i></button>
                             </div>
                         </form>
-                    </div>
+                    </div>-->
                     <!-- Search Form End -->
     
                     <!-- Category Start -->

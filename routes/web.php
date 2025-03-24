@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\LoseMemberController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\EventPaymentController;
 
 /*
@@ -43,14 +44,18 @@ Route::get('/', [FrontViewController::class, 'welcome'])->name('/');
 Route::get('comming/soon', [FrontViewController::class, 'welcome'])->name('comming_soon');
 //______________ ABOUT US
 Route::get('pages/about-us', [FrontViewController::class, 'about'])->name('page.about-us');
+Route::get('pages/message', [FrontViewController::class, 'message'])->name('page.message');
+Route::get('pages/memorandum', [FrontViewController::class, 'memorandum'])->name('page.memorandum');
 //______________ COMMITTEE
 Route::get('pages/{id}/committee', [FrontViewController::class, 'committee'])->name('page.committee');
 //______________ MEMBERS
 Route::get('pages/{id}/member', [FrontViewController::class, 'member'])->name('page.member');
 //______________ WHY BE MEMBER
 Route::get('pages/why-be-member',[FrontViewController::class,'whyBeMember'])->name('page.why-be-member');
-//______________ GALLERY
+//______________ LINK PAGE
 Route::get('pages/requirements',[FrontViewController::class,'requirements'])->name('page.requirements');
+Route::get('pages/requirements-details',[FrontViewController::class,'requirementDetails'])->name('page.requirements_details');
+Route::get('pages/requirements-student',[FrontViewController::class,'requirementStudent'])->name('page.requirements_student');
 //______________ GALLERY
 Route::get('pages/gallery-image',[FrontViewController::class,'galleryImage'])->name('page.gallery-cover');
 Route::get('pages/gallery-image/{id}/show',[FrontViewController::class,'galleryShow'])->name('page.gallery-show');
@@ -60,6 +65,11 @@ Route::get('pages/events-search', [FrontViewController::class,'eventSearch'])->n
 Route::get('pages/events/{id}/details', [FrontViewController::class,'eventShow'])->name('page.events-details');
 //______________ Corporate Partners
 Route::get('page/corporate-partners', [FrontViewController::class, 'corporatePartners'])->name('page.corporate-partners');
+//______________ BLOGS
+Route::get('page/blogs', [FrontViewController::class, 'blogs'])->name('page.blogs');
+Route::get('page/blogs-details', [FrontViewController::class, 'blogShow'])->name('page.blogs_details');
+Route::get('page/blog_details_two', [FrontViewController::class, 'blogShowdetail'])->name('page.blog_details_two');
+Route::get('page/blog_details_three', [FrontViewController::class, 'blogShowdetailTwo'])->name('page.blog_details_three');
 //______________ CONTACT US
 Route::get('pages/contact-us', [FrontViewController::class, 'contact'])->name('page.contact-us');
 Route::post('contact-us/store', [ContactController::class,'contactStore'])->name('contact-us.store');
@@ -209,6 +219,8 @@ Route::group(['middleware' => ['auth']], function(){
     //-- EVENTS
     Route::resource('event', EventController::class);
     //-- CONTACT
+    Route::resource('blog', BlogController::class);
+    //-- CONTACT
     Route::get('contact-us/index', [ContactController::class,'contactIndex'])->name('contact-us.index');
     Route::get('contact-us/{id}/reply', [ContactController::class,'contactReply'])->name('contact-us.reply');
     Route::get('contact-us/{id}/delete', [ContactController::class,'contactDelete'])->name('contact-us.delete');
@@ -271,3 +283,6 @@ Route::group(['middleware' => ['auth']], function(){
 //     Route::patch ('/cancel_event_fee/update/{id}', [EventController::class,'cancel_event_fee'])->name('cancel_event_fee.update');
 // });
 //---Website View
+Route::get('/view-pdf', function () {
+    return response()->file(public_path('images/memoradum.pdf'));
+})->name('view.pdf');

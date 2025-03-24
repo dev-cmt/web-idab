@@ -81,27 +81,37 @@
         
         @if (count($event) > 0)
         <!-- ======= Upcoming Events Section======= -->
-        <section id="events" class="events animate__fadeInUp">
+        <section id="events" class="events animate__animated animate__fadeInUp">
             <div class="container">
 
                 <div class="section-title">
                     <h2 class="reveal">UPCOMING EVENTS</h2>
                 </div>
-
-                <div class="row">
-                    <div id="owl-upcoming-events" class="owl-carousel owl-theme">
-                        @foreach ($event as $item)
-                            <div><img src="{{asset('public/images')}}/events/{{ $item->image }}"></div>
-                        @endforeach
-                    </div>
+                
+                
+                <!--<div id="owl-upcoming-events" class="owl-carousel">
+                    @foreach ($event as $item)
+                    <a href="{{route('page.events-details', $item->id)}}">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="{{asset('public/images')}}/events/{{ $item->image }}" class="img-fluid p-2" alt="">
+                        </div>
+                    </a>
+                    @endforeach
                 </div>
+                
+                <div class="d-flex justify-content-center">
+                    <a href="{{Route('page.events')}}" class="btn btn-danger px-4" style="background:#EF1620;">More Events</a>
+                </div>-->
+               <a href="http://www.idabaward.com"><img src="{{asset('public/images')}}/events/cover 1_1731909143.png" class="img-fluid" alt=""></a>
+              
 
             </div>
+             
         </section><!-- End Upcoming Events Section -->
         @endif
 
         <!-- ======= Services Section ======= -->
-        {{-- <section id="services" class="services animate__fadeInUp">
+        {{-- <section id="services" class="services animate__animated animate__fadeInUp">
             <div class="container">
 
                 <div class="section-title">
@@ -154,7 +164,7 @@
             <div class="container">
 
                 <div class="row no-gutters">
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__animated animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-emoji-smile"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($user)}}" data-purecounter-duration="1"
@@ -163,7 +173,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__animated animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-journal-richtext"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{count($event)}}" data-purecounter-duration="1"
@@ -172,20 +182,20 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__animated animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-headset"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="{{count($contact)}}" data-purecounter-duration="1"
-                                class="purecounter"></span>
+                            <!--<span data-purecounter-start="0" data-purecounter-end="{{count($contact)}}" data-purecounter-duration="1"
+                                class="purecounter"></span>--> <span>90</span>
                             <p><strong>Community Support</strong></p>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__slideInUp">
+                    <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__animated animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-people"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="{{count($executive)}}" data-purecounter-duration="1"
-                                class="purecounter"></span>
+                           <!--<span data-purecounter-start="0" data-purecounter-end="{{count($executive)}}" data-purecounter-duration="1"
+                                class="purecounter"></span>--><span>11</span>
                             <p><strong>Executive Members</strong></p>
                         </div>
                     </div>
@@ -228,37 +238,269 @@
             </div>
         </section>
         @endif--><!-- End Team Section -->
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section class="faq section-bg">
+        <div class="container">
 
-         <!--======= Clients Section ======= -->
-        <section id="clients" class="clients mt-5 animate__fadeInUp">
+            <div class="section-title">
+                <!--<h2 class="reveal">Frequently Asked Questions</h2>-->
+        
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 nav nav-pills" style="height: 380px;width: 254px;overflow: hidden;">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
+                        <i class="bi bi-card-text me-3"></i>Student member
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
+                        <i class="bi bi-card-text me-3"></i>Candidate member
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
+                        <i class="bi bi-card-text me-3"></i>Professional member
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
+                        <i class="bi bi-card-text me-3"></i>Associate member
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-5" type="button">
+                        <i class="bi bi-card-text me-3"></i>Trade member
+                    </button>
+                </div>
+                <div class="col-lg-8">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab-pane-1">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-1.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-8">
+                                    <h4 class="mb-4"><i class="bi bi-amd text-danger"></i> First 100 Member 50% Discount</h4>
+                                    <h5 class="mb-4">Student Member</h5>
+                                    <h5 class="mb-4">Eligibility for Student membership</h5>
+                                    <p>•	Must be Student of Bachelor of Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                    <h5>Documents</h5>
+                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Student ID copy (both side)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Relevant head of department’s acknowledgment letter.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>NID copy</p></p>
+                                    <p class="mb-4">(Registration Fee 1000/-)</p>
+                                     <a href="{{route('page.requirements_student')}}" class="btn btn-info btn-sm">Read More</a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-2">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-2.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-8">
+                                    <h3 class="mb-4">Candidate Member</h3>
+                                     <h5 class="mb-4">Eligibility for Candidate membership</h5>
+                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                    <h5>Documents</h5>
+                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                     <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                     <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                </div>
+              
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-3">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-3.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-8">
+                                    <h3 class="mb-4">Professional Member</h3>
+                                       <h5 class="mb-4">Eligibility for Professional membership</h5>
+                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute with 5 years’ experience</p>
+                                    <h5>Documents</h5>
+                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate with 5 years’ experience.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                    <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                     <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                </div>
+                              
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-4">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-4.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-8">
+                                    <h3 class="mb-4">Associate Member</h3>
+                                    <h5 class="mb-4">Eligibility for Associate membership</h5>
+                                    <p>•	Must be graduation from any reputed university</p>
+                                    <p>•	Doing Interior design Business last 5 years</p>
+                                    <h5>Documents</h5>
+                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated Trade License as Interior design Company</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                    <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 4000/-)</p>
+                                     <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                </div>
+                             
+                            </div>
+                        </div>
+                            <div class="tab-pane fade" id="tab-pane-5">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-5.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-8">
+                                    <h3 class="mb-4">Trade Member</h3>
+                                    <h5 class="mb-4">Eligibility for Trade membership</h5>
+                                    <p>•	Must be graduation from any reputed university</p>
+                                    <p>•	Must do business as Importer, shop owner, trader on Interior design materials</p>
+                                    <h5>Documents</h5>
+                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated Trade License</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                    <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 10000/-)</p>
+                                     <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                </div>
+                             
+                            </div>
+                        </div>
+                            <div class="tab-pane fade" id="tab-pane-6">
+                            <div class="row g-4">
+                                <!--<div class="col-md-6">-->
+                                <!--    <div class="position-relative h-100">-->
+                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-6.jpg" style="object-fit: cover;" alt="">-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Corporate Partner</h3>
+                                    <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Industrial Business</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>3.Job Experience Certificate </p>
+                                    <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
+                                    <p><i class="bi bi-check-lg me-3"></i>6.NID</p>
+                                    <p class="mb-4">(Registration Fee 000/-) (Annual Fee 0000/-)</p>
+                                    <a href="#" class="button">Read More</a>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Frequently Asked Questions Section -->
+         <!--======= Recognized Section ======= -->
+        <section id="clients" class="clients mt-5 animate__animated animate__fadeInUp">
             <div class="container">
                  <div class="section-title">
-                    <h2 class="reveal">Corporate Partners</h2>
+                    <h2>Recognized University/Institute/Design School</h2>
                 </div>
 
                 <div id="owl-clients" class="owl-carousel">
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-1.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/aiub.jpg" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-2.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/aust.jpg" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-3.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/brac.jpg" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-4.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/bsmrstu.jpg" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-5.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/bu.jpg" class="img-fluid" alt="">
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{asset('public/images')}}/clients/client-6.png" class="img-fluid" alt="">
+                        <img src="{{asset('public/images')}}/university/buet.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/cuet.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/diu.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/duet.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/hstu.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/ku.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/kuet.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/mist.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/nsu.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/pu.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/pust.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/ruet.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/sust.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/uap.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{asset('public/images')}}/university/uct.jpg" class="img-fluid" alt="">
+                    </div>
+                   
+                  </div>
+
+            </div>
+        </section><!-- End Recognized Section 
+        
+         <!--======= Clients Section ======= -->
+        <section id="clients" class="clients section-bg mt-6 animate__animated animate__fadeInUp">
+            <div class="container">
+                 <div class="section-title">
+                    <h2>Corporate Partners</h2>
+                </div>
+
+                <div id="owl-partners" class="owl-carousel">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a href="https://www.mykitchen-bd.com"><img src="{{asset('public/images')}}/clients/mykitchen.jpg" class="img-fluid" alt=""></a>
                     </div>
                   </div>
 
@@ -266,7 +508,7 @@
         </section><!-- End Clients Section 
 
         <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact animate__fadeInUp">
+        <section id="contact" class="contact animate__animated animate__fadeInUp">
             <div class="container">
                 <div class="section-title">
                     <h2 class="reveal">Contact</h2>
@@ -284,7 +526,7 @@
                         <div class="contact-phone">
                             <i class="bi bi-phone"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:01725151515">01725151515</a></p>
+                            <p><a href="tel:01725151515">+88-01725151515</a></p>
                         </div>
                     </div>
     
@@ -347,6 +589,19 @@
 
     </main><!-- End #main -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="homePageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute;z-index: 999;right: 0;"></button>
+                <div class="modal-body">
+                    <img src="{{asset('public/images')}}/pages/model.jpg" class="img-fluid"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     @if (session()->has('success'))
         <script>
             Swal.fire({
@@ -357,3 +612,4 @@
         </script>
     @endif
 @endsection
+

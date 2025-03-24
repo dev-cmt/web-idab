@@ -17,12 +17,52 @@
                             </div>
                             
                             <div class="carousel-content">
-                                <h4 id="hero-title" class="animate__animated animate__fadeInDown">Interior Designers Association Of Bangladesh</h4>
-                                <h4 class="animated-text">Hallo, Wij zijn Codefield!</h4>
+                                 <!-- <h4 id="hero-title" class="animate__animated animate__fadeInDown">Interior Designers Association Of Bangladesh</h4>-->
+                                
+                                    <style>
+                                    .animate-charcter{
+                                      text-transform: uppercase;
+                                      font-size: 28px;
+                                      background-image: linear-gradient(
+                                        -225deg,
+                                        #231557 0%,
+                                        #44107a 29%,
+                                        #ff1361 67%,
+                                        #fff800 100%
+                                      );
+                                      background-size: auto auto;
+                                      background-clip: border-box;
+                                      background-size: 200% auto;
+                                      color: #fff;
+                                      background-clip: text;
+                                      text-fill-color: transparent;
+                                      -webkit-background-clip: text;
+                                      -webkit-text-fill-color: transparent;
+                                      animation: textclip 2s linear infinite;
+                                      display: inline-block;
+                                          font-size: 28px;
+                                    }
+                                    
+                                    @keyframes textclip {
+                                      to {
+                                        background-position: 200% center;
+                                      }
+                                    }
+                                    </style>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                              <h4 class="animate-charcter"> Interior Designers Association Of Bangladesh</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                
+                                {{--<h4 class="animated-text">Hallo, First 100 Member 50% Discount!</h4>
                                 <style>
                                     .animated-text {
-                                        font-size: 32px;
-                                        color: #bd0000;
+                                        font-size: 28px;
+                                        color: #ed1820;
                                         text-transform: uppercase;
                                     }
 
@@ -41,7 +81,7 @@
                                 <script>
                                     document.addEventListener('DOMContentLoaded',function(event){
                                     // array with texts to type in typewriter
-                                    var dataText = [ "Utrecht.", "Full Service.", "Webdevelopment.", "Wij zijn Codefield!"];
+                                    var dataText = [ "First 100 Member 50% Discount", "First 100 Member 50% Discount", "First 100 Member 50% Discount", "First 100 Member 50% Discount"];
                                     
                                     // type one text in the typwriter
                                     // keeps calling itself until the text is finished
@@ -81,7 +121,7 @@
                                     // start the text animation
                                     StartTextAnimation(0);
                                     });
-                                </script>
+                                </script>--}}
                             </div>
                             <!--<div class="intro-cover">
                                 <h1 class="intro-title">Interior Designers Association Of Bangladesh</h1>

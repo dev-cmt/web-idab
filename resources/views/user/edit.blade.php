@@ -80,8 +80,30 @@
                                 <div class="form-group row">
                                     <label class="col-lg-5 col-form-label">Email</label>
                                     <div class="col-lg-7">
-                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" placeholder="Type your email" disabled>
+                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" placeholder="Type your email">
                                         @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-5 col-form-label">Member Code</label>
+                                    <div class="col-lg-7">
+                                        <input type="text" name="member_code" id="member_code" class="form-control @error('member_code') is-invalid @enderror" value="{{ old('member_code', $user->member_code) }}" placeholder="Enter Member Code">
+                                        @error('member_code')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-5 col-form-label">Index</label>
+                                    <div class="col-lg-7">
+                                        <input type="number" name="index" id="index" class="form-control @error('index') is-invalid @enderror" value="{{ old('index', $user->index) }}" placeholder="Serial No. Set like (1, 2...">
+                                        @error('index')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

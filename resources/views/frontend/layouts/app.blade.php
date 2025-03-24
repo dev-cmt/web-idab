@@ -43,6 +43,7 @@
     @include('frontend.layouts.partial.footer')
 
     
+    
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
     <script src="{{asset('public/frontend')}}/js/jquery-3.7.1.min.js"></script> 
@@ -59,7 +60,12 @@
     <script src="{{asset('public/frontend')}}/js/gsap.min.js"></script>
     <script src="{{asset('public/frontend')}}/js/ScrollTrigger.min.js"></script>
     <script src="{{asset('public/frontend')}}/js/main.js"></script>
-
+    
+    <script>
+        $(document).ready(function() {
+            $('#homePageModal').modal('show');
+        });
+    </script>
     <script>
         // Initialize GSAP - ScrollTrigger
         const reveal = gsap.utils.toArray('.reveal');
@@ -72,16 +78,16 @@
             })
         })
         // Initialize owl - Slider
-        $(document).ready(function() {
-            $("#owl-upcoming-events").owlCarousel({
-                navigation: false,
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true,
-                autoPlay : 3000,
-            });
+        // $(document).ready(function() {
+        //     $("#owl-upcoming-events").owlCarousel({
+        //         navigation: false,
+        //         slideSpeed: 300,
+        //         paginationSpeed: 400,
+        //         singleItem: true,
+        //         autoPlay : 3000,
+        //     });
 
-        });
+        // });
         $(document).ready(function () {
             $("#owl-team-member").owlCarousel({
                 items: 4
@@ -96,8 +102,40 @@
             });
         });
         $(document).ready(function() {
+            $("#owl-upcoming-events").owlCarousel({
+                items: 1,
+                navigation: false,
+            });
+
+            $('.link').on('click', function (event) {
+                var $this = $(this);
+                if ($this.hasClass('clicked')) {
+                    $this.removeAttr('style').removeClass('clicked');
+                } else {
+                    $this.css('background', '#7fc242').addClass('clicked');
+                }
+            });
+
+        });
+        $(document).ready(function() {
             $("#owl-clients").owlCarousel({
-                items: 5,
+                items: 3,
+                navigation: false,
+            });
+
+            $('.link').on('click', function (event) {
+                var $this = $(this);
+                if ($this.hasClass('clicked')) {
+                    $this.removeAttr('style').removeClass('clicked');
+                } else {
+                    $this.css('background', '#7fc242').addClass('clicked');
+                }
+            });
+
+        });
+        $(document).ready(function() {
+            $("#owl-partners").owlCarousel({
+                items: 4,
                 navigation: false,
             });
 

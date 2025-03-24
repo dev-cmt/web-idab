@@ -17,7 +17,8 @@
                             <img src="{{ asset('public/images/profile/'. $row->profile_photo_path) }}" alt="images">
                         </div>
                         <div class="hover_card_details">
-                            <h2>{{$row->name}}</h2>
+                            <h4><span>{{$row->member_code}}</span></h4>
+                            <h6>{{$row->name}}</h6>
                             @if ($row->infoCompany && ($row->infoCompany->company_name || $row->infoCompany->designation))
                                 <h2><span>{{$row->infoCompany->designation}}</span></h2>
                                 <h4><span>({{$row->infoCompany->company_name ?? ''}})</span></h4>

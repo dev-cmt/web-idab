@@ -29,6 +29,7 @@
                         <li><i class="bx bx-chevron-right"></i> <a href="{{Route('page.events')}}">Events</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{Route('page.terms-condition')}}">Terms & Condition</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{Route('page.privacy-policy')}}">Privacy Policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('view.pdf')}}">Memoradum & Article Of Association</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{Route('page.contact-us')}}">Contact Us</a></li>
                     </ul>
                 </div>
@@ -37,7 +38,7 @@
                     <div class="footer-info">
                         <h3>IDAB</h3>
                         <p>Rain Razzak Plaza, 2 Shahid Tazuddin Soroni, Moghbazar, Dhaka-1217, Bangladesh <br><br>
-                            <strong>Phone:</strong>01725151515<br>
+                            <strong>Phone:</strong>+88-01725151515<br>
                             <strong>Email:</strong> <a href="mailto:contact.idab@gmail.com">contact.idab@gmail.com</a><br>
                             
                         </p>

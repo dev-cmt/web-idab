@@ -373,7 +373,7 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>te
+                                            </div>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <div class="form-group">

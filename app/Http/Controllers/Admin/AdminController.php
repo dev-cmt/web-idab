@@ -29,8 +29,9 @@ class AdminController extends Controller
 
     public function member()
     {
-        $data =User::where('status', 1)->paginate(12);
-        return view('layouts.pages.member',compact('data'));
+        $data = User::where('status', 1)->where('member_type_id', 1)->orderByRaw('ISNULL(`index`), `index` ASC')->paginate(15);
+
+        return view('layouts.pages.member', compact('data'));
     }
     public function memberSearch(Request $request)
     {
