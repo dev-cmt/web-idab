@@ -150,26 +150,26 @@
                                                     <h6 class="f-w-500">Blood Group <span class="pull-right">:</span></h6>
                                                 </div>
                                                 <div class="col-sm-6 col-7">
-                                                    @if ($infoPersonal->blood_group == 1)
-                                                        <span>A Positive (A+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 2)
-                                                        <span>A Negative (A-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 3)
-                                                        <span>B Positive (B+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 4)
-                                                        <span>B Negative (B-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 5)
-                                                        <span>AB Positive (AB+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 6)
-                                                        <span>AB Negative (AB-)</span>
-                                                    @elseif ($infoPersonal->blood_group == 7)
-                                                        <span>O Positive (O+)</span>
-                                                    @elseif ($infoPersonal->blood_group == 8)
-                                                        <span>O Negative (O-)</span>
+                                                    @if (!empty($infoPersonal) && isset($infoPersonal->blood_group))
+                                                        @php
+                                                            $bloodGroups = [
+                                                                1 => 'A Positive (A+)',
+                                                                2 => 'A Negative (A-)',
+                                                                3 => 'B Positive (B+)',
+                                                                4 => 'B Negative (B-)',
+                                                                5 => 'AB Positive (AB+)',
+                                                                6 => 'AB Negative (AB-)',
+                                                                7 => 'O Positive (O+)',
+                                                                8 => 'O Negative (O-)',
+                                                            ];
+                                                        @endphp
+                                                
+                                                        <span>{{ $bloodGroups[$infoPersonal->blood_group] ?? 'Unknown Blood Group' }}</span>
                                                     @else
                                                         <span>Unknown Blood Group</span>
                                                     @endif
                                                 </div>
+                                                
                                                 
                                             </div>
                                         </div>

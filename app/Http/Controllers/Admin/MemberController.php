@@ -140,20 +140,23 @@ class MemberController extends Controller
 
 
                 /*_____________________ MEMBER ID GENERATE ___________________*/
-                $currentYear = date('Y');
-                $currentMonth = date('m');
+                $currentYear = date('y'); // Get last two digits of the year (25 for 2025)
+                $currentMonth = date('m'); // Get the month (03 for March)
 
-                $prefix = MemberType::where('id', $request->member_type_id)->first()->prefix;
-                $highestNumber = User::where('member_code', 'like', "$prefix$currentYear-$currentMonth%")->max('member_code');
-                $lastNumber = intval(substr($highestNumber, -3));
+                // Retrieve prefix safely
+                $memberType = MemberType::find($request->member_type_id);
+                $prefix = $memberType ? $memberType->prefix : 'NEW';
+
+                // Find the highest existing member code
+                $highestNumber = User::where('member_code', 'like', "$prefix$currentYear$currentMonth%")->max('member_code');
+
+                // Extract last number safely
+                $lastNumber = $highestNumber ? intval(substr($highestNumber, -3)) : 0;
                 $newNumber = $lastNumber + 1;
-                $formattedNewNumber = sprintf('%03d', $newNumber);
+                $formattedNewNumber = str_pad($newNumber, 3, '0', STR_PAD_LEFT);
 
-                if ($prefix == '-') {
-                    $memberCode = "NEW";
-                }else {
-                    $memberCode = "$prefix$currentYear-$currentMonth-$formattedNewNumber";
-                }
+                // Generate Member Code (S2503004)
+                $memberCode = ($prefix == '-') ? "NEW" : "$prefix$currentYear$currentMonth$formattedNewNumber";
                 
                 $user = User::create([
                     'name' => $request->name,
@@ -162,6 +165,7 @@ class MemberController extends Controller
                     'member_code' => $memberCode,
                     'profile_photo_path' => $filenametostore,
                     'member_type_id' => $request->member_type_id,
+                    'email_verified_at' => now(),
                     'status' => 0,
                     'is_admin' => 0,
                 ]);
