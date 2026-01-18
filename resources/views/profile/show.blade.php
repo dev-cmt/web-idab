@@ -69,6 +69,9 @@
                             <p class="small mb-5"><i class="fa fa-calendar-o mr-2"></i>{{date("j F, Y", strtotime($user->created_at))}}</p>
                         </div>
                     </div>
+                    <a href="{{ route('member-certificate.download', $user->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span>Certificate  Dwonload
+                                        </a>
                 </div>
     
                 <div class="card-body">

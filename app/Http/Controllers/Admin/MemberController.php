@@ -375,14 +375,14 @@ class MemberController extends Controller
     public function certificateDownload(User $user)
     {
         $certificateNo = 'CERT-' . str_pad($user->id, 6, '0', STR_PAD_LEFT);
-        $url = route('profile_show', $user->id);
+        $url = route('member-verify', $user->id);
 
         $data = [
             'user' => $user,
-            'certificate_no' => $user->member_code ?? $certificateNo,
+            'certificate_no' => $user->member_code,
             'member_type' => $user->memberType->name ?? 'Member',
             'start_date' => 'July 01, 2025',
-            'end_date' => 'July 31, 2026',
+            'end_date' => 'June 30, 2026',
             // 'qrcode' =>  $url,
             'qrcode' => base64_encode(QrCode::format('png')->size(100)->generate($url)), // Generate QR code as base64
         ];
@@ -392,6 +392,15 @@ class MemberController extends Controller
 
         return $pdf->download('certificate_' . $user->id . '_' . date('Y') . '.pdf');
         // return view('layouts.pages.member.certificate-download', $data);
+    }
+
+    public function memberVerify($id)
+    {
+        $user = User::find($id);
+        // Load relationships if needed
+        $user->load(['memberType', 'infoPersonal', 'infoAcademic.mastQualification']);
+        
+        return view('layouts.pages.member.member-verify', compact('user'));
     }
 
     /**___________________________________________________________________________________

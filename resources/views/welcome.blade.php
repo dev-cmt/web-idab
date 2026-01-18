@@ -177,8 +177,8 @@
         <section class="newsletter-section py-5 position-relative">
             <div class="container">
                 <div class="newsletter-title text-center mb-4">
-                    <h1>Our <span>Latest</span> News</h1>
-                    <p>Stay updated with our latest posts and announcements</p>
+                    <h1>News</h1>
+                    <!--<p>Stay updated with our latest posts and announcements</p>-->
                 </div>
 
                 <div class="row g-0">
@@ -414,179 +414,180 @@
             </div>
         </section>
         @endif--><!-- End Team Section -->
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section class="faq section-bg">
-        <div class="container">
-
-            <div class="section-title">
-                <!--<h2 class="reveal">Frequently Asked Questions</h2>-->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3 nav nav-pills" style="height: 380px;width: 254px;overflow: hidden;">
-                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                        <i class="bi bi-card-text me-3"></i>Professional member
-                    </button>
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                        <i class="bi bi-card-text me-3"></i>Candidate member
-                    </button>
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                        <i class="bi bi-card-text me-3"></i>Student member
-                    </button>
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                        <i class="bi bi-card-text me-3"></i>Associate member
-                    </button>
-                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-5" type="button">
-                        <i class="bi bi-card-text me-3"></i>Trade member
-                    </button>
+        <!-- ======= Frequently Asked Questions Section ======= -->
+        <section class="faq section-bg">
+            <div class="container">
+    
+                <div class="section-title">
+                    <!--<h2 class="reveal">Frequently Asked Questions</h2>-->
                 </div>
-                <div class="col-lg-8">
-                    <div class="tab-content">
-                        <div class="tab-pane fade" id="tab-pane-1">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-1.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-8">
-                                    <!--<h4 class="mb-4"><i class="bi bi-amd text-danger"></i> First 100 Member 50% Discount</h4>-->
-                                    <h3 class="mb-4">Student Member</h3>
-                                    <h5 class="mb-4">Eligibility for Student membership</h5>
-                                    <p>•	Must be Student of Bachelor of Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
-                                    <h5>Documents</h5>
-                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Student ID copy (both side)</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Relevant head of department’s acknowledgment letter.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>NID copy</p></p>
-                                    <p><i class="bi bi-check-lg me-3"></i>500/-</p></p>
-                                    <a href="{{route('page.requirements_student')}}" class="btn btn-info btn-sm">Read More</a>
+    
+                <div class="row">
+                    <div class="col-lg-3 nav nav-pills" style="height: 380px;width: 254px;overflow: hidden;">
+                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
+                            <i class="bi bi-card-text me-3"></i>Professional member
+                        </button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
+                            <i class="bi bi-card-text me-3"></i>Candidate member
+                        </button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
+                            <i class="bi bi-card-text me-3"></i>Student member
+                        </button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
+                            <i class="bi bi-card-text me-3"></i>Associate member
+                        </button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-5" type="button">
+                            <i class="bi bi-card-text me-3"></i>Trade member
+                        </button>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="tab-pane-1">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-1.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-8">
+                                        <!--<h4 class="mb-4"><i class="bi bi-amd text-danger"></i> First 100 Member 50% Discount</h4>-->
+                                        <h3 class="mb-4">Student Member</h3>
+                                        <h5 class="mb-4">Eligibility for Student membership</h5>
+                                        <p>•	Must be Student of Bachelor of Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                        <h5>Documents</h5>
+                                        <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Student ID copy (both side)</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Relevant head of department’s acknowledgment letter.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>NID copy</p></p>
+                                        <p><i class="bi bi-check-lg me-3"></i>1000/-</p></p>
+                                        <a href="{{route('page.requirements_student')}}" class="btn btn-info btn-sm">Read More</a>
+                                    </div>
+                                   
                                 </div>
-                               
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-2">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-2.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-8">
-                                    <h3 class="mb-4">Candidate Member</h3>
-                                     <h5 class="mb-4">Eligibility for Candidate membership</h5>
-                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
-                                    <h5>Documents</h5>
-                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>2000/-</p>
-                                    <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                            <div class="tab-pane fade" id="tab-pane-2">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-2.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-8">
+                                        <h3 class="mb-4">Candidate Member</h3>
+                                         <h5 class="mb-4">Eligibility for Candidate membership</h5>
+                                        <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute.</p>
+                                        <h5>Documents</h5>
+                                        <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>2000/-</p>
+                                        <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                    </div>
+                  
                                 </div>
-              
                             </div>
-                        </div>
-                        <div class="tab-pane fade show active" id="tab-pane-3">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-3.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-8">
-                                    <h3 class="mb-4">Professional Member</h3>
-                                       <h5 class="mb-4">Eligibility for Professional membership</h5>
-                                    <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute with 5 years’ experience</p>
-                                    <h5>Documents</h5>
-                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate with 5 years’ experience.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>2000/-</p>
-                                    <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                            <div class="tab-pane fade show active" id="tab-pane-3">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-3.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-8">
+                                        <h3 class="mb-4">Professional Member</h3>
+                                           <h5 class="mb-4">Eligibility for Professional membership</h5>
+                                        <p>•	Must be an Architect, Interior Design, Diploma Architect from any reputed university, Govt polytechnic or IDAB recognized institute with 5 years’ experience</p>
+                                        <h5>Documents</h5>
+                                        <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Architect, Interior design, Diploma architect)</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Trade license/ Job Certificate with 5 years’ experience.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>2000/-</p>
+                                        <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                    </div>
+                                  
                                 </div>
-                              
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-4">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-4.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-8">
-                                    <h3 class="mb-4">Associate Member</h3>
-                                    <h5 class="mb-4">Eligibility for Associate membership</h5>
-                                    <p>•	The candidate must be a graduate of a reputed university</p>
-                                    <p>•	Doing Interior design Business last 5 years</p>
-                                    <h5>Documents</h5>
-                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated Trade License as Interior design Company</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>3000/-</p>
-                                    <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                            <div class="tab-pane fade" id="tab-pane-4">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-4.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-8">
+                                        <h3 class="mb-4">Associate Member</h3>
+                                        <h5 class="mb-4">Eligibility for Associate membership</h5>
+                                        <p>•	The candidate must be a graduate of a reputed university</p>
+                                        <p>•	Doing Interior design Business last 5 years</p>
+                                        <h5>Documents</h5>
+                                        <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated Trade License as Interior design Company</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>3000/-</p>
+                                        <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                    </div>
+                                 
                                 </div>
-                             
                             </div>
-                        </div>
-                            <div class="tab-pane fade" id="tab-pane-5">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-5.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-8">
-                                    <h3 class="mb-4">Trade Member</h3>
-                                    <h5 class="mb-4">Eligibility for Trade membership</h5>
-                                    <p>•	The candidate must be a graduate of a reputed university</p>
-                                    <p>•	Must do business as Importer, shop owner, trader on Interior design materials</p>
-                                    <h5>Documents</h5>
-                                    <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated Trade License</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>NID</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>15000/-</p>
-                                    <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                <div class="tab-pane fade" id="tab-pane-5">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-5.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-8">
+                                        <h3 class="mb-4">Trade Member</h3>
+                                        <h5 class="mb-4">Eligibility for Trade membership</h5>
+                                        <p>•	The candidate must be a graduate of a reputed university</p>
+                                        <p>•	Must do business as Importer, shop owner, trader on Interior design materials</p>
+                                        <h5>Documents</h5>
+                                        <p><i class="bi bi-check-lg me-3"></i>Last Educational certificate (Any Discipline)</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Passport size picture with white background.</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated Trade License</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>Updated TIN paper</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>NID</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>15000/-</p>
+                                        <a href="{{route('page.requirements_details')}}" class="btn btn-info btn-sm">Read More</a>
+                                    </div>
+                                 
                                 </div>
-                             
                             </div>
-                        </div>
-                            <div class="tab-pane fade" id="tab-pane-6">
-                            <div class="row g-4">
-                                <!--<div class="col-md-6">-->
-                                <!--    <div class="position-relative h-100">-->
-                                <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-6.jpg" style="object-fit: cover;" alt="">-->
-                                <!--    </div>-->
-                                <!--</div>-->
-                                <div class="col-md-6">
-                                    <h3 class="mb-4">Corporate Partner</h3>
-                                    <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Industrial Business</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>3.Job Experience Certificate </p>
-                                    <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>6.NID</p>
-                                    <p><i class="bi bi-check-lg me-3"></i>7.00/-</p>
-                                    <a href="#" class="button">Read More</a>
+                                <div class="tab-pane fade" id="tab-pane-6">
+                                <div class="row g-4">
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="position-relative h-100">-->
+                                    <!--        <img class="position-absolute rounded w-100 h-100" src="{{asset('public/images')}}/pages/service-6.jpg" style="object-fit: cover;" alt="">-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <div class="col-md-6">
+                                        <h3 class="mb-4">Corporate Partner</h3>
+                                        <p><i class="bi bi-check-lg me-3"></i>1.Assiciated in Industrial Business</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>2.Passport Size Picture</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>3.Job Experience Certificate </p>
+                                        <p><i class="bi bi-check-lg me-3"></i>4.Valid Trade License</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>5.Valid Tin Certificate</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>6.NID</p>
+                                        <p><i class="bi bi-check-lg me-3"></i>7.00/-</p>
+                                        <a href="#" class="button">Read More</a>
+                                    </div>
+                                 
                                 </div>
-                             
                             </div>
                         </div>
                     </div>
                 </div>
+    
             </div>
-
-        </div>
-    </section><!-- End Frequently Asked Questions Section -->
+        </section><!-- End Frequently Asked Questions Section -->
+        
         <!--======= Recognized Section ======= -->
         <section id="clients" class="clients mt-5 animate__animated animate__fadeInUp">
             <div class="container">
@@ -677,7 +678,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <a href="https://www.mykitchen-bd.com"><img src="{{asset('public/images')}}/clients/mykitchen.jpg" class="img-fluid" alt=""></a>
                     </div>
-                  </div>
+                </div>
 
             </div>
         </section><!-- End Clients Section 
@@ -790,22 +791,20 @@
 
 @endsection
 
+
 @section('script')
     <!-- ================= OWL INIT ================= -->
     <script>
-        $('.newsletter-slider').owlCarousel({
-            items: 1,
-            loop: true,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            navText: [
-                '<i class="bi bi-chevron-left"></i>',
-                '<i class="bi bi-chevron-right"></i>'
-            ]
+         $(document).ready(function() {
+            $(".newsletter-slider").owlCarousel({
+                items: 1,                 // Number of items to show
+                navigation: true,         // ✅ Enable Next/Prev buttons (v1.3.3 syntax)
+                navigationText: ["<", ">"], // ✅ Custom button text/icons
+                autoPlay: true,           // Optional: Enable auto sliding
+                stopOnHover: true,        // Optional: Pause on hover
+                pagination: false         // Optional: Hide dots if you want
+            });
         });
     </script>
-
 @endsection
 

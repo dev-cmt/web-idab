@@ -76,8 +76,9 @@ Route::post('contact-us/store', [ContactController::class,'contactStore'])->name
 Route::get('pages/terms-condition', [FrontViewController::class, 'termsCondition'])->name('page.terms-condition');
 Route::get('pages/privacy-policy', [FrontViewController::class,'privacyPolicy'])->name('page.privacy-policy');
 
-
 Route::get('download/member-list/download-csv', [MemberController::class, 'downloadMemberListCSV'])->name('member-csv.download');
+
+Route::get('member-verify/{id}/check', [MemberController::class, 'memberVerify'])->name('member-verify');
 
 /**______________________________________________________________________________________________
  * Login Check => Dashboard
