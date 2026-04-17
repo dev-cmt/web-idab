@@ -28,6 +28,8 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Helpers\Helper;
 use App\Mail\MemberApproved;
 use Illuminate\Support\Facades\Mail;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use ZipArchive;
 
 class MemberController extends Controller
@@ -67,7 +69,7 @@ class MemberController extends Controller
     {
         DB::beginTransaction();
         try {
-            //----Validation Check 
+            //----Validation Check
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|unique:users,email|max:255',
@@ -104,16 +106,16 @@ class MemberController extends Controller
                 'experience_certificate.max' => 'Experience certificate must not be greater than 10MB.',
                 'stu_id_copy.max' => 'STU. id must not be greater than 10MB.',
                 'recoment_letter.max' => 'Recoment letter must not be greater than 10MB.',
-                
+
                 'company_name.required_if' => 'The company name field is required',
                 'designation.required_if' => 'The designation field is required',
                 'student_institute.required_if' => 'The student institute field is required',
             ]);
-            
+
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors()], 422);
             }
-            
+
 
 
             /*__________________/ USER CREATE \_________________*/
@@ -122,23 +124,23 @@ class MemberController extends Controller
                 $filenamewithextension = $request->file('profile_photo_path')->getClientOriginalName();
                 //get filename without extension
                 $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-        
+
                 //get file extension
                 $extension = $request->file('profile_photo_path')->getClientOriginalExtension();
                 //filename to store
                 $filenametostore = $filename.'_'.time().'.'.$extension;
-        
+
                 //Upload File
                 $request->file('profile_photo_path')->move('public/images/profile/', $filenametostore); //--Upload Location
                 // $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
-        
+
                 //Resize image here
                 $thumbnailpath = public_path('images/profile/'.$filenametostore); //--Get File Location
                 // $thumbnailpath = public_path('storage/images/profile/'.$filenametostore);
-                
+
                 $data = Image::make($thumbnailpath)->resize(1200, 850, function($constraint) {
                     $constraint->aspectRatio();
-                }); 
+                });
                 $data->save($thumbnailpath);
 
 
@@ -160,7 +162,7 @@ class MemberController extends Controller
 
                 // Generate Member Code (S2503004)
                 $memberCode = ($prefix == '-') ? "NEW" : "$prefix$currentYear$currentMonth$formattedNewNumber";
-                
+
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -197,7 +199,7 @@ class MemberController extends Controller
                 'member_id'=> $user->id,
             ]);
             $infoPersonal->save();
-            
+
             /*______________________/ InfoAcademic \___________________*/
             $infoAcademic =new InfoAcademic([
                 'institute' => $request->institute,
@@ -209,7 +211,7 @@ class MemberController extends Controller
                 'member_id' => $user->id,
             ]);
             $infoAcademic->save();
-            
+
             /*______________________/ InfoCompany \___________________*/
             if($request->company_name || $request->designation || $request->company_email || $request->company_phone){
                 $infoCompany =new InfoCompany([
@@ -236,7 +238,7 @@ class MemberController extends Controller
                     'status' => 1,
                     'member_id' => $user->id,
                 ]);
-                $infoStudent->save(); 
+                $infoStudent->save();
             }
             /*______________________/ InfoOther \___________________*/
             $infoOther = new InfoOther([
@@ -261,7 +263,7 @@ class MemberController extends Controller
 
                     return "document/member/{$userId}/{$subfolder}/{$filenameToStore}";
                 }
-                
+
                 return null;
             }
             $infoDocument = new InfoDocument([
@@ -282,7 +284,7 @@ class MemberController extends Controller
             Auth::login($user);
             // Send email verification
             // $user->sendEmailVerificationNotification();
-            
+
             // Commit the transaction if everything is successful
             DB::commit();
 
@@ -305,7 +307,7 @@ class MemberController extends Controller
                 ], 500);
             }
         }
-        
+
     }
 
 
@@ -317,7 +319,7 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -345,14 +347,14 @@ class MemberController extends Controller
         $user->approve_by = Auth::user()->id;
         $user->save();
         $user->assignRole('Member');
-        
+
         // $mailData =[
         //     'title' => 'Now Your Are Member Of IDAB',
         //     'body' => 'This Is body',
         // ];
         // Mail::to($user->email)->send(new MemberApproved($mailData));
         $notification=array('messege'=>'Approve successfully!','alert-type'=>'success');
-        
+
         return redirect()->back()->with($notification);
     }
     public function approveCancel($id){
@@ -399,7 +401,7 @@ class MemberController extends Controller
         $user = User::find($id);
         // Load relationships if needed
         $user->load(['memberType', 'infoPersonal', 'infoAcademic.mastQualification']);
-        
+
         return view('layouts.pages.member.member-verify', compact('user'));
     }
 
@@ -418,9 +420,9 @@ class MemberController extends Controller
                 $join->on('users.id', '=', 'payment_details.member_id')
                     ->where('payment_details.payment_reason_id', 1)
                     ->whereRaw('payment_details.created_at = (
-                        SELECT MAX(pd.created_at) 
-                        FROM payment_details pd 
-                        WHERE pd.member_id = users.id 
+                        SELECT MAX(pd.created_at)
+                        FROM payment_details pd
+                        WHERE pd.member_id = users.id
                         AND pd.payment_reason_id = 1
                     )');
             })
@@ -434,21 +436,7 @@ class MemberController extends Controller
             )
             ->orderBy('users.name', 'asc')
             ->get();
-    
-        // Filter duplicates by name, keep latest payment_date
-        $uniqueUsers = $users->groupBy('name')->map(function($group) {
-            return $group->sortByDesc('payment_date')->first();
-        })->values();
-    
-        $filename = "members_" . now()->format('Ymd_His') . ".csv";
-        $headers = [
-            "Content-type"        => "text/csv",
-            "Content-Disposition" => "attachment; filename=$filename",
-            "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0"
-        ];
-    
+
         $columns = [
             'Serial No',
             'Membership No',
@@ -461,14 +449,43 @@ class MemberController extends Controller
             'Member Type',
             'Remarks'
         ];
-    
-        $callback = function () use ($uniqueUsers, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
-    
+
+        $groupedUsers = $users->groupBy(function ($user) {
+            return $user->member_type_name ?: 'Unknown';
+        });
+
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->removeSheetByIndex(0);
+        $usedSheetTitles = [];
+
+        foreach ($groupedUsers as $memberType => $memberTypeUsers) {
+            // Remove duplicate names per member type and keep latest payment date entry.
+            $uniqueUsers = $memberTypeUsers->groupBy('name')->map(function ($group) {
+                return $group->sortByDesc('payment_date')->first();
+            })->values();
+
+            $sheet = $spreadsheet->createSheet();
+
+            $baseTitle = preg_replace('/[\\\\\/*:?\[\]]/', '_', $memberType ?: 'Unknown');
+            $baseTitle = trim($baseTitle) ?: 'Unknown';
+            $baseTitle = mb_substr($baseTitle, 0, 31);
+
+            $sheetTitle = $baseTitle;
+            $suffix = 1;
+            while (in_array($sheetTitle, $usedSheetTitles, true)) {
+                $suffixLabel = '_' . $suffix;
+                $sheetTitle = mb_substr($baseTitle, 0, 31 - strlen($suffixLabel)) . $suffixLabel;
+                $suffix++;
+            }
+            $usedSheetTitles[] = $sheetTitle;
+
+            $sheet->setTitle($sheetTitle);
+            $sheet->fromArray($columns, null, 'A1');
+
             $serial = 1;
+            $row = 2;
             foreach ($uniqueUsers as $user) {
-                fputcsv($file, [
+                $sheet->fromArray([
                     $serial++,
                     $user->member_code ?? '',
                     $user->name ?? '',
@@ -479,17 +496,42 @@ class MemberController extends Controller
                     $user->paid_amount ?? '',
                     $user->member_type_name ?? '',
                     $user->remarks ?? '',
-                ]);
+                ], null, 'A' . $row);
+                $row++;
             }
-    
-            fclose($file);
-        };
-    
-        return response()->stream($callback, 200, $headers);
+
+            foreach (range('A', 'J') as $column) {
+                $sheet->getColumnDimension($column)->setAutoSize(true);
+            }
+        }
+
+        if ($spreadsheet->getSheetCount() === 0) {
+            $sheet = $spreadsheet->createSheet();
+            $sheet->setTitle('Members');
+            $sheet->fromArray($columns, null, 'A1');
+        }
+
+        $spreadsheet->setActiveSheetIndex(0);
+
+        $filename = "members_by_type_" . now()->format('Ymd_His') . ".xlsx";
+        $exportDirectory = storage_path('app/temp');
+        $exportPath = $exportDirectory . '/' . $filename;
+
+        if (!File::exists($exportDirectory)) {
+            File::makeDirectory($exportDirectory, 0755, true);
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($exportPath);
+        $spreadsheet->disconnectWorksheets();
+
+        return response()->download($exportPath, $filename, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ])->deleteFileAfterSend(true);
     }
 
 
-    
+
     /**___________________________________________________________________________________
      * DOWNLOAD DOCUMENT
      * ___________________________________________________________________________________
@@ -547,7 +589,7 @@ class MemberController extends Controller
 
     public function downloadTradeLicence($id)
     {
-        
+
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->trade_licence);
@@ -567,7 +609,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->tin_certificate);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -582,7 +624,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->nid_photo_copy);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -597,7 +639,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->passport_photo);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -612,7 +654,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->edu_certificate);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -627,7 +669,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->experience_certificate);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -642,7 +684,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->stu_id_copy);
-            
+
             if (file_exists($filePath)) {
                 return response()->download($filePath);
             } else {
@@ -658,7 +700,7 @@ class MemberController extends Controller
         try {
             $data = InfoDocument::findOrFail($id);
             $filePath = public_path($data->recoment_letter);
-            
+
             if (file_exists($filePath)) {
                 return Response::download($filePath);
             } else {
@@ -696,5 +738,5 @@ class MemberController extends Controller
             ]);
         }
     }
-    
+
 }
