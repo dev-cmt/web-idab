@@ -39,7 +39,7 @@
                         <h3>IDAB</h3>
                         <p>Rain Razzak Plaza, 2 Shahid Tazuddin Soroni, Moghbazar, Dhaka-1217, Bangladesh <br><br>
                             <strong>Phone:</strong><a href="tel:+8801806428222">+880 1806 428 222</a><br>
-                            <strong>Email:</strong> <a href="mailto:contact.idab@gmail.com">contact.idab@gmail.com</a><br>
+                            <strong>Email:</strong> <a href="mailto:internationalaffairs@idab.com.bd">internationalaffairs@idab.com.bd</a><br>
                             
                         </p>
                         <div class="social-links mt-3">

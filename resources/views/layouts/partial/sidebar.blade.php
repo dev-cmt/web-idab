@@ -39,7 +39,7 @@
                     <li><a href="{{Route('members-approve.index')}}">Member Approve</a></li>
                     @endcanany
                     @canany('Member approve access','Member approved', 'Member approve record')
-                    <li><a href="{{Route('member-csv.download')}}">Report Member</a></li>
+                    <li><a href="{{Route('member-csv.download')}}">Member’s Report</a></li>
                     @endcanany
                     
                     @canany('Data Setting')

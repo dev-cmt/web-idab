@@ -70,8 +70,14 @@
                         </div>
                     </div>
                     <a href="{{ route('member-certificate.download', $user->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
-                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span>Certificate  Dwonload
-                                        </a>
+                        <i class="flaticon-381-download"></i><span class="btn-icon-add"></span>Certificate  Download
+                    </a><br>
+                    <a href="{{ route('member-money-receipt.download', $user->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                        <i class="flaticon-381-download"></i><span class="btn-icon-add"></span>Money Receipt  Download
+                    </a><br>
+                    <a href="{{ route('member-id-card.download', $user->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                        <i class="flaticon-381-download"></i><span class="btn-icon-add"></span>ID Card  Download
+                    </a>
                 </div>
     
                 <div class="card-body">

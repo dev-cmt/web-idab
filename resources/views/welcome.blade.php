@@ -177,7 +177,7 @@
         <section class="newsletter-section py-5 position-relative">
             <div class="container">
                 <div class="newsletter-title text-center mb-4">
-                    <h1>News</h1>
+                    <h1>Our Activities</h1>
                     <!--<p>Stay updated with our latest posts and announcements</p>-->
                 </div>
 
@@ -352,8 +352,8 @@
                     <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch animate__animated animate__slideInUp">
                         <div class="count-box">
                             <i class="bi bi-journal-richtext"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="{{count($event)}}" data-purecounter-duration="1"
-                                class="purecounter"></span>
+                            <!--<span data-purecounter-start="0" data-purecounter-end="{{count($event)}}" data-purecounter-duration="1" class="purecounter"></span>-->
+                            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
                             <p><strong>Events</strong></p>
                         </div>
                     </div>
@@ -434,10 +434,10 @@
                             <i class="bi bi-card-text me-3"></i>Student member
                         </button>
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                            <i class="bi bi-card-text me-3"></i>Associate member
+                            <i class="bi bi-card-text me-3"></i>IDAB Associate
                         </button>
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-pane-5" type="button">
-                            <i class="bi bi-card-text me-3"></i>Trade member
+                            <i class="bi bi-card-text me-3"></i>IDAB Trade
                         </button>
                     </div>
                     <div class="col-lg-8">

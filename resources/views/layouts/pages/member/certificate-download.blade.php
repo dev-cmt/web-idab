@@ -64,7 +64,6 @@
             font-family: 'The Great Kingdom', sans-serif;
             font-size: 22pt;
             font-weight: bold;
-            font-style: italic;
             margin: 15px 0;
             display: inline-block;
             padding: 0 15mm;

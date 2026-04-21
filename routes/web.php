@@ -139,6 +139,8 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('download/member-documents/{id}/download-ZipFile', [MemberController::class, 'downloadZipFile'])->name('member-document.downloadZipFile');
     Route::get('download/member-certificate/{user}', [MemberController::class, 'certificateDownload'])->name('member-certificate.download');
+    Route::get('download/member-money-receipt/{user}', [MemberController::class, 'moneyReceiptDownload'])->name('member-money-receipt.download');
+    Route::get('download/member-id-card.download/{user}', [MemberController::class, 'memberIdCardDownload'])->name('member-id-card.download');
 
     Route::get('download/member-documents/{id}/trade_licence', [MemberController::class, 'downloadTradeLicence'])->name('document-trade-licence.download');
     Route::get('download/member-documents/{id}/tin_certificate', [MemberController::class, 'downloadTinCertificate'])->name('document-tin-certificate.download');

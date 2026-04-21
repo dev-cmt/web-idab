@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $from = now()->startOfMonth();
         $to = now();
-        $user = User::where('status', 1)->latest()->get();
+        $user = User::where('status', 1)->whereNotIn('id', [1, 2])->latest()->get();
         $enroll = $user->whereBetween('created_at', [$from, $to])->count();
         $add_hoc = $user->where('committee_type_id', 1)->count();
         $executive = $user->where('committee_type_id', 2)->count();

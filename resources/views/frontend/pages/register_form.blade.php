@@ -132,7 +132,7 @@
                                     <p><i class="bi bi-check-lg me-3"></i>3. Updated Trade License</p>
                                     <p><i class="bi bi-check-lg me-3"></i>4. Updated TIN paper</p>
                                     <p><i class="bi bi-check-lg me-3"></i>5. NID</p>
-                                <p class="mb-4">(Registration Fee 2000/-) (Annual Fee 10000/-)</p>
+                                <p class="mb-4">Membership Fee 15000/-)</p>
                             </div>
                             <div id="tab-pane-5" style="font-size:12px;">
                                 <h5 class="mb-4"><i class="bi bi-amd text-danger"></i>First 100 Member 50% Discount</h5>

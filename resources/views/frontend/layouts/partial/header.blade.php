@@ -37,13 +37,48 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>Members</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Members</span> <i class="bi bi-chevron-down"></i>
+                    </a>
                     <ul>
                         @foreach ($memberType as $item)
-                            <li><a href="{{Route('page.member', $item->id )}}" >{{$item->name}} </a></li>
+                            @if (in_array($item->id, [1, 3, 5]))
+                                <li>
+                                    <a href="{{ route('page.member', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </li>
+                
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Collaborator</span> <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul>
+                        @foreach ($memberType as $item)
+                            @if ($item->id == 2)
+                                <li>
+                                    <a href="{{ route('page.member', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </li>
+                            @endif
+                
+                            @if ($item->id == 4)
+                                <li>
+                                    <a href="{{ route('page.member', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </li>
+
                 <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.why-be-member') ? 'active' : '' }}" href="{{Route('page.why-be-member')}}">Why be a Member</a></li>-->
                 <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.requirements') ? 'active' : '' }}" href="{{Route('page.requirements')}}">Requirements</a></li>-->
                 <!--<li><a class="nav-link scrollto {{ (Route::currentRouteName() == 'page.gallery-cover') ? 'active' : '' }}" href="{{Route('page.gallery-cover')}}">Gallery</a></li>-->

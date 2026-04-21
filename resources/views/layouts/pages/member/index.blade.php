@@ -17,7 +17,7 @@
                                 <th>Phone Number</th>
                                 <th>Member Type</th>
                                 @canany('Super-Admin')
-                                <th>Certificate</th>
+                                <th>Dwonload</th>
                                 <th>Approve By</th>
                                 @endcanany
                                 @canany('Member','Member edit', 'Member view', 'Member delete')
@@ -35,7 +35,13 @@
                                     <td>{{$row->memberType->name ?? 'null'}}</td>
                                     <td>
                                         <a href="{{ route('member-certificate.download', $row->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
-                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span> Dwonload
+                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span> Certificate
+                                        </a><br>
+                                        <a href="{{ route('member-money-receipt.download', $row->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span> Money Receipt
+                                        </a><br>
+                                        <a href="{{ route('member-id-card.download', $row->id) }}" class="btn btn-sm btn-secondary p-1 px-2 m-1">
+                                            <i class="flaticon-381-download"></i><span class="btn-icon-add"></span> ID Card
                                         </a>
                                     </td>
                                     @canany('Super-Admin')

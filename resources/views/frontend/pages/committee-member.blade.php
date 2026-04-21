@@ -175,9 +175,9 @@
                <div class="col-lg-4 mb-3">
                     <div class="bg-white border text-center p-4">
                         <div>
-                            <img src="{{asset('public/images')}}/member-pic/IDr Erfan Babu.jpg" class="img-fluid" alt="" style="height: 100%">
+                            <img src="{{asset('public/images')}}/member-pic/IDr Ar Khurshid Almeher.jpg" class="img-fluid" alt="" style="height: 100%">
                         </div>
-                        <h5 class="mt-4">IDr Erfan Babu</h4>
+                        <h5 class="mt-4">Ar Khurshid Almeher</h4>
                           <h6 class="text-danger">Director</h6>
                     </div>
                 </div>
